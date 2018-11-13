@@ -2,9 +2,6 @@
 
 TODOs
 ----
-* obtain 小号, maintainance fee
-* ask friends if Quatrics is slow
-
 * use itchat
 * use csv input
 * use baidu input (or other sensitive keywords search)
