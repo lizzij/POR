@@ -1,4 +1,7 @@
 #  Power Of Repetition
+Clarifications
+----
+* Payment to people via wechat?
 
 TODOs
 ----
