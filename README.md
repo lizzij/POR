@@ -4,6 +4,7 @@ A project to investigate the power of repetition in Chinese media using WeChat
 Plan
 ----
 ###### in 4 steps, from small scale to lareg scale
+I. Testing itchat + csv
 0. Setup Wechat account API base on Wechat Protocol and package capture
   * Obtain 10 WeChat Id and maintian them
   * Test with friends (small scale)
@@ -18,16 +19,22 @@ Plan
 3. Set up end-to-end encryption
   * Test with friends
   * Test with participants
+  
+II. Testing survey platform
+1. -[ ] Qualtrics too slow
+2. -[ ] wjx.cn censorship
+
+III. Setup website
+0. Bare minimum website on local host
 
 Clarifications
 ----
-* Payment to people via wechat?
 
 TODOs
 ----
 * use csv input
-* use baidu input (or other sensitive keywords search)
-* are links good? keywords bad?
+-[ ] use baidu input (or other sensitive keywords search)
+-[ ]  are links good? keywords bad?
 * test with friends 
 
 * try to integrate encryption with wxpy API
