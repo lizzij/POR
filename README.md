@@ -25,8 +25,7 @@ A project to investigate the power of repetition in Chinese media using WeChat
 - [X] wjx.cn censorship
 
 ### Setup website
-* 
- Bare minimum website on local host
+* Bare minimum website on local host
 
 Clarifications
 ----
