@@ -26,7 +26,7 @@ A project to investigate the power of repetition in Chinese media using WeChat
 
 ### Setup website
 * Bare minimum website on local host
-![Screenshot](https://raw.githubusercontent.com/lizzij/PowerOfRepetition/WebsiteDemo.jpg)     
+<img src="https://raw.githubusercontent.com/lizzij/PowerOfRepetition/master/WebsiteDemo.jpg" width="500" align="middle">
 
 Clarifications
 ----
