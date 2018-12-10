@@ -2,7 +2,6 @@
 A project to investigate the power of repetition in Chinese media using WeChat
 
 ## Steps
-----
 ###### in 4 steps, from small scale to lareg scale
 ### Testing itchat + csv
 * Setup Wechat account API base on Wechat Protocol and package capture
