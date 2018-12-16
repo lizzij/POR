@@ -1,7 +1,7 @@
 #  Power Of Repetition
 A project to investigate the power of repetition in Chinese media using WeChat
 
-<img src="https://github.com/lizzij/Gobble/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
 ## Steps
 #### Use chatbot
