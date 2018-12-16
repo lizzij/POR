@@ -1,12 +1,12 @@
 #  Power Of Repetition
-A project to investigate the power of repetition in Chinese media using WeChat
+A project to investigate the power of repetition in Chinese media.
 
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
 ## Progress
 ### Chatbot
 ###### Use Chatbot to send messages to 2000 participants
-- [X] Setup Wechat account API base on Wechat Protocol and package capture.
+- [ ] Setup Wechat account API base on Wechat Protocol and package capture.
 - [ ] Add friends, start 1-to-1 chat.
 - [ ] Obtain WeChat Id, maintain and test.
 
