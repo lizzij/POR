@@ -1,46 +1,29 @@
 #  Power Of Repetition
 A project to investigate the power of repetition in Chinese media using WeChat
 
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghaiPlaces.gif" alt="Shanghai time lapse" width="880"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
-## Steps
-#### Use chatbot
+## Progress
+### Chatbot
+###### Use Chatbot to send messages to 2000 participants
+- [ ] Setup Wechat account API base on Wechat Protocol and package capture.
+- [ ] Add friends, start 1-to-1 chat.
+- [ ] Obtain WeChat Id, maintain and test.
 
-### Testing itchat + csv
-* Setup Wechat account API base on Wechat Protocol and package capture
-  * Obtain 10 WeChat Id and maintian them
-  * Test with friends (small scale)
-* Setup 1-to-1 chat
-  * Obtain Wechat id in .csv
-  * Add friends by Wechat id
-  * Set nickname to subject according to experiment design (anonymous)
-* Send test message
-  * Setup individualized test message
-  * Require participant to repond by sending the same message back
-  * Check for returned message
-* Set up end-to-end encryption
-  * Test with friends
-  * Test with participants
+### Database
+###### mySQL
+- [ ] Connect with website for Id, input
 
-### Testing survey platform
+### Website
+###### For providing information and collecting surveys
 - [X] Qualtrics too slow
 - [X] wjx.cn censorship
+- [X] Bare minimum website on local host
+- [X] Bare minimum website with server and domain name
 
-### Setup website
-* Bare minimum website on local host
+### Clarifications
 
-Clarifications
-----
-
-TODOs
-----
-* use csv input
-  - [X] use baidu input (or other sensitive keywords search)
-  - [X] are links good? keywords bad?
-* test with friends
-
-* try to integrate encryption with wxpy API
-    * choose encryption
-    * understand API
-* set up database
-* hosting web service, maintaining DB
+### TODOs
+- [ ] test with wechat id
+- [ ] connect database with Website
+- [ ] design website
