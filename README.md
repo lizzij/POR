@@ -6,9 +6,16 @@ A project to investigate the power of repetition in Chinese media.
 ## Progress
 ### Chatbot
 ###### Use Chatbot to send messages to 2000 participants
-- [ ] Setup Wechat account API base on Wechat Protocol and package capture.
-- [ ] Add friends, start 1-to-1 chat.
-- [ ] Obtain WeChat Id, maintain and test.
+- [X] Setup Wechat account API base on Wechat Protocol and package capture.
+  - [X] Test able to send sensitive information and text. :thumbsup:
+  - [ ] Add friends, start 1-to-1 chat using ids from .cvs.
+- [X] Obtain WeChat Id, maintain and test.
+  - [X] Google Voice account cannot train bots
+  - [X] Recently registered account cannot train bots
+  - [X] 1 year-old account can train bots
+    - [X] test passed! :tada: 30 messages in 1 minute (2 sec gaps in between)
+    - [ ] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
+    - [ ] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 
 ### Database
 ###### mySQL
@@ -16,10 +23,13 @@ A project to investigate the power of repetition in Chinese media.
 
 ### Website
 ###### For providing information and collecting surveys
-- [X] Qualtrics too slow
-- [X] wjx.cn censorship
-- [X] Bare minimum website on local host
-- [X] Set up server and domain name
+- [X] Test Qualtrics: too slow :disappointed:
+- [X] Test wjx.cn: censorship :see_no_evil:
+- [ ] Build our own website, server + database! :woman_shrugging:
+  - [X] Bare minimum website on local host
+  - [X] Set up server and domain name
+  - [ ] Get certificate, setup domain name, 
+  - [ ] solve issue (too slow)
 
 ## Developing...
 ### Todos
