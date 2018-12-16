@@ -28,11 +28,17 @@ A project to investigate the power of repetition in Chinese media.
 - [ ] Build our own website, server + database! :woman_shrugging:
   - [X] Bare minimum website on local host
   - [X] Set up server and domain name
-  - [ ] Get certificate, setup domain name, 
+  - [ ] Get certificate, setup domain name,
   - [ ] solve issue (too slow)
+- [ ] Information provision page
+  - [ ] Design [version 1]()
+
+#### Design version 1
+
 
 ## Developing...
 ### Todos
+[trello board](https://trello.com/b/2kwmft8O/chinamedia)
 - [ ] test with wechat id
 - [ ] connect database with Website
 - [ ] design website
