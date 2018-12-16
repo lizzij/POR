@@ -6,7 +6,7 @@ A project to investigate the power of repetition in Chinese media using WeChat
 ## Progress
 ### Chatbot
 ###### Use Chatbot to send messages to 2000 participants
-- [ ] Setup Wechat account API base on Wechat Protocol and package capture.
+- [X] Setup Wechat account API base on Wechat Protocol and package capture.
 - [ ] Add friends, start 1-to-1 chat.
 - [ ] Obtain WeChat Id, maintain and test.
 
