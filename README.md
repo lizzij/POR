@@ -19,11 +19,15 @@ A project to investigate the power of repetition in Chinese media using WeChat
 - [X] Qualtrics too slow
 - [X] wjx.cn censorship
 - [X] Bare minimum website on local host
-- [X] Bare minimum website with server and domain name
+- [X] Set up server and domain name
 
 ## Clarifications
 
-## TODOs
+## Sprint
+### Todos
 - [ ] test with wechat id
 - [ ] connect database with Website
 - [ ] design website
+
+### Clarifications
+- [ ] 
