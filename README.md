@@ -13,9 +13,9 @@ A project to investigate the power of repetition in Chinese media.
   - [X] Google Voice account cannot train bots
   - [X] Recently registered account cannot train bots
   - [X] 1 year-old account can train bots
-    - [X] test passed! 30 messages in 1 minute (2 sec gaps in between)
-    - [ ] test passed! 300 messages in 10 minute (2 sec gaps in between)
-    - [ ] test passed! 500 messages in 60 minute (7.2 sec gaps in between)
+    - [X] test passed! :tada: 30 messages in 1 minute (2 sec gaps in between)
+    - [ ] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
+    - [ ] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 
 ### Database
 ###### mySQL
@@ -25,7 +25,7 @@ A project to investigate the power of repetition in Chinese media.
 ###### For providing information and collecting surveys
 - [X] Test Qualtrics: too slow :disappointed:
 - [X] Test wjx.cn: censorship :see_no_evil:
-- [ ] Build own website, server + database! 
+- [ ] Build our own website, server + database! :woman_shrugging
   - [X] Bare minimum website on local host
   - [X] Set up server and domain name
   - [ ] Get certificate, setup domain name, 
