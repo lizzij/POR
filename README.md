@@ -21,9 +21,7 @@ A project to investigate the power of repetition in Chinese media using WeChat
 - [X] Bare minimum website on local host
 - [X] Set up server and domain name
 
-## Clarifications
-
-## Sprint
+## Developing...
 ### Todos
 - [ ] test with wechat id
 - [ ] connect database with Website
