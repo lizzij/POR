@@ -30,4 +30,4 @@ A project to investigate the power of repetition in Chinese media using WeChat
 - [ ] design website
 
 ### Clarifications
-- [ ] 
+- [ ] question
