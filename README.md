@@ -7,8 +7,8 @@ A project to investigate the power of repetition in Chinese media.
 ### Chatbot
 ###### Use Chatbot to send messages to 2000 participants
 - [X] Setup Wechat account API base on Wechat Protocol and package capture.
-- [X] Test able to send sensitive information and text. :thumbsup:
-- [ ] Add friends, start 1-to-1 chat using ids from .cvs.
+  - [X] Test able to send sensitive information and text. :thumbsup:
+  - [ ] Add friends, start 1-to-1 chat using ids from .cvs.
 - [X] Obtain WeChat Id, maintain and test.
   - [X] Google Voice account cannot train bots
   - [X] Recently registered account cannot train bots
