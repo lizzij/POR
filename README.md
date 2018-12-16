@@ -31,7 +31,7 @@ A project to investigate the power of repetition in Chinese media.
   - [ ] Get certificate, setup domain name,
   - [ ] solve issue (too slow)
 - [ ] Information provision page
-  - [ ] Design [version 1]()
+  - [ ] Design [version 1](#design-version-1)
 
 #### Design version 1
 
