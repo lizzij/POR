@@ -25,7 +25,7 @@ A project to investigate the power of repetition in Chinese media.
 ###### For providing information and collecting surveys
 - [X] Test Qualtrics: too slow :disappointed:
 - [X] Test wjx.cn: censorship :see_no_evil:
-- [ ] Build our own website, server + database! :woman_shrugging
+- [ ] Build our own website, server + database! :woman_shrugging:
   - [X] Bare minimum website on local host
   - [X] Set up server and domain name
   - [ ] Get certificate, setup domain name, 
