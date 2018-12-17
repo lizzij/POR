@@ -34,14 +34,14 @@ A project to investigate the power of repetition in Chinese media.
   - [ ] Design [version 1](#design-version-1)
 
 #### Design version 1
-
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIEng.png" alt="Shanghai time lapse" width="400"/><img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChn.png" alt="Shanghai time lapse" width="400"/>
 
 ## Developing...
 ### Todos
 [trello board](https://trello.com/b/2kwmft8O/chinamedia)
-- [ ] test with wechat id
+- [X] test with wechat id
 - [ ] connect database with Website
-- [ ] design website
+- [X] design website
 
 ### Clarifications
 - [ ] question
