@@ -35,8 +35,8 @@ A project to investigate the power of repetition in Chinese media.
 
 #### Design version 1
 <p float="left">
-  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChn.png" alt="InfoPageUIChn" width="400"/>
-  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIEng.png" alt="InfoPageUIEng" width="400"/>
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChn.png" alt="InfoPageUIChn" height="700"/>
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIEng.png" alt="InfoPageUIEng" height="700"/>
 </p>
 
 ## Developing...
