@@ -6,14 +6,14 @@ A project to investigate the power of repetition in Chinese media.
 ## Progress
 ### Chatbot
 ###### Use Chatbot to send messages to 2000 participants
-- [X] Setup Wechat account API base on Wechat Protocol and package capture.
-  - [X] Test able to send sensitive information and text. :thumbsup:
+- [x] Setup Wechat account API base on Wechat Protocol and package capture.
+  - [x] Test able to send sensitive information and text. :thumbsup:
   - [ ] Add friends, start 1-to-1 chat using ids from .cvs.
-- [X] Obtain WeChat Id, maintain and test.
-  - [X] Google Voice account cannot train bots
-  - [X] Recently registered account cannot train bots
-  - [X] 1 year-old account can train bots
-    - [X] test passed! :tada: 30 messages in 1 minute (2 sec gaps in between)
+- [x] Obtain WeChat Id, maintain and test.
+  - [x] Google Voice account cannot train bots
+  - [x] Recently registered account cannot train bots
+  - [x] 1 year-old account can train bots
+    - [x] test passed! :tada: 30 messages in 1 minute (2 sec gaps in between)
     - [ ] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
     - [ ] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 
@@ -23,11 +23,11 @@ A project to investigate the power of repetition in Chinese media.
 
 ### Website
 ###### For providing information and collecting surveys
-- [X] Test Qualtrics: too slow :disappointed:
-- [X] Test wjx.cn: censorship :see_no_evil:
+- [x] Test Qualtrics: too slow :disappointed:
+- [x] Test wjx.cn: censorship :see_no_evil:
 - [ ] Build our own website, server + database! :woman_shrugging:
-  - [X] Bare minimum website on local host
-  - [X] Set up server and domain name
+  - [x] Bare minimum website on local host
+  - [x] Set up server and domain name
   - [ ] Get certificate, setup domain name,
   - [ ] solve issue (too slow)
 - [ ] Information provision page
@@ -37,6 +37,12 @@ A project to investigate the power of repetition in Chinese media.
 <p float="left">
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChn.png" alt="InfoPageUIChn" height="700"/>
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIEng.png" alt="InfoPageUIEng" height="700"/>
+</p>
+
+#### Design version 2
+<p float="left">
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV2-1.png" alt="InfoPageUIChnV2-1" height="700"/>
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIEngV2-2.png" alt="InfoPageUIChnV2-2" height="700"/>
 </p>
 
 ## Developing...
