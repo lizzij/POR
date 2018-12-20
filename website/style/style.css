@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body{
   font-family: Montserrat;
@@ -60,4 +59,20 @@ header #eventDate{
   font-size: 18px;
 
   color: #4F4F4F;
+}
+
+header #eventTime{
+  position: absolute;
+  width: 138px;
+  height: 19px;
+  left: 13px;
+  top: 126px;
+
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 10px;
+
+  color: #979797;
 }
