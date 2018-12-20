@@ -14,8 +14,8 @@ A project to investigate the power of repetition in Chinese media.
   - [x] Recently registered account cannot train bots
   - [x] 1 year-old account can train bots
     - [x] test passed! :tada: 30 messages in 1 minute (2 sec gaps in between)
-    - [ ] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
-    - [ ] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
+    - [x] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
+    - [x] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 
 ### Database
 ###### mySQL
