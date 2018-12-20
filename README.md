@@ -33,6 +33,7 @@ A project to investigate the power of repetition in Chinese media.
 - [ ] Information provision page
   - [x] Design [version 1](#design-version-1)
   - [x] Design [version2](#design-version-2)
+- [ ] Survey page  
 
 #### Design version 1
 <p float="left">
@@ -46,11 +47,14 @@ A project to investigate the power of repetition in Chinese media.
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV2-2.png" alt="InfoPageUIChnV2-2" height="783"/>
 </p>
 
+#### Survey
+
 ## Developing...
 ### Todos
 [trello board](https://trello.com/b/2kwmft8O/chinamedia)
-- [X] test with wechat id
 - [ ] connect database with Website
+- [ ] survey form
+- [ ] website realization
 - [X] design website
 
 ### Clarifications
