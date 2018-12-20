@@ -1,0 +1,12 @@
+body{
+  font: .PingFang HK;
+  padding:0;
+  margin:0;
+}
+
+/* Global */
+.container{
+  width:100%;
+  margin:auto;
+  overflow:hidden;
+}
