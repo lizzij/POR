@@ -116,8 +116,8 @@ header #eventName{
   position: absolute;
   width: 58px;
   height: 28px;
-  left: calc(50% - 58px/2 - 135px);
-  top: 3px;
+  left: calc(50% - 58px/2 - 132px);
+  top: 9px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
@@ -151,10 +151,104 @@ header #eventName{
   width: 87px;
   height: 47px;
   left: calc(50% - 87px/2 - 91.5px);
-  top: 29px;
+  top: 32px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
 
-color: #979797;
+  color: #979797;
+}
+
+.temperatureLow{
+  position: absolute;
+  width: 61px;
+  height: 54px;
+  left: calc(50% - 61px/2 + 14.5px);
+  top: 33px;
+}
+
+#lowValue{
+  position: absolute;
+  width: 17px;
+  height: 32px;
+  left: calc(50% - 17px/2 + 6px);
+  top: 17.5px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+
+  color: #000000;
+}
+
+#lowUnit{
+  position: absolute;
+  width: 16px;
+  height: 19px;
+  left: calc(50% - 16px/2 + 22.5px);
+  top: 31px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#low{
+  position: absolute;
+  width: 61px;
+  height: 54px;
+  left: calc(50% - 61px/2);
+  top: 0px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #979797;
+}
+
+.temperatureHigh{
+  position: absolute;
+  width: 58px;
+  height: 42px;
+  left: calc(50% - 58px/2 + 104px);
+  top: 33px;
+}
+
+#highValue{
+  position: absolute;
+  width: 16px;
+  height: 25px;
+  left: calc(50% - 16px/2 + 9px);
+  top: 17px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+
+  color: #000000;
+}
+
+#highUnit{
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  left: calc(50% - 13px/2 + 22.5px);
+  top: 29px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#high{
+  position: absolute;
+  width: 58px;
+  height: 36px;
+  left: calc(50% - 58px/2);
+  top: 0px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #979797;
 }
