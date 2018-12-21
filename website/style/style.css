@@ -38,11 +38,12 @@ header #eventName{
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 24px;
+  line-height: 1.2;
 
   color: #000000;
 }
 
-header #eventDate{
+#eventDate{
   position: absolute;
   width: 253px;
   height: 21px;
@@ -55,7 +56,7 @@ header #eventDate{
   color: #4F4F4F;
 }
 
-header #eventTime{
+#eventTime{
   position: absolute;
   width: 138px;
   height: 13px;
@@ -68,7 +69,7 @@ header #eventTime{
   color: #979797;
 }
 
-header #icon{
+#icon{
   position: absolute;
   width: 35px;
   height: 35px;
@@ -86,10 +87,40 @@ header #icon{
   overflow:hidden;
 }
 
-image #evetImage{
+#evetImage{
   position: absolute;
   width: 376px;
   height: 276px;
   left: calc(50% - 376px/2);
   top: 0px;
+}
+
+.weather{
+  position: absolute;
+  width: 374px;
+  height: 203px;
+  left: calc(50% - 374px/2 - 0.5px);
+  top: 449px;
+}
+
+.temperature{
+  position: absolute;
+  width: 346px;
+  height: 80px;
+  left: calc(50% - 346px/2 + 1px);
+  top: 14px;
+  box-shadow: 1px 1px 4px rgba(151, 151, 151, 0.4);
+}
+
+#temperatureHeader{
+  position: absolute;
+  width: 58px;
+  height: 28px;
+  left: calc(50% - 58px/2 - 135px);
+  top: 3px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
 }
