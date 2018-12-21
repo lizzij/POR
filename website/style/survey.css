@@ -1,7 +1,6 @@
 body{
   padding-top: 30px;
   padding-bottom: 30px;
-
 }
 
 .slider {
@@ -34,6 +33,10 @@ body{
   cursor: pointer;
 }
 
+.sliderAmount{
+  font-size: 14px;
+}
+
 .question{
   font-size: 16px;
   font-weight: 500;
@@ -45,11 +48,11 @@ body{
 }
 
 .slidecontainer{
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 
 #newOutletAnnotation{
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 #unitDays{
