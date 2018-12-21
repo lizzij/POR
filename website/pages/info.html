@@ -187,11 +187,17 @@
 
     <!-- next button -->
     <section class="nextButton">
-
-      <div id="button">
-        <img src="../img/Button.png">
+      <div id="nextButton">
+        <div id="button">
+          <img src="../img/Button.png">
+        </div>
+        <div id="next">下一页</div>
+        <script type="text/javascript">
+            document.getElementById("nextButton").onclick = function () {
+                location.href = "./surveyPage1.html";
+            };
+        </script>
       </div>
-      <div id="next">下一页</div>
     </section>
 
     <!-- powered by -->

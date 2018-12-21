@@ -25,7 +25,12 @@
         <div class="form-group">
         </div>
 
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Next</button>
+        <button id="nextButton" type="button" class="btn btn-secondary btn-lg btn-block">Next</button>
+        <script type="text/javascript">
+            document.getElementById("nextButton").onclick = function () {
+                location.href = "./surveyPage3.html";
+            };
+        </script>
 
       </div>
     </form>
