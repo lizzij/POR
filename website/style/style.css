@@ -1,6 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body{
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight:100;
   padding:0;
   margin:0;
 }
@@ -43,9 +46,9 @@ header #eventName{
 header #eventDate{
   position: absolute;
   width: 253px;
-  height: 36px;
+  height: 21px;
   left: 13px;
-  top: 89px;
+  top: 95px;
 
   font-family: Montserrat, sans-serif;
   font-size: 18px;
