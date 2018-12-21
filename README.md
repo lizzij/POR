@@ -19,6 +19,7 @@ A project to investigate the power of repetition in Chinese media.
 
 ### Database
 ###### mySQL
+- [x] Setup mySQL database
 - [ ] Connect with website for Id, input
 
 ### Website
@@ -27,12 +28,13 @@ A project to investigate the power of repetition in Chinese media.
 - [x] Test wjx.cn: censorship :see_no_evil:
 - [ ] Build our own website, server + database! :woman_shrugging:
   - [x] Bare minimum website on local host
-  - [x] Set up server and domain name
+  - [x] Set up Vultr server and domain name
   - [ ] Get certificate, setup domain name,
   - [ ] solve issue (too slow)
-- [ ] Information provision page
-  - [x] Design [version 1](#design-version-1)
-  - [x] Design [version2](#design-version-2)
+- [x] Information provision page
+  - [x] [Design version 1](#design-version-1)
+  - [x] [Design version2](#design-version-2)
+  - [ ] Realize version 2 in code
 - [ ] Survey page  
 
 #### Design version 1
@@ -54,8 +56,8 @@ A project to investigate the power of repetition in Chinese media.
 [trello board](https://trello.com/b/2kwmft8O/chinamedia)
 - [ ] connect database with Website
 - [ ] survey form
-- [ ] website realization
+- [x] website realization
 - [X] design website
 
 ### Clarifications
-- [ ] question
+- [ ] ...
