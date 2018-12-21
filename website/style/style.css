@@ -630,3 +630,69 @@ header #eventName{
 
   opacity: 0.3;
 }
+
+.suitableIconLabels{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+  text-align: center;
+}
+
+#family{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 139.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#friends{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 81.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#lovers{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 23.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#baby{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 34.5px);
+  top: 99px;
+
+  color: #979797;
+}
+
+#elderly{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 92.5px);
+  top: 99px;
+
+  color: #979797;
+}
+
+#pets{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 150.5px);
+  top: 99px;
+
+  color: #979797;
+}
