@@ -696,3 +696,49 @@ header #eventName{
 
   color: #979797;
 }
+
+.nextButton{
+  position: absolute;
+  width: 375px;
+  height: 60px;
+  left: calc(50% - 375px/2);
+  top: 1013px;
+}
+
+#next{
+  position: absolute;
+  width: 222px;
+  height: 10px;
+  left: calc(50% - 222px/2 + 2.5px);
+  top: 22px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 12px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+#button{
+  position: absolute;
+  width: 248px;
+  height: 42px;
+  left: calc(50% - 248px/2 + 0.5px);
+  top: 9px;
+
+  /* ShanghaiGrey */
+  background: #979797;
+}
+
+.poweredBy{
+  position: absolute;
+  width: 376px;
+  height: 16px;
+  left: calc(50% - 376px/2 - 0.5px);
+  top: 1100px;
+
+  background: #FFFFFF;
+}
