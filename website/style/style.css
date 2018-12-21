@@ -124,3 +124,37 @@ header #eventName{
 
   color: #4F4F4F;
 }
+
+#temperatureSource{
+  position: absolute;
+  width: 94px;
+  height: 14px;
+  left: calc(50% - 94px/2 + 82px);
+  top: 10px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+
+  color: #4F4F4F;
+}
+
+#chinaDaily{
+  position: absolute;
+  width: 66px;
+  height: 28px;
+  left: calc(50% - 66px/2 + 138px);
+  top: 7px;
+}
+
+#temperatureSubtitle{
+  position: absolute;
+  width: 87px;
+  height: 47px;
+  left: calc(50% - 87px/2 - 91.5px);
+  top: 29px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+color: #979797;
+}
