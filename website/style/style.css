@@ -5,6 +5,15 @@ body{
   margin:0;
 }
 
+.title{
+  position: absolute;
+  height: 150px;
+  top: 24px;
+  width:100%;
+  margin:auto;
+  overflow:hidden;
+}
+
 header #eventLocation{
   position: absolute;
   width: 115px;
@@ -47,7 +56,7 @@ header #eventDate{
 header #eventTime{
   position: absolute;
   width: 138px;
-  height: 19px;
+  height: 13px;
   left: 13px;
   top: 126px;
 
@@ -63,4 +72,21 @@ header #icon{
   height: 35px;
   right: 16px;
   top: 16px;
+}
+
+.image{
+  position: absolute;
+  width: 376px;
+  height: 274px;
+  top: 175px;
+  margin:auto;
+  overflow:hidden;
+}
+
+image #evetImage{
+  position: absolute;
+  width: 376px;
+  height: 276px;
+  left: 0px;
+  top: 0px;
 }
