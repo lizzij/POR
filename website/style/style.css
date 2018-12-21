@@ -13,9 +13,6 @@ header #eventLocation{
   top: 9px;
 
   font-family: PingFangHK-Regular, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 10px;
 
   color: #979797;
@@ -29,9 +26,6 @@ header #eventName{
   top: 23px;
 
   font-family: PingFangHK-Regular, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 24px;
 
   color: #000000;
@@ -45,9 +39,6 @@ header #eventDate{
   top: 89px;
 
   font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 18px;
 
   color: #4F4F4F;
@@ -61,20 +52,15 @@ header #eventTime{
   top: 126px;
 
   font-family: PingFangHK-Regular, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 10px;
 
   color: #979797;
 }
 
-#image img{
+header #icon{
   position: absolute;
   width: 35px;
   height: 35px;
   right: 16px;
   top: 16px;
-
-  background: url(ShanghaiIcon.png);
 }
