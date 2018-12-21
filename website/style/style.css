@@ -480,5 +480,40 @@ header #eventName{
 }
 
 .description{
-  
+  position: absolute;
+  width: 375px;
+  height: 227px;
+  left: calc(50% - 375px/2);
+  top: 652px;
+
+  background: #FFFFFF;
+}
+
+.paragraph{
+  position: absolute;
+  width: 333px;
+  height: 214px;
+  left: calc(50% - 333px/2 + 2px);
+  top: 8px;
+}
+
+#eventDetail{
+  position: absolute;
+  width: 160px;
+  height: 18px;
+  left: calc(50% - 160px/2 - 86.5px);
+  top: 0.5px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+#dropDownChevron{
+
+}
+
+#detailedPointForm{
+
 }
