@@ -1,16 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 body{
-  font-family: Montserrat;
   padding:0;
   margin:0;
-}
-
-/* Global */
-.container{
-  width:100%;
-  margin:auto;
-  overflow:hidden;
 }
 
 header #eventLocation{
@@ -20,7 +12,7 @@ header #eventLocation{
   left: 13px;
   top: 9px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -36,7 +28,7 @@ header #eventName{
   left: 13px;
   top: 23px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -68,11 +60,21 @@ header #eventTime{
   left: 13px;
   top: 126px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
   font-size: 10px;
 
   color: #979797;
+}
+
+#image img{
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  right: 16px;
+  top: 16px;
+
+  background: url(ShanghaiIcon.png);
 }
