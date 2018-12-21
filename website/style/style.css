@@ -510,10 +510,29 @@ header #eventName{
   color: #4F4F4F;
 }
 
-#dropDownChevron{
+/* #dropDownChevron{
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  left: calc(50% - 6px/2 + 165px);
+  top: 5.5px;
 
-}
+  border: 2px solid #AAAAAA;
+  transform: rotate(90deg);
+} */
 
 #detailedPointForm{
+  position: absolute;
+  width: 333px;
+  height: 180px;
+  left: calc(50% - 333px/2);
+  top: 34px;
 
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
 }
