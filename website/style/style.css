@@ -742,3 +742,52 @@ header #eventName{
 
   background: #FFFFFF;
 }
+
+#lizzijIcon{
+  position: absolute;
+  width: 11.25px;
+  height: 9px;
+  left: calc(50% - 11.25px/2 + 26.62px);
+  top: 2.7px;
+}
+
+#lizzij{
+  position: absolute;
+  width: 15px;
+  height: 9px;
+  left: calc(50% - 15px/2 + 13.5px);
+  top: 3px;
+}
+
+.poweredByText{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-weight: 300;
+  line-height: 9px;
+  font-size: 7px;
+
+  color: #979797;
+}
+
+#dashLeft{
+  position: absolute;
+  width: 5.33px;
+  height: 7.33px;
+  left: calc(50% - 5.33px/2 - 36.33px);
+  top: 10.33px;
+}
+
+#poweredBy{
+  position: absolute;
+  width: 40px;
+  height: 7px;
+  left: calc(50% - 40px/2 - 12px);
+  top: 11px;
+}
+
+#dashRight{
+  position: absolute;
+  width: 5.33px;
+  height: 7.33px;
+  left: calc(50% - 5.33px/2 + 36.33px);
+  top: 10.33px;
+}
