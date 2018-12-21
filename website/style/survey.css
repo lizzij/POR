@@ -33,6 +33,19 @@ body{
   cursor: pointer;
 }
 
-.prompt{
+.question{
   font-size: 16px;
+  font-weight: 500;
+}
+
+.annotation{
+  font-size: 14px;
+}
+
+.slidecontainer{
+  padding-bottom: 10px;
+}
+
+#newOutletAnnotation{
+  padding-top: 5px;
 }
