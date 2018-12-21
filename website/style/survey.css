@@ -18,16 +18,16 @@ body{
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: #4F4F4F;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: #4F4F4F;
   cursor: pointer;
@@ -35,6 +35,7 @@ body{
 
 .sliderAmount{
   font-size: 14px;
+  padding-left: 2px;
 }
 
 .question{
@@ -48,7 +49,7 @@ body{
 }
 
 .slidecontainer{
-  padding-bottom: 0px;
+  padding-bottom: 5px;
 }
 
 #newOutletAnnotation{
@@ -72,15 +73,7 @@ body{
   clear: both;
 }
 
-.rating {
-  width: 90px;
-  unicode-bidi: bidi-override;
-  direction: rtl;
-  text-align: center;
-  position: relative;
-}
-
-.starsLeft{
+.starsLeft {
   width: 180px;
   unicode-bidi: bidi-override;
   direction: rtl;
@@ -88,7 +81,8 @@ body{
   position: relative;
 }
 
-.rating > label {
+
+.starsLeft > label {
   float: right;
   display: inline;
   padding: 0;
@@ -99,16 +93,163 @@ body{
   color: #000;
 }
 
-.rating > label:hover,
-.rating > label:hover ~ label,
-.rating > input.radio-btn:checked ~ label {
+.starsLeft > label:hover,
+.starsLeft > label:hover ~ label,
+.starsLeft > input.radio-btn:checked ~ label {
   color: transparent;
 }
 
-.rating > label:hover:before,
-.rating > label:hover ~ label:before,
-.rating > input.radio-btn:checked ~ label:before,
-.rating > input.radio-btn:checked ~ label:before {
+.starsLeft > label:hover:before,
+.starsLeft > label:hover ~ label:before,
+.starsLeft > input.radio-btn:checked ~ label:before,
+.starsLeft > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+#rating1 {
+  width: 180px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+
+#rating1 > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+#rating1 > label:hover,
+#rating1 > label:hover ~ label,
+#rating1 > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+#rating1 > label:hover:before,
+#rating1 > label:hover ~ label:before,
+#rating1 > input.radio-btn:checked ~ label:before,
+#rating1 > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+
+#rating2 {
+  width: 180px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+
+#rating2 > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+#rating2 > label:hover,
+#rating2 > label:hover ~ label,
+#rating2 > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+#rating2 > label:hover:before,
+#rating2 > label:hover ~ label:before,
+#rating2 > input.radio-btn:checked ~ label:before,
+#rating2 > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+
+#rating3 {
+  width: 180px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+
+#rating3 > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+#rating3 > label:hover,
+#rating3 > label:hover ~ label,
+#rating3 > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+#rating3 > label:hover:before,
+#rating3 > label:hover ~ label:before,
+#rating3 > input.radio-btn:checked ~ label:before,
+#rating3 > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+
+#rating4 {
+  width: 180px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+
+#rating4 > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+#rating4 > label:hover,
+#rating4 > label:hover ~ label,
+#rating4 > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+#rating4 > label:hover:before,
+#rating4 > label:hover ~ label:before,
+#rating4 > input.radio-btn:checked ~ label:before,
+#rating4 > input.radio-btn:checked ~ label:before {
   content: "\2605";
   position: absolute;
   left: 0;
