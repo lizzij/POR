@@ -34,8 +34,12 @@ A project to investigate the power of repetition in Chinese media.
 - [x] Information provision page
   - [x] [Design version 1](#design-version-1)
   - [x] [Design version2](#design-version-2)
-  - [ ] Realize version 2 in code
+    - [ ] Realize version 2 in code
+  - [ ] [Design version 3](#design-version-3)
+    - [ ] Realize version 3 in code
 - [ ] Survey page  
+  - [ ] Survey page version 1
+  - [ ] Survey page version 2 design and realization
 
 #### Design version 1
 <p float="left">
@@ -49,15 +53,25 @@ A project to investigate the power of repetition in Chinese media.
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV2-2.png" alt="InfoPageUIChnV2-2" height="783"/>
 </p>
 
+#### Design version 3
+
 #### Survey
+- Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:
+  - Customize slider
+  - 60 seconds count down
+  - Customize star rating (sums to 12 logic)
+  - Improve flow and aesthetics
+
 
 ## Developing...
 ### Todos
 [trello board](https://trello.com/b/2kwmft8O/chinamedia)
 - [ ] connect database with Website
-- [ ] survey form
-- [x] re-design website
-- [x] website realization
+- [ ] design survey form
+- [ ] realize survey form
+- [ ] connect survey form with database
+- [ ] re-design website
+- [ ] modify website
 
 ### Clarifications
 - [ ] ...
