@@ -65,7 +65,7 @@ A project to investigate the power of repetition in Chinese media.
 
 ## Developing...
 ### Todos
-[trello board](https://trello.com/b/2kwmft8O/chinamedia)
+- [ ] Update [trello board](https://trello.com/b/2kwmft8O/chinamedia)
 - [ ] connect database with Website
 - [ ] design survey form
 - [ ] realize survey form
