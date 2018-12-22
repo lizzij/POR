@@ -30,7 +30,8 @@ A project to investigate the power of repetition in Chinese media.
   - [x] Bare minimum website on local host
   - [x] Set up Vultr server and domain name
   - [ ] Get certificate, setup domain name,
-  - [ ] solve issue (too slow)
+  - [ ] Solve issue (too slow)
+  - [ ] Test and solve connection issue with [ping](http://ping.chinaz.com/202.182.126.239)
 - [x] Information provision page
   - [x] [Design version 1](#design-version-1)
   - [x] [Design version2](#design-version-2)
@@ -65,13 +66,12 @@ A project to investigate the power of repetition in Chinese media.
 
 ## Developing...
 ### Todos
-- [ ] Update [trello board](https://trello.com/b/2kwmft8O/chinamedia)
-- [ ] connect database with Website
-- [ ] design survey form
-- [ ] realize survey form
-- [ ] connect survey form with database
-- [ ] re-design website
-- [ ] modify website
+- [ ] re-design website 12/22
+- [ ] modify website 12/22
+- [ ] re-design survey form 12/22
+- [ ] realize survey form 12/22
+- [ ] connect survey form with database 12/23
+- [ ] update [trello board](https://trello.com/b/2kwmft8O/chinamedia)
 
 ### Clarifications
 - [ ] ...
