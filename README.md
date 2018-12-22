@@ -56,7 +56,7 @@ A project to investigate the power of repetition in Chinese media.
 #### Design version 3
 
 #### Survey
-- Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:
+- Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:transfer
   - Customize slider
   - 60 seconds count down
   - Customize star rating (sums to 12 logic)
