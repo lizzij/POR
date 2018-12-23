@@ -56,8 +56,8 @@ A project to investigate the power of repetition in Chinese media.
 
 #### Design [version 3](https://www.figma.com/proto/OwA6rIAScWCqCqxUQizJ8B7W/PowerOfRep?node-id=0%3A1&viewport=1905%2C363%2C1&scaling=scale-down)
 <p float="left">
-  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-1.png" alt="InfoPageUIChnV3-1" height="700"/>
-  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-2.png" alt="InfoPageUIChnV3-2" height="700"/>
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-1.png" alt="InfoPageUIChnV3-1" height="680"/>
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-2.png" alt="InfoPageUIChnV3-2" height="680"/>
 </p>
 
 
