@@ -1,0 +1,29 @@
+.nextButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 375px;
+  height: 124px;
+  top: 1192px;
+}
+
+#next{
+  width: 222px;
+  height: 10px;
+  top: 0px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 12px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+#button{
+  width: 248px;
+  height: 42px;
+  top: 9px;
+
+  /* ShanghaiGrey */
+  background: #979797;
+}
