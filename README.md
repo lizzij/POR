@@ -71,8 +71,8 @@ A project to investigate the power of repetition in Chinese media.
 
 ## Developing...
 ### Todos
-- [ ] re-design website 12/22
-- [ ] modify website 12/22
+- [x] re-design website 12/22
+- [x] modify website 12/22
 - [ ] re-design survey form 12/22
 - [ ] realize survey form 12/22
 - [ ] connect survey form with database 12/23
