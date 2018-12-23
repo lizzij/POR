@@ -15,6 +15,20 @@
 
   <!-- Title -->
   <body>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>这里有一些「2019年3月的第2周」的本地活动信息。
+        <br>请仔细思考您是否愿意参加此活动。
+        <br>我们从各种来源收集信息，而信息来源负责准确性。</p>
+      </div>
+
+    </div>
+
     <header>
       <div class="title">
         <div id="eventName">漫步老上海<br/>边走边拍</div>
@@ -23,6 +37,28 @@
         <div id="eventLocation">地点 徐汇区 上海图书馆</div>
       </div>
     </header>
+
+    <script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
 
     <!-- Image -->
     <section class="image">
