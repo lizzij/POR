@@ -55,6 +55,7 @@ A project to investigate the power of repetition in Chinese media.
 </p>
 
 #### Design version 3
+<iframe style="border: none;" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FOwA6rIAScWCqCqxUQizJ8B7W%2FPowerOfRep%3Fnode-id%3D0%253A1%26viewport%3D1905%252C363%252C1%26scaling%3Dscale-down" allowfullscreen></iframe>
 
 #### Survey
 - Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:
