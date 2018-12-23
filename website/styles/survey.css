@@ -7,8 +7,29 @@
 .mainQuestion{
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
-  text-align: center;
+  display: inline;
 }
+
+.question{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: center;
+}
+
+.questionPrompt{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 12px;
+  weight: 500;
+  display: inline;
+}
+
+.form-check-label{
+  font-size: 12px;
+}
+
+
+
+
 
 .nextButton{
   display: flex;
