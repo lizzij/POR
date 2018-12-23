@@ -11,3 +11,7 @@ function show(shown) {
     }
   }
 }
+
+function stateTrustSlide() {
+  document.getElementById(stateAmount).value=document.getElementById(state).value;
+}

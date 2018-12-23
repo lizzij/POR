@@ -57,13 +57,7 @@
                   <div class="trustOptionText">国家拥有的国内新闻媒体</div>
                   <div class="trustOptionEg">例如：人民日报 阳光时报</div>
                 </div>
-                <div class="trustScaleLabel">
-                  <div id="trustScaleLabel1">完全不信任</div>
-                  <div id="trustScaleLabel2">有些不信任</div>
-                  <div id="trustScaleLabel3">中立</div>
-                  <div id="trustScaleLabel4">有些信任</div>
-                  <div id="trustScaleLabel5">完全信任</div>
-                </div>
+
                 <div class="scaleDivider">
                   <div id="scaleDivider1">·</div>
                   <div id="scaleDivider2">·</div>
@@ -73,8 +67,15 @@
                 </div>
                 <div class="slidecontainer">
                   <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="state" oninput="stateAmount.value=state.value"></input>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="state" oninput="stateTrustSlide()"></input>
                     <output class="sliderAmount" name="amount" id="stateAmount" for="rangeInput">0</output>
+                    <div class="trustScaleLabel">
+                      <div id="trustScaleLabel1">完全不信任</div>
+                      <div id="trustScaleLabel2">有些不信任</div>
+                      <div id="trustScaleLabel3">中立</div>
+                      <div id="trustScaleLabel4">有些信任</div>
+                      <div id="trustScaleLabel5">完全信任</div>
+                    </div>
                   </div>
                 </div>
               </div>
