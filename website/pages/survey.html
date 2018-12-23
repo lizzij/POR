@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta charset="utf-8">
@@ -13,88 +13,114 @@
   </head>
   <body>
 
-    <!-- page 1 -->
-    <div id="page1">
-      survey page 1
+    <!-- survey -->
+    <div id="survey">
 
-      <!-- next button -->
-      <section class="nextButton">
-        <div id="p1nextButton">
-          <button id="button">
-            <div id="next">下一页</div>
-          </button>
-          <script type="text/javascript">
-              document.getElementById("p1nextButton").onclick = function () {
-                  return show('page2');
-              };
-          </script>
+      <!-- page 1 -->
+      <div id="page1">
+        <div class="mainQn">
+          让我们问一些其他问题，以了解更多关于您的信息。
         </div>
-      </section>
-    </div>
 
-    <!-- page 2 -->
-    <div id="page2" style="display:none">
-      survey page 2
-
-      <!-- next button -->
-      <section class="nextButton">
-        <div id="p2nextButton">
-          <button id="button">
-            <div id="next">下一页</div>
-          </button>
-          <script type="text/javascript">
-              document.getElementById("p2nextButton").onclick = function () {
-                  return show('page3');
-              };
-          </script>
+        <div class="form-group">
+          <div class="question">入学前你的户口状况如何？</div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="rural" value="option1">
+            <label class="form-check-label" for="exampleRadios1">
+              Rural
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="urban" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Urban
+            </label>
+          </div>
         </div>
-      </section>
-    </div>
 
-    <!-- page 3 -->
-    <div id="page3" style="display:none">
-      survey page 3
+        <!-- next button -->
+        <section class="nextButton">
+          <div id="p1nextButton">
+            <button id="button">
+              <div id="next">下一页</div>
+            </button>
+            <script type="text/javascript">
+                document.getElementById("p1nextButton").onclick = function () {
+                    return show('page2');
+                };
+            </script>
+          </div>
+        </section>
+      </div>
 
-      <!-- next button -->
-      <section class="nextButton">
-        <div id="p3nextButton">
-          <button id="button">
-            <div id="next">下一页</div>
-          </button>
-          <script type="text/javascript">
-              document.getElementById("p3nextButton").onclick = function () {
-                  return show('page4');
-              };
-          </script>
+      <!-- page 2 -->
+      <div id="page2" style="display:none">
+        survey page 2
+
+        <!-- next button -->
+        <section class="nextButton">
+          <div id="p2nextButton">
+            <button id="button">
+              <div id="next">下一页</div>
+            </button>
+            <script type="text/javascript">
+                document.getElementById("p2nextButton").onclick = function () {
+                    return show('page3');
+                };
+            </script>
+          </div>
+        </section>
+      </div>
+
+      <!-- page 3 -->
+      <div id="page3" style="display:none">
+        survey page 3
+
+        <!-- next button -->
+        <section class="nextButton">
+          <div id="p3nextButton">
+            <button id="button">
+              <div id="next">下一页</div>
+            </button>
+            <script type="text/javascript">
+                document.getElementById("p3nextButton").onclick = function () {
+                    return show('page4');
+                };
+            </script>
+          </div>
+        </section>
+      </div>
+
+      <!-- page 4 -->
+      <div id="page4" style="display:none">
+        survey page 4
+
+        <!-- next button -->
+        <section class="nextButton">
+          <div id="p4nextButton">
+            <button id="button">
+              <div id="next">下一页</div>
+            </button>
+            <script type="text/javascript">
+                document.getElementById("p4nextButton").onclick = function () {
+                    return show('page5');
+                };
+            </script>
+          </div>
+        </section>
+      </div>
+
+      <!-- page 5 -->
+      <div id="page5" style="display:none">
+        survey page 5
+
+        <!-- powered by -->
+        <div id="lizzij">
+          <img src="../img/powered by lizzij.png" width="80px">
         </div>
-      </section>
+      </div>
+
     </div>
-
-    <!-- page 4 -->
-    <div id="page4" style="display:none">
-      survey page 4
-
-      <!-- next button -->
-      <section class="nextButton">
-        <div id="p4nextButton">
-          <button id="button">
-            <div id="next">下一页</div>
-          </button>
-          <script type="text/javascript">
-              document.getElementById("p4nextButton").onclick = function () {
-                  return show('page5');
-              };
-          </script>
-        </div>
-      </section>
-    </div>
-
-    <!-- page 5 -->
-    <div id="page5" style="display:none">
-      survey page 5
-    </div>
-
-
     <script src="../scripts/survey.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
