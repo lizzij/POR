@@ -63,6 +63,35 @@
   padding-left: 10px;
 }
 
+.trustLabel{
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  color: #979797;
+  padding-top:5px;
+  text-align: center;
+}
+
+#trustLabel1{
+  width: 18%
+}
+
+#trustLabel2{
+  width: 18%
+}
+
+#trustLabel3{
+  width: 18%
+}
+
+#trustLabel4{
+  width: 18%
+}
+
+#trustLabel5{
+  width: 18%
+}
+
 .slider {
   -webkit-appearance: none;
   width: 90%;
@@ -96,6 +125,14 @@
 .sliderAmount{
   font-size: 10px;
 }
+
+.slidecontainer{
+  z-index: -1;
+}
+
+
+
+
 
 .nextButton{
   display: flex;
