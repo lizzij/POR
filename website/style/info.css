@@ -22,7 +22,7 @@ header #eventName{
   left: calc(50% - 160px/2 - 95px);
   top: 15px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1.2;
@@ -54,7 +54,7 @@ header #eventName{
   left: calc(50% - 138px/2 - 106px);
   top: 108px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -70,7 +70,7 @@ header #eventLocation{
   left: calc(50% - 115px/2 - 117.5px);
   top: 120px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -85,8 +85,6 @@ header #eventLocation{
   height: 82px;
   left: calc(50% - 375px/2);
   top: 450px;
-
-  background: #FFFFFF;
 }
 
 .paragraphShort{
@@ -104,7 +102,7 @@ header #eventLocation{
   left: calc(50% - 15px/2 - 159px);
   top: 4px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: 300;
   line-height: 18px;
@@ -117,10 +115,10 @@ header #eventLocation{
   position: absolute;
   width: 333px;
   height: 37px;
-  left: calc(50% - 330px/2);
+  left: calc(50% - 328px/2);
   top: 8.5px;
 
-  font-family: .PingFang HK;
+  font-family: PingFangHK-Regular, sans-serif;
   font-style: normal;
   font-weight: 300;
   line-height: 13px;
@@ -135,8 +133,6 @@ header #eventLocation{
   height: 274px;
   left: calc(50% - 376px/2 + 0.5px);
   top: 176px;
-
-  background: #FFFFFF;
   margin:auto;
   overflow:hidden;
 }
@@ -152,9 +148,9 @@ header #eventLocation{
 .weather{
   position: absolute;
   width: 374px;
-  height: 203px;
+  height: 271px;
   left: calc(50% - 374px/2 - 0.5px);
-  top: 449px;
+  top: 532px;
 }
 
 .temperature{
@@ -163,6 +159,7 @@ header #eventLocation{
   height: 80px;
   left: calc(50% - 346px/2 + 1px);
   top: 14px;
+
   box-shadow: 1px 1px 4px rgba(151, 151, 151, 0.4);
 }
 
@@ -170,8 +167,8 @@ header #eventLocation{
   position: absolute;
   width: 58px;
   height: 28px;
-  left: calc(50% - 58px/2 - 132px);
-  top: 9px;
+  left: calc(50% - 58px/2 - 135px);
+  top: 8px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
@@ -183,7 +180,7 @@ header #eventLocation{
   position: absolute;
   width: 94px;
   height: 14px;
-  left: calc(50% - 94px/2 + 82px);
+  left: calc(50% - 94px/2 + 78px);
   top: 10px;
 
   font-family: PingFangHK-Regular, sans-serif;
@@ -192,11 +189,11 @@ header #eventLocation{
   color: #4F4F4F;
 }
 
-#chinaDaily{
+#qingNian{
   position: absolute;
-  width: 66px;
-  height: 28px;
-  left: calc(50% - 66px/2 + 138px);
+  width: 50px;
+  height: 16.36px;
+  left: calc(50% - 50px/2 + 141px);
   top: 7px;
 }
 
@@ -205,7 +202,7 @@ header #eventLocation{
   width: 87px;
   height: 47px;
   left: calc(50% - 87px/2 - 91.5px);
-  top: 32px;
+  top: 30px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
@@ -218,7 +215,7 @@ header #eventLocation{
   width: 61px;
   height: 54px;
   left: calc(50% - 61px/2 + 14.5px);
-  top: 33px;
+  top: 31px;
 }
 
 #lowValue{
@@ -239,7 +236,7 @@ header #eventLocation{
   width: 16px;
   height: 19px;
   left: calc(50% - 16px/2 + 22.5px);
-  top: 31px;
+  top: 29px;
 
   font-family: Montserrat, sans-serif;
   font-size: 10px;
@@ -265,7 +262,7 @@ header #eventLocation{
   width: 58px;
   height: 42px;
   left: calc(50% - 58px/2 + 104px);
-  top: 33px;
+  top: 31px;
 }
 
 #highValue{
@@ -286,7 +283,7 @@ header #eventLocation{
   width: 13px;
   height: 14px;
   left: calc(50% - 13px/2 + 22.5px);
-  top: 29px;
+  top: 27px;
 
   font-family: Montserrat, sans-serif;
   font-size: 10px;
