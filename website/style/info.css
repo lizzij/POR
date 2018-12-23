@@ -307,9 +307,9 @@ header #eventLocation{
 .airQuality{
   position: absolute;
   width: 346px;
-  height: 80px;
+  height: 140px;
   left: calc(50% - 346px/2 + 1px);
-  top: 108px;
+  top: 113px;
 
   background: #FFFFFF;
   box-shadow: 1px 1px 4px rgba(151, 151, 151, 0.4);
@@ -317,10 +317,10 @@ header #eventLocation{
 
 #airQualityHeader{
   position: absolute;
-  width: 66px;
+  width: 150px;
   height: 13px;
-  left: calc(50% - 66px/2 - 129px);
-  top: 10px;
+  left: calc(50% - 150px/2 - 89px);
+  top: 12px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
@@ -332,8 +332,8 @@ header #eventLocation{
   position: absolute;
   width: 78px;
   height: 14px;
-  left: calc(50% - 78px/2 + 66px);
-  top: 11px;
+  left: calc(50% - 78px/2 + 89px);
+  top: 12px;
 
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 10px;
@@ -341,18 +341,20 @@ header #eventLocation{
   color: #4F4F4F;
 }
 
-#shanghaiDaily{
+#dongFang{
   position: absolute;
-  width: 68px;
-  height: 24.73px;
-  left: calc(50% - 68px/2 + 131px);
-  top: 6px;
+  width: 40px;
+  height: 11.43px;
+  left: calc(50% - 40px/2 + 145px);
+  top: 7px;
 }
 
-#box{
+.airQualityScale{
   position: absolute;
-  left: calc(50% - 58px/2 + 29px);
-  top: 35.8px;
+  width: 334.5px;
+  height: 34px;
+  left: 8.5px;
+  top: 5px;
 }
 
 .levels{
@@ -474,6 +476,7 @@ header #eventLocation{
 
   /* PM2.5-1 */
   background: #00E400;
+  opacity: 0.15;
 }
 
 #colorBar2{
@@ -485,6 +488,7 @@ header #eventLocation{
 
   /* PM2.5-2 */
   background: #FFFF00;
+  opacity: 0.15;
 }
 
 #colorBar3{
@@ -496,6 +500,7 @@ header #eventLocation{
 
   /* PM2.5-3 */
   background: #FF7E00;
+  opacity: 0.15;
 }
 
 #colorBar4{
@@ -506,6 +511,7 @@ header #eventLocation{
   top: 51px;
 
   background: #FF0000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 #colorBar5{
@@ -517,6 +523,7 @@ header #eventLocation{
 
   /* PM2.5-5 */
   background: #99004C;
+  opacity: 0.15;
 }
 
 #colorBar6{
@@ -528,16 +535,29 @@ header #eventLocation{
 
   /* PM2.5-6 */
   background: #7E0023;
+  opacity: 0.15;
+}
+
+#airQualityDetail{
+  position: absolute;
+  width: 333px;
+  height: 37px;
+  left: calc(50% - 333px/2 + 3.5px);
+  top: 85px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
 }
 
 .description{
   position: absolute;
   width: 375px;
-  height: 227px;
+  height: 233px;
   left: calc(50% - 375px/2);
-  top: 652px;
-
-  background: #FFFFFF;
+  top: 940px;
 }
 
 .paragraph{
@@ -591,11 +611,9 @@ header #eventLocation{
 .suitableFor{
   position: absolute;
   width: 375px;
-  height: 125px;
+  height: 118px;
   left: calc(50% - 375px/2);
-  top: 879px;
-
-  background: #FFFFFF;
+  top: 803px;
 }
 
 #suitableForTitle{
@@ -751,9 +769,9 @@ header #eventLocation{
 .nextButton{
   position: absolute;
   width: 375px;
-  height: 60px;
+  height: 124px;
   left: calc(50% - 375px/2);
-  top: 1013px;
+  top: 1192px;
 }
 
 #next{
@@ -764,9 +782,6 @@ header #eventLocation{
   top: 22px;
 
   font-family: PingFangHK-Regular, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 12px;
   text-align: center;
 
@@ -789,9 +804,7 @@ header #eventLocation{
   width: 376px;
   height: 16px;
   left: calc(50% - 376px/2 - 0.5px);
-  top: 1100px;
-
-  background: #FFFFFF;
+  top: 1278px;
 }
 
 #lizzijIcon{
