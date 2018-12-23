@@ -16,17 +16,16 @@
     <!-- page 1 -->
     <div id="page1">
       survey page 1
-      <a href="#" onclick="return show('page2','page1');">Show page 2</a>
 
       <!-- next button -->
       <section class="nextButton">
-        <div id="nextButton">
+        <div id="p1nextButton">
           <button id="button">
             <div id="next">下一页</div>
           </button>
           <script type="text/javascript">
-              document.getElementById("nextButton").onclick = function () {
-                  return show('page2','page1');
+              document.getElementById("p1nextButton").onclick = function () {
+                  return show('page2');
               };
           </script>
         </div>
@@ -36,43 +35,65 @@
     <!-- page 2 -->
     <div id="page2" style="display:none">
       survey page 2
-      <a href="#" onclick="return show('page1','page2');">Show page 1</a>
 
       <!-- next button -->
       <section class="nextButton">
-        <div id="nextButton">
+        <div id="p2nextButton">
           <button id="button">
             <div id="next">下一页</div>
           </button>
           <script type="text/javascript">
-              document.getElementById("nextButton").onclick = function () {
-                  return show('page2','page1');
+              document.getElementById("p2nextButton").onclick = function () {
+                  return show('page3');
               };
           </script>
         </div>
       </section>
     </div>
 
-    <!-- page 2 -->
-    <div id="page2" style="display:none">
-      survey page 2
-      <a href="#" onclick="return show('page1','page2');">Show page 1</a>
+    <!-- page 3 -->
+    <div id="page3" style="display:none">
+      survey page 3
 
       <!-- next button -->
       <section class="nextButton">
-        <div id="nextButton">
+        <div id="p3nextButton">
           <button id="button">
             <div id="next">下一页</div>
           </button>
           <script type="text/javascript">
-              document.getElementById("nextButton").onclick = function () {
-                  return show('page2','page1');
+              document.getElementById("p3nextButton").onclick = function () {
+                  return show('page4');
               };
           </script>
         </div>
       </section>
     </div>
-    
+
+    <!-- page 4 -->
+    <div id="page4" style="display:none">
+      survey page 4
+
+      <!-- next button -->
+      <section class="nextButton">
+        <div id="p4nextButton">
+          <button id="button">
+            <div id="next">下一页</div>
+          </button>
+          <script type="text/javascript">
+              document.getElementById("p4nextButton").onclick = function () {
+                  return show('page5');
+              };
+          </script>
+        </div>
+      </section>
+    </div>
+
+    <!-- page 5 -->
+    <div id="page5" style="display:none">
+      survey page 5
+    </div>
+
 
     <script src="../scripts/survey.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
