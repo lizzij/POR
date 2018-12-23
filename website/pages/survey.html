@@ -13,6 +13,7 @@
   </head>
   <body>
 
+    <!-- page 1 -->
     <div id="page1">
       survey page 1
       <a href="#" onclick="return show('page2','page1');">Show page 2</a>
@@ -20,10 +21,9 @@
       <!-- next button -->
       <section class="nextButton">
         <div id="nextButton">
-          <div id="button">
-            <img src="../img/Button.png">
-          </div>
-          <div id="next">下一页</div>
+          <button id="button">
+            <div id="next">下一页</div>
+          </button>
           <script type="text/javascript">
               document.getElementById("nextButton").onclick = function () {
                   return show('page2','page1');
@@ -33,21 +33,46 @@
       </section>
     </div>
 
-
+    <!-- page 2 -->
     <div id="page2" style="display:none">
       survey page 2
       <a href="#" onclick="return show('page1','page2');">Show page 1</a>
+
+      <!-- next button -->
+      <section class="nextButton">
+        <div id="nextButton">
+          <button id="button">
+            <div id="next">下一页</div>
+          </button>
+          <script type="text/javascript">
+              document.getElementById("nextButton").onclick = function () {
+                  return show('page2','page1');
+              };
+          </script>
+        </div>
+      </section>
     </div>
 
-    <!-- <div id="page3" style="display:none">
+    <!-- page 2 -->
+    <div id="page2" style="display:none">
       survey page 2
       <a href="#" onclick="return show('page1','page2');">Show page 1</a>
-    </div>
 
-    <div id="page4" style="display:none">
-      survey page 2
-      <a href="#" onclick="return show('page1','page2');">Show page 1</a>
-    </div> -->
+      <!-- next button -->
+      <section class="nextButton">
+        <div id="nextButton">
+          <button id="button">
+            <div id="next">下一页</div>
+          </button>
+          <script type="text/javascript">
+              document.getElementById("nextButton").onclick = function () {
+                  return show('page2','page1');
+              };
+          </script>
+        </div>
+      </section>
+    </div>
+    
 
     <script src="../scripts/survey.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
