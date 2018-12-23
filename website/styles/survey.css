@@ -1,5 +1,5 @@
 #survey{
-  padding-top: 50px;
+  padding-top: 40px;
   position: fixed;
   right: 0;
   left: 0;
@@ -7,6 +7,8 @@
   margin-left: auto;
   min-height: 10em;
   width: 90%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .mainQuestion{
@@ -22,26 +24,35 @@
 
 .questionPrompt{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   weight: 500;
   display: inline;
 }
 
-.form-check-label{
-  font-size: 12px;
+.questionAnswer{
+  padding-left: 10px;
 }
 
-.trustOptionPrompt{
+.form-check-label{
+  font-size: 10px;
+  color: #4F4F4F;
+}
+
+.trustOption{
   padding-top: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
 .trustOptionText{
-  font-size: 12px;
+  font-size: 10px;
+  color: #4F4F4F;
 }
 
 .trustOptionEg{
-  font-size: 12px;
+  font-size: 10px;
   color: #979797;
+  padding-left: 10px;
 }
 
 

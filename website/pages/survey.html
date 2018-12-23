@@ -19,43 +19,58 @@
       <!-- page 1 -->
       <div id="page1">
         <div class="mainQuestion">
-          让我们问一些其他问题，以了解更多关于您的信息。
+          请回答以下问题，以了解更多关于您的信息。
         </div>
 
         <!-- hukou question -->
         <div class="question">
           <div class="form-group" style="margin-bottom:0px">
+
             <div class="questionPrompt">入学前您的户口是什么？</div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="hukou" value="rural">
-              <label class="form-check-label" for="hukou1">
-                Rural
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="hukou" value="urban">
-              <label class="form-check-label" for="hukou2">
-                Urban
-              </label>
+
+            <div class="questionAnswer">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="hukou" value="rural">
+                <label class="form-check-label" for="hukou1">
+                  Rural
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="hukou" value="urban">
+                <label class="form-check-label" for="hukou2">
+                  Urban
+                </label>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- new outlet trust question -->
         <div class="question">
+
           <div class="questionPrompt">您有多信任以下新闻媒体？</div>
-            <div class="trustOptionPrompt">
+
+          <div class="questionAnswer">
+            <div class="trustOption">
               <div class="trustOptionText">国家拥有的国内新闻媒体</div>
-              <div class="trustOptionEg">人民日报 阳光时报</div>
+              <div class="trustOptionEg">例如：人民日报 阳光时报</div>
             </div>
-            <div class="trustOptionPrompt">
+            <div class="form-group">
+              <div class="slidecontainer">
+                <div class="annotation">Foreign news outlets (e.g. New York Times; Wall Street Journal; Financial Times)</div>
+                <input type="range" min="1" max="100" value="0" class="slider" id="foreign" oninput="foreignAmount.value=foreign.value"></input>
+                <output class="sliderAmount" name="amount" id="foreignAmount" for="rangeInput">0</output>
+              </div>
+            </div>
+            <div class="trustOption">
               <div class="trustOptionText">私人拥有的国内新闻媒体</div>
-              <div class="trustOptionEg">新进报 财经报纸 南方周末</div>
+              <div class="trustOptionEg">例如：新进报 财经报纸 南方周末</div>
             </div>
-            <div class="trustOptionPrompt">
+            <div class="trustOption">
               <div class="trustOptionText">外国新闻媒体</div>
-              <div class="trustOptionEg">纽约时报 华尔街日报 金融时报</div>
+              <div class="trustOptionEg">例如：纽约时报 华尔街日报 金融时报</div>
             </div>
+          </div>
         </div>
 
         <!-- next button -->
