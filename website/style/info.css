@@ -9,36 +9,24 @@ body{
 
 .title{
   position: absolute;
-  height: 150px;
+  width: 376px;
+  height: 152px;
+  left: calc(50% - 376px/2 + 0.5px);
   top: 24px;
-  width:100%;
-  margin:auto;
-  overflow:hidden;
-}
-
-header #eventLocation{
-  position: absolute;
-  width: 115px;
-  height: 14px;
-  left: calc(50% - 115px/2 - 117px);
-  top: 13px;
-
-  font-family: PingFangHK-Regular, sans-serif;
-  font-size: 10px;
-
-  color: #979797;
 }
 
 header #eventName{
   position: absolute;
   width: 160px;
   height: 59px;
-  left: calc(50% - 160px/2 - 94.5px);
-  top: 33px;
+  left: calc(50% - 160px/2 - 95px);
+  top: 15px;
 
-  font-family: PingFangHK-Regular, sans-serif;
-  font-size: 24px;
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: normal;
   line-height: 1.2;
+  font-size: 24px;
 
   color: #000000;
 }
@@ -47,10 +35,13 @@ header #eventName{
   position: absolute;
   width: 253px;
   height: 21px;
-  left: calc(50% - 253px/2 - 48px);
-  top: 95px;
+  left: calc(50% - 253px/2 - 48.5px);
+  top: 79px;
 
-  font-family: Montserrat, sans-serif;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
   font-size: 18px;
 
   color: #4F4F4F;
@@ -60,21 +51,82 @@ header #eventName{
   position: absolute;
   width: 138px;
   height: 13px;
-  left: calc(50% - 138px/2 - 105.5px);
-  top: 126px;
+  left: calc(50% - 138px/2 - 106px);
+  top: 108px;
 
-  font-family: PingFangHK-Regular, sans-serif;
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
   font-size: 10px;
 
   color: #979797;
 }
 
-#icon{
+header #eventLocation{
   position: absolute;
-  width: 35px;
-  height: 35px;
-  left: calc(50% - 35px/2 + 154px);
-  top: 16px;
+  width: 115px;
+  height: 14px;
+  left: calc(50% - 115px/2 - 117.5px);
+  top: 120px;
+
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+.descriptionShort{
+  position: absolute;
+  width: 375px;
+  height: 82px;
+  left: calc(50% - 375px/2);
+  top: 450px;
+
+  background: #FFFFFF;
+}
+
+.paragraphShort{
+  position: absolute;
+  width: 333px;
+  height: 57px;
+  left: calc(50% - 333px/2 + 2px);
+  top: 24px;
+}
+
+#firstCharacter{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: calc(50% - 15px/2 - 159px);
+  top: 4px;
+
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 18px;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+#descriptionShortPara{
+  position: absolute;
+  width: 333px;
+  height: 37px;
+  left: calc(50% - 330px/2);
+  top: 8.5px;
+
+  font-family: .PingFang HK;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
 }
 
 .image{
@@ -82,7 +134,9 @@ header #eventName{
   width: 376px;
   height: 274px;
   left: calc(50% - 376px/2 + 0.5px);
-  top: 175px;
+  top: 176px;
+
+  background: #FFFFFF;
   margin:auto;
   overflow:hidden;
 }
