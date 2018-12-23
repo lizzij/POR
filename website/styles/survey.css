@@ -1,7 +1,12 @@
 #survey{
   padding-top: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 10em;
+  width: 90%;
 }
 
 .mainQuestion{
@@ -11,14 +16,13 @@
 }
 
 .question{
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
   display: center;
 }
 
 .questionPrompt{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   weight: 500;
   display: inline;
 }
@@ -26,10 +30,6 @@
 .form-check-label{
   font-size: 12px;
 }
-
-
-
-
 
 .nextButton{
   display: flex;
