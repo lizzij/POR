@@ -6,16 +6,17 @@ function show(shown) {
     if (shown == pageId) {
       if (shown == 'page5') {
         var alert = document.getElementById("starAlert").innerHTML;
-        var startLeft = document.getElementById("starLeftCount").innerHTML;
-        if (alert == '') {
-          document.getElementById('page5').style.display='block';
-        }
-        else if (startLeft > 0) {
+        var numStarLeft = document.getElementById("starLeftCount").innerHTML;
+        console.log(numStarLeft);
+        if ((parseInt(numStarLeft)) > 0) {
           document.getElementById("starAlert").innerHTML = '请用完所有星星!';
           document.getElementById('page4').style.display='block';
         }
-        else {
+        else if (alert != '') {
           document.getElementById('page4').style.display='block';
+        }
+        else {
+          document.getElementById('page5').style.display='block';
         }
       }
       else {
@@ -297,8 +298,8 @@ function starLeft() {
   - document.getElementById("starCountGroup4").innerHTML
   - document.getElementById("starCountGroup5").innerHTML
   - document.getElementById("starCountGroup6").innerHTML;
-  if (starLeftCount <= 0) {
-    document.getElementById("starAlert").innerHTML = '您已使用超过12个星星！';
+  if (starLeftCount < 0) {
+    document.getElementById("starAlert").innerHTML = '超过12个星星！';
   }
   else {
     var i;
