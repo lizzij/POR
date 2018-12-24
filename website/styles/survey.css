@@ -11,7 +11,7 @@ body{
   margin-right: auto;
   margin-left: auto;
   min-height: 10em;
-  width: 340px;
+  width: 320px;
 }
 
 .mainQuestion{
@@ -248,7 +248,7 @@ body{
 
 #lilyDayInput{
   font-size: 10px;
-  height: 30px;
+  height: 27px;
 }
 
 #timeLeft{
@@ -263,12 +263,102 @@ body{
   font-size: 14px;
 }
 
+#note{
+  font-size: 10px;
+  color: #979797;
+  line-height: 1.8;
+  padding-right: 10px;
+}
+
+.starLeft{
+  display: flex;
+  padding-bottom: 10px;
+}
+
+#starLeftPrompt{
+  display: flex;
+  font-size: 12px;
+  color: #4F4F4F;
+}
+
+.starPrompt{
+  font-size: 12px;
+  color: #4F4F4F;
+  width: 115px;
+}
+
+#starLeftCount{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.starGroup1{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.starGroup2{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.starGroup3{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.starGroup4{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.starGroup5{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.starGroup6{
+  display: flex;
+  padding-bottom: 5px;
+}
+
+#starCountGroup1{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#starCountGroup2{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#starCountGroup3{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#starCountGroup4{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#starCountGroup5{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#starCountGroup6{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+
 #p1nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 60px;
+  bottom: 55px;
   left: 50px;
   right: 50px;
 }
@@ -278,7 +368,7 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 60px;
+  bottom: 55px;
   left: 50px;
   right: 50px;
 }
@@ -288,7 +378,7 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 60px;
+  bottom: 55px;
   left: 50px;
   right: 50px;
 }
@@ -298,7 +388,7 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 60px;
+  bottom: 55px;
   left: 50px;
   right: 50px;
 }
@@ -325,8 +415,8 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  left: 50px;
-  right: 50px;
+  left: 85px;
+  top: 80px;
 }
 
 #spinningHead{
@@ -334,9 +424,9 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 300px;
-  left: 50px;
-  right: 50px;
+  top: 270px;
+  left: 100px;
+  right: 100px;
 }
 
 #lizzij{
@@ -345,6 +435,6 @@ body{
   justify-content: center;
   position:fixed;
   bottom: 15px;
-  left: 50px;
-  right: 50px;
+  left: 100px;
+  right: 100px;
 }
