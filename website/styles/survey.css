@@ -11,7 +11,7 @@ body{
   margin-right: auto;
   margin-left: auto;
   min-height: 10em;
-  width: 350px;
+  width: 340px;
 }
 
 .mainQuestion{
@@ -248,32 +248,40 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 580px;
-  padding-bottom: 30px;
+  position:fixed;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
 }
 
 #p2nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 580px;
-  padding-bottom: 30px;
+  position:fixed;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
 }
 
 #p3nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 580px;
-  padding-bottom: 30px;
+  position:fixed;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
 }
 
 #p4nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 580px;
-  padding-bottom: 30px;
+  position:fixed;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
 }
 
 #next{
