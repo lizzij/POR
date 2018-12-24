@@ -4,6 +4,7 @@ body{
 }
 
 #survey{
+  font-family: PingFangHK-Regular, sans-serif;
   padding-top: 40px;
   position: fixed;
   right: 20px;
@@ -206,9 +207,9 @@ body{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 203px;
+  top: 207px;
   text-align: right;
-  left: 18px;
+  left: 23px;
 }
 
 #privateScaleDivider{
@@ -218,9 +219,9 @@ body{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 287px;
+  top: 291px;
   text-align: right;
-  left: 18px;
+  left: 23px;
 }
 
 #foreignScaleDivider{
@@ -230,9 +231,9 @@ body{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 371px;
+  top: 375px;
   text-align: right;
-  left: 18px;
+  left: 23px;
 }
 
 #univerisity{
@@ -273,7 +274,7 @@ body{
 
 .starLeft{
   display: flex;
-  padding-bottom: 14px;
+  padding-bottom: 12px;
 }
 
 .starPrompt{
@@ -357,7 +358,7 @@ body{
 
 .starContainer{
   overflow: hidden;
-  /* border: 1px solid #000 */
+  color: #979797;
 }
 
 .starContainer div {
@@ -368,15 +369,70 @@ body{
   text-align: center;
   width: 19px;
   float: left;
-  /* border-right: 1px solid #000 */
+  z-index: -1;
+  font-size: 18px;
+  line-height: 0.9;
 }
 
-.starLeftCover{
+.starGroup1Cover{
   position: absolute;
-  color: blue;
+  content: '\2605';
+  color: #FFD700;
   padding-left: 66px;
+  white-space: nowrap;
 }
 
+.starGroup2Cover{
+  position: absolute;
+  content: '\2605';
+  color: #FFD700;
+  padding-left: 66px;
+  white-space: nowrap;
+}
+
+.starGroup3Cover{
+  position: absolute;
+  content: '\2605';
+  color: #FFD700;
+  padding-left: 66px;
+  white-space: nowrap;
+}
+
+.starGroup4Cover{
+  position: absolute;
+  content: '\2605';
+  color: #FFD700;
+  padding-left: 66px;
+  white-space: nowrap;
+}
+
+.starGroup5Cover{
+  position: absolute;
+  content: '\2605';
+  color: #FFD700;
+  padding-left: 66px;
+  white-space: nowrap;
+}
+
+.starGroup6Cover{
+  position: absolute;
+  content: '\2605';
+  color: #FFD700;
+  padding-left: 66px;
+  white-space: nowrap;
+}
+
+#starLeftContainer{
+  color: #FFD700;
+}
+
+#starAlert{
+  position: absolute;
+  top: 312px;
+  color: #FD5B78;
+  font-size: 14px;
+  padding-left: 100px;
+}
 
 #p1nextButton{
   display: flex;

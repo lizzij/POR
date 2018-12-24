@@ -4,7 +4,23 @@ function show(shown) {
   for (pageIndex = 0; pageIndex < pages.length; pageIndex++) {
     pageId = pages[pageIndex];
     if (shown == pageId) {
-      document.getElementById(shown).style.display='block';
+      if (shown == 'page5') {
+        var alert = document.getElementById("starAlert").innerHTML;
+        var startLeft = document.getElementById("starLeftCount").innerHTML;
+        if (alert == '') {
+          document.getElementById('page5').style.display='block';
+        }
+        else if (startLeft > 0) {
+          document.getElementById("starAlert").innerHTML = '请用完所有星星!';
+          document.getElementById('page4').style.display='block';
+        }
+        else {
+          document.getElementById('page4').style.display='block';
+        }
+      }
+      else {
+        document.getElementById(shown).style.display='block';
+      }
     }
     else {
       document.getElementById(pageId).style.display='none';
@@ -132,6 +148,164 @@ function startTimer() {
   }, 1000);
 }
 
+function starCountGroup1(number) {
+  var count = document.getElementById("starCountGroup1").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup1Cover").innerHTML = '<div class="star" onclick="starCountGroup1(1)">&starf;</div>';
+    document.getElementById("starCountGroup1").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup1Cover").innerHTML = '';
+    document.getElementById("starCountGroup1").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup1(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup1Cover").innerHTML = star;
+    document.getElementById("starCountGroup1").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
+function starCountGroup2(number) {
+  var count = document.getElementById("starCountGroup2").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup2Cover").innerHTML = '<div class="star" onclick="starCountGroup2(1)">&starf;</div>';
+    document.getElementById("starCountGroup2").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup2Cover").innerHTML = '';
+    document.getElementById("starCountGroup2").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup2(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup2Cover").innerHTML = star;
+    document.getElementById("starCountGroup2").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
+function starCountGroup3(number) {
+  var count = document.getElementById("starCountGroup3").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup3Cover").innerHTML = '<div class="star" onclick="starCountGroup3(1)">&starf;</div>';
+    document.getElementById("starCountGroup3").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup3Cover").innerHTML = '';
+    document.getElementById("starCountGroup3").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup3(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup3Cover").innerHTML = star;
+    document.getElementById("starCountGroup3").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
+function starCountGroup4(number) {
+  var count = document.getElementById("starCountGroup4").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup4Cover").innerHTML = '<div class="star" onclick="starCountGroup4(1)">&starf;</div>';
+    document.getElementById("starCountGroup4").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup4Cover").innerHTML = '';
+    document.getElementById("starCountGroup4").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup4(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup4Cover").innerHTML = star;
+    document.getElementById("starCountGroup4").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
+function starCountGroup5(number) {
+  var count = document.getElementById("starCountGroup5").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup5Cover").innerHTML = '<div class="star" onclick="starCountGroup5(1)">&starf;</div>';
+    document.getElementById("starCountGroup5").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup5Cover").innerHTML = '';
+    document.getElementById("starCountGroup5").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup5(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup5Cover").innerHTML = star;
+    document.getElementById("starCountGroup5").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
+function starCountGroup6(number) {
+  var count = document.getElementById("starCountGroup6").innerHTML;
+  if (number == 1 && count == 0) {
+    document.getElementById("starGroup6Cover").innerHTML = '<div class="star" onclick="starCountGroup6(1)">&starf;</div>';
+    document.getElementById("starCountGroup6").innerHTML = '1';
+  }
+  else if (number == 1 && count == 1) {
+    document.getElementById("starGroup6Cover").innerHTML = '';
+    document.getElementById("starCountGroup6").innerHTML = '0';
+  }
+  else {
+    var star = '';
+    var i;
+    for (i = 0; i < number; i++) {
+      star = star + '<div class="star" onclick="starCountGroup6(' + (i+1) + ')">&starf;</div>';
+    }
+    document.getElementById("starGroup6Cover").innerHTML = star;
+    document.getElementById("starCountGroup6").innerHTML = number;
+  }
+  starLeft();
+  return false;
+}
+
 function starLeft() {
-  document.getElementById("starLeftCover").innerHTML = '<div class="star">☆</div>';
+  document.getElementById("starAlert").innerHTML = '';
+  var starLeftCount = 12;
+  var starLeft = '';
+  starLeftCount = starLeftCount
+  - document.getElementById("starCountGroup1").innerHTML
+  - document.getElementById("starCountGroup2").innerHTML
+  - document.getElementById("starCountGroup3").innerHTML
+  - document.getElementById("starCountGroup4").innerHTML
+  - document.getElementById("starCountGroup5").innerHTML
+  - document.getElementById("starCountGroup6").innerHTML;
+  if (starLeftCount <= 0) {
+    document.getElementById("starAlert").innerHTML = '您已使用超过12个星星！';
+  }
+  else {
+    var i;
+    for (i = 0; i < starLeftCount; i++) {
+      starLeft = starLeft + '<div class="star">&starf;</div>';
+    }
+  }
+  document.getElementById("starLeftCount").innerHTML = starLeftCount + "";
+  document.getElementById("starLeftContainer").innerHTML = starLeft;
 }
