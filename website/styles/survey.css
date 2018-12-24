@@ -31,10 +31,12 @@ body{
   font-size: 12px;
   weight: 500;
   padding-bottom: 5px;
+  color: #4F4F4F;
 }
 
 .questionAnswer{
   padding-left: 10px;
+  color: #979797;
 }
 
 .form-check-input{
@@ -362,7 +364,7 @@ body{
 }
 
 .starContainer div {
-  height: 15px
+  height: 15px 
 }
 
 .star {
