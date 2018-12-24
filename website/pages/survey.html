@@ -13,99 +13,149 @@
   </head>
   <body>
 
-    <!-- survey -->
-    <div id="survey">
+
 
       <!-- page 1 -->
       <div id="page1">
-        <div class="mainQuestion">
-          请回答以下问题，以了解更多关于您的信息。
-        </div>
+        <!-- survey -->
+        <div id="survey">
 
-        <!-- hukou question -->
-        <div class="question">
-          <div class="form-group" style="margin-bottom:0px">
+          <div class="mainQuestion">
+            请回答以下问题，以了解更多关于您的信息。
+          </div>
 
-            <div class="questionPrompt">入学前您的户口是什么？</div>
+          <!-- hukou question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
 
-            <div class="questionAnswer">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="hukou" value="rural">
-                <label class="form-check-label" for="hukou1">
-                  农村
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="hukou" value="urban">
-                <label class="form-check-label" for="hukou2">
-                  城市
-                </label>
+              <div class="questionPrompt">入学前您的户口是什么？</div>
+
+              <div class="questionAnswer">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="hukou" value="rural">
+                  <label class="form-check-label" for="hukou1">
+                    农村
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="hukou" value="urban">
+                  <label class="form-check-label" for="hukou2">
+                    城市
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- new outlet trust question -->
-        <div class="question">
+          <!-- new outlet trust question -->
+          <div class="question">
 
-            <div class="questionPrompt">您有多信任以下新闻媒体？</div>
+              <div class="questionPrompt">您有多信任以下新闻媒体？</div>
 
+              <div class="questionAnswer">
+
+                <div class="trustOption">
+                  <div class="trustOptionPrompt">
+                    <div class="trustOptionText">国家拥有的国内新闻媒体</div>
+                    <div class="trustOptionEg">例如：人民日报 阳光时报</div>
+                  </div>
+
+                  <div id="stateScaleDivider">
+                    <div id="scaleDivider1">·</div>
+                    <div id="scaleDivider2">·</div>
+                    <div id="scaleDivider3">·</div>
+                    <div id="scaleDivider4">·</div>
+                    <div id="scaleDivider5">·</div>
+                  </div>
+
+                  <div class="trustScaleLabel">
+                    <div id="stateTrustScaleLabel1">完全不信任</div>
+                    <div id="stateTrustScaleLabel2">有些不信任</div>
+                    <div id="stateTrustScaleLabel3">中立</div>
+                    <div id="stateTrustScaleLabel4">有些信任</div>
+                    <div id="stateTrustScaleLabel5">完全信任</div>
+                  </div>
+
+                  <div class="slidecontainer">
+                    <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
+                      <input type="range" min="0" max="100" value="0" class="slider" id="state" oninput="stateTrustSlide()"></input>
+                      <output class="sliderAmount" name="amount" id="stateAmount" for="rangeInput">0</output>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="trustOption">
+                  <div class="trustOptionPrompt">
+                    <div class="trustOptionText">私人拥有的国内新闻媒体</div>
+                    <div class="trustOptionEg">例如：新进报 财经报纸 南方周末</div>
+                  </div>
+
+                  <div id="privateScaleDivider">
+                    <div id="scaleDivider1">·</div>
+                    <div id="scaleDivider2">·</div>
+                    <div id="scaleDivider3">·</div>
+                    <div id="scaleDivider4">·</div>
+                    <div id="scaleDivider5">·</div>
+                  </div>
+                  <div class="trustScaleLabel">
+                    <div id="privateTrustScaleLabel1">完全不信任</div>
+                    <div id="privateTrustScaleLabel2">有些不信任</div>
+                    <div id="privateTrustScaleLabel3">中立</div>
+                    <div id="privateTrustScaleLabel4">有些信任</div>
+                    <div id="privateTrustScaleLabel5">完全信任</div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom:0px; margin-bottom:0px">
+                    <div class="slidecontainer">
+                      <input type="range" min="0" max="100" value="0" class="slider" id="private" oninput="privateTrustSlide()"></input>
+                      <output class="sliderAmount" name="amount" id="privateAmount" for="rangeInput">0</output>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="trustOption">
+                  <div class="trustOptionPrompt">
+                    <div class="trustOptionText">外国新闻媒体</div>
+                    <div class="trustOptionEg">例如：纽约时报 华尔街日报 金融时报</div>
+                  </div>
+
+                  <div id="foreignScaleDivider">
+                    <div id="scaleDivider1">·</div>
+                    <div id="scaleDivider2">·</div>
+                    <div id="scaleDivider3">·</div>
+                    <div id="scaleDivider4">·</div>
+                    <div id="scaleDivider5">·</div>
+                  </div>
+                  <div class="trustScaleLabel">
+                    <div id="foreignTrustScaleLabel1">完全不信任</div>
+                    <div id="foreignTrustScaleLabel2">有些不信任</div>
+                    <div id="foreignTrustScaleLabel3">中立</div>
+                    <div id="foreignTrustScaleLabel4">有些信任</div>
+                    <div id="foreignTrustScaleLabel5">完全信任</div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom:0px">
+                    <div class="slidecontainer">
+                      <input type="range" min="0" max="100" value="0" class="slider" id="foreign" oninput="foreignTrustSlide()"></input>
+                      <output class="sliderAmount" name="amount" id="foreignAmount" for="rangeInput">0</output>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+          </div>
+
+          <!-- enrolled uni question -->
+          <div class="question">
+            <div class="questionPrompt">你现在就读于哪所大学？</div>
             <div class="questionAnswer">
-
-              <div class="trustOption">
-                <div class="trustOptionPrompt">
-                  <div class="trustOptionText">国家拥有的国内新闻媒体</div>
-                  <div class="trustOptionEg">例如：人民日报 阳光时报</div>
-                </div>
-
-                <div class="scaleDivider">
-                  <div id="scaleDivider1">·</div>
-                  <div id="scaleDivider2">·</div>
-                  <div id="scaleDivider3">·</div>
-                  <div id="scaleDivider4">·</div>
-                  <div id="scaleDivider5">·</div>
-                </div>
-                <div class="trustScaleLabel">
-                  <div id="trustScaleLabel1">完全不信任</div>
-                  <div id="trustScaleLabel2">有些不信任</div>
-                  <div id="trustScaleLabel3">中立</div>
-                  <div id="trustScaleLabel4">有些信任</div>
-                  <div id="trustScaleLabel5">完全信任</div>
-                </div>
-                <div class="slidecontainer">
-                  <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="state" oninput="stateTrustSlide()"></input>
-                    <output class="sliderAmount" name="amount" id="stateAmount" for="rangeInput">0</output>
-                  </div>
-                </div>
-              </div>
-
-              <div class="trustOption">
-                <div class="trustOptionPrompt">
-                  <div class="trustOptionText">私人拥有的国内新闻媒体</div>
-                  <div class="trustOptionEg">例如：新进报 财经报纸 南方周末</div>
-                </div>
-                <div class="form-group" style="margin-bottom:0px; margin-bottom:0px">
-                  <div class="slidecontainer">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="private" oninput="privateAmount.value=private.value"></input>
-                    <output class="sliderAmount" name="amount" id="privateAmount" for="rangeInput">0</output>
-                  </div>
-                </div>
-              </div>
-
-              <div class="trustOption">
-                <div class="trustOptionPrompt">
-                  <div class="trustOptionText">外国新闻媒体</div>
-                  <div class="trustOptionEg">例如：纽约时报 华尔街日报 金融时报</div>
-                </div>
-                <div class="form-group" style="margin-bottom:0px">
-                  <div class="slidecontainer">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="foreign" oninput="foreignAmount.value=foreign.value"></input>
-                    <output class="sliderAmount" name="amount" id="foreignAmount" for="rangeInput">0</output>
-                  </div>
-                </div>
+              <div class="form-group" style="margin-top:5px; margin-bottom:0px">
+                <input type="text" class="form-control" id="univerisity" placeholder="复旦大学" style="font-size: 10px;">
               </div>
             </div>
+          </div>
 
         </div>
 
@@ -126,7 +176,29 @@
 
       <!-- page 2 -->
       <div id="page2" style="display:none">
-        survey page 2
+        <div id="survey">
+
+          <div class="mainQuestion">
+            算术
+          </div>
+
+          <!-- hukou question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+
+              <div class="questionPrompt">
+                <p>
+                  您有<b>1分钟时间</b>来解决以下<b>每个</b>问题。
+                  搜索网页可能会是浪费时间，因为问题
+                  与您在互联网上找到的版本不同。
+                </p>
+                <p>
+                  <b>准备开始时请单击下一步按钮。</b>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- next button -->
         <section class="nextButton">
@@ -145,7 +217,30 @@
 
       <!-- page 3 -->
       <div id="page3" style="display:none">
-        survey page 3
+        <div id="survey">
+
+          <!-- hukou question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+
+              <div class="questionPrompt">
+                <p>
+                  在湖中，有一片睡莲。每天，睡莲覆盖面积都会翻倍。
+                  如果睡莲需要24天才能覆盖整个湖泊，需要多长时间才能覆盖半个湖泊？
+                </p>
+              </div>
+
+              <div class="questionAnswer">
+                <div class="row no-gutters">
+                  <div class="col-2">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="0">
+                  </div>
+                  <div class="col-2" id="unitDays">days</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- next button -->
         <section class="nextButton">

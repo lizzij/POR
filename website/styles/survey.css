@@ -1,3 +1,8 @@
+body{
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
 #survey{
   padding-top: 40px;
   position: fixed;
@@ -6,9 +11,7 @@
   margin-right: auto;
   margin-left: auto;
   min-height: 10em;
-  width: 375px;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+  width: 350px;
 }
 
 .mainQuestion{
@@ -27,7 +30,6 @@
   font-size: 12px;
   weight: 500;
   padding-bottom: 5px;
-
 }
 
 .questionAnswer{
@@ -66,7 +68,7 @@
 
 .trustScaleLabel{
   position: absolute;
-  width: 312px;
+  width: 310px;
   display: flex;
   flex-direction: row;
   font-size: 10px;
@@ -75,56 +77,84 @@
   text-align: center;
 }
 
-#trustScaleLabel1{
-  width: 62.4px;
+#stateTrustScaleLabel1{
+  width: 62px;
 }
 
-#trustScaleLabel2{
-  width: 62.4px;
+#stateTrustScaleLabel2{
+  width: 62px;
 }
 
-#trustScaleLabel3{
-  width: 62.4px;
+#stateTrustScaleLabel3{
+  width: 62px;
 }
 
-#trustScaleLabel4{
-  width: 62.4px;
+#stateTrustScaleLabel4{
+  width: 62px;
 }
 
-#trustScaleLabel5{
-  width: 62.4px;
+#stateTrustScaleLabel5{
+  width: 62px;
 }
 
-.scaleDivider{
-  position: absolute;
-  width: 312px;
-  display: flex;
-  flex-direction: row;
-  font-size: 50px;
-  color: #979797;
-  top: 203px;
-  text-align: right;
-  left: 18px;
+#privateTrustScaleLabel1{
+  width: 62px;
+}
+
+#privateTrustScaleLabel2{
+  width: 62px;
+}
+
+#privateTrustScaleLabel3{
+  width: 62px;
+}
+
+#privateTrustScaleLabel4{
+  width: 62px;
+}
+
+#privateTrustScaleLabel5{
+  width: 62px;
+}
+
+#foreignTrustScaleLabel1{
+  width: 62px;
+}
+
+#foreignTrustScaleLabel2{
+  width: 62px;
+}
+
+#foreignTrustScaleLabel3{
+  width: 62px;
+}
+
+#foreignTrustScaleLabel4{
+  width: 62px;
+}
+
+#foreignTrustScaleLabel5{
+  width: 62px;
 }
 
 #scaleDivider1{
-  width: 62.4px;
+  width: 62px;
 }
 
 #scaleDivider2{
-  width: 62.4px;
+  width: 62px;
 }
 
 #scaleDivider3{
-  width: 62.4px;
+  width: 62px;
 }
 
 #scaleDivider4{
-  width: 62.4px;
+  width: 62px;
 }
 
 #scaleDivider5{
-  width: 62.4px;
+  width: 62px;
 }
 
 .slider {
@@ -169,15 +199,80 @@
   z-index: -1;
 }
 
+#stateScaleDivider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 203px;
+  text-align: right;
+  left: 18px;
+}
 
+#privateScaleDivider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 287px;
+  text-align: right;
+  left: 18px;
+}
 
+#foreignScaleDivider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 371px;
+  text-align: right;
+  left: 18px;
+}
 
+#univerisity{
+  width: 313px;
+  height: 30px;
+}
 
-.nextButton{
+#unitDays{
+
+}
+
+#p1nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 580px;
+  padding-bottom: 30px;
+}
+
+#p2nextButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 580px;
+  padding-bottom: 30px;
+}
+
+#p3nextButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 580px;
+  padding-bottom: 30px;
+}
+
+#p4nextButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 580px;
   padding-bottom: 30px;
 }
 
