@@ -119,3 +119,14 @@ function foreignTrustSlide() {
   var left = 10 + 2.97 * trust;
   document.getElementById("foreignAmount").style.left = left + "px";
 }
+
+function startTimer() {
+  var sec = 60;
+  setInterval(function() {
+    document.getElementById("timer").innerHTML = sec;
+    sec--;
+    if (sec == 00) {
+      return show('page4');
+    }
+  }, 1000);
+}

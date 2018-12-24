@@ -208,6 +208,7 @@
             </button>
             <script type="text/javascript">
                 document.getElementById("p2nextButton").onclick = function () {
+                    startTimer();
                     return show('page3');
                 };
             </script>
@@ -224,6 +225,11 @@
             <div class="form-group" style="margin-bottom:0px">
 
               <div class="questionPrompt">
+                <div id="timeLeft">
+                  <span>您还有</span>
+                  <span id="timer">60</span>
+                  <span>秒时间。</span>
+                </div>
                 <p>
                   在湖中，有一片睡莲。每天，睡莲覆盖面积都会翻倍。
                   如果睡莲需要24天才能覆盖整个湖泊，需要多长时间才能覆盖半个湖泊？
@@ -235,7 +241,7 @@
                   <div class="col-2">
                     <input type="text" class="form-control" id="lilyDayInput" placeholder="0">
                   </div>
-                  <div class="col-2" id="unitDays">days</div>
+                  <div class="col-2" id="unitDays">天</div>
                 </div>
               </div>
             </div>
@@ -259,7 +265,21 @@
 
       <!-- page 4 -->
       <div id="page4" style="display:none">
-        survey page 4
+        <div id="survey">
+          <div class="question">
+            <div class="questionPrompt">
+              <span>
+                有活动预计在<b>3月的第2周</b>举行。
+                您认为那周的天气会如何？分配给您12个星星，
+                请把更多星星分配给您认为更有可能的类别，
+                并把更少的星星分配给您认为不太可能的类别。
+              </span>
+            </div>
+            <div class="questionAnswer">
+
+            </div>
+          </div>
+        </div>
 
         <!-- next button -->
         <section class="nextButton">
@@ -278,8 +298,10 @@
 
       <!-- page 5 -->
       <div id="page5" style="display:none">
-        survey page 5
-
+        <div id="survey">
+          <img id="thankYou" src="../img/thankYou.gif" alt="Thank You!" width="300"/>
+          <img id="spinningHead" src="../img/pinkSpinningHead.gif" width="300"/>
+        </div>
         <!-- powered by -->
         <div id="lizzij">
           <img src="../img/powered by lizzij.png" width="80px">
