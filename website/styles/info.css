@@ -24,6 +24,7 @@ body{
 
 /* Modal Content */
 .modal-content {
+  border-radius: 5px;
   background-color: #FFFFFF;
   margin: auto;
   padding: 10px;

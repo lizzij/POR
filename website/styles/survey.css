@@ -499,8 +499,9 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  left: 85px;
-  top: 80px;
+  padding-left: 40px;
+  /* top: 80px; */
+  display: center;
 }
 
 #spinningHead{
@@ -508,9 +509,10 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 270px;
-  left: 100px;
-  right: 100px;
+  padding-top: 270px;
+  padding-left: 100px;
+  /* right: 100px; */
+  display: center;
 }
 
 #lizzij{
