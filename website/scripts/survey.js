@@ -10,6 +10,7 @@ function show(shown) {
       document.getElementById(pageId).style.display='none';
     }
   }
+  return 0;
 }
 
 function stateTrustSlide() {
@@ -129,4 +130,8 @@ function startTimer() {
       return show('page4');
     }
   }, 1000);
+}
+
+function starLeft() {
+  document.getElementById("starLeftCover").innerHTML = '<div class="star">☆</div>';
 }

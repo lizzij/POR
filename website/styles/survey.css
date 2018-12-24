@@ -254,6 +254,7 @@ body{
 #timeLeft{
   display: flex;
   padding-bottom: 15px;
+  font-size: 14px;
 }
 
 #timer{
@@ -272,24 +273,26 @@ body{
 
 .starLeft{
   display: flex;
-  padding-bottom: 10px;
-}
-
-#starLeftPrompt{
-  display: flex;
-  font-size: 12px;
-  color: #4F4F4F;
+  padding-bottom: 14px;
 }
 
 .starPrompt{
+  display: flex;
   font-size: 12px;
   color: #4F4F4F;
-  width: 115px;
+  width: 66px;
+}
+
+#starLeftPrompt{
+  font-size: 14px;
+  color: #4F4F4F;
+  width: 66px;
 }
 
 #starLeftCount{
   padding-left: 2px;
   padding-right: 2px;
+  font-weight: bold;
 }
 
 .starGroup1{
@@ -350,6 +353,28 @@ body{
 #starCountGroup6{
   padding-left: 2px;
   padding-right: 2px;
+}
+
+.starContainer{
+  overflow: hidden;
+  /* border: 1px solid #000 */
+}
+
+.starContainer div {
+  height: 15px
+}
+
+.star {
+  text-align: center;
+  width: 19px;
+  float: left;
+  /* border-right: 1px solid #000 */
+}
+
+.starLeftCover{
+  position: absolute;
+  color: blue;
+  padding-left: 66px;
 }
 
 
