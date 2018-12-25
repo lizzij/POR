@@ -151,11 +151,10 @@
             <div class="questionPrompt">你现在就读于哪所大学？</div>
             <div class="questionAnswer">
               <div class="form-group" style="margin-top:5px; margin-bottom:0px">
-                <input type="text" class="form-control" id="univerisity" placeholder="复旦大学" style="font-size: 10px;">
+                <input type="text" class="form-control" id="univerisity" onfocus="this.placeholder = ''" placeholder="复旦大学" style="font-size: 10px;">
               </div>
             </div>
           </div>
-
         </div>
 
         <!-- next button -->
@@ -219,7 +218,7 @@
         </section>
 
         <div class="progress" style="height: 8px;">
-          <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #979797;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #979797;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
 
@@ -246,7 +245,7 @@
               <div class="questionAnswer">
                 <div class="row no-gutters">
                   <div class="col-2">
-                    <input type="text" class="form-control" id="lilyDayInput" placeholder="0">
+                    <input type="text" class="form-control" id="lilyDayInput" onfocus="this.placeholder = ''" placeholder="0">
                   </div>
                   <div class="col-2" id="unitDays">天</div>
                 </div>
@@ -270,7 +269,7 @@
         </section>
 
         <div class="progress" style="height: 8px;">
-          <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #979797;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 40%; background-color: #979797;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
 
@@ -421,7 +420,7 @@
         <section class="nextButton">
           <div id="p4nextButton">
             <button id="button">
-              <div id="next">提交</div>
+              <div id="next">下一页</div>
             </button>
             <script type="text/javascript">
                 document.getElementById("p4nextButton").onclick = function () {
@@ -432,12 +431,83 @@
         </section>
 
         <div class="progress" style="height: 8px;">
-          <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #979797;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #979797;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
 
       <!-- page 5 -->
       <div id="page5" style="display:none">
+        <!-- survey -->
+        <div id="survey">
+
+          <!-- hukou question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+              <div class="questionPrompt">
+                <p>
+                  你想承诺参加我们组织的活动，“儿童慈善徒步运动”吗？
+                  如果您同意，我们提前几周向你发送提醒和指示。
+                </p>
+                <div id="note">
+                  实际付款将视您现在所做的选择而定，以后不会进行调整：
+                  <ul>
+                    <li>如果您选择今天走4000步，后走2000步，则不捐赠任何钱。</li>
+                    <li>如果您选择今天走2000步，后走4000步，则仅捐赠2美元。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="questionAnswer">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="walkathon" value="1">
+                  <label class="form-check-label" for="walkathon1" id="walkathon1">
+                    不，我不感兴趣。
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="walkathon" value="2">
+                  <label class="form-check-label" for="walkathon2" id="walkathon2">
+                    好，我将在[2019年3月16日]走2000步（1.4公里） - 研究人员将代表您向上海联合基金会捐赠2美元。
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="walkathon" value="3">
+                  <label class="form-check-label" for="walkathon3" id="walkathon3">
+                    好，我将在[2019年3月16日]走3000步（2.25公里） - 研究人员将代表您向上海联合基金会捐赠3美元。
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="walkathon" value="4">
+                  <label class="form-check-label" for="walkathon4" id="walkathon4">
+                    好，我将在[2019年3月16日]走4000步（2.25公里） - 研究人员将代表您向上海联合基金会捐赠4美元。
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- next button -->
+        <section class="nextButton">
+          <div id="p5nextButton">
+            <button id="button">
+              <div id="next">提交</div>
+            </button>
+            <script type="text/javascript">
+                document.getElementById("p5nextButton").onclick = function () {
+                    return show('page6');
+                };
+            </script>
+          </div>
+        </section>
+
+        <div class="progress" style="height: 8px;">
+          <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #979797;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <!-- page 6 -->
+      <div id="page6" style="display:none">
         <div id="survey">
           <img id="thankYou" src="../img/thankYou.gif" alt="Thank You!" width="300"/>
           <img id="spinningHead" src="../img/pinkSpinningHead.gif" width="240"/>
