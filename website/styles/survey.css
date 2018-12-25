@@ -281,9 +281,10 @@ body{
 
 .starPrompt{
   display: flex;
-  font-size: 12px;
+  font-size: 10px;
   color: #4F4F4F;
   width: 66px;
+  letter-spacing: -0.5px;
 }
 
 #starLeftPrompt{
@@ -328,7 +329,7 @@ body{
   padding-bottom: 5px;
 }
 
-#starCountGroup1{
+/* #starCountGroup1{
   padding-left: 2px;
   padding-right: 2px;
 }
@@ -356,7 +357,7 @@ body{
 #starCountGroup6{
   padding-left: 2px;
   padding-right: 2px;
-}
+} */
 
 .starContainer{
   overflow: hidden;
@@ -430,11 +431,49 @@ body{
 
 #starAlert{
   position: absolute;
-  top: 312px;
-  color: #DD0000;
+  width:205px;
+  top: 311px;
+  left: 78px;
+  color: #FF3333;
   font-size: 14px;
-  padding-left: 130px;
   font-weight: bold;
+  text-align: center;
+  background: rgb(255,255,255);
+  background: rgba(255,255,255, 0.6);
+}
+
+#groupDescription{
+  font-size: 10px;
+  color: #979797;
+  line-height: 1.6;
+  padding-right: 10px;
+  padding-top: 12px;
+  font-weight: 300;
+}
+
+#clearAllButton{
+  position:absolute;
+  top: 311px;
+  left: 286px;
+  width: 19px;
+  height: 19px;
+  border-radius: 15px;
+
+  /* ShanghaiGrey */
+  background: #DCDCDC;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  opacity: 0.5;
+}
+
+#clear{
+  position:absolute;
+  top: -8px;
+  left: 0px;
+  width: 19px;
+  height: 19px;
+  font-size: 20px;
+  color: #000000;
+  z-index: 2;
 }
 
 #p1nextButton{
@@ -475,7 +514,7 @@ body{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 530px;
+  top: 559px;
   /* bottom: 55px; */
   left: 50px;
   right: 50px;
