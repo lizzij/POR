@@ -8,13 +8,8 @@ function show(shown) {
       if (shown == 'page5') {
         var alert = document.getElementById("starAlert").innerHTML;
         var numStarLeft = document.getElementById("starLeftCount").innerHTML;
-        console.log(numStarLeft);
         if ((parseInt(numStarLeft)) > 0) {
           document.getElementById("starAlert").innerHTML = '请用完所有星星！';
-          document.getElementById('page4').style.display='block';
-          document.getElementById("clearAllStarsButton").style.display='block';
-        }
-        else if (alert != '') {
           document.getElementById('page4').style.display='block';
           document.getElementById("clearAllStarsButton").style.display='block';
         }
@@ -61,7 +56,7 @@ function stateTrustSlide() {
     document.getElementById("stateTrustScaleLabel4").style.fontWeight = 'bold';
     document.getElementById("stateTrustScaleLabel4").style.color = "#4F4F4F";
   }
-  else if (80 <= trust && trust < 100) {
+  else if (80 <= trust && trust <= 100) {
     document.getElementById("stateTrustScaleLabel5").style.fontWeight = 'bold';
     document.getElementById("stateTrustScaleLabel5").style.color = "#4F4F4F";
   }
@@ -97,7 +92,7 @@ function privateTrustSlide() {
     document.getElementById("privateTrustScaleLabel4").style.fontWeight = 'bold';
     document.getElementById("privateTrustScaleLabel4").style.color = "#4F4F4F";
   }
-  else if (80 <= trust && trust < 100) {
+  else if (80 <= trust && trust <= 100) {
     document.getElementById("privateTrustScaleLabel5").style.fontWeight = 'bold';
     document.getElementById("privateTrustScaleLabel5").style.color = "#4F4F4F";
   }
@@ -133,7 +128,7 @@ function foreignTrustSlide() {
     document.getElementById("foreignTrustScaleLabel4").style.fontWeight = 'bold';
     document.getElementById("foreignTrustScaleLabel4").style.color = "#4F4F4F";
   }
-  else if (80 <= trust && trust < 100) {
+  else if (80 <= trust && trust <= 100) {
     document.getElementById("foreignTrustScaleLabel5").style.fontWeight = 'bold';
     document.getElementById("foreignTrustScaleLabel5").style.color = "#4F4F4F";
   }
@@ -155,8 +150,11 @@ function startTimer() {
 function starCountGroup1(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup1").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -187,8 +185,11 @@ function starCountGroup1(number) {
 function starCountGroup2(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup2").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -219,8 +220,11 @@ function starCountGroup2(number) {
 function starCountGroup3(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup3").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -251,8 +255,11 @@ function starCountGroup3(number) {
 function starCountGroup4(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup4").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -283,8 +290,11 @@ function starCountGroup4(number) {
 function starCountGroup5(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup5").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -315,8 +325,11 @@ function starCountGroup5(number) {
 function starCountGroup6(number) {
   var starLeftCount = document.getElementById("starLeftCount").innerHTML;
   var count = document.getElementById("starCountGroup6").innerHTML;
-  if (number - count > starLeftCount) {
-    document.getElementById("starAlert").innerHTML = '超过12个星星！';
+  if (starLeftCount == 0 && number > count) {
+    document.getElementById("starAlert").innerHTML = '已用完12个星星！';
+  }
+  else if (number - count > starLeftCount) {
+    document.getElementById("starAlert").innerHTML = '超过剩余星星！';
   }
   else if (number == 1 && count == 0) {
     document.getElementById("starAlert").innerHTML = '';
@@ -354,15 +367,10 @@ function starLeft() {
   - document.getElementById("starCountGroup4").innerHTML
   - document.getElementById("starCountGroup5").innerHTML
   - document.getElementById("starCountGroup6").innerHTML;
-  // if (starLeftCount < 0) {
-  //   document.getElementById("starAlert").innerHTML = '超过12个星星！';
-  // }
-  // else {
-    var i;
-    for (i = 0; i < starLeftCount; i++) {
-      starLeft = starLeft + '<div class="star">&starf;</div>';
-    }
-  // }
+  var i;
+  for (i = 0; i < starLeftCount; i++) {
+    starLeft = starLeft + '<div class="star">&starf;</div>';
+  }
   document.getElementById("starLeftCount").innerHTML = starLeftCount + "";
   document.getElementById("starLeftContainer").innerHTML = starLeft;
   showClearAllStarsButton();
