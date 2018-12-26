@@ -35,12 +35,12 @@ A project to investigate the power of repetition in Chinese media.
 - [x] Information provision page
   - [x] [Design version 1](#design-version-1)
   - [x] [Design version2](#design-version-2)
-    - [ ] Realize version 2 in code
-  - [ ] [Design version 3](#design-version-3)
-    - [ ] Realize version 3 in code
-- [ ] Survey page  
-  - [ ] Survey page version 1
-  - [ ] Survey page version 2 design and realization
+    - [x] Realize version 2 in code
+  - [x] [Design version 3](#design-version-3)
+    - [x] Realize version 3 in code
+- [x] Survey   
+  - [x] Survey version 1
+  - [x] [Survey version 2](#Survey) design and realization
 
 #### Design version 1
 <p float="left">
@@ -54,7 +54,7 @@ A project to investigate the power of repetition in Chinese media.
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV2-2.png" alt="InfoPageUIChnV2-2" height="783"/>
 </p>
 
-#### Design [version 3](https://www.figma.com/proto/OwA6rIAScWCqCqxUQizJ8B7W/PowerOfRep?node-id=0%3A1&viewport=1905%2C363%2C1&scaling=scale-down)
+#### [Design version 3](https://www.figma.com/proto/OwA6rIAScWCqCqxUQizJ8B7W/PowerOfRep?node-id=0%3A1&viewport=1905%2C363%2C1&scaling=scale-down)
 <p float="left">
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-1.png" alt="InfoPageUIChnV3-1" height="775"/>
   <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/InfoPageUIChnV3-2.png" alt="InfoPageUIChnV3-2" height="775"/>
@@ -67,16 +67,30 @@ A project to investigate the power of repetition in Chinese media.
   - 60 seconds count down
   - Customize star rating (sums to 12 logic)
   - Improve flow and aesthetics
-
+  <p float="left">
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP1.png" alt="surveyP1" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP2.png" alt="surveyP2" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP3.png" alt="surveyP3" width="293"/>
+  </p>
+  <p float="left">
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-1" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP4-2" width="293"/>
+  </p>
+  <p float="left">
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4-3" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-4" width="293"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP5" width="293"/>
+  </p>
+  <p float="left">
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP6" width="293"/>
+  </p>
 
 ## Developing...
 ### Todos
-- [x] re-design website 12/22
-- [x] modify website 12/22
-- [ ] re-design survey form 12/22
-- [ ] realize survey form 12/22
-- [ ] connect survey form with database 12/23
-- [ ] update [trello board](https://trello.com/b/2kwmft8O/chinamedia)
+- [ ] Database
+- [ ] Connection
+- [ ] Modifiable UI (info.js)
 
 ### Clarifications
 - [ ] ...
