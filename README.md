@@ -78,12 +78,8 @@ A project to investigate the power of repetition in Chinese media.
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP4-2" width="280"/>
   </p>
   <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4-3" width="280"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-4" width="280"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP5" width="280"/>
-  </p>
-  <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP6" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-4.png" alt="surveyP4-4" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-5.png" alt="surveyP5" width="280"/>
   </p>
 
 ## Developing...
