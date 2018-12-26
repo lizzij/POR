@@ -68,22 +68,22 @@ A project to investigate the power of repetition in Chinese media.
   - Customize star rating (sums to 12 logic)
   - Improve flow and aesthetics
   <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP1.png" alt="surveyP1" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP2.png" alt="surveyP2" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP3.png" alt="surveyP3" width="288"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP1.png" alt="surveyP1" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP2.png" alt="surveyP2" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP3.png" alt="surveyP3" width="280"/>
   </p>
   <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-1" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP4-2" width="288"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-1" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP4-2" width="280"/>
   </p>
   <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4-3" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-4" width="288"/>
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP5" width="288"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP4-3" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-1.png" alt="surveyP4-4" width="280"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4-2.png" alt="surveyP5" width="280"/>
   </p>
   <p float="left">
-    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP6" width="288"/>
+    <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP4.png" alt="surveyP6" width="280"/>
   </p>
 
 ## Developing...
