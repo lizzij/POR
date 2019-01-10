@@ -86,8 +86,11 @@ A project to investigate the power of repetition in Chinese media.
 ## Developing...
 ### Todos
 - [ ] Database
-- [ ] Connection
-- [ ] Modifiable UI (info.js)
+- [ ] Connection (on mobile device - no next)
+- [x] Modifiable UI (info.js)
+- [ ] Disable going back to info once survey is opened
+- [ ] Time stamp each next button (each page)
+- [ ] Categorical bar for the survey star questions
 
 ### Clarifications
 - [ ] ...
