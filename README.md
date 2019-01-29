@@ -17,7 +17,7 @@ A project to investigate the power of repetition in Chinese media.
     - [x] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
     - [x] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 - Notification system
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Notifications.png" alt="Notification system logic" width="500"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Notifications.png" alt="Notification system logic" width="700"/>
 
 
 ### Database
@@ -25,7 +25,7 @@ A project to investigate the power of repetition in Chinese media.
 - [x] Setup mySQL database
 - [ ] Connect with website for Id, input
 - Database design
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="500"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="800"/>
 
 ### Website
 ###### For providing information and collecting surveys
