@@ -5,6 +5,7 @@
     <title>Info</title>
   </head>
   <body>
-    <h1>{{ 'User %d\nDay %d' % (user_id, day)}}</h1>
+    <h1>{{ 'Information for: User %d, Day %d.' % (user_id, day)}}</h1>
+    <a href="{{ url_for('survey', user_id=user_id, day=day) }}"><input type="submit" name="to_survey" value="Next">
   </body>
 </html>
