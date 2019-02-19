@@ -1,5 +1,6 @@
 import functools
 
+# from hashids import Hashids
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -8,6 +9,7 @@ from media.db import get_db
 from werkzeug.exceptions import abort
 
 bp = Blueprint('info', __name__, url_prefix='/')
+hashids = Hashids()
 
 @bp.route('/<int:user_id>/<int:day>/info', methods=['GET', 'POST'])
 def get_info(user_id, day):
@@ -34,4 +36,5 @@ def get_info(user_id, day):
     #         return redirect(url_for('survey'))
     # return render_template('info.html', user_id=user_id, day=day)
 
-    return info
+    # return render_template('info.html', user_id=user_id, day=day, wechat_id=info.wechat_id, treatment=info.treatment)
+    return info['user_id']
