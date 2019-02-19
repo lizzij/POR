@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Info</title>
   </head>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
   <body>
     <h1>{{ 'Information for:' }}</h1>
     <h2>{{ 'User: %d' % (info['user_id']) }}</h2>

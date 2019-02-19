@@ -50,14 +50,18 @@
   </script>
   <body>
     <h1>{{ 'Survey for: User %d' % (user_id)}}</h1>
-    <form action="survey" method="post">
+    <form method="post">
       <div>
         <label for="uni">University: </label>
-        <input type="text" id="name" name="uni_name">
+        <input name="uni" id="uni" value="{{ request.form['uni'] }}" required>
+        <!-- <a href="{{ url_for('info.submit', user_id=user_id, day=day) }}"><div class="button">
+          <button type="submit" name="survey" value="submit_survey">1</button> -->
+        <input type="submit" value="Next">
       </div>
     </form>
-    <a href="{{ url_for('info.submit') }}"><div class="button">
-      <button type="submit">Next</button>
+    <!-- <a href="{{ url_for('info.submit', user_id=user_id, day=day) }}"><div class="button">
+      <button type="submit" name="survey" value="submit_survey">2</button> -->
+
     </div>
   </body>
 </html>
