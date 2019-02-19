@@ -68,11 +68,11 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 
 
 #### Survey
-- Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:
-  - Customize slider
-  - 60 seconds count down
-  - Customize star rating (sums to 12 logic)
-  - Improve flow and aesthetics
+- [x] Prototype: [Qualtrics sample](https://neu.co1.qualtrics.com/jfe/form/SV_e5JFwqLxYHoI4D3), additional features:
+  - [x] Customize slider
+  - [x] 60 seconds count down
+  - [x] Customize star rating (sums to 12 logic)
+  - [x] Improve flow and aesthetics
   <p float="left">
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP1.png" alt="surveyP1" width="280"/>
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP2.png" alt="surveyP2" width="280"/>
@@ -90,24 +90,4 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
   </p>
 
 ## Developing...
-### Todos
-- [x] remove temperature, restrict going back
-- [x] Flask (http://flask.pocoo.org/), RESTful (https://www.restapitutorial.com/lessons/whatisrest.html)
-- [ ] consent form yes or no
-- [ ] encrypt survey user_id and generate info and survey pages
-- [x] database connect with survey, decrypt survey response number
-- [ ] survey completion log reflected in database
-- [ ] completion checks at time
-- [ ] notification send at certain time
-- [ ] view on mobile system
-- [ ] link with thumbnails
-- [x] Database
-- [ ] Connection (on mobile device - no next)
-- [x] Modifiable UI (info.js)
-- [ ] Remove source of temperature
-- [x] Disable going back to info once survey is opened
-- [x] Time stamp each next button (each page)
-- [ ] Categorical bar for the survey star questions
-
-### Clarifications
-- [ ] Time for checking completeness (1 and 2)
+- Refer to [project board](https://github.com/users/lizzij/projects/1) for scrum progress.
