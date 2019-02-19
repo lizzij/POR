@@ -5,8 +5,11 @@
     <title>Info</title>
   </head>
   <body>
-    <h1>{{ 'Information for: User %d, Day %d.' % (user_id, day)}}</h1>
-    <h2>{{ 'Wechat id: %s. Treatment group: %s' % (wechat_id, treatment)}}</h2>
-    <a href="{{ url_for('survey', user_id=user_id, day=day) }}"><input type="submit" name="to_survey" value="Next">
+    <h1>{{ 'Information for:' }}</h1>
+    <h2>{{ 'User: %d' % (info['user_id']) }}</h2>
+    <h2>{{ 'Day: %d' % (info['day']) }}</h2>
+    <h2>{{ 'Wechat id: %s' % (info['wechat_id']) }}</h2>
+    <h2>{{ 'Treatment group: %s' % (info['treatment']) }}</h2>
+    <a href="{{ url_for('home') }}"><input type="submit" name="to_survey" value="Next">
   </body>
 </html>
