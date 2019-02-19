@@ -1,14 +1,14 @@
 INSERT INTO user (day, wechat_id, treatment)
 VALUES
-  ('1','wechat_id1','treatment1'),
-  ('2','wechat_id1','treatment1'),
-  ('3','wechat_id1','treatment1'),
-  ('1','wechat_id2','treatment2'),
-  ('2','wechat_id2','treatment2'),
-  ('3','wechat_id2','treatment2'),
-  ('1','wechat_id3','treatment3'),
-  ('2','wechat_id3','treatment3'),
-  ('3','wechat_id3','treatment3');
+  ('1', '1','wechat_id1','treatment1'),
+  ('1', '2','wechat_id1','treatment1'),
+  ('1', '3','wechat_id1','treatment1'),
+  ('2', '1','wechat_id2','treatment2'),
+  ('2', '2','wechat_id2','treatment2'),
+  ('2', '3','wechat_id2','treatment2'),
+  ('3', '1','wechat_id3','treatment3'),
+  ('3', '2','wechat_id3','treatment3'),
+  ('3', '3','wechat_id3','treatment3');
 
 INSERT INTO survey (survey_id, result, created)
 VALUES
