@@ -95,18 +95,18 @@ A project to investigate the power of repetition in Chinese media.
 - [x] Flask (http://flask.pocoo.org/), RESTful (https://www.restapitutorial.com/lessons/whatisrest.html)
 - [ ] consent form yes or no
 - [ ] encrypt survey user_id and generate info and survey pages
-- [ ] database connect with survey, decrypt survey response number
+- [x] database connect with survey, decrypt survey response number
 - [ ] survey completion log reflected in database
 - [ ] completion checks at time
 - [ ] notification send at certain time
 - [ ] view on mobile system
 - [ ] link with thumbnails
-- [ ] Database
+- [x] Database
 - [ ] Connection (on mobile device - no next)
 - [x] Modifiable UI (info.js)
 - [ ] Remove source of temperature
-- [ ] Disable going back to info once survey is opened
-- [ ] Time stamp each next button (each page)
+- [x] Disable going back to info once survey is opened
+- [x] Time stamp each next button (each page)
 - [ ] Categorical bar for the survey star questions
 
 ### Clarifications
