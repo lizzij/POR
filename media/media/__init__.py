@@ -37,20 +37,23 @@ def create_app(test_config=None):
 
     # information page
 
-
-    @app.route('/<int:user_id>/<int:day>/info', methods=['GET', 'POST'])
-    def info(user_id, day):
-        if request.method == 'POST':
-            if request.form['to_survey'] == 'Next':
-                return redirect(url_for('survey'))
-        return render_template('info.html', user_id=user_id, day=user_id)
+    # @app.route('/<int:user_id>/<int:day>/info', methods=['GET', 'POST'])
+    # def info(user_id, day):
+    #     if request.method == 'POST':
+    #         if request.form['to_survey'] == 'Next':
+    #             return redirect(url_for('survey'))
+    #     return render_template('info.html', user_id=user_id, day=user_id)
 
     # survey page
-    @app.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
-    def survey(user_id, day):
-            return render_template('survey.html', user_id=user_id, day=day)
+    # @app.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
+    # def survey(user_id, day):
+    #         return render_template('survey.html', user_id=user_id, day=day)
 
-    from . import db
+    from media import db
     db.init_app(app)
+
+    from media import info, survey
+    app.register_blueprint(info.bp)
+    app.register_blueprint(survey.bp)
 
     return app
