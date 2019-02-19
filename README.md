@@ -24,7 +24,7 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 ### Database
 ###### mySQL
 - [x] Setup mySQL database
-- [ ] Connect with website for Id, input
+- [x] Connect with website for Id, input
 - [x] Database design
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="800"/>
 
