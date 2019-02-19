@@ -10,6 +10,6 @@
     <h2>{{ 'Day: %d' % (info['day']) }}</h2>
     <h2>{{ 'Wechat id: %s' % (info['wechat_id']) }}</h2>
     <h2>{{ 'Treatment group: %s' % (info['treatment']) }}</h2>
-    <a href="{{ url_for('home') }}"><input type="submit" name="to_survey" value="Next">
+    <a href="{{ url_for('info.get_survey', user_id=info['user_id'], day=info['day']) }}"><input type="submit" name="to_survey" value="Next">
   </body>
 </html>

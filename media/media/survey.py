@@ -10,9 +10,9 @@
 #
 # @bp.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
 # def get_survey(user_id, day):
-#     """Send survey
-#
-#     According to a user's id and treatment group.
-#     Hash the user_id and day.
-#     """
+    # """Send survey
+    #
+    # According to a user's id and treatment group.
+    # Hash the user_id and day.
+    # """
 #     return render_template('survey.html', user_id=user_id, day=day)

@@ -49,6 +49,15 @@
     })(window);
   </script>
   <body>
-    <h1>{{ 'Survey for: User %d, Day %d.' % (user_id, day)}}</h1>
+    <h1>{{ 'Survey for: User %d' % (user_id)}}</h1>
+    <form action="survey" method="post">
+      <div>
+        <label for="uni">University: </label>
+        <input type="text" id="name" name="uni_name">
+      </div>
+    </form>
+    <a href="{{ url_for('info.submit') }}"><div class="button">
+      <button type="submit">Next</button>
+    </div>
   </body>
 </html>

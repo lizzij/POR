@@ -29,7 +29,6 @@ def create_app(test_config=None):
     def home():
         return render_template('home.html')
 
-
     from media import db
     db.init_app(app)
 

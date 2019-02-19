@@ -36,3 +36,53 @@ def get_info(user_id, day):
     # return render_template('info.html', user_id=user_id, day=day)
 
     return render_template('info.html', info=info)
+
+@bp.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
+def get_survey(user_id, day):
+    """Send survey
+
+    According to a user's id and treatment group.
+    Hash the user_id and day.
+    """
+    survey = get_db().execute(
+        'SELECT u.user_id, u.day, result, created'
+        ' FROM survey s JOIN user u ON s.user_id = u.user_id'
+        ' WHERE s.user_id = ? AND u.day = ?',
+        (user_id, day,)
+    ).fetchone()
+
+    if survey is None:
+        abort(404, "Survey for user_id {0} on day {1} doesn't exist.".format(user_id, day))
+
+    # if request.method == 'POST':
+    #     if request.form['to_survey'] == 'Next':
+    #         return redirect(url_for('survey'))
+    # return render_template('info.html', user_id=user_id, day=day)
+
+    # if request.method == 'POST':
+    #     if request.form['submit_survey'] == 'Next':
+    #         return render_template('finished.html')
+            # db = get_db()
+            # db.execute(
+            #     'INSERT INTO survey (user_id, result, created)'
+            #     ' VALUES (?, ?, ?)',
+            #     (g.user_id['user_id'], result, created)
+            # )
+            # db.commit()
+
+    return render_template('survey.html', user_id=user_id)
+
+@bp.route('/complete', methods=['GET', 'POST'])
+def submit():
+    """Submit survey result to db"""
+    return render_template('finished.html')
+    # if request.method == 'POST':
+    #     if request.form['submit_survey'] == 'Next':
+            # db = get_db()
+            # db.execute(
+            #     'INSERT INTO survey (user_id, result, created)'
+            #     ' VALUES (?, ?, ?)',
+            #     (g.user_id['user_id'], result, created)
+            # )
+            # db.commit()
+            # return render_template('finished.html')
