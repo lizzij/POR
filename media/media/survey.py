@@ -6,7 +6,7 @@
 #
 # from media.db import get_db
 #
-# bp = Blueprint('survey', __name__, url_prefix='/')
+# bp = Blueprint('survey', __name__)
 #
 # @bp.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
 # def get_survey(user_id, day):

@@ -1,20 +1,16 @@
 import functools
-import hashlib
+# import hashlib
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-
 from media.db import get_db
 from werkzeug.exceptions import abort
 
-bp = Blueprint('info', __name__, url_prefix='/')
-# hashids = Hashids()
+bp = Blueprint('info', __name__)
 
 @bp.route('/<int:user_id>/<int:day>/info', methods=['GET', 'POST'])
-
-
 def get_info(user_id, day):
     """Send information.
 
@@ -40,5 +36,3 @@ def get_info(user_id, day):
     # return render_template('info.html', user_id=user_id, day=day)
 
     return render_template('info.html', info=info)
-    # return info['user_id']
-    # return info
