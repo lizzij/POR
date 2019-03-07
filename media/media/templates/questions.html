@@ -505,8 +505,32 @@
       <!-- page 6 -->
       <div id="page6" style="display:none">
         <div id="survey">
-          <img id="thankYou" src="../img/thankYou.gif" alt="Thank You!" width="300"/>
-          <img id="spinningHead" src="../img/pinkSpinningHead.gif" width="240"/>
+
+          <!-- questions about the event -->
+          <div class="mainQuestion">
+            关于该活动的问题
+          </div>
+
+          <!-- event name question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+              <div class="questionPrompt">该活动的名字是？</div>
+              <div class="questionAnswer">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eventName" value="name1">
+                  <label class="form-check-label" for="name1">
+                    名字1
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eventName" value="name2">
+                  <label class="form-check-label" for="name2">
+                    名字2
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="progress" style="height: 8px;">
@@ -515,7 +539,7 @@
 
         <!-- powered by -->
         <div id="lizzij">
-          <img src="../img/powered by lizzij.png" width="80px">
+          <img href="{{ url_for('static', filename='images/powered by lizzij.png') }}" width="80px">
         </div>
       </div>
 

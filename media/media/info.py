@@ -126,3 +126,18 @@ def index():
 def questions():
     """Display all questions"""
     return render_template('questions.html')
+
+@bp.route('/new', methods=['GET', 'POST'])
+def new():
+    """Display all questions"""
+    return render_template('new.html')
+
+@bp.route('/new1', methods=['GET', 'POST'])
+def new1():
+    """Display all questions"""
+    return render_template('new1.html')
+
+@bp.route('/new2', methods=['GET', 'POST'])
+def new2():
+    """Display all questions"""
+    return render_template('new2.html')

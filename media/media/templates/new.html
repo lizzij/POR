@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}{% endblock %}Questions</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/questions.css') }}">
+    <!-- <link rel="shortcut icon" href="http://202.182.126.239/../favicon.ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+  </head>
+  <body>
+      <!-- page 6 -->
+      <div id="page6">
+        <div id="survey">
+
+          <!-- questions about the event -->
+          <div class="mainQuestion">
+            关于该活动的问题
+          </div>
+
+          <!-- event name question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+              <div class="questionPrompt">该活动的名字是？</div>
+              <div class="questionAnswer">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eventName" value="name1">
+                  <label class="form-check-label" for="name1">
+                    名字1
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eventName" value="name2">
+                  <label class="form-check-label" for="name2">
+                    名字2
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- time on event -->
+          <div class="question">
+            <div class="questionPrompt">通常您一周愿意花多少小时参加类似这样的户外活动？</div>
+            <div class="questionAnswer">
+              <div class="slidecontainer" id="eventTime">
+                <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
+                  <input type="range" min="0" max="600" value="0" class="slider" id="eventTimeSlider" oninput="eventTimeSlide()"></input>
+                  <output class="sliderAmount" name="amount" id="eventTimeAmount" for="rangeInput">0小时 0分钟</output>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- weather prediction -->
+          <div class="question">
+            <div class="questionPrompt">
+                <p>
+                  有活动预计在<b>3月的第2周</b>举行。
+                  您认为那周的天气会如何？
+                </p>
+                <p>
+                  分配给您12个星星，请把更多星星分配给您认为更有可能的类别，
+                  并把更少的星星分配给您认为不太可能的类别。
+                </p>
+                <div id="note">
+                  注意：
+                  <ul>
+                    <li>每颗星星代表十二分之一的可能性。</li>
+                    <li>请用完所有星星。</li>
+                    <li>如果您认为某类极不可能 → 您应放置零星星。</li>
+                    <li>如果您认为某类是确定的 → 您应把所有星星放在该类别中。</li>
+                    <li>如果您认为所有类都具有相同的可能性 → 您应在所有类别中放置相同数量的星星。</li>
+                    <li>没有正确和错误的答案，所以您应该根据您的期望放置令牌。</li>
+                  </ul>
+                </div>
+            </div>
+            <div class="questionAnswer">
+
+              <div class="starLeft">
+                <div class="starPrompt" id="starLeftPrompt">
+                  <div>余</div>
+                  <div id="weatherStarLeftCount">12</div>
+                  <div>星</div>
+                </div>
+                <div class="starContainer" id="weatherStarLeftContainer">
+                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
+                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
+                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
+                </div>
+              </div>
+
+              <div id="weatherStarAlert"></div>
+
+              <div class="starGroup1">
+                <div class="starPrompt">
+                  <div>阳光普照</div>
+                  <div>（</div>
+                  <div id="weatherStarCountGroup1">0</div>
+                  <div>）</div>
+                </div>
+                <div class="starGroup1Cover" id="weatherStarGroup1Cover"></div>
+                <div class="starContainer">
+                  <div class="star" onclick="weatherStarCountGroup1(1)">☆</div><div class="star" onclick="weatherStarCountGroup1(2)">☆</div><div class="star" onclick="weatherStarCountGroup1(3)">☆</div><div class="star" onclick="weatherStarCountGroup1(4)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup1(5)">☆</div><div class="star" onclick="weatherStarCountGroup1(6)">☆</div><div class="star" onclick="weatherStarCountGroup1(7)">☆</div><div class="star" onclick="weatherStarCountGroup1(8)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup1(9)">☆</div><div class="star" onclick="weatherStarCountGroup1(10)">☆</div><div class="star" onclick="weatherStarCountGroup1(11)">☆</div><div class="star" onclick="weatherStarCountGroup1(12)">☆</div>
+                </div>
+              </div>
+
+              <div class="starGroup2">
+                <div class="starPrompt">
+                  <div>多云</div>
+                  <div>（</div>
+                  <div id="weatherStarCountGroup2">0</div>
+                  <div>）</div>
+                </div>
+                <div class="starGroup2Cover" id="weatherStarGroup2Cover"></div>
+                <div class="starContainer">
+                  <div class="star" onclick="weatherStarCountGroup2(1)">☆</div><div class="star" onclick="weatherStarCountGroup2(2)">☆</div><div class="star" onclick="weatherStarCountGroup2(3)">☆</div><div class="star" onclick="weatherStarCountGroup2(4)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup2(5)">☆</div><div class="star" onclick="weatherStarCountGroup2(6)">☆</div><div class="star" onclick="weatherStarCountGroup2(7)">☆</div><div class="star" onclick="weatherStarCountGroup2(8)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup2(9)">☆</div><div class="star" onclick="weatherStarCountGroup2(10)">☆</div><div class="star" onclick="weatherStarCountGroup2(11)">☆</div><div class="star" onclick="weatherStarCountGroup2(12)">☆</div>
+                </div>
+              </div>
+
+              <div class="starGroup3">
+                <div class="starPrompt">
+                  <div>阴天</div>
+                  <div>（</div>
+                  <div id="weatherStarCountGroup3">0</div>
+                  <div>）</div>
+                </div>
+                <div class="starGroup3Cover" id="weatherStarGroup3Cover"></div>
+                <div class="starContainer">
+                  <div class="star" onclick="weatherStarCountGroup3(1)">☆</div><div class="star" onclick="weatherStarCountGroup3(2)">☆</div><div class="star" onclick="weatherStarCountGroup3(3)">☆</div><div class="star" onclick="weatherStarCountGroup3(4)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup3(5)">☆</div><div class="star" onclick="weatherStarCountGroup3(6)">☆</div><div class="star" onclick="weatherStarCountGroup3(7)">☆</div><div class="star" onclick="weatherStarCountGroup3(8)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup3(9)">☆</div><div class="star" onclick="weatherStarCountGroup3(10)">☆</div><div class="star" onclick="weatherStarCountGroup3(11)">☆</div><div class="star" onclick="weatherStarCountGroup3(12)">☆</div>
+                </div>
+              </div>
+
+              <div class="starGroup4">
+                <div class="starPrompt">
+                  <div>下雨下雪</div>
+                  <div>（</div>
+                  <div id="weatherStarCountGroup4">0</div>
+                  <div>）</div>
+                </div>
+                <div class="starGroup4Cover" id="weatherStarGroup4Cover"></div>
+                <div class="starContainer">
+                  <div class="star" onclick="weatherStarCountGroup4(1)">☆</div><div class="star" onclick="weatherStarCountGroup4(2)">☆</div><div class="star" onclick="weatherStarCountGroup4(3)">☆</div><div class="star" onclick="weatherStarCountGroup4(4)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup4(5)">☆</div><div class="star" onclick="weatherStarCountGroup4(6)">☆</div><div class="star" onclick="weatherStarCountGroup4(7)">☆</div><div class="star" onclick="weatherStarCountGroup4(8)">☆</div>
+                  <div class="star" onclick="weatherStarCountGroup4(9)">☆</div><div class="star" onclick="weatherStarCountGroup4(10)">☆</div><div class="star" onclick="weatherStarCountGroup4(11)">☆</div><div class="star" onclick="weatherStarCountGroup4(12)">☆</div>
+                </div>
+              </div>
+
+              <div id="weatherClearAllStarsButton" onclick="weatherClearAllStars()">
+                <button id="weatherClearAllButton">
+                  <div id="weatherClear">&times;</div>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="progress" style="height: 8px;">
+          <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #979797;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <!-- powered by -->
+        <div id="lizzij">
+          <img href="{{ url_for('static', filename='images/powered by lizzij.png') }}" width="80px">
+        </div>
+      </div>
+
+    </div>
+    <script type=text/javascript src="{{
+  url_for('static', filename='scripts/new.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>
