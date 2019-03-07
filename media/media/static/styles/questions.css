@@ -751,7 +751,7 @@ div.trustScaleLabel > div{
 }
 
 .peopleTrustOption{
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 #GoodDeedDivider{
@@ -779,4 +779,98 @@ div.trustScaleLabel > div{
 
 div.willingnessScaleLabel > div{
   width: 62px;
+}
+
+.outingScaleLabel{
+  position: absolute;
+  width: 310px;
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  color: #979797;
+  padding-top: 0px;
+  text-align: center
+}
+
+div.outingScaleLabel > div{
+  width: 77.5px;
+}
+
+.outingOption{
+  height: 68px;
+}
+
+.outingOptionPrompt{
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.outingOptionText{
+  font-size: 10px;
+  color: #4F4F4F;
+}
+
+#outingScale1Divider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 298px;
+  text-align: right;
+  left: 23px;
+}
+
+#outingScale2Divider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 366px;
+  text-align: right;
+  left: 23px;
+}
+
+#outingScale3Divider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 434px;
+  text-align: right;
+  left: 23px;
+}
+
+#outingScale4Divider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 502px;
+  text-align: right;
+  left: 23px;
+}
+
+#outingScale5Divider{
+  position: absolute;
+  width: 308px;
+  display: flex;
+  flex-direction: row;
+  font-size: 50px;
+  color: #979797;
+  top: 570px;
+  text-align: right;
+  left: 23px;
+}
+
+#scaleOf4Divider1, #scaleOf4Divider2, #scaleOf4Divider3, #scaleOf4Divider4{
+  width: 77.5px;
 }

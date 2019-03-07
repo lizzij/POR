@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from hashids import Hashids
 
-hashids = Hashids()
+# salt="auidsbguai"
+
+hashids = Hashids(min_length=16)
 
 def create_hashid(id):
     hashid = hashids.encrypt(id);
