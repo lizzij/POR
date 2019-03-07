@@ -22,9 +22,11 @@ VALUES
   (1, 1, 'wechat_id1', 'treatment1'),
   (2, 2, 'wechat_id2', 'treatment2'),
   (3, 1, 'wechat_id3', 'treatment3'),
-  (4, 3, 'wechat_id4', 'treatment1');
+  (4, 3, 'wechat_id4', 'treatment1'),
+  (100, 1, 'wechat_id5', 'treatment1'),
+  (101, 3, 'wechat_id6', 'treatment2');
 
-INSERT INTO survey (user_id, result, created)
-VALUES
-  (3, 'Fudan Uni', '2018-01-01 00:00:00'),
-  (2, 'Fudan Uni', '2018-01-04 00:03:02');
+-- INSERT INTO survey (user_id, result, created)
+-- VALUES
+--   (3, 'Fudan Uni', '2018-01-01 00:00:00'),
+--   (2, 'Fudan Uni', '2018-01-04 00:03:02');

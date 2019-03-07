@@ -34,6 +34,5 @@ def create_app(test_config=None):
 
     from media import info, survey
     app.register_blueprint(info.bp)
-    # app.register_blueprint(survey.bp)
 
     return app

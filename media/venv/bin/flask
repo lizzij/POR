@@ -1,5 +1,4 @@
-#!/Users/zijinhuang/Dropbox/MediaProj/mine/media/venv/bin/python3
-
+#!/Users/zijinhuang/Dropbox/MediaProj/mine/media/venv/bin/python2.7
 # -*- coding: utf-8 -*-
 import re
 import sys
