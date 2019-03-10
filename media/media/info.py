@@ -1,7 +1,7 @@
 import functools
 
 from datetime import datetime
-from utils import create_hashid, decode_hashid
+from utils import create_user_id_hashid, decode_user_id_hashid, create_day_hashid, decode_day_hashid
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
@@ -22,8 +22,8 @@ def hash_info(user_id, day):
     :param user_id: user_id of the user
     :param day: number of day
     """
-    user_id_hashid = create_hashid(user_id)
-    day_hashid = create_hashid(day)
+    user_id_hashid = create_user_id_hashid(user_id)
+    day_hashid = create_day_hashid(day)
     return '/%s/%s/info' % (user_id_hashid, day_hashid)
 
 @bp.route('/<user_id_hashid>/<day_hashid>/info', methods=['GET', 'POST'])
@@ -36,8 +36,8 @@ def get_info(user_id_hashid, day_hashid):
     :param user_hashid: hashed user_id of the user
     :param day_hashid: hashed number of day
     """
-    user_id = decode_hashid(user_id_hashid)[0]
-    day = decode_hashid(day_hashid)[0]
+    user_id = decode_user_id_hashid(user_id_hashid)[0]
+    day = decode_day_hashid(day_hashid)[0]
     info = get_db().execute(
         'SELECT u.user_id, u.day, wechat_id, treatment'
         ' FROM user u'
