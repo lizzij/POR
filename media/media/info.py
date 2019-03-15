@@ -161,3 +161,11 @@ def new5():
 def new6():
     """Display all questions"""
     return render_template('new6.html')
+
+@bp.route('/infoPage', methods=['GET', 'POST'])
+def info_page():
+    """Display information page
+
+    With given parameters
+    """
+    return render_template('infoPage.html')
