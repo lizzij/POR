@@ -151,3 +151,13 @@ def new3():
 def new4():
     """Display all questions"""
     return render_template('new4.html')
+
+@bp.route('/new5', methods=['GET', 'POST'])
+def new5():
+    """Display all questions"""
+    return render_template('new5.html')
+
+@bp.route('/new6', methods=['GET', 'POST'])
+def new6():
+    """Display all questions"""
+    return render_template('new6.html')

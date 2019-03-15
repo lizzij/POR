@@ -875,3 +875,12 @@ div.outingScaleLabel > div{
 #scaleOf4Divider1, #scaleOf4Divider2, #scaleOf4Divider3, #scaleOf4Divider4{
   width: 77.5px;
 }
+
+.trueFalsePromp{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 13px;
+  weight: 500;
+  padding-top: 15px;
+  padding-bottom: 7px;
+  color: #4F4F4F;
+}

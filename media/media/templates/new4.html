@@ -24,143 +24,111 @@
           <!-- event name question -->
           <div class="question">
             <div class="form-group" style="margin-bottom:0px">
-              <div class="questionPrompt">该活动的名字是？</div>
+              <div class="questionPrompt">您的性别是？</div>
               <div class="questionAnswer">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="eventName" value="name1">
+                  <input class="form-check-input" type="radio" name="gender" value="female">
                   <label class="form-check-label" for="name1">
-                    名字1
+                    女性
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="eventName" value="name2">
+                  <input class="form-check-input" type="radio" name="gender" value="male">
                   <label class="form-check-label" for="name2">
-                    名字2
+                    男性
                   </label>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- time on event -->
+          <!-- birthday -->
           <div class="question">
-            <div class="questionPrompt">通常您一周愿意花多少小时参加类似这样的户外活动？</div>
+            <div class="questionPrompt">您的出生年份是？</div>
             <div class="questionAnswer">
-              <div class="slidecontainer" id="eventTime">
-                <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
-                  <input type="range" min="0" max="600" value="0" class="slider" id="eventTimeSlider" oninput="eventTimeSlide()"></input>
-                  <output class="sliderAmount" name="amount" id="eventTimeAmount" for="rangeInput">0小时 0分钟</output>
+              <div class="slidecontainer" id="birthday">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="birthdayInput" placeholder="mm/dd/yyyy">
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- weather prediction -->
+          <!-- hometown -->
           <div class="question">
-            <div class="questionPrompt">
-                <p>
-                  有活动预计在<b>3月的第2周</b>举行。
-                  您认为那周的天气会如何？
-                </p>
-                <p>
-                  分配给您12个星星，请把更多星星分配给您认为更有可能的类别，
-                  并把更少的星星分配给您认为不太可能的类别。
-                </p>
-                <div id="note">
-                  注意：
-                  <ul>
-                    <li>每颗星星代表十二分之一的可能性。</li>
-                    <li>请用完所有星星。</li>
-                    <li>如果您认为某类极不可能 → 您应放置零星星。</li>
-                    <li>如果您认为某类是确定的 → 您应把所有星星放在该类别中。</li>
-                    <li>如果您认为所有类都具有相同的可能性 → 您应在所有类别中放置相同数量的星星。</li>
-                    <li>没有正确和错误的答案，所以您应该根据您的期望放置令牌。</li>
-                  </ul>
-                </div>
-            </div>
+            <div class="questionPrompt">您的家乡是？</div>
             <div class="questionAnswer">
-
-              <div class="starLeft">
-                <div class="starPrompt" id="starLeftPrompt">
-                  <div>余</div>
-                  <div id="weatherStarLeftCount">12</div>
-                  <div>星</div>
-                </div>
-                <div class="starContainer" id="weatherStarLeftContainer">
-                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
-                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
-                  <div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div><div class="star">&starf;</div>
+              <div class="slidecontainer" id="hometown">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="province" placeholder="省">
+                  <input type="text" class="form-control" id="city" placeholder="市">
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div id="weatherStarAlert"></div>
-
-              <div class="starGroup1">
-                <div class="starPrompt">
-                  <div>阳光普照</div>
-                  <div>（</div>
-                  <div id="weatherStarCountGroup1">0</div>
-                  <div>）</div>
-                </div>
-                <div class="starGroup1Cover" id="weatherStarGroup1Cover"></div>
-                <div class="starContainer">
-                  <div class="star" onclick="weatherStarCountGroup1(1)">☆</div><div class="star" onclick="weatherStarCountGroup1(2)">☆</div><div class="star" onclick="weatherStarCountGroup1(3)">☆</div><div class="star" onclick="weatherStarCountGroup1(4)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup1(5)">☆</div><div class="star" onclick="weatherStarCountGroup1(6)">☆</div><div class="star" onclick="weatherStarCountGroup1(7)">☆</div><div class="star" onclick="weatherStarCountGroup1(8)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup1(9)">☆</div><div class="star" onclick="weatherStarCountGroup1(10)">☆</div><div class="star" onclick="weatherStarCountGroup1(11)">☆</div><div class="star" onclick="weatherStarCountGroup1(12)">☆</div>
+          <!-- university -->
+          <div class="question">
+            <div class="questionPrompt">您现在所在的大学是？</div>
+            <div class="questionAnswer">
+              <div class="slidecontainer" id="university">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="university" placeholder="复旦大学">
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="starGroup2">
-                <div class="starPrompt">
-                  <div>多云</div>
-                  <div>（</div>
-                  <div id="weatherStarCountGroup2">0</div>
-                  <div>）</div>
+          <!-- live at university question -->
+          <div class="question">
+            <div class="form-group" style="margin-bottom:0px">
+              <div class="questionPrompt">您现在是否住校？</div>
+              <div class="questionAnswer">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="liveOnCampus" value="livesOnCampus">
+                  <label class="form-check-label" for="livesOnCampus">
+                    是
+                  </label>
                 </div>
-                <div class="starGroup2Cover" id="weatherStarGroup2Cover"></div>
-                <div class="starContainer">
-                  <div class="star" onclick="weatherStarCountGroup2(1)">☆</div><div class="star" onclick="weatherStarCountGroup2(2)">☆</div><div class="star" onclick="weatherStarCountGroup2(3)">☆</div><div class="star" onclick="weatherStarCountGroup2(4)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup2(5)">☆</div><div class="star" onclick="weatherStarCountGroup2(6)">☆</div><div class="star" onclick="weatherStarCountGroup2(7)">☆</div><div class="star" onclick="weatherStarCountGroup2(8)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup2(9)">☆</div><div class="star" onclick="weatherStarCountGroup2(10)">☆</div><div class="star" onclick="weatherStarCountGroup2(11)">☆</div><div class="star" onclick="weatherStarCountGroup2(12)">☆</div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="liveOnCampus" value="NotLivesOnCampus">
+                  <label class="form-check-label" for="NotLivesOnCampus">
+                    否
+                  </label>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="starGroup3">
-                <div class="starPrompt">
-                  <div>阴天</div>
-                  <div>（</div>
-                  <div id="weatherStarCountGroup3">0</div>
-                  <div>）</div>
-                </div>
-                <div class="starGroup3Cover" id="weatherStarGroup3Cover"></div>
-                <div class="starContainer">
-                  <div class="star" onclick="weatherStarCountGroup3(1)">☆</div><div class="star" onclick="weatherStarCountGroup3(2)">☆</div><div class="star" onclick="weatherStarCountGroup3(3)">☆</div><div class="star" onclick="weatherStarCountGroup3(4)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup3(5)">☆</div><div class="star" onclick="weatherStarCountGroup3(6)">☆</div><div class="star" onclick="weatherStarCountGroup3(7)">☆</div><div class="star" onclick="weatherStarCountGroup3(8)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup3(9)">☆</div><div class="star" onclick="weatherStarCountGroup3(10)">☆</div><div class="star" onclick="weatherStarCountGroup3(11)">☆</div><div class="star" onclick="weatherStarCountGroup3(12)">☆</div>
+          <!-- address -->
+          <div class="question">
+            <div class="questionPrompt">您的地址是？（如果您住校，请提供学校住址。为了方便邮寄调研参与证明，请将地址具体到宿舍门牌号）</div>
+            <div class="questionAnswer">
+              <div class="slidecontainer" id="address">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="address" placeholder="地址">
+                  <input type="text" class="form-control" id="dorm" placeholder="房间号">
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="starGroup4">
-                <div class="starPrompt">
-                  <div>下雨下雪</div>
-                  <div>（</div>
-                  <div id="weatherStarCountGroup4">0</div>
-                  <div>）</div>
+          <!-- major -->
+          <div class="question">
+            <div class="questionPrompt">您的年级是？</div>
+            <div class="questionAnswer">
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"></label>
+                  <select class="form-control" id="gradeSelect" style="color:#4F4F4F;">
+                    <options>大一</option>
+                    <option>大二</option>
+                    <option>大三</option>
+                    <option>大四</option>
+                    <option>研究生</option>
+                  </select>
                 </div>
-                <div class="starGroup4Cover" id="weatherStarGroup4Cover"></div>
-                <div class="starContainer">
-                  <div class="star" onclick="weatherStarCountGroup4(1)">☆</div><div class="star" onclick="weatherStarCountGroup4(2)">☆</div><div class="star" onclick="weatherStarCountGroup4(3)">☆</div><div class="star" onclick="weatherStarCountGroup4(4)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup4(5)">☆</div><div class="star" onclick="weatherStarCountGroup4(6)">☆</div><div class="star" onclick="weatherStarCountGroup4(7)">☆</div><div class="star" onclick="weatherStarCountGroup4(8)">☆</div>
-                  <div class="star" onclick="weatherStarCountGroup4(9)">☆</div><div class="star" onclick="weatherStarCountGroup4(10)">☆</div><div class="star" onclick="weatherStarCountGroup4(11)">☆</div><div class="star" onclick="weatherStarCountGroup4(12)">☆</div>
-                </div>
-              </div>
-
-              <div id="weatherClearAllStarsButton" onclick="weatherClearAllStars()">
-                <button id="weatherClearAllButton">
-                  <div id="weatherClear">&times;</div>
-                </button>
-              </div>
-
+              </form>
             </div>
           </div>
 
