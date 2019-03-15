@@ -476,8 +476,8 @@ function trust8Slide() {
 function willingnessSlide() {
   document.getElementById("willingnessAmount").value=document.getElementById("willingness").value
   var trust=document.getElementById("willingnessAmount").value;
-  var trustIds = ['willingnessScaleLabel1', 'willingnessScaleLabel2', 'willingnessScaleLabel3',
-  'willingnessScaleLabel4', 'willingnessScaleLabel5'];
+  var trustIds = ['willingnessLabel1', 'willingnessLabel2', 'willingnessLabel3',
+  'willingnessLabel4', 'willingnessLabel5'];
   var selected;
   for (i = 0; i < trustIds.length; i++) {
     notSelected = trustIds[i];
@@ -486,24 +486,24 @@ function willingnessSlide() {
 
   }
   if (0 <= trust && trust < 20) {
-    document.getElementById("willingnessScaleLabel1").style.fontWeight = 'bold';
-    document.getElementById("willingnessScaleLabel1").style.color = "#4F4F4F";
+    document.getElementById("willingnessLabel1").style.fontWeight = 'bold';
+    document.getElementById("willingnessLabel1").style.color = "#4F4F4F";
   }
   else if (20 <= trust && trust < 40) {
-    document.getElementById("willingnessScaleLabel2").style.fontWeight = 'bold';
-    document.getElementById("willingnessScaleLabel2").style.color = "#4F4F4F";
+    document.getElementById("willingnessLabel2").style.fontWeight = 'bold';
+    document.getElementById("willingnessLabel2").style.color = "#4F4F4F";
   }
   else if (40 <= trust && trust < 60) {
-    document.getElementById("willingnessScaleLabel3").style.fontWeight = 'bold';
-    document.getElementById("willingnessScaleLabel3").style.color = "#4F4F4F";
+    document.getElementById("willingnessLabel3").style.fontWeight = 'bold';
+    document.getElementById("willingnessLabel3").style.color = "#4F4F4F";
   }
   else if (60 <= trust && trust < 80) {
-    document.getElementById("willingneventTimeSlideessScaleLabel4").style.fontWeight = 'bold';
-    document.getElementById("willingnessScaleLabel4").style.color = "#4F4F4F";
+    document.getElementById("willingnessLabel4").style.fontWeight = 'bold';
+    document.getElementById("willingnessLabel4").style.color = "#4F4F4F";
   }
   else if (80 <= trust && trust <= 100) {
-    document.getElementById("willingnessScaleLabel5").style.fontWeight = 'bold';
-    document.getElementById("willingnessScaleLabel5").style.color = "#4F4F4F";
+    document.getElementById("willingnessLabel5").style.fontWeight = 'bold';
+    document.getElementById("willingnessLabel5").style.color = "#4F4F4F";
   }
   var left = 10 + 2.97 * trust;
   document.getElementById("willingnessAmount").style.left = left + "px";
