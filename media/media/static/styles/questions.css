@@ -250,13 +250,13 @@ div.trustScaleLabel > div{
 
 #unitDays{
   flex: row;
-  font-size: 10px;
+  font-size: 12px;
   padding-left: 10px;
   padding-top: 8px;
 }
 
 #lilyDayInput{
-  font-size: 10px;
+  font-size: 12px;
   height: 27px;
 }
 
@@ -274,7 +274,7 @@ div.trustScaleLabel > div{
 }
 
 #note{
-  font-size: 10px;
+  font-size: 11px;
   color: #979797;
   line-height: 1.8;
   padding-right: 10px;
@@ -428,7 +428,7 @@ div.trustScaleLabel > div{
 #starAlert{
   position: absolute;
   width:205px;
-  top: 311px;
+  top: 375px;
   left: 78px;
   color: #FF3333;
   font-size: 14px;
@@ -449,7 +449,7 @@ div.trustScaleLabel > div{
 
 #clearAllButton{
   position:absolute;
-  top: 311px;
+  top: 375px;
   left: 286px;
   width: 19px;
   height: 19px;
@@ -463,7 +463,7 @@ div.trustScaleLabel > div{
 
 #clear{
   position:absolute;
-  top: -8px;
+  top: -5px;
   left: 0px;
   width: 19px;
   height: 19px;
@@ -499,7 +499,7 @@ div.trustScaleLabel > div{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 250px;
+  top: 280px;
   /* bottom: 55px; */
   left: 50px;
   right: 50px;
@@ -510,7 +510,7 @@ div.trustScaleLabel > div{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 559px;
+  top: 667px;
   /* bottom: 55px; */
   left: 50px;
   right: 50px;
@@ -521,7 +521,7 @@ div.trustScaleLabel > div{
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 388px;
+  top: 468px;
   /* bottom: 55px; */
   left: 50px;
   right: 50px;
@@ -620,7 +620,7 @@ div.trustScaleLabel > div{
 #weatherStarAlert{
   position: absolute;
   width:205px;
-  top: 496px;
+  top: 590px;
   left: 78px;
   color: #FF3333;
   font-size: 14px;
@@ -632,7 +632,7 @@ div.trustScaleLabel > div{
 
 #weatherClearAllButton{
   position:absolute;
-  top: 497px;
+  top: 590px;
   left: 286px;
   width: 19px;
   height: 19px;
@@ -647,7 +647,7 @@ div.trustScaleLabel > div{
 #weatherClear{
   position:absolute;
   top: -4px;
-  left: 0px;
+  left: -1px;
   width: 19px;
   height: 19px;
   font-size: 20px;
@@ -662,7 +662,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 91px;
+  top: 95px;
   text-align: right;
   left: 23px;
 }
@@ -674,7 +674,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 162px;
+  top: 169px;
   text-align: right;
   left: 23px;
 }
@@ -686,7 +686,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 233px;
+  top: 243px;
   text-align: right;
   left: 23px;
 }
@@ -698,7 +698,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 304px;
+  top: 317px;
   text-align: right;
   left: 23px;
 }
@@ -710,7 +710,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 375px;
+  top: 391px;
   text-align: right;
   left: 23px;
 }
@@ -722,7 +722,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 446px;
+  top: 465px;
   text-align: right;
   left: 23px;
 }
@@ -734,7 +734,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 518px;
+  top: 539px;
   text-align: right;
   left: 23px;
 }
@@ -746,7 +746,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 588px;
+  top: 613px;
   text-align: right;
   left: 23px;
 }
@@ -762,7 +762,7 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 72px;
+  top: 73px;
   text-align: right;
   left: 23px;
 }
@@ -798,17 +798,17 @@ div.outingScaleLabel > div{
 }
 
 .outingOption{
-  height: 68px;
+  height: 80px;
 }
 
 .outingOptionPrompt{
-  padding-top: 5px;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
 }
 
 .outingOptionText{
-  font-size: 10px;
+  font-size: 12px;
   color: #4F4F4F;
 }
 
@@ -819,7 +819,7 @@ div.outingScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 298px;
+  top: 311px;
   text-align: right;
   left: 23px;
 }
@@ -831,7 +831,7 @@ div.outingScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 366px;
+  top: 391px;
   text-align: right;
   left: 23px;
 }
@@ -843,7 +843,7 @@ div.outingScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 434px;
+  top: 471px;
   text-align: right;
   left: 23px;
 }
@@ -855,7 +855,7 @@ div.outingScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 502px;
+  top: 551px;
   text-align: right;
   left: 23px;
 }
@@ -867,7 +867,7 @@ div.outingScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 570px;
+  top: 631px;
   text-align: right;
   left: 23px;
 }
