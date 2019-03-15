@@ -91,3 +91,15 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 
 ## Developing...
 - Refer to [project board](https://github.com/users/lizzij/projects/1) for scrum progress.
+- How to run: navigate to media dir
+```
+python3 -m venv venv
+. venv/bin/activate
+export FLASK_APP=media
+export FLASK_ENV=development
+flask run
+```
+- Initialize database
+```
+flask init-db
+```
