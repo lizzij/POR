@@ -31,7 +31,7 @@
 
     <header>
       <div class="title">
-        <div id="eventName">漫步老上海<br/>边走边拍</div>
+        <div id="eventName">{{ '%s' % (title) }}<br/>边走边拍</div>
         <div id="eventDate">2018.10.28 - 2019.01.20</div>
         <div id="eventTime">每周日 14:00 pm - 17:00 pm</div>
         <div id="eventLocation">地点 徐汇区 上海图书馆</div>
@@ -93,14 +93,14 @@
 
         <!-- temperture low -->
         <div class="temperatureLow">
-          <div id="lowValue">4</div>
+          <div id="lowValue">{{ '%d' % (low_temp) }}</div>
           <div id="lowUnit">°C</div>
           <div id="low">平均最低<br/>气温</div>
         </div>
 
         <!-- temperture high -->
         <div class="temperatureHigh">
-          <div id="highValue">5</div>
+          <div id="highValue">{{ '%d' % (high_temp) }}</div>
           <div id="highUnit">°C</div>
           <div id="high">平均最高<br/>气温</div>
         </div>

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import functools
 
 from datetime import datetime
@@ -168,4 +170,7 @@ def info_page():
 
     With given parameters
     """
-    return render_template('infoPage.html')
+    title = unicode("漫步老上海", "utf-8")
+    low_temp = 3
+    high_temp = 4
+    return render_template('infoPage.html', title = title, low_temp = low_temp, high_temp = high_temp)
