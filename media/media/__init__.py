@@ -32,7 +32,7 @@ def create_app(test_config=None):
     from media import db
     db.init_app(app)
 
-    from media import info, survey
+    from media import info
     app.register_blueprint(info.bp)
 
     return app

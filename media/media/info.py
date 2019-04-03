@@ -102,27 +102,16 @@ def submit(user_id, day):
             return render_template('finished.html')
     return render_template('survey.html', user_id=user_id, day=day)
 
-@bp.route('/surveys', methods=['GET', 'POST'])
-def surveys():
-    """Show all the users, and all results"""
-    db = get_db()
-    users = db.execute(
-        'SELECT u.id, u.user_id, day, wechat_id, treatment, result, created'
-        ' FROM user u JOIN survey s ON u.user_id = s.user_id'
-        ' ORDER BY created DESC'
-    ).fetchall()
-    return render_template('home.html', users=users)
-
 @bp.route('/')
 def index():
-    """Show all the users, and all resultss."""
+    """Show all the users, and all results."""
     db = get_db()
-    users = db.execute(
-        'SELECT u.id, u.user_id, day, wechat_id, treatment, result, created'
+    user = db.execute(
+        'SELECT u.id, u.user_id, u.day, wechat_id, treatment, result, created'
         ' FROM user u JOIN survey s ON u.user_id = s.user_id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('home.html', users=users)
+    return render_template('home.html', user=user)
 
 @bp.route('/questions', methods=['GET', 'POST'])
 def questions():
