@@ -2,37 +2,37 @@
 import datetime
 from hashids import Hashids
 
-def current_time():
-    now = datetime.datetime.now()
-    now = unicode(now)
-    return now
+# def current_time():
+#     now = datetime.datetime.now()
+#     now = unicode(now)
+#     return now
 
 user_id_hashids = Hashids()
 # hashing and decoding user_id of length 16
-def update_user_id_hashids():
+def update_user_id_hashids(user_id, day):
     global user_id_hashids
-    user_id_hashids = Hashids("power of repetition" + current_time(), min_length=16)
+    user_id_hashids = Hashids(str(user_id) + str(day) + "user_id", min_length=16)
 
-def create_user_id_hashid(id):
-    update_user_id_hashids()
-    hashid = user_id_hashids.encrypt(id);
-    return hashid
+def create_user_id_hashid(user_id, day):
+    update_user_id_hashids(user_id, day)
+    hashed_user_id = user_id_hashids.encrypt(user_id);
+    return hashed_user_id
 
-def decode_user_id_hashid(hashid):
-    id = user_id_hashids.decrypt(hashid)
-    return id
+def decode_user_id_hashid(hashed_user_id):
+    user_id = user_id_hashids.decrypt(hashed_user_id)
+    return user_id
 
 day_hashids = Hashids()
 # hashing and decoding day of length 10
-def update_day_hashids():
+def update_day_hashids(user_id, day):
     global day_hashids
-    day_hashids = Hashids("jfolozgobmqdyynzxozu" + current_time(), min_length=10)
+    day_hashids = Hashids(str(user_id) + str(day) + "day", min_length=10)
 
-def create_day_hashid(id):
-    update_day_hashids()
-    hashid = day_hashids.encrypt(id);
-    return hashid
+def create_day_hashid(user_id, day):
+    update_day_hashids(user_id, day)
+    hashed_day = day_hashids.encrypt(day);
+    return hashed_day
 
-def decode_day_hashid(hashid):
-    id = day_hashids.decrypt(hashid)
-    return id
+def decode_day_hashid(hashed_day):
+    day = day_hashids.decrypt(hashed_day)
+    return day

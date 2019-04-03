@@ -24,8 +24,8 @@ def hash_info(user_id, day):
     :param user_id: user_id of the user
     :param day: number of day
     """
-    user_id_hashid = create_user_id_hashid(user_id)
-    day_hashid = create_day_hashid(day)
+    user_id_hashid = create_user_id_hashid(user_id, day)
+    day_hashid = create_day_hashid(user_id, day)
     return '/%s/%s/info' % (user_id_hashid, day_hashid)
 
 @bp.route('/<user_id_hashid>/<day_hashid>/info', methods=['GET', 'POST'])
