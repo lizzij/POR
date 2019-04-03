@@ -6,12 +6,12 @@ CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER UNIQUE NOT NULL,
   day INTEGER NOT NULL,
-  wechat_id TEXT UNIQUE NOT NULL,
+  wechat_id TEXT NOT NULL,
   treatment TEXT NOT NULL
 );
 
 CREATE TABLE survey (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  survey_id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
   day INTEGER,
   result TEXT NOT NULL,
@@ -21,26 +21,17 @@ CREATE TABLE survey (
 );
 
 CREATE TABLE activity (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  activity_id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER UNIQUE NOT NULL,
   day INTEGER NOT NULL,
   start TIMESTAMP,
   finish TIMESTAMP,
   status TEXT NOT NULL,
   current_url TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES survey (user_id)
+  FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
 INSERT INTO user (user_id, day, wechat_id, treatment)
 VALUES
-  (1, 1, 'wechat_id1', 'treatment1'),
-  (2, 2, 'wechat_id2', 'treatment2'),
-  (3, 1, 'wechat_id3', 'treatment3'),
-  (4, 1, 'wechat_id4', 'treatment1'),
-  (100, 1, 'wechat_id5', 'treatment1'),
-  (101, 1, 'wechat_id6', 'treatment2');
-
--- INSERT INTO survey (user_id, result, created)
--- VALUES
---   (3, 'Fudan Uni', '2018-01-01 00:00:00'),
---   (2, 'Fudan Uni', '2018-01-04 00:03:02');
+  (1, 1, 'b83120371', 'T1'),
+  (2, 1, 'wzx0501153533', 'T1');
