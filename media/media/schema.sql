@@ -34,4 +34,5 @@ CREATE TABLE activity (
 INSERT INTO user (user_id, day, wechat_id, treatment)
 VALUES
   (1, 1, 'b83120371', 'T1'),
-  (2, 1, 'wzx0501153533', 'T1');
+  (2, 1, 'wzx0501153533', 'T1'),
+  (3, 1, 'citizen0411', 'T1');

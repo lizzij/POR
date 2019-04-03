@@ -38,6 +38,24 @@ def get_info(user_id_hashid, day_hashid):
     :param user_hashid: hashed user_id of the user
     :param day_hashid: hashed number of day
     """
+    # user_id = decode_user_id_hashid(user_id_hashid)[0]
+    # day = decode_day_hashid(day_hashid)[0]
+    # info = get_db().execute(
+    #     'SELECT u.user_id, u.day, wechat_id, treatment'
+    #     ' FROM user u'
+    #     ' WHERE u.user_id = ? AND u.day = ?',
+    #     (user_id, day,)
+    # ).fetchone()
+    #
+    # if info is None:
+    #     abort(404, "Info for user_id {0} on day {1} doesn't exist.".format(user_id, day))
+    #
+    # return render_template('info.html', info=info)
+    title = unicode("漫步上海", "utf-8")
+    subtitle = unicode("边走边拍", "utf-8")
+    low_temp = 29
+    high_temp = 15
+
     user_id = decode_user_id_hashid(user_id_hashid)[0]
     day = decode_day_hashid(day_hashid)[0]
     info = get_db().execute(
@@ -50,7 +68,8 @@ def get_info(user_id_hashid, day_hashid):
     if info is None:
         abort(404, "Info for user_id {0} on day {1} doesn't exist.".format(user_id, day))
 
-    return render_template('info.html', info=info)
+    return render_template('infoPage.html', info=info,
+    title=title, subtitle=subtitle, low_temp=low_temp, high_temp=high_temp)
 
 @bp.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
 def get_survey(user_id, day):
@@ -113,45 +132,45 @@ def index():
     ).fetchall()
     return render_template('home.html', user=user)
 
-@bp.route('/questions', methods=['GET', 'POST'])
-def questions():
-    """Display all questions"""
-    return render_template('questions.html')
-
-@bp.route('/new', methods=['GET', 'POST'])
-def new():
-    """Display all questions"""
-    return render_template('new.html')
-
-@bp.route('/new1', methods=['GET', 'POST'])
-def new1():
-    """Display all questions"""
-    return render_template('new1.html')
-
-@bp.route('/new2', methods=['GET', 'POST'])
-def new2():
-    """Display all questions"""
-    return render_template('new2.html')
-
-@bp.route('/new3', methods=['GET', 'POST'])
-def new3():
-    """Display all questions"""
-    return render_template('new3.html')
-
-@bp.route('/new4', methods=['GET', 'POST'])
-def new4():
-    """Display all questions"""
-    return render_template('new4.html')
-
-@bp.route('/new5', methods=['GET', 'POST'])
-def new5():
-    """Display all questions"""
-    return render_template('new5.html')
-
-@bp.route('/new6', methods=['GET', 'POST'])
-def new6():
-    """Display all questions"""
-    return render_template('new6.html')
+# @bp.route('/questions', methods=['GET', 'POST'])
+# def questions():
+#     """Display all questions"""
+#     return render_template('questions.html')
+#
+# @bp.route('/new', methods=['GET', 'POST'])
+# def new():
+#     """Display all questions"""
+#     return render_template('new.html')
+#
+# @bp.route('/new1', methods=['GET', 'POST'])
+# def new1():
+#     """Display all questions"""
+#     return render_template('new1.html')
+#
+# @bp.route('/new2', methods=['GET', 'POST'])
+# def new2():
+#     """Display all questions"""
+#     return render_template('new2.html')
+#
+# @bp.route('/new3', methods=['GET', 'POST'])
+# def new3():
+#     """Display all questions"""
+#     return render_template('new3.html')
+#
+# @bp.route('/new4', methods=['GET', 'POST'])
+# def new4():
+#     """Display all questions"""
+#     return render_template('new4.html')
+#
+# @bp.route('/new5', methods=['GET', 'POST'])
+# def new5():
+#     """Display all questions"""
+#     return render_template('new5.html')
+#
+# @bp.route('/new6', methods=['GET', 'POST'])
+# def new6():
+#     """Display all questions"""
+#     return render_template('new6.html')
 
 @bp.route('/infoPage', methods=['GET', 'POST'])
 def info_page():
@@ -160,6 +179,6 @@ def info_page():
     With given parameters
     """
     title = unicode("漫步老上海", "utf-8")
-    low_temp = 3
-    high_temp = 4
+    low_temp = 31
+    high_temp = 25
     return render_template('infoPage.html', title = title, low_temp = low_temp, high_temp = high_temp)

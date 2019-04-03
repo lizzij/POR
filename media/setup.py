@@ -7,5 +7,6 @@ setup(
     install_requires=[
         'Flask',
         'hashids',
+        'wxpy',
     ]
 )

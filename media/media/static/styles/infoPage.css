@@ -221,7 +221,7 @@ header #eventLocation{
   color: #4F4F4F;
 }
 
-#temperatureSource{
+/* #temperatureSource{
   position: absolute;
   width: 94px;
   height: 14px;
@@ -240,7 +240,7 @@ header #eventLocation{
   height: 16.36px;
   left: calc(50% - 50px/2 + 141px);
   top: 7px;
-}
+} */
 
 #temperatureSubtitle{
   position: absolute;
@@ -280,7 +280,7 @@ header #eventLocation{
   position: absolute;
   width: 16px;
   height: 19px;
-  left: calc(50% - 16px/2 + 22.5px);
+  left: calc(50% - 16px/2 + 35px);
   top: 29px;
 
   font-family: Montserrat, sans-serif;
@@ -327,7 +327,7 @@ header #eventLocation{
   position: absolute;
   width: 13px;
   height: 14px;
-  left: calc(50% - 13px/2 + 22.5px);
+  left: calc(50% - 13px/2 + 35px);
   top: 27px;
 
   font-family: Montserrat, sans-serif;
@@ -632,7 +632,6 @@ header #eventLocation{
   height: 12px;
   left: calc(50% - 6px/2 + 165px);
   top: 5.5px;
-
   border: 2px solid #AAAAAA;
   transform: rotate(90deg);
 } */

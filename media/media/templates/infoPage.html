@@ -31,7 +31,7 @@
 
     <header>
       <div class="title">
-        <div id="eventName">{{ '%s' % (title) }}<br/>边走边拍</div>
+        <div id="eventName">{{ '%s' % (title) }}<br/>{{ '%s' % (subtitle) }}</div>
         <div id="eventDate">2018.10.28 - 2019.01.20</div>
         <div id="eventTime">每周日 14:00 pm - 17:00 pm</div>
         <div id="eventLocation">地点 徐汇区 上海图书馆</div>
@@ -85,10 +85,10 @@
       <!-- temperature -->
       <section class="temperature">
         <div id="temperatureHeader">室外气温</div>
-        <div id="temperatureSource">* 来自中国青年报</div>
+        <!-- <div id="temperatureSource">* 来自中国青年报</div>
         <div id="qingNian">
           <img src="../img/QingNian.jpg" width="50" height="16.36">
-        </div>
+        </div> -->
         <div id="temperatureSubtitle">一月份第二周<br/>平均历史气温</div>
 
         <!-- temperture low -->
@@ -241,8 +241,8 @@
         <div id="next">下一页</div>
         <script type="text/javascript">
             document.getElementById("nextButton").onclick = function () {
-                location.href = "./survey.html";
-            };
+                location.href="{{ url_for('info.get_survey', user_id=info['user_id'], day=info['day']) }}";
+            }
         </script>
       </div>
     </section>
