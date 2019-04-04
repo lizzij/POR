@@ -1,4 +1,4 @@
-﻿user_id,day,wechat_id,treatment,url
-1,1,b83120371,T1,http://127.0.0.1:5000/MrGSKqiLbiMa5S5g/sKeir9ijaE/info
-2,1,wzx0501153533,T1,http://127.0.0.1:5000/RjnfGoT4ETR8qfeR/HpEigRir69/info
-3,1,citizen0411,T1,http://127.0.0.1:5000/LGjFMgcpEcLajF7L/tnGiEAiGXp/info
+﻿user_id,day,wechat_id,treatment,url,complete,urls2
+1,1,b83120371,T1,http://127.0.0.1:5000/MrGSKqiLbiMa5S5g/sKeir9ijaE/info,T,http://127.0.0.1:5000/d5ytbgiRGidKAt8d/SE4T97TR76/info
+2,1,wzx0501153533,T1,http://127.0.0.1:5000/RjnfGoT4ETR8qfeR/HpEigRir69/info,F,http://127.0.0.1:5000/xXrHBRT4BTxBKHjg/C8MT8ATKrA/info
+3,1,citizen0411,T1,http://127.0.0.1:5000/LGjFMgcpEcLajF7L/tnGiEAiGXp/info,F,http://127.0.0.1:5000/pnMfGgi89ipzefLe/uABcpLcyyA/info
