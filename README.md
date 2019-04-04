@@ -90,7 +90,7 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
   </p>
 
 ## Developing...
-- Refer to [project board](https://github.com/users/lizzij/projects/1) for scrum progress.
+- Refer to [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) for scrum progress.
 - How to run: navigate to media dir
 ```
 python3 -m venv venv
