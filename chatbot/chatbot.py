@@ -49,8 +49,13 @@ intro = u'  此次调研总共维持8天时间。\
 调研结束后我们将进行抽奖，所有参与并完成调研的同学将有机会赢得800元人民币作为奖励。\
 这是一条自动消息。'
 
-reminder = u'您没有完成昨天的调查。我们理解您可能有别的事在忙。 我们将再给您一整天的时间来完成昨天的调研。\
-如您所知，只有在完成所有8天的调研后，您才有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员的参与证明。 这里是链接！'
+title = u'  请点击下面的链接。'
+
+same_day_reminder = u'  看上去您还没有完成今天的调研。 请您点击链接，参与不到五分钟的调研。\
+如果您在每天晚上12点前完成调研，您将有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员出具的参与证明。'
+
+next_day_reminder = u'  您没有完成昨天的调查。我们理解您可能有别的事在忙。我们将再给您一整天的时间来完成昨天的调研。\
+如您所知，只有在完成所有8天的调研后，您才有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员的参与证明。这里是链接！'
 
 # auto accept friend request
 @bot.register(msg_types=FRIENDS)
@@ -67,14 +72,21 @@ if __name__ == "__main__":
 
     time.sleep(2)
     urls = get_participants_info()[4]
+    tester.send(title)
+    time.sleep(1)
     tester.send(urls[0])
 
     time.sleep(100) # change to a day later
     completes = get_participants_info()[5]
     if completes[0] == 'F':
+        tester.send(title)
+        time.sleep(1)
         tester.send(urls2[0])
     else:
         tester.send(reminder)
+        time.sleep(1)
+        tester.send(title)
+        time.sleep(1)
         tester.send(urls[0])
 
 # keep login-ed

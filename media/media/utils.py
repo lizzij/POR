@@ -9,7 +9,7 @@ user_id_hashids = Hashids()
 # hashing and decoding user_id of length 16
 def update_user_id_hashids(user_id, day):
     global user_id_hashids
-    user_id_hashids = Hashids(salt=str(10 * user_id) + str(day) + "user_id", min_length=16)
+    user_id_hashids = Hashids(salt=str(10 * user_id + day) + "user_id", min_length=16)
 
 def create_user_id_hashid(user_id, day):
     update_user_id_hashids(user_id, day)
@@ -25,7 +25,7 @@ day_hashids = Hashids()
 # hashing and decoding day of length 10
 def update_day_hashids(user_id, day):
     global day_hashids
-    day_hashids = Hashids(salt=str(10 * user_id) + str(day) + "day", min_length=10)
+    day_hashids = Hashids(salt=str(10 * user_id + day) + "day", min_length=10)
 
 def create_day_hashid(user_id, day):
     update_day_hashids(user_id, day)

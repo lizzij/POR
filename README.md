@@ -6,7 +6,7 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 
 ## Progress
 ### Chatbot
-###### Use Chatbot to send messages to 2000 participants
+###### Use Chatbot to distribute webpage links and reminders to 2000 participants
 - [x] Setup Wechat account API base on Wechat Protocol and package capture.
   - [x] Test able to send sensitive information and text. :thumbsup:
   - [ ] Add friends, start 1-to-1 chat using ids from .cvs.
@@ -29,7 +29,7 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="800"/>
 
 ### Website
-###### For providing information and collecting surveys
+###### Unique hashed links to information page, leading to survey page
 - [x] Test Qualtrics: too slow :disappointed:
 - [x] Test wjx.cn: censorship :see_no_evil:
 - [ ] Build our own website, server + database! :woman_shrugging:

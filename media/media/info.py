@@ -30,7 +30,7 @@ def hash_info(user_id, day):
 
 @bp.route('/<user_id_hashid>/<day_hashid>/info', methods=['GET', 'POST'])
 def get_info(user_id_hashid, day_hashid):
-    """Send information.
+    """Contains information.
 
     To a user on a certain day
     Hash user_id and day
@@ -38,24 +38,6 @@ def get_info(user_id_hashid, day_hashid):
     :param user_hashid: hashed user_id of the user
     :param day_hashid: hashed number of day
     """
-    # user_id = decode_user_id_hashid(user_id_hashid)[0]
-    # day = decode_day_hashid(day_hashid)[0]
-    # info = get_db().execute(
-    #     'SELECT u.user_id, u.day, wechat_id, treatment'
-    #     ' FROM user u'
-    #     ' WHERE u.user_id = ? AND u.day = ?',
-    #     (user_id, day,)
-    # ).fetchone()
-    #
-    # if info is None:
-    #     abort(404, "Info for user_id {0} on day {1} doesn't exist.".format(user_id, day))
-    #
-    # return render_template('info.html', info=info)
-    title = unicode("漫步上海", "utf-8")
-    subtitle = unicode("边走边拍", "utf-8")
-    low_temp = 29
-    high_temp = 15
-
     user_id = decode_user_id_hashid(user_id_hashid)[0]
     day = decode_day_hashid(day_hashid)[0]
     info = get_db().execute(
@@ -68,8 +50,27 @@ def get_info(user_id_hashid, day_hashid):
     if info is None:
         abort(404, "Info for user_id {0} on day {1} doesn't exist.".format(user_id, day))
 
-    return render_template('infoPage.html', info=info,
-    title=title, subtitle=subtitle, low_temp=low_temp, high_temp=high_temp)
+    return render_template('info.html', info=info)
+
+    # title = unicode("漫步上海", "utf-8")
+    # subtitle = unicode("边走边拍", "utf-8")
+    # low_temp = 29
+    # high_temp = 15
+    #
+    # user_id = decode_user_id_hashid(user_id_hashid)[0]
+    # day = decode_day_hashid(day_hashid)[0]
+    # info = get_db().execute(
+    #     'SELECT u.user_id, u.day, wechat_id, treatment'
+    #     ' FROM user u'
+    #     ' WHERE u.user_id = ? AND u.day = ?',
+    #     (user_id, day,)
+    # ).fetchone()
+    #
+    # if info is None:
+    #     abort(404, "Info for user_id {0} on day {1} doesn't exist.".format(user_id, day))
+    #
+    # return render_template('infoPage.html', info=info,
+    # title=title, subtitle=subtitle, low_temp=low_temp, high_temp=high_temp)
 
 @bp.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
 def get_survey(user_id, day):
@@ -123,14 +124,33 @@ def submit(user_id, day):
 
 @bp.route('/')
 def index():
+    return '谢谢参与'
+
+@bp.route('/completion/detail')
+def completion():
     """Show all the users, and all results."""
     db = get_db()
-    user = db.execute(
-        'SELECT u.id, u.user_id, u.day, wechat_id, treatment, result, created'
+    users = db.execute(
+        'SELECT u.id, u.user_id, u.day, created'
         ' FROM user u JOIN survey s ON u.user_id = s.user_id'
-        ' ORDER BY created DESC'
+        # TODO change to curr_time in activity
+        ' ORDER BY created ASC'
     ).fetchall()
-    return render_template('home.html', user=user)
+    return render_template('completion.html', users=users)
+    # return 'secrete'
+
+@bp.route('/n/1/survey')
+def survey_day1():
+    return 'survey1'
+    # """Show all the users, and all results."""
+    # db = get_db()
+    # user = db.execute(
+    #     'SELECT u.id, u.user_id, u.day, created'
+    #     ' FROM user u JOIN survey s ON u.user_id = s.user_id'
+    #     ' ORDER BY created DESC'
+    # ).fetchall()
+    # return render_template('completion.html', user=user)
+    # # return 'secrete'
 
 # @bp.route('/questions', methods=['GET', 'POST'])
 # def questions():
@@ -171,14 +191,14 @@ def index():
 # def new6():
 #     """Display all questions"""
 #     return render_template('new6.html')
-
-@bp.route('/infoPage', methods=['GET', 'POST'])
-def info_page():
-    """Display information page
-
-    With given parameters
-    """
-    title = unicode("漫步老上海", "utf-8")
-    low_temp = 31
-    high_temp = 25
-    return render_template('infoPage.html', title = title, low_temp = low_temp, high_temp = high_temp)
+#
+# @bp.route('/infoPage', methods=['GET', 'POST'])
+# def info_page():
+#     """Display information page
+#
+#     With given parameters
+#     """
+#     title = unicode("漫步老上海", "utf-8")
+#     low_temp = 31
+#     high_temp = 25
+#     return render_template('infoPage.html', title = title, low_temp = low_temp, high_temp = high_temp)
