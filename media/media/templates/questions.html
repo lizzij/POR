@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{% block title %}{% endblock %}Questions</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/questions.css') }}">
+  <!-- <link rel="shortcut icon" href="http://202.182.126.239/../favicon.ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+</head>
+
+<body>
+
+  <!-- page 1 -->
+  <div id="page1">
+    <!-- survey -->
+    <div id="survey">
+
+      <div class="mainQuestion">
+        请回答以下问题，以了解更多关于您的信息。
+      </div>
+
+      <!-- hukou question -->
+      <div class="question">
+        <div class="form-group" style="margin-bottom:0px">
+
+          <div class="questionPrompt">入学前您的户口是什么？</div>
+
+          <div class="questionAnswer">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="hukou" value="rural">
+              <label class="form-check-label" for="hukou1">
+                农村
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="hukou" value="urban">
+              <label class="form-check-label" for="hukou2">
+                城市
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- new outlet trust question -->
+      <div class="question">
+
+        <div class="questionPrompt">您有多信任以下新闻媒体？</div>
+
+        <div class="questionAnswer">
+
+          <div class="trustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">国家拥有的国内新闻媒体</div>
+              <div class="trustOptionEg">例如：人民日报 阳光时报</div>
+            </div>
+
+            <div id="stateScaleDivider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+
+            <div class="trustScaleLabel">
+              <div id="stateTrustScaleLabel1">完全不信任</div>
+              <div id="stateTrustScaleLabel2">有些不信任</div>
+              <div id="stateTrustScaleLabel3">中立</div>
+              <div id="stateTrustScaleLabel4">有些信任</div>
+              <div id="stateTrustScaleLabel5">完全信任</div>
+            </div>
+
+            <div class="slidecontainer">
+              <div class="form-group" style="margin-bottom:0; margin-bottom:0px">
+                <input type="range" min="0" max="100" value="0" class="slider" id="state" oninput="stateTrustSlide()"></input>
+                <output class="sliderAmount" name="amount" id="stateAmount" for="rangeInput">0</output>
+              </div>
+            </div>
+          </div>
+
+          <div class="trustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">私人拥有国内新闻媒体</div>
+              <div class="trustOptionEg">如：新进报 财经报纸 南方周末</div>
+            </div>
+
+            <div id="privateScaleDivider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="privateTrustScaleLabel1">完全不信任</div>
+              <div id="privateTrustScaleLabel2">有些不信任</div>
+              <div id="privateTrustScaleLabel3">中立</div>
+              <div id="privateTrustScaleLabel4">有些信任</div>
+              <div id="privateTrustScaleLabel5">完全信任</div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0px; margin-bottom:0px">
+              <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="0" class="slider" id="private" oninput="privateTrustSlide()"></input>
+                <output class="sliderAmount" name="amount" id="privateAmount" for="rangeInput">0</output>
+              </div>
+            </div>
+          </div>
+
+          <div class="trustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">外国新闻媒体</div>
+              <div class="trustOptionEg">例如：纽约时报 华尔街日报 金融时报</div>
+            </div>
+
+            <div id="foreignScaleDivider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="foreignTrustScaleLabel1">完全不信任</div>
+              <div id="foreignTrustScaleLabel2">有些不信任</div>
+              <div id="foreignTrustScaleLabel3">中立</div>
+              <div id="foreignTrustScaleLabel4">有些信任</div>
+              <div id="foreignTrustScaleLabel5">完全信任</div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0px">
+              <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="0" class="slider" id="foreign" oninput="foreignTrustSlide()"></input>
+                <output class="sliderAmount" name="amount" id="foreignAmount" for="rangeInput">0</output>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- enrolled uni question -->
+      <div class="question">
+        <div class="questionPrompt">你现在就读于哪所大学？</div>
+        <div class="questionAnswer">
+          <div class="form-group" style="margin-top:5px; margin-bottom:0px">
+            <input type="text" class="form-control" id="univerisity" onfocus="this.placeholder = ''" placeholder="复旦大学" style="font-size: 10px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <section class="nextButton">
+      <div id="p1nextButton">
+        <button id="button">
+          <div id="next">下一页</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p1nextButton").onclick = function() {
+            return show('page2');
+          };
+        </script>
+      </div>
+    </section>
+
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <!-- page 2 -->
+  <div id="page2" style="display:none">
+    <div id="survey">
+
+      <div class="mainQuestion">
+        算术
+      </div>
+
+      <!-- hukou question -->
+      <div class="question">
+        <div class="form-group" style="margin-bottom:0px">
+
+          <div class="questionPrompt">
+            <p>
+              您有<b>1分钟时间</b>来解决以下<b>每个</b>问题。
+              搜索网页可能会是浪费时间，因为问题
+              与您在互联网上找到的版本不同。
+            </p>
+            <p>
+              <b>准备开始时请单击下一步按钮。</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <section class="nextButton">
+      <div id="p2nextButton">
+        <button id="button">
+          <div id="next">下一页</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p2nextButton").onclick = function() {
+            startTimer();
+            return show('page3');
+          };
+        </script>
+      </div>
+    </section>
+
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 20%; background-color: #979797;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <!-- page 3 -->
+  <div id="page3" style="display:none">
+    <div id="survey">
+
+      <!-- hukou question -->
+      <div class="question">
+        <div class="form-group" style="margin-bottom:0px">
+
+          <div class="questionPrompt">
+            <div id="timeLeft">
+              <span>您还有</span>
+              <span id="timer">60</span>
+              <span>秒时间。</span>
+            </div>
+            <p>
+              在湖中，有一片睡莲。每天，睡莲覆盖面积都会翻倍。
+              如果睡莲需要24天才能覆盖整个湖泊，需要多长时间才能覆盖半个湖泊？
+            </p>
+          </div>
+
+          <div class="questionAnswer">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="lilyDayInput" onfocus="this.placeholder = ''" placeholder="0">
+                  </div>
+                  <label id="unitDays">天</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <section class="nextButton">
+      <div id="p3nextButton">
+        <button id="button">
+          <div id="next">下一页</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p3nextButton").onclick = function() {
+            return show('page4');
+          };
+        </script>
+      </div>
+    </section>
+
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 40%; background-color: #979797;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <!-- page 4 -->
+  <div id="page4" style="display:none">
+    <div id="survey">
+      <div class="question">
+        <div class="questionPrompt">
+          <p>
+            有活动预计在<b>3月的第2周</b>举行。
+            您认为那周的天气会如何？
+          </p>
+          <p>
+            分配给您12个星星，请把更多星星分配给您认为更有可能的类别，
+            并把更少的星星分配给您认为不太可能的类别。
+          </p>
+          <div id="note">
+            <ul>
+              <li>每颗星星代表十二分之一的可能性。</li>
+              <li>请用完所有星星。</li>
+              <li>如果您认为某类极不可能 → 您应放置零星星。</li>
+              <li>如果您认为某类是确定的 → 您应把所有星星放在该类别中。</li>
+              <li>如果您认为所有类都具有相同的可能性 → 您应在所有类别中放置相同数量的星星。</li>
+              <li>没有正确和错误的答案，所以您应该根据您的期望放置令牌。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="questionAnswer">
+
+          <div class="starLeft">
+            <div class="starPrompt" id="starLeftPrompt">
+              <div>余</div>
+              <div id="starLeftCount">12</div>
+              <div>星</div>
+            </div>
+            <div class="starContainer" id="starLeftContainer">
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+              <div class="star">&starf;</div>
+            </div>
+          </div>
+
+          <div id="starAlert"></div>
+
+          <div class="starGroup1">
+            <div class="starPrompt">
+              <div>优</div>
+              <div>（</div>
+              <div id="starCountGroup1">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup1Cover" id="starGroup1Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup1(1)">☆</div>
+              <div class="star" onclick="starCountGroup1(2)">☆</div>
+              <div class="star" onclick="starCountGroup1(3)">☆</div>
+              <div class="star" onclick="starCountGroup1(4)">☆</div>
+              <div class="star" onclick="starCountGroup1(5)">☆</div>
+              <div class="star" onclick="starCountGroup1(6)">☆</div>
+              <div class="star" onclick="starCountGroup1(7)">☆</div>
+              <div class="star" onclick="starCountGroup1(8)">☆</div>
+              <div class="star" onclick="starCountGroup1(9)">☆</div>
+              <div class="star" onclick="starCountGroup1(10)">☆</div>
+              <div class="star" onclick="starCountGroup1(11)">☆</div>
+              <div class="star" onclick="starCountGroup1(12)">☆</div>
+            </div>
+          </div>
+
+          <div class="starGroup2">
+            <div class="starPrompt">
+              <div>良</div>
+              <div>（</div>
+              <div id="starCountGroup2">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup2Cover" id="starGroup2Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup2(1)">☆</div>
+              <div class="star" onclick="starCountGroup2(2)">☆</div>
+              <div class="star" onclick="starCountGroup2(3)">☆</div>
+              <div class="star" onclick="starCountGroup2(4)">☆</div>
+              <div class="star" onclick="starCountGroup2(5)">☆</div>
+              <div class="star" onclick="starCountGroup2(6)">☆</div>
+              <div class="star" onclick="starCountGroup2(7)">☆</div>
+              <div class="star" onclick="starCountGroup2(8)">☆</div>
+              <div class="star" onclick="starCountGroup2(9)">☆</div>
+              <div class="star" onclick="starCountGroup2(10)">☆</div>
+              <div class="star" onclick="starCountGroup2(11)">☆</div>
+              <div class="star" onclick="starCountGroup2(12)">☆</div>
+            </div>
+          </div>
+
+          <div class="starGroup3">
+            <div class="starPrompt">
+              <div>轻度污染</div>
+              <div>（</div>
+              <div id="starCountGroup3">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup3Cover" id="starGroup3Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup3(1)">☆</div>
+              <div class="star" onclick="starCountGroup3(2)">☆</div>
+              <div class="star" onclick="starCountGroup3(3)">☆</div>
+              <div class="star" onclick="starCountGroup3(4)">☆</div>
+              <div class="star" onclick="starCountGroup3(5)">☆</div>
+              <div class="star" onclick="starCountGroup3(6)">☆</div>
+              <div class="star" onclick="starCountGroup3(7)">☆</div>
+              <div class="star" onclick="starCountGroup3(8)">☆</div>
+              <div class="star" onclick="starCountGroup3(9)">☆</div>
+              <div class="star" onclick="starCountGroup3(10)">☆</div>
+              <div class="star" onclick="starCountGroup3(11)">☆</div>
+              <div class="star" onclick="starCountGroup3(12)">☆</div>
+            </div>
+          </div>
+
+          <div class="starGroup4">
+            <div class="starPrompt">
+              <div>中度污染</div>
+              <div>（</div>
+              <div id="starCountGroup4">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup4Cover" id="starGroup4Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup4(1)">☆</div>
+              <div class="star" onclick="starCountGroup4(2)">☆</div>
+              <div class="star" onclick="starCountGroup4(3)">☆</div>
+              <div class="star" onclick="starCountGroup4(4)">☆</div>
+              <div class="star" onclick="starCountGroup4(5)">☆</div>
+              <div class="star" onclick="starCountGroup4(6)">☆</div>
+              <div class="star" onclick="starCountGroup4(7)">☆</div>
+              <div class="star" onclick="starCountGroup4(8)">☆</div>
+              <div class="star" onclick="starCountGroup4(9)">☆</div>
+              <div class="star" onclick="starCountGroup4(10)">☆</div>
+              <div class="star" onclick="starCountGroup4(11)">☆</div>
+              <div class="star" onclick="starCountGroup4(12)">☆</div>
+            </div>
+          </div>
+
+          <div class="starGroup5">
+            <div class="starPrompt">
+              <div>重度污染</div>
+              <div>（</div>
+              <div id="starCountGroup5">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup5Cover" id="starGroup5Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup5(1)">☆</div>
+              <div class="star" onclick="starCountGroup5(2)">☆</div>
+              <div class="star" onclick="starCountGroup5(3)">☆</div>
+              <div class="star" onclick="starCountGroup5(4)">☆</div>
+              <div class="star" onclick="starCountGroup5(5)">☆</div>
+              <div class="star" onclick="starCountGroup5(6)">☆</div>
+              <div class="star" onclick="starCountGroup5(7)">☆</div>
+              <div class="star" onclick="starCountGroup5(8)">☆</div>
+              <div class="star" onclick="starCountGroup5(9)">☆</div>
+              <div class="star" onclick="starCountGroup5(10)">☆</div>
+              <div class="star" onclick="starCountGroup5(11)">☆</div>
+              <div class="star" onclick="starCountGroup5(12)">☆</div>
+            </div>
+          </div>
+
+          <div class="starGroup6">
+            <div class="starPrompt">
+              <div>严重污染</div>
+              <div>（</div>
+              <div id="starCountGroup6">0</div>
+              <div>）</div>
+            </div>
+            <div class="starGroup6Cover" id="starGroup6Cover"></div>
+            <div class="starContainer">
+              <div class="star" onclick="starCountGroup6(1)">☆</div>
+              <div class="star" onclick="starCountGroup6(2)">☆</div>
+              <div class="star" onclick="starCountGroup6(3)">☆</div>
+              <div class="star" onclick="starCountGroup6(4)">☆</div>
+              <div class="star" onclick="starCountGroup6(5)">☆</div>
+              <div class="star" onclick="starCountGroup6(6)">☆</div>
+              <div class="star" onclick="starCountGroup6(7)">☆</div>
+              <div class="star" onclick="starCountGroup6(8)">☆</div>
+              <div class="star" onclick="starCountGroup6(9)">☆</div>
+              <div class="star" onclick="starCountGroup6(10)">☆</div>
+              <div class="star" onclick="starCountGroup6(11)">☆</div>
+              <div class="star" onclick="starCountGroup6(12)">☆</div>
+            </div>
+          </div>
+
+          <div id="clearAllStarsButton" onclick="clearAllStars()">
+            <button id="clearAllButton">
+              <div id="clear">&times;</div>
+            </button>
+          </div>
+
+          <div id="groupDescription"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <section class="nextButton">
+      <div id="p4nextButton">
+        <button id="button">
+          <div id="next">下一页</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p4nextButton").onclick = function() {
+            return show('page5');
+          };
+        </script>
+      </div>
+    </section>
+
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #979797;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <!-- page 5 -->
+  <div id="page5" style="display:none">
+    <!-- survey -->
+    <div id="survey">
+
+      <!-- hukou question -->
+      <div class="question">
+        <div class="form-group" style="margin-bottom:0px">
+          <div class="questionPrompt">
+            <p>
+              你想承诺参加我们组织的活动，“儿童慈善徒步运动”吗？
+              如果您同意，我们提前几周向你发送提醒和指示。
+            </p>
+            <div id="note">
+              实际付款将视您现在所做的选择而定，以后不会进行调整：
+              <ul>
+                <li>如果您选择今天走4000步，后走2000步，则不捐赠任何钱。</li>
+                <li>如果您选择今天走2000步，后走4000步，则仅捐赠2美元。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="questionAnswer">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="walkathon" value="1">
+              <label class="form-check-label" for="walkathon1" id="walkathon1">
+                不，我不感兴趣。
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="walkathon" value="2">
+              <label class="form-check-label" for="walkathon2" id="walkathon2">
+                好，我会在[2019年3月16日]走2000步（1.5公里） - 研究人员会代表您向上海联合基金会捐赠2美元。
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="walkathon" value="3">
+              <label class="form-check-label" for="walkathon3" id="walkathon3">
+                好，我会在[2019年3月16日]走3000步（2.25公里） - 研究人员会代表您向上海联合基金会捐赠3美元。
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="walkathon" value="4">
+              <label class="form-check-label" for="walkathon4" id="walkathon4">
+                好，我会在[2019年3月16日]走4000步（3公里） - 研究人员会代表您向上海联合基金会捐赠4美元。
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- next button -->
+    <section class="nextButton">
+      <div id="p5nextButton">
+        <button id="button">
+          <div id="next">提交</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p5nextButton").onclick = function() {
+            return show('page6');
+          };
+        </script>
+      </div>
+    </section>
+
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #979797;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <!-- page 6 -->
+  <div id="page6" style="display:none">
+    <div id="survey">
+      <!-- questions about the event -->
+      <div class="mainQuestion">关于该活动的问题</div><!-- event name question -->
+      <div class="question">
+        <div class="form-group" style="margin-bottom:0px">
+          <div class="questionPrompt">该活动的名字是？</div>
+          <div class="questionAnswer">
+            <div class="form-check"><input class="form-check-input" type="radio" name="eventName" value="name1"><label class="form-check-label" for="name1">名字1</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="eventName" value="name2"><label class="form-check-label" for="name2">名字2</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #979797;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div><!-- powered by -->
+    <div id="lizzij"><img href="{{ url_for('static', filename='images/powered by lizzij.png') }}" width="80px"></div>
+  </div>
+
+  </div>
+  <script type=text/javascript src="{{ url_for('static', filename='scripts/questions.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

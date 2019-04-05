@@ -1,0 +1,901 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body{
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  padding:0;
+  margin:0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 250px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.90); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  margin: auto;
+  padding: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border: 1px solid #888;
+  width: 255px;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 16px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.title{
+  position: absolute;
+  width: 376px;
+  height: 152px;
+  left: calc(50% - 376px/2 + 0.5px);
+  top: 24px;
+}
+
+header #eventName{
+  position: absolute;
+  width: 160px;
+  height: 59px;
+  left: calc(50% - 160px/2 - 95px);
+  top: 15px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.2;
+  font-size: 24px;
+
+  color: #000000;
+}
+
+#eventDate{
+  position: absolute;
+  width: 253px;
+  height: 21px;
+  left: calc(50% - 253px/2 - 48.5px);
+  top: 79px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 18px;
+
+  color: #4F4F4F;
+}
+
+#eventTime{
+  position: absolute;
+  width: 138px;
+  height: 13px;
+  left: calc(50% - 138px/2 - 106px);
+  top: 108px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+header #eventLocation{
+  position: absolute;
+  width: 115px;
+  height: 14px;
+  left: calc(50% - 115px/2 - 117.5px);
+  top: 120px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+.descriptionShort{
+  position: absolute;
+  width: 375px;
+  height: 82px;
+  left: calc(50% - 375px/2);
+  top: 450px;
+}
+
+.paragraphShort{
+  position: absolute;
+  width: 333px;
+  height: 57px;
+  left: calc(50% - 333px/2 + 2px);
+  top: 24px;
+}
+
+#firstCharacter{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: calc(50% - 15px/2 - 159px);
+  top: 4px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 18px;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+#descriptionShortPara{
+  position: absolute;
+  width: 333px;
+  height: 37px;
+  left: calc(50% - 328px/2);
+  top: 8.5px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+.image{
+  position: absolute;
+  width: 376px;
+  height: 274px;
+  left: calc(50% - 376px/2 + 0.5px);
+  top: 176px;
+  margin:auto;
+  overflow:hidden;
+}
+
+#evetImage{
+  position: absolute;
+  width: 376px;
+  height: 276px;
+  left: calc(50% - 376px/2);
+  top: 0px;
+}
+
+.weather{
+  position: absolute;
+  width: 374px;
+  height: 271px;
+  left: calc(50% - 374px/2 - 0.5px);
+  top: 532px;
+}
+
+.temperature{
+  position: absolute;
+  width: 346px;
+  height: 80px;
+  left: calc(50% - 346px/2 + 1px);
+  top: 14px;
+
+  box-shadow: 1px 1px 4px rgba(151, 151, 151, 0.4);
+}
+
+#temperatureHeader{
+  position: absolute;
+  width: 58px;
+  height: 28px;
+  left: calc(50% - 58px/2 - 135px);
+  top: 8px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+/* #temperatureSource{
+  position: absolute;
+  width: 94px;
+  height: 14px;
+  left: calc(50% - 94px/2 + 78px);
+  top: 10px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+
+  color: #4F4F4F;
+}
+
+#qingNian{
+  position: absolute;
+  width: 50px;
+  height: 16.36px;
+  left: calc(50% - 50px/2 + 141px);
+  top: 7px;
+} */
+
+#temperatureSubtitle{
+  position: absolute;
+  width: 87px;
+  height: 47px;
+  left: calc(50% - 87px/2 - 91.5px);
+  top: 30px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #979797;
+}
+
+.temperatureLow{
+  position: absolute;
+  width: 61px;
+  height: 54px;
+  left: calc(50% - 61px/2 + 14.5px);
+  top: 31px;
+}
+
+#lowValue{
+  position: absolute;
+  width: 17px;
+  height: 32px;
+  left: calc(50% - 17px/2 + 6px);
+  top: 17px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+
+  color: #000000;
+}
+
+#lowUnit{
+  position: absolute;
+  width: 16px;
+  height: 19px;
+  left: calc(50% - 16px/2 + 35px);
+  top: 29px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#low{
+  position: absolute;
+  width: 61px;
+  height: 54px;
+  left: calc(50% - 61px/2);
+  top: 0px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #979797;
+}
+
+.temperatureHigh{
+  position: absolute;
+  width: 58px;
+  height: 42px;
+  left: calc(50% - 58px/2 + 104px);
+  top: 31px;
+}
+
+#highValue{
+  position: absolute;
+  width: 16px;
+  height: 25px;
+  left: calc(50% - 16px/2 + 9px);
+  top: 17px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+
+  color: #000000;
+}
+
+#highUnit{
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  left: calc(50% - 13px/2 + 35px);
+  top: 27px;
+
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#high{
+  position: absolute;
+  width: 58px;
+  height: 36px;
+  left: calc(50% - 58px/2);
+  top: 0px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #979797;
+}
+
+.airQuality{
+  position: absolute;
+  width: 346px;
+  height: 140px;
+  left: calc(50% - 346px/2 + 1px);
+  top: 113px;
+
+  background: #FFFFFF;
+  box-shadow: 1px 1px 4px rgba(151, 151, 151, 0.4);
+}
+
+#airQualityHeader{
+  position: absolute;
+  width: 150px;
+  height: 13px;
+  left: calc(50% - 150px/2 - 89px);
+  top: 12px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+#airQualitySource{
+  position: absolute;
+  width: 78px;
+  height: 14px;
+  left: calc(50% - 78px/2 + 89px);
+  top: 12px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+
+  color: #4F4F4F;
+}
+
+#dongFang{
+  position: absolute;
+  width: 40px;
+  height: 11.43px;
+  left: calc(50% - 40px/2 + 145px);
+  top: 7px;
+}
+
+.airQualityScale{
+  position: absolute;
+  width: 334.5px;
+  height: 34px;
+  left: 8.5px;
+  top: 5px;
+}
+
+.levels{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#level1{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 - 134px);
+}
+
+#level2{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 - 79px);
+}
+
+#level3{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 - 24px);
+}
+
+#level4{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 + 31px);
+}
+
+#level5{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 + 86px);
+}
+
+#level6{
+  position: absolute;
+  width: 58px;
+  height: 9px;
+  top: 36.5px;
+  left: calc(50% - 58px/2 + 141px);
+}
+
+.levelDescription{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+#level1Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 - 134.5px);
+  top: 56.5px;
+}
+
+#level2Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 - 79.5px);
+  top: 56.5px;
+}
+
+#level3Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 - 24.5px);
+  top: 56.5px;
+}
+
+#level4Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 + 30.5px);
+  top: 56.5px;
+}
+
+#level5Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 + 85.5px);
+  top: 56.5px;
+}
+
+#level6Description{
+  position: absolute;
+  width: 58px;
+  height: 11px;
+  left: calc(50% - 58px/2 + 140.5px);
+  top: 56.5px;
+}
+
+#colorBar1{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 - 137.5px);
+  top: 51px;
+
+  /* PM2.5-1 */
+  background: #00E400;
+  opacity: 0.15;
+}
+
+#colorBar2{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 - 82.5px);
+  top: 51px;
+
+  /* PM2.5-2 */
+  background: #FFFF00;
+  opacity: 0.15;
+}
+
+#colorBar3{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 - 27.5px);
+  top: 51px;
+
+  /* PM2.5-3 */
+  background: #FF7E00;
+  opacity: 0.15;
+}
+
+#colorBar4{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 + 27.5px);
+  top: 51px;
+
+  background: #FF0000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#colorBar5{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 + 82.5px);
+  top: 51px;
+
+  /* PM2.5-5 */
+  background: #99004C;
+  opacity: 0.15;
+}
+
+#colorBar6{
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: calc(50% - 54px/2 + 137.5px);
+  top: 51px;
+
+  /* PM2.5-6 */
+  background: #7E0023;
+  opacity: 0.15;
+}
+
+#airQualityDetail{
+  position: absolute;
+  width: 333px;
+  height: 37px;
+  left: calc(50% - 333px/2 + 3.5px);
+  top: 85px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+.description{
+  position: absolute;
+  width: 375px;
+  height: 233px;
+  left: calc(50% - 375px/2);
+  top: 940px;
+}
+
+.paragraph{
+  position: absolute;
+  width: 333px;
+  height: 214px;
+  left: calc(50% - 333px/2 + 2px);
+  top: 8px;
+}
+
+#eventDetail{
+  position: absolute;
+  width: 160px;
+  height: 18px;
+  left: calc(50% - 160px/2 - 86.5px);
+  top: 0.5px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+/* #dropDownChevron{
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  left: calc(50% - 6px/2 + 165px);
+  top: 5.5px;
+  border: 2px solid #AAAAAA;
+  transform: rotate(90deg);
+} */
+
+#detailedPointForm{
+  position: absolute;
+  width: 333px;
+  height: 180px;
+  left: calc(50% - 333px/2);
+  top: 34px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 13px;
+  font-size: 10px;
+
+  color: #979797;
+}
+
+.suitableFor{
+  position: absolute;
+  width: 375px;
+  height: 118px;
+  left: calc(50% - 375px/2);
+  top: 803px;
+}
+
+#suitableForTitle{
+  position: absolute;
+  width: 160px;
+  height: 18px;
+  left: calc(50% - 160px/2 - 84.5px);
+  top: 15px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 14px;
+
+  color: #4F4F4F;
+}
+
+.suitableIcons{
+  position: absolute;
+  width: 340px;
+  height: 50px;
+  left: calc(50% - 340px/2 + 5.5px);
+  top: 46px;
+
+  background: #FFFFFF;
+}
+
+#iconFamily{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 - 145px);
+  top: 0px;
+
+  opacity: 0.77;
+}
+
+#iconFriends{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 - 87px);
+  top: 0px;
+
+  opacity: 0.77;
+}
+
+#iconLover{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 - 29px);
+  top: 0px;
+
+  opacity: 0.77;
+}
+
+#iconBaby{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 + 29px);
+  top: 0px;
+
+  opacity: 0.3;
+}
+
+#iconElderly{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 + 87px);
+  top: 0px;
+
+  opacity: 0.3;
+}
+
+#iconPet{
+
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 50px/2 + 145px);
+  top: 0px;
+
+  opacity: 0.3;
+}
+
+.suitableIconLabels{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 10px;
+  text-align: center;
+}
+
+#family{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 139.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#friends{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 81.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#lovers{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 - 23.5px);
+  top: 99px;
+
+  color: #4F4F4F;
+}
+
+#baby{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 34.5px);
+  top: 99px;
+
+  color: #979797;
+}
+
+#elderly{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 92.5px);
+  top: 99px;
+
+  color: #979797;
+}
+
+#pets{
+  position: absolute;
+  width: 50px;
+  height: 11px;
+  left: calc(50% - 50px/2 + 150.5px);
+  top: 99px;
+
+  color: #979797;
+}
+
+.nextButton{
+  position: absolute;
+  width: 375px;
+  height: 124px;
+  left: calc(50% - 375px/2);
+  top: 1192px;
+}
+
+#next{
+  position: absolute;
+  width: 222px;
+  height: 10px;
+  left: calc(50% - 222px/2 + 2.5px);
+  top: 22px;
+
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 12px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+#button{
+  position: absolute;
+  width: 248px;
+  height: 42px;
+  left: calc(50% - 248px/2 + 0.5px);
+  top: 9px;
+
+  /* ShanghaiGrey */
+  background: #979797;
+}
+
+.poweredBy{
+  position: absolute;
+  width: 376px;
+  height: 16px;
+  left: calc(50% - 376px/2 - 0.5px);
+  top: 1278px;
+}
+
+#lizzijIcon{
+  position: absolute;
+  width: 11.25px;
+  height: 9px;
+  left: calc(50% - 11.25px/2 + 26.62px);
+  top: 2.7px;
+}
+
+#lizzij{
+  position: absolute;
+  width: 15px;
+  height: 9px;
+  left: calc(50% - 15px/2 + 13.5px);
+  top: 3px;
+}
+
+.poweredByText{
+  font-family: PingFangHK-Regular, sans-serif;
+  font-weight: 300;
+  line-height: 9px;
+  font-size: 7px;
+
+  color: #979797;
+}
+
+#dashLeft{
+  position: absolute;
+  width: 5.33px;
+  height: 7.33px;
+  left: calc(50% - 5.33px/2 - 36.33px);
+  top: 10.33px;
+}
+
+#poweredBy{
+  position: absolute;
+  width: 40px;
+  height: 7px;
+  left: calc(50% - 40px/2 - 12px);
+  top: 11px;
+}
+
+#dashRight{
+  position: absolute;
+  width: 5.33px;
+  height: 7.33px;
+  left: calc(50% - 5.33px/2 + 36.33px);
+  top: 10.33px;
+}

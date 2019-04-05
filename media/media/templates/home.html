@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <!-- header -->
+    {% block header %}
+      <h1>{% block title %}Home{% endblock %}</h1>
+    {% endblock %}
+
+    <!-- content -->
+    {% block content %}
+      {% for user in users %}
+        <article class="user">
+          <header>
+            <div>
+              <div>{{ user['id'] }}</div>
+              <div class="about">by user {{ user['user_id'] }}, with {{ user['wechat_id'] }},
+                 {{ user['treatment'] }}, on day {{ user['day'] }}, result {{ user['result']}}
+                at {{ user['created'].strftime('%Y-%m-%d') }}</div>
+            </div>
+          </header>
+          <p class="body">{{ user['body'] }}</p>
+      {% endfor %}
+    {% endblock %}
+  </body>
+</html>

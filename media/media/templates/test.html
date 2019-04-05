@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{% block title %}{% endblock %}Survey</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/questions.css') }}">
+  <link rel="shortcut icon" href="http://202.182.126.239/../favicon.ico" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- page 1 -->
+  <!-- <div id="page1" style="display:none"> -->
+  <div id="page1">
+    <div id="survey">
+      <!-- people trust degree -->
+      <div class="question">
+        <div class="questionPrompt">您对下面这些群体的信任程度如何？</div>
+        <div class="questionAnswer">
+          <!-- option 1 -->
+          <div class="peopleTrustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">家人和朋友</div>
+            </div>
+            <div id="Scale1Divider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="trust1ScaleLabel1">完全不信任</div>
+              <div id="trust1ScaleLabel2">不信任</div>
+              <div id="trust1ScaleLabel3">中立</div>
+              <div id="trust1ScaleLabel4">信任</div>
+              <div id="trust1ScaleLabel5">非常信任</div>
+            </div>
+            <div class="slidecontainer">
+              <div class="form-group" style="margin-bottom:0; margin-bottom:0px"><input type="range" min="0" max="100" value="0" class="slider" id="trust1" oninput="trust1Slide()"></input><output class="sliderAmount" name="amount" id="trust1Amount"
+                  for="rangeInput">0</output></div>
+            </div>
+          </div><!-- option 2 -->
+          <div class="peopleTrustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">初次见面的陌生人</div>
+            </div>
+            <div id="Scale2Divider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="trust2ScaleLabel1">完全不信任</div>
+              <div id="trust2ScaleLabel2">不信任</div>
+              <div id="trust2ScaleLabel3">中立</div>
+              <div id="trust2ScaleLabel4">信任</div>
+              <div id="trust2ScaleLabel5">非常信任</div>
+            </div>
+            <div class="slidecontainer">
+              <div class="form-group" style="margin-bottom:0; margin-bottom:0px"><input type="range" min="0" max="100" value="0" class="slider" id="trust2" oninput="trust2Slide()"></input><output class="sliderAmount" name="amount" id="trust2Amount"
+                  for="rangeInput">0</output></div>
+            </div>
+          </div><!-- option 3 -->
+          <div class="peopleTrustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">外国人</div>
+            </div>
+            <div id="Scale3Divider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="trust3ScaleLabel1">完全不信任</div>
+              <div id="trust3ScaleLabel2">不信任</div>
+              <div id="trust3ScaleLabel3">中立</div>
+              <div id="trust3ScaleLabel4">信任</div>
+              <div id="trust3ScaleLabel5">非常信任</div>
+            </div>
+            <div class="slidecontainer">
+              <div class="form-group" style="margin-bottom:0; margin-bottom:0px"><input type="range" min="0" max="100" value="0" class="slider" id="trust3" oninput="trust3Slide()"></input><output class="sliderAmount" name="amount" id="trust3Amount"
+                  for="rangeInput">0</output></div>
+            </div>
+          </div><!-- option 4 -->
+          <div class="peopleTrustOption">
+            <div class="trustOptionPrompt">
+              <div class="trustOptionText">媒体</div>
+            </div>
+            <div id="Scale4Divider">
+              <div id="scaleDivider1">·</div>
+              <div id="scaleDivider2">·</div>
+              <div id="scaleDivider3">·</div>
+              <div id="scaleDivider4">·</div>
+              <div id="scaleDivider5">·</div>
+            </div>
+            <div class="trustScaleLabel">
+              <div id="trust4ScaleLabel1">完全不信任</div>
+              <div id="trust4ScaleLabel2">不信任</div>
+              <div id="trust4ScaleLabel3">中立</div>
+              <div id="trust4ScaleLabel4">信任</div>
+              <div id="trust4ScaleLabel5">非常信任</div>
+            </div>
+            <div class="slidecontainer">
+              <div class="form-group" style="margin-bottom:0; margin-bottom:0px"><input type="range" min="0" max="100" value="0" class="slider" id="trust4" oninput="trust4Slide()"></input><output class="sliderAmount" name="amount" id="trust4Amount"
+                  for="rangeInput">0</output></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="nextButton">
+      <div id="p4nextButton"><button id="button">
+          <div id="next">下一页</div>
+        </button>
+        <script type="text/javascript">
+          document.getElementById("p4nextButton").onclick = function() {
+            return show('page5');
+          };
+        </script>
+      </div>
+    </section>
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #979797;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+
+  <script type=text/javascript src="{{ url_for('static', filename='scripts/survey1.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

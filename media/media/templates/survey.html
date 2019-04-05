@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey</title>
+  </head>
+  <script type="text/javascript">
+  (function (global) {
+
+    if(typeof (global) === "undefined")
+    {
+    throw new Error("window is undefined");
+    }
+
+    var _hash = "!";
+    var noBackPlease = function () {
+      global.location.href += "#";
+
+    // making sure we have the fruit available for juice....
+    // 50 milliseconds for just once do not cost much (^__^)
+      global.setTimeout(function () {
+          global.location.href += "!";
+      }, 50);
+    };
+
+    // Earlier we had setInerval here....
+    global.onhashchange = function () {
+      if (global.location.hash !== _hash) {
+          global.location.hash = _hash;
+      }
+    };
+
+    global.onload = function () {
+
+    noBackPlease();
+
+    // disables backspace on page except on input fields and textarea..
+    document.body.onkeydown = function (e) {
+          var elm = e.target.nodeName.toLowerCase();
+          if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+              e.preventDefault();
+          }
+          // stopping event bubbling up the DOM tree..
+          e.stopPropagation();
+      };
+
+    };
+
+    })(window);
+  </script>
+  <body>
+    <h1>{{ 'Survey for: User %d' % (user_id)}}</h1>
+    <form method="post">
+      <div>
+        <label for="uni">University: </label>
+        <input name="uni" id="uni" value="{{ request.form['uni'] }}" required>
+        <!-- <a href="{{ url_for('info.submit', user_id=user_id, day=day) }}"><div class="button">
+          <button type="submit" name="survey" value="submit_survey">1</button> -->
+        <input type="submit" value="Next">
+      </div>
+    </form>
+    <!-- <a href="{{ url_for('info.submit', user_id=user_id, day=day) }}"><div class="button">
+      <button type="submit" name="survey" value="submit_survey">2</button> -->
+
+    </div>
+  </body>
+</html>

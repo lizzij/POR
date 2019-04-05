@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- content -->
+    {% block content %}
+      {% for user in users %}
+        <article class="user">
+          <header>
+            <div>
+              <div class="about">
+                id: {{ user['id'] }};
+                user_id: {{ user['user_id'] }};
+                day: {{ user['day'] }};
+                created: {{ user['created'].strftime('%d/%m/%Y %H:%M') }}.</div>
+            </div>
+          </header>
+          <p class="body">{{ user['body'] }}</p>
+      {% endfor %}
+    {% endblock %}
+  </body>
+</html>
