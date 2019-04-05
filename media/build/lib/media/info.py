@@ -3,7 +3,7 @@
 import functools
 
 from datetime import datetime
-from utils import create_user_id_hashid, decode_user_id_hashid, create_day_hashid, decode_day_hashid
+from media.utils import create_user_id_hashid, decode_user_id_hashid, create_day_hashid, decode_day_hashid
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
