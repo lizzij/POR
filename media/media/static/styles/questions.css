@@ -18,11 +18,11 @@ body{
 .mainQuestion{
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 17px;
-  display: inline;
+  padding-top: 25px;
 }
 
 .question{
-  padding-top: 30px;
+  padding-top: 25px;
   display: center;
 }
 
@@ -53,13 +53,13 @@ body{
 }
 
 .trustOptionPrompt{
-  padding-top: 5px;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
 }
 
 .trustOptionText{
-  font-size: 12px;
+  font-size: 14px;
   color: #4F4F4F;
 }
 
@@ -74,7 +74,7 @@ body{
   width: 310px;
   display: flex;
   flex-direction: row;
-  font-size: 10px;
+  font-size: 12px;
   color: #979797;
   padding-top:5px;
   text-align: center
@@ -202,7 +202,7 @@ div.trustScaleLabel > div{
 
 .slidecontainer{
   width: 312px;
-  padding-top: 7px;
+  padding-top: 20px;
   z-index: -1;
 }
 
@@ -274,7 +274,7 @@ div.trustScaleLabel > div{
 }
 
 #note{
-  font-size: 14px;
+  font-size: 12px;
   color: #4F4F4F;
   line-height: 1.8;
   padding-right: 10px;
@@ -435,7 +435,7 @@ div.trustScaleLabel > div{
 #starAlert{
   position: absolute;
   width:205px;
-  top: 375px;
+  top: 333px;
   left: 78px;
   color: #FF3333;
   font-size: 14px;
@@ -456,7 +456,7 @@ div.trustScaleLabel > div{
 
 #clearAllButton{
   position:absolute;
-  top: 375px;
+  top: 333px;
   left: 286px;
   width: 19px;
   height: 19px;
@@ -470,7 +470,7 @@ div.trustScaleLabel > div{
 
 #clear{
   position:absolute;
-  top: -5px;
+  top: -8px;
   left: 0px;
   width: 19px;
   height: 19px;
@@ -484,8 +484,8 @@ div.trustScaleLabel > div{
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 80px;
-  left: 64px;
+  bottom: 58px;
+  left: calc(50% - 124px);
 }
 
 #next{
@@ -531,9 +531,8 @@ div.trustScaleLabel > div{
   align-items: center;
   justify-content: center;
   position:fixed;
-  bottom: 15px;
-  left: 100px;
-  right: 100px;
+  bottom: 10px;
+  left: calc(50% - 40px);
 }
 
 #weatherStarLeftCount{
@@ -581,7 +580,7 @@ div.trustScaleLabel > div{
 #weatherStarAlert{
   position: absolute;
   width:205px;
-  top: 370px;
+  top: 333px;
   left: 78px;
   color: #FF3333;
   font-size: 14px;
@@ -593,7 +592,7 @@ div.trustScaleLabel > div{
 
 #weatherClearAllButton{
   position:absolute;
-  top: 370px;
+  top: 333px;
   left: 286px;
   width: 19px;
   height: 19px;
@@ -623,7 +622,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 95px;
   text-align: right;
   left: 23px;
 }
@@ -635,7 +633,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 169px;
   text-align: right;
   left: 23px;
 }
@@ -647,7 +644,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 243px;
   text-align: right;
   left: 23px;
 }
@@ -659,7 +655,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 317px;
   text-align: right;
   left: 23px;
 }
@@ -671,7 +666,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 391px;
   text-align: right;
   left: 23px;
 }
@@ -683,7 +677,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 465px;
   text-align: right;
   left: 23px;
 }
@@ -695,7 +688,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 539px;
   text-align: right;
   left: 23px;
 }
@@ -707,13 +699,13 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 613px;
   text-align: right;
   left: 23px;
 }
 
 .peopleTrustOption{
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  color: #4F4F4F;
 }
 
 #GoodDeedDivider{
@@ -723,7 +715,6 @@ div.trustScaleLabel > div{
   flex-direction: row;
   font-size: 50px;
   color: #979797;
-  top: 73px;
   text-align: right;
   left: 23px;
 }
@@ -733,7 +724,7 @@ div.trustScaleLabel > div{
   width: 310px;
   display: flex;
   flex-direction: row;
-  font-size: 10px;
+  font-size: 12px;
   color: #979797;
   padding-top:5px;
   text-align: center
