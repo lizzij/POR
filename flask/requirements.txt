@@ -6,7 +6,6 @@ appnope==0.1.0
 appscript==1.0.1
 asn1crypto==0.24.0
 astor==0.7.1
-astroid==2.0.4
 astropy==3.0.4
 atomicwrites==1.2.1
 attrs==18.2.0
