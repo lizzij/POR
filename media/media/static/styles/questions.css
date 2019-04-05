@@ -17,18 +17,18 @@ body{
 
 .mainQuestion{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 14px;
+  font-size: 17px;
   display: inline;
 }
 
 .question{
-  padding-top: 20px;
+  padding-top: 30px;
   display: center;
 }
 
 .questionPrompt{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   weight: 500;
   padding-bottom: 5px;
   color: #4F4F4F;
@@ -44,7 +44,7 @@ body{
 }
 
 .form-check-label{
-  font-size: 12px;
+  font-size: 14px;
   color: #4F4F4F;
 }
 
@@ -180,29 +180,29 @@ div.trustScaleLabel > div{
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #4F4F4F;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #4F4F4F;
   cursor: pointer;
 }
 
 .sliderAmount{
-  position: absolute;
-  font-size: 10px;
+  padding-left: 3px;
+  font-size: 14px;
 }
 
 .slidecontainer{
   width: 312px;
-  padding-top: 10px;
+  padding-top: 7px;
   z-index: -1;
 }
 
@@ -274,7 +274,14 @@ div.trustScaleLabel > div{
 }
 
 #note{
-  font-size: 11px;
+  font-size: 14px;
+  color: #4F4F4F;
+  line-height: 1.8;
+  padding-right: 10px;
+}
+
+#subNote{
+  font-size: 12px;
   color: #979797;
   line-height: 1.8;
   padding-right: 10px;
@@ -472,64 +479,18 @@ div.trustScaleLabel > div{
   z-index: 2;
 }
 
-#p1nextButton{
+.nextButton{
   display: flex;
   align-items: center;
   justify-content: center;
   position:fixed;
-  top: 580px;
-  /* bottom: 55px; */
-  left: 50px;
-  right: 50px;
-}
-
-#p2nextButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  top: 255px;
-  /* bottom: 55px; */
-  left: 50px;
-  right: 50px;
-}
-
-#p3nextButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  top: 280px;
-  /* bottom: 55px; */
-  left: 50px;
-  right: 50px;
-}
-
-#p4nextButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  top: 667px;
-  /* bottom: 55px; */
-  left: 50px;
-  right: 50px;
-}
-
-#p5nextButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  top: 468px;
-  /* bottom: 55px; */
-  left: 50px;
-  right: 50px;
+  bottom: 80px;
+  left: 64px;
 }
 
 #next{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 
   color: #FFFFFF;
@@ -620,7 +581,7 @@ div.trustScaleLabel > div{
 #weatherStarAlert{
   position: absolute;
   width:205px;
-  top: 590px;
+  top: 370px;
   left: 78px;
   color: #FF3333;
   font-size: 14px;
@@ -632,7 +593,7 @@ div.trustScaleLabel > div{
 
 #weatherClearAllButton{
   position:absolute;
-  top: 590px;
+  top: 370px;
   left: 286px;
   width: 19px;
   height: 19px;
@@ -646,7 +607,7 @@ div.trustScaleLabel > div{
 
 #weatherClear{
   position:absolute;
-  top: -4px;
+  top: -8px;
   left: -1px;
   width: 19px;
   height: 19px;

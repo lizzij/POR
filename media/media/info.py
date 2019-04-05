@@ -139,9 +139,9 @@ def completion():
     return render_template('completion.html', users=users)
     # return 'secrete'
 
-@bp.route('/n/1/survey')
-def survey_day1():
-    return 'survey1'
+@bp.route('/survey1')
+def survey1():
+    return render_template('survey1.html')
     # """Show all the users, and all results."""
     # db = get_db()
     # user = db.execute(
@@ -152,45 +152,45 @@ def survey_day1():
     # return render_template('completion.html', user=user)
     # # return 'secrete'
 
-# @bp.route('/questions', methods=['GET', 'POST'])
-# def questions():
-#     """Display all questions"""
-#     return render_template('questions.html')
-#
-# @bp.route('/new', methods=['GET', 'POST'])
-# def new():
-#     """Display all questions"""
-#     return render_template('new.html')
-#
-# @bp.route('/new1', methods=['GET', 'POST'])
-# def new1():
-#     """Display all questions"""
-#     return render_template('new1.html')
-#
-# @bp.route('/new2', methods=['GET', 'POST'])
-# def new2():
-#     """Display all questions"""
-#     return render_template('new2.html')
-#
-# @bp.route('/new3', methods=['GET', 'POST'])
-# def new3():
-#     """Display all questions"""
-#     return render_template('new3.html')
-#
-# @bp.route('/new4', methods=['GET', 'POST'])
-# def new4():
-#     """Display all questions"""
-#     return render_template('new4.html')
-#
-# @bp.route('/new5', methods=['GET', 'POST'])
-# def new5():
-#     """Display all questions"""
-#     return render_template('new5.html')
-#
-# @bp.route('/new6', methods=['GET', 'POST'])
-# def new6():
-#     """Display all questions"""
-#     return render_template('new6.html')
+@bp.route('/questions', methods=['GET', 'POST'])
+def questions():
+    """Display all questions"""
+    return render_template('questions.html')
+
+@bp.route('/new', methods=['GET', 'POST'])
+def new():
+    """Display all questions"""
+    return render_template('new.html')
+
+@bp.route('/new1', methods=['GET', 'POST'])
+def new1():
+    """Display all questions"""
+    return render_template('new1.html')
+
+@bp.route('/new2', methods=['GET', 'POST'])
+def new2():
+    """Display all questions"""
+    return render_template('new2.html')
+
+@bp.route('/new3', methods=['GET', 'POST'])
+def new3():
+    """Display all questions"""
+    return render_template('new3.html')
+
+@bp.route('/new4', methods=['GET', 'POST'])
+def new4():
+    """Display all questions"""
+    return render_template('new4.html')
+
+@bp.route('/new5', methods=['GET', 'POST'])
+def new5():
+    """Display all questions"""
+    return render_template('new5.html')
+
+@bp.route('/new6', methods=['GET', 'POST'])
+def new6():
+    """Display all questions"""
+    return render_template('new6.html')
 #
 # @bp.route('/infoPage', methods=['GET', 'POST'])
 # def info_page():
