@@ -35,9 +35,9 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 - [ ] Build our own website, server + database! :woman_shrugging:
   - [x] Bare minimum website on local host
   - [x] Set up Vultr server and domain name
-  - [ ] Get certificate, setup domain name,
-  - [ ] Solve issue (too slow)
-  - [ ] Test and solve connection issue with [ping](http://ping.chinaz.com/202.182.126.239)
+  - [x] Get certificate, setup domain name,
+  - [x] Solve issue (too slow)
+  - [x] Test and solve connection issue with [ping](http://ping.chinaz.com/202.182.126.239)
 - [x] Information provision page
   - [x] [Design version 1](#design-version-1)
   - [x] [Design version2](#design-version-2)
