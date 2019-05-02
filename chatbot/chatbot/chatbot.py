@@ -16,11 +16,13 @@ from random import randint
 ## Get date (do we need this?)
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
-## What to do?
-todo = "6PM"
+## What to do? (6PM / 10 PM)
+todo = input("\nWhat to do (6PM / 10 PM) ? ")
 
-## Test?
-test = "YES"
+## Test? (YES / NO)
+test = input("Test (YES / NO) ? ")
+
+test = "YES" # remove after testing
 
 ## Message content
 date_range = u'2019年5月13-19日'
