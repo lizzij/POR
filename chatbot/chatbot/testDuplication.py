@@ -13,13 +13,17 @@ from hashids import Hashids
 import pandas as pd
 import numpy as np
 
+start = int(input("Checking user_id from : "))
+end = int(input("to : "))
+day = int(input("On day : "))
+
 df = pd.DataFrame()
-index = range(1, 1000000)
+index = range(start, end)
 df['nextUserID'] = index
 
 def hash_user_id(row):
     nextUserID = row['nextUserID']
-    user_id_hashids = Hashids(salt=str(10 * nextUserID + 1) + "user_id", min_length=16)
+    user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
     hashed_user_id = user_id_hashids.encrypt(nextUserID)
     return hashed_user_id
 
@@ -27,8 +31,8 @@ df['hashed_user_id'] = df.apply(hash_user_id, axis=1)
 
 def hash_day(row):
     nextUserID = row['nextUserID']
-    day_hashids = Hashids(salt=str(10 * nextUserID + 1) + "day", min_length=10)
-    hashed_day = day_hashids.encrypt(1)
+    day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
+    hashed_day = day_hashids.encrypt(day)
     return hashed_day
 
 df['hashed_day'] = df.apply(hash_day, axis=1)
