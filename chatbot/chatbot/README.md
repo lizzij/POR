@@ -1,5 +1,9 @@
 # Chatbot
 
+## Todos
+- [ ] Run at a certain time? (shell script)
+- [ ] Do we have to scan the QR code?
+
 ## How to get results?
 ```bash
 chmod +x getResults.sh
@@ -18,3 +22,9 @@ wget -qO- https://dailyeventinfo.com/allUsers | sed -e 's/<[^>]*>//g;s/^ //g;s/^
 ```
 
 ## How to run chatbot?
+- Modify test, and todo
+```
+python3 chatbot.py
+```
+
+- Scan QR code with account
