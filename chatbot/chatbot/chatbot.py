@@ -160,6 +160,11 @@ if todo == "6PM":
 
     ## New day URL prep
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
+
+    # TODO 7, 8, completion messages; if Day > 6: do nothing
+    sorted_acts_n['day'] = sorted_acts_n['day'] + 1
+    sorted_acts_n = sorted_acts.loc[sorted_acts_n['day'] <= 6]
+    
     if test == "YES":
         sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] ## Turn this on for test with Eliza's ID
     else:
