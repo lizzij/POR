@@ -91,7 +91,7 @@ def auto_accept_friends(msg):
 
     ## Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
-    print(nextUserID)
+    print("adding new user", nextUserID, "...")
     for day in range(9):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
@@ -162,18 +162,19 @@ def sixPM():
     ## New day URL prep
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
 
-    # TODO 7, 8, completion messages; if Day > 6: do nothing
-    sorted_acts_n['day'] = sorted_acts_n['day'] + 1
-    sorted_acts_n = sorted_acts.loc[sorted_acts_n['day'] <= 6]
-
+    # only send to Eliza if test
     if test == "YES":
         sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] ## Turn this on for test with Eliza's ID
     else:
         sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] >= 1882385] ## Turn this off for test with Eliza's ID
+
+    # TODO 7, 8, completion messages; if Day > 6: do nothing
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
+    sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] <= 6]
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
     send_list_n['url'] = "https://dailyeventinfo.com/" + send_list_n['user_id_hashid'].str.strip() + "/" + send_list_n['day_hashid'].str.strip() + "/info"
     print("" if send_list_n.empty else send_list_n)
+
     ## Send new day URL, update activity
     for i in range(send_list_n.shape[0]):
         wechat_id = send_list_n.iloc[i]['user_id']
@@ -188,13 +189,17 @@ def sixPM():
     ## Next day reminder prep
     sorted_acts_r = activities.loc[activities['day_complete'] == 0]
     sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['time_since_last_activity'] < 48].iloc[:,0:2]
+
+    # only send to Eliza if test
     if test == "YES":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] ## Turn this off for test with Zixin
     else:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] ## Turn this on For test with Zixin
+
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
     print("" if send_list_r.empty else send_list_r)
+
     ## Send new day URL, update activity
     for i in range(send_list_r.shape[0]):
         wechat_id = send_list_r.iloc[i]['user_id']
