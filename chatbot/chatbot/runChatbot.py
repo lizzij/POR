@@ -21,6 +21,11 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 ## Test? (YES / NO)
 test = input("Test (YES / NO) ? ")
 
+## Which cohort? (1/2/3)
+cohort = input("\nWhich cohort (1/2/3) ? ")
+
+treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
+
 ## Message content
 date_range = u'2019年5月13-19日'
 intro = u'  此次调研总共维持8天时间。\
@@ -92,13 +97,15 @@ def auto_accept_friends(msg):
     ## Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
     print("adding new user", nextUserID, "...")
+    rn = uniform(0,1)
+    treat = "T"+str(sum(i > rn for i in treat_prob))
     for day in range(9):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
         hashed_user_id = user_id_hashids.encrypt(nextUserID)
         hashed_day = day_hashids.encrypt(day)
         requests.post("https://dailyeventinfo.com/userInsert/"+str(nextUserID)+"/"+
-            str(day)+"/"+str(userName)+"/"+"T1"+"/"+hashed_user_id+"/"+hashed_day)
+            str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
     ## Send intro message
