@@ -12,7 +12,7 @@ from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import randint
+from random import randint, uniform
 
 ##############################################################################################
 ## Get date (do we need this?)
@@ -21,10 +21,11 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 ## Test? (YES / NO)
 test = input("Test (YES / NO) ? ")
 
-## Which cohort? (1/2/3)
-cohort = input("\nWhich cohort (1/2/3) ? ")
+## Which cohort?
+cohort = input("\nWhich cohort (1 ... ∞) ? ")
 
 treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
+## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
 ## Message content
 date_range = u'2019年5月13-19日'

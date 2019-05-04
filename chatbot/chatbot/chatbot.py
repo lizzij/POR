@@ -22,10 +22,11 @@ test = input("Test (YES / NO) ? ")
 ## What to do? (6PM / 10 PM)
 todo = input("\nWhat to do (6PM / 10 PM) ? ")
 
-## Which cohort? (1/2/3)
-cohort = input("\nWhich cohort (1/2/3) ? ")
+## Which cohort? 
+cohort = input("\nWhich cohort (1 ... ∞) ? ")
 
 treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
+## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
 ## Message content
 date_range = u'2019年5月13-19日'
@@ -106,7 +107,7 @@ def auto_accept_friends(msg):
         hashed_user_id = user_id_hashids.encrypt(nextUserID)
         hashed_day = day_hashids.encrypt(day)
         requests.post("https://dailyeventinfo.com/userInsert/"+str(nextUserID)+"/"+
-            str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day) 
+            str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
     ## Send intro message
