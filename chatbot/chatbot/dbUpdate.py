@@ -2,8 +2,8 @@ import pandas as pd
 import requests
 from math import floor
 
-# url = "https://dailyeventinfo.com/" ## Note: for real
-url = "http://127.0.0.1:5000/" ## Note: for testing
+url = "https://dailyeventinfo.com/" ## Note: for real
+# url = "http://127.0.0.1:5000/" ## Note: for testing
 users = pd.read_csv('oldAllUser.csv', header = None, names = ['user_id', 'day', 'wechat_id', 'treatment', 'user_id_hashid', 'day_hashid'])
 activities = pd.read_csv('oldAllActivity.csv', header = None, names = ['user_id', 'day', 'day_complete', 'survey_page', 'day_started', 'curr_time'])
 

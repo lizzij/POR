@@ -75,7 +75,7 @@ def get_users():
     page = requests.get("https://dailyeventinfo.com/allUsers").text
     soup = BeautifulSoup(page, "html.parser")
     divList = soup.findAll('div', attrs={"class" : "list"})
-    data=','.join(['user_id','day','wechat_id','treatment','user_id_hashid','day_hashid'])
+    data=','.join(['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'])
     for div in divList:
         data = data + '\n' + ' '.join(div.text.split())
     csv_data = StringIO(data)
@@ -180,6 +180,13 @@ if todo == "6PM":
     # TODO 7, 8, completion messages; if Day > 6: do nothing
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
     sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] <= 6]
+    # print(users.head())
+    # print(sorted_acts_n.head())
+
+    # users['day'] = users['day'].astype(float)
+    # sorted_acts_n['day'] = sorted_acts_n['day'].astype(str)
+    # users['user_id'] = users['user_id'].astype(int)
+    # sorted_acts_n['user_id'] = sorted_acts_n['user_id'].astype(int)
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
     send_list_n['url'] = "https://dailyeventinfo.com/" + send_list_n['user_id_hashid'].str.strip() + "/" + send_list_n['day_hashid'].str.strip() + "/info"
     print("" if send_list_n.empty else send_list_n)
