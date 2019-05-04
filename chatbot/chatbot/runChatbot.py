@@ -29,10 +29,10 @@ treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
 
 ## Message content
 
-if cohort == 1:
-date_range = u'2019年5月13-19日'
-elif cohort == 2:
-date_range = u'2019年6月3-9日'
+if cohort == "1":
+    date_range = u'2019年5月13-19日'
+elif cohort == "2":
+    date_range = u'2019年6月3-9日'
 
 intro = u'  此次调研总共维持8天时间。\
 我们将在接下来的6天（包括今天）每天提供一些将在 '+ date_range +' 举办的户外活动信息，\
