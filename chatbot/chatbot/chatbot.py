@@ -22,14 +22,19 @@ test = input("Test (YES / NO) ? ")
 ## What to do? (6PM / 10 PM)
 todo = input("\nWhat to do (6PM / 10 PM) ? ")
 
-## Which cohort? 
+## Which cohort?
 cohort = input("\nWhich cohort (1 ... ∞) ? ")
 
 treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
 ## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
 ## Message content
+
+if cohort == 1:
 date_range = u'2019年5月13-19日'
+elif cohort == 2:
+date_range = u'2019年6月3-9日'
+
 intro = u'  此次调研总共维持8天时间。\
 我们将在接下来的6天（包括今天）每天提供一些将在 '+ date_range +' 举办的户外活动信息，\
 并询问一些简短的问题（约5分钟）。第7天和第8天的调研将在 2周和4周 后进行。\n\n\

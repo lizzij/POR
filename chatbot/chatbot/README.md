@@ -1,9 +1,5 @@
 # Chatbot
 
-## Todos
-- [ ] Run at a certain time? (shell script)
-- [ ] Do we have to scan the QR code?
-
 ## How to get results?
 ```bash
 chmod +x getResults.sh
@@ -33,7 +29,7 @@ wget -qO- https://dailyeventinfo.com/allUsers | sed -e 's/<[^>]*>//g;s/^ //g;s/^
 schedule.every().day.at("06:00").do(sixPM) # change "06:00" to a nearby computer time
 schedule.every().day.at("10:00").do(tenPM) # change "10:00" to a nearby computer time
 ```
-- Modify test, and todo
+- Run
 ```
 python3 runChatbot.py
 ```
