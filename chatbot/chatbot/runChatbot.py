@@ -25,7 +25,7 @@ test = input("Test (YES / NO) ? ")
 cohort = input("\nWhich cohort (1 ... ∞) ? ")
 
 treat_no = [1, 2, 3, 4, 5]
-treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
+treat_prob = [0.2, 0.2, 0.2, 0.2, 0.2]
 ## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
 ## Message content
