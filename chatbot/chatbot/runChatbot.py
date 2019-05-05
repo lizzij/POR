@@ -126,6 +126,7 @@ def auto_accept_friends(msg):
 
     ## Set remark_name to use for reminder messages
     new_friend.set_remark_name(str(nextUserID))
+    time.sleep(2)
 #############################################################################################
 
 ##############################################################################################
