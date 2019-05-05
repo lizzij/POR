@@ -12,7 +12,7 @@ from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import randint, uniform
+from random import randint, choices
 
 ##############################################################################################
 ## Get date (do we need this?)
@@ -24,6 +24,7 @@ test = input("Test (YES / NO) ? ")
 ## Which cohort?
 cohort = input("\nWhich cohort (1 ... ∞) ? ")
 
+treat_no = [1, 2, 3, 4, 5]
 treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
 ## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
@@ -103,8 +104,8 @@ def auto_accept_friends(msg):
     ## Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
     print("adding new user", nextUserID, "...")
-    rn = uniform(0,1)
-    treat = "T"+str(sum(i > rn for i in treat_prob))
+    treatment = "T"+str(choices(treat_no, treat_prob)[0])
+    print("assigned treatment", treatment)
     for day in range(9):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
@@ -126,7 +127,6 @@ def auto_accept_friends(msg):
 
     ## Set remark_name to use for reminder messages
     new_friend.set_remark_name(str(nextUserID))
-    time.sleep(2)
 #############################################################################################
 
 ##############################################################################################
