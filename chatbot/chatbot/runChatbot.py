@@ -154,10 +154,13 @@ def tenPM():
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 10PM reminder message to',wechat_id,'...')
-        my_friend.send(reminder)
-        my_friend.send(send_list['url'].iloc[i])
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 10PM reminder message to',wechat_id,'...')
+            my_friend.send(reminder)
+            my_friend.send(send_list['url'].iloc[i])
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
         time.sleep(2)
 ##############################################################################################
 
@@ -192,13 +195,17 @@ def sixPM():
     ## Send new day URL, update activity
     for i in range(send_list_n.shape[0]):
         wechat_id = send_list_n.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 6PM new day message to',wechat_id,'...')
-        my_friend.send(URLmessage[send_list_n.iloc[i]['day']])
-        my_friend.send(send_list_n.iloc[i]['url'])
-        time.sleep(2)
-        ##Update activity for new day URL
-        requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 6PM new day message to',wechat_id,'...')
+            my_friend.send(URLmessage[send_list_n.iloc[i]['day']])
+            my_friend.send(send_list_n.iloc[i]['url'])
+            time.sleep(2)
+            ##Update activity for new day URL
+            requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
+            time.sleep(2)
 
     ## Next day reminder prep
     sorted_acts_r = activities.loc[activities['day_complete'] == 0]
@@ -217,10 +224,13 @@ def sixPM():
     ## Send new day URL, update activity
     for i in range(send_list_r.shape[0]):
         wechat_id = send_list_r.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 6PM reminder message to',wechat_id,'...')
-        my_friend.send(next_day_reminder)
-        my_friend.send(send_list_r['url'].iloc[i])
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 6PM reminder message to',wechat_id,'...')
+            my_friend.send(next_day_reminder)
+            my_friend.send(send_list_r['url'].iloc[i])
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
         time.sleep(2)
 ##############################################################################################
 
