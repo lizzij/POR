@@ -154,13 +154,11 @@ def tenPM():
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
-        try:
-            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-            print('sending 10PM reminder message to',wechat_id,'...')
-            my_friend.send(reminder)
-            my_friend.send(send_list['url'].iloc[i])
-        except IndexError:
-            print('cannot find user',wechat_id,'...')
+        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+        print('sending 10PM reminder message to',wechat_id,'...')
+        my_friend.send(reminder)
+        my_friend.send(send_list['url'].iloc[i])
+        print('cannot find user',wechat_id,'...')
         time.sleep(2)
 ##############################################################################################
 

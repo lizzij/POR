@@ -153,11 +153,15 @@ if todo == "10PM":
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 10PM reminder message to',wechat_id,'...')
-        my_friend.send(reminder)
-        my_friend.send(send_list['url'].iloc[i])
-        time.sleep(2)
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 10PM reminder message to',wechat_id,'...')
+            my_friend.send(reminder)
+            my_friend.send(send_list['url'].iloc[i])
+            time.sleep(2)
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
+
 ##############################################################################################
 
 ##############################################################################################
@@ -181,13 +185,7 @@ if todo == "6PM":
     # TODO 7, 8, completion messages; if Day > 6: do nothing
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
     sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] <= 6]
-    # print(users.head())
-    # print(sorted_acts_n.head())
 
-    # users['day'] = users['day'].astype(float)
-    # sorted_acts_n['day'] = sorted_acts_n['day'].astype(str)
-    # users['user_id'] = users['user_id'].astype(int)
-    # sorted_acts_n['user_id'] = sorted_acts_n['user_id'].astype(int)
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
     send_list_n['url'] = "https://dailyeventinfo.com/" + send_list_n['user_id_hashid'].str.strip() + "/" + send_list_n['day_hashid'].str.strip() + "/info"
     print("" if send_list_n.empty else send_list_n)
@@ -195,13 +193,16 @@ if todo == "6PM":
     ## Send new day URL, update activity
     for i in range(send_list_n.shape[0]):
         wechat_id = send_list_n.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 6PM new day message to',wechat_id,'...')
-        my_friend.send(URLmessage[send_list_n.iloc[i]['day']])
-        my_friend.send(send_list_n.iloc[i]['url'])
-        time.sleep(2)
-        ##Update activity for new day URL
-        requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 6PM new day message to',wechat_id,'...')
+            my_friend.send(URLmessage[send_list_n.iloc[i]['day']])
+            my_friend.send(send_list_n.iloc[i]['url'])
+            time.sleep(2)
+            ##Update activity for new day URL
+            requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
 
     ## Next day reminder prep
     sorted_acts_r = activities.loc[activities['day_complete'] == 0]
@@ -217,11 +218,14 @@ if todo == "6PM":
     ## Send new day URL, update activity
     for i in range(send_list_r.shape[0]):
         wechat_id = send_list_r.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 6PM reminder message to',wechat_id,'...')
-        my_friend.send(next_day_reminder)
-        my_friend.send(send_list_r['url'].iloc[i])
-        time.sleep(2)
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 6PM reminder message to',wechat_id,'...')
+            my_friend.send(next_day_reminder)
+            my_friend.send(send_list_r['url'].iloc[i])
+            time.sleep(2)
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
 ##############################################################################################
 
 ## Keep logged in
