@@ -17,20 +17,17 @@ from random import randint, uniform
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 # Test? (YES / NO)
-test = input("\nAre you testing (YES / NO) ? ")
+test = input("\nAre you testing (YES / NO) ?\n")
 
 # What to do? (6PM / 10PM)
-todo = input("\nWhat to do (6PM / 10PM) ? ")
+todo = input("\nWhat to do (6PM / 10PM) ?\n")
 
 # Which cohort?
-cohort = input("\nAdd new users to which cohort (1 ... ∞) ? ")
+cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
-todo_day7 = "NO"
-todo_day8 = "NO"
-if todo == "6PM":
-    todo_day7 = input("\nSend out day 7 (YES / NO) ? ")
-    todo_day8 = input("\nSend out day 8 (YES / NO) ? ")
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -42,7 +39,7 @@ if cohort == "1":
 elif cohort == "2":
     date_range = u'2019年6月3-9日'
 
-#
+# Canned WeChat scripts
 default = u'我们会尽快回复您的消息。此账号不具备实时交流的功能，预计回复您的时间会有延迟。 这是一条自动消息。'
 intro = u'  此次调研总共维持8天时间。\
 我们将在接下来的6天（包括今天）每天提供一些将在 '+ date_range +' 举办的户外活动信息，\
@@ -141,7 +138,7 @@ def auto_accept_friends(msg):
 # for sending day 7 and day 8
 def sendDaySeven():
     # send out day 7, update activity
-    if todo_day7 == "YES":
+    if todo_day7:
         print("\n------------------------------------ Sending day 7 urls ------------------------------------")
         send_list_day7_n = pd.merge(sorted_acts_day7_n, users, on=['user_id','day'])
         send_list_day7_n['url'] = "https://dailyeventinfo.com/" + send_list_day7_n['user_id_hashid'].str.strip() + "/" + send_list_day7_n['day_hashid'].str.strip() + "/survey"
@@ -161,7 +158,7 @@ def sendDaySeven():
 
 def sendDayEight():
     # send out day 8, update activity
-    if todo_day8 == "YES":
+    if todo_day8:
         print("\n------------------------------------ Sending day 8 urls ------------------------------------")
         send_list_day8_n = pd.merge(sorted_acts_day8_n, users, on=['user_id','day'])
         send_list_day8_n['url'] = "https://dailyeventinfo.com/" + send_list_day8_n['user_id_hashid'].str.strip() + "/" + send_list_day8_n['day_hashid'].str.strip() + "/survey"
@@ -219,6 +216,7 @@ if todo == "10PM":
 # 6PM NEXT DAY URL + REMINDER IF NOT COMPLETED
 if todo == "6PM":
     print("\n\n========== Now it's 6PM! Sending 6PM next-day urls + reminders if not completed: ===========")
+
     # Prep
     activities = get_activities()
     activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f")
@@ -229,6 +227,7 @@ if todo == "6PM":
     # New day URL prep
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
 
+    # only send to Eliza if test
     if test == "YES":
         sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] # Turn this on for test with Eliza's ID
     else:

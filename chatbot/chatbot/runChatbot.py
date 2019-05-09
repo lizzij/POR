@@ -15,25 +15,34 @@ from math import floor
 from random import randint, choices
 
 ##############################################################################################
-## Get date (do we need this?)
+# Get date
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
-## Test? (YES / NO)
-test = input("Test (YES / NO) ? ")
+# Test? (YES / NO)
+test = input("\nAre you testing (YES / NO) ?\n")
 
-## Which cohort?
-cohort = input("Which cohort (1 ... ∞) ? ")
+# What to do? (6PM / 10PM)
+todo = input("\nWhat to do (6PM / 10PM) ?\n")
 
+# Which cohort?
+cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
+
+# If to send out day 7 and day 8
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
+
+# Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
 treat_prob = [0.2, 0.2, 0.2, 0.2, 0.2]
 
-## Message content
-
+# Message content
 if cohort == "1":
     date_range = u'2019年5月13-19日'
 elif cohort == "2":
     date_range = u'2019年6月3-9日'
 
+# Canned WeChat scripts
+default = u'我们会尽快回复您的消息。此账号不具备实时交流的功能，预计回复您的时间会有延迟。 这是一条自动消息。'
 intro = u'  此次调研总共维持8天时间。\
 我们将在接下来的6天（包括今天）每天提供一些将在 '+ date_range +' 举办的户外活动信息，\
 并询问一些简短的问题（约5分钟）。第7天和第8天的调研将在 2周和4周 后进行。\n\n\
@@ -56,7 +65,7 @@ URLmessage.append(u'  今天是调研第六天。 请点击下面的链接开始
 URLmessage.append(u'  好久不见！今天是调研的第7天。我们就快要完成所有调研了！')
 URLmessage.append(u'  今天是调研的最后一天。 如果您完成今天的简短问卷，您将有赢得800元人民币的机会。我们还将向您提供哈佛大学研究员出具的参与证明。')
 
-## Get current list of activities, as pandas dataframe
+# Get current list of activities, as pandas dataframe
 def get_activities():
     page = requests.get("https://dailyeventinfo.com/allActivities").text
     soup = BeautifulSoup(page, "html.parser")
@@ -83,7 +92,7 @@ def get_users():
     df['user_id']=df['user_id'].astype(int)
     return df
 
-## initialize chatbot
+# initialize chatbot
 bot = Bot()
 bot.enable_puid('wxpy_puid.pkl')
 ##############################################################################################
@@ -92,15 +101,15 @@ bot.enable_puid('wxpy_puid.pkl')
 # auto accept friend request
 @bot.register(msg_types=FRIENDS)
 def auto_accept_friends(msg):
-    ## Accept request
+    # Accept request
     new_friend = msg.card.accept()
 
-    ## Get wxid (assuming that this is the unique ID we can use)
+    # Get wxid (assuming that this is the unique ID we can use)
     userName = new_friend.user_name[1:]
 
-    ## Check whether existing user (TO-DO)
+    # Check whether existing user (TO-DO)
 
-    ## Create hashes for the new user, save in user db, create new activity
+    # Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
     print("adding new user", nextUserID, "...")
     treatment = "T"+str(choices(treat_no, treat_prob)[0])
@@ -114,7 +123,7 @@ def auto_accept_friends(msg):
             str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
-    ## Send intro message
+    # Send intro message
     day = 0
     user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
     day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
@@ -124,32 +133,75 @@ def auto_accept_friends(msg):
     new_friend.send(intro)
     new_friend.send(sendURL)
 
-    ## Set remark_name to use for reminder messages
+    # Set remark_name to use for reminder messages
     new_friend.set_remark_name(str(nextUserID))
 #############################################################################################
 
 ##############################################################################################
-## 10PM SAME-DAY REMINDER
+# for sending day 7 and day 8
+def sendDaySeven():
+    # send out day 7, update activity
+    if todo_day7:
+        print("\n------------------------------------ Sending day 7 urls ------------------------------------")
+        send_list_day7_n = pd.merge(sorted_acts_day7_n, users, on=['user_id','day'])
+        send_list_day7_n['url'] = "https://dailyeventinfo.com/" + send_list_day7_n['user_id_hashid'].str.strip() + "/" + send_list_day7_n['day_hashid'].str.strip() + "/survey"
+        print("" if send_list_day7_n.empty else send_list_day7_n)
+        for i in range(send_list_day7_n.shape[0]):
+            wechat_id = send_list_day7_n.iloc[i]['user_id']
+            try:
+                my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+                print('sending 6PM day7 message to',wechat_id,'...')
+                my_friend.send(URLmessage[7])
+                my_friend.send(send_list_day7_n.iloc[i]['url'])
+                time.sleep(2)
+                #Update activity for new day URL
+                requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_day7_n['user_id'].iloc[i]))+"/"+str(7)+"/0/0/0/0")
+            except IndexError:
+                print('cannot find user',wechat_id,'...')
+
+def sendDayEight():
+    # send out day 8, update activity
+    if todo_day8:
+        print("\n------------------------------------ Sending day 8 urls ------------------------------------")
+        send_list_day8_n = pd.merge(sorted_acts_day8_n, users, on=['user_id','day'])
+        send_list_day8_n['url'] = "https://dailyeventinfo.com/" + send_list_day8_n['user_id_hashid'].str.strip() + "/" + send_list_day8_n['day_hashid'].str.strip() + "/survey"
+        print("" if send_list_day8_n.empty else send_list_day8_n)
+        for i in range(send_list_day8_n.shape[0]):
+            wechat_id = send_list_day8_n.iloc[i]['user_id']
+            try:
+                my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+                print('sending 6PM day8 message to',wechat_id,'...')
+                my_friend.send(URLmessage[8])
+                my_friend.send(send_list_day8_n.iloc[i]['url'])
+                time.sleep(2)
+                #Update activity for new day URL
+                requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_day8_n['user_id'].iloc[i]))+"/"+str(8)+"/0/0/0/0")
+            except IndexError:
+                print('cannot find user',wechat_id,'...')
+##############################################################################################
+
+##############################################################################################
+# 10PM SAME-DAY REMINDER
 def tenPM():
     print("\n\n====================== Now it's 10PM! Sending 10PM same-day reminders ======================\n")
 
-    ## Get list of (user_id, day) to send reminders
+    # Get list of (user_id, day) to send reminders
     activities = get_activities()
-    # activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f") ## Currently not using in the selection logic
+    # activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f") # Currently not using in the selection logic
     activities['curr_time'] = pd.to_datetime(activities['curr_time'], format="%Y-%m-%d %H:%M:%S.%f")
     activities['time_since_last_activity'] = (now - activities['curr_time']) / np.timedelta64(1, 'h')
     sorted_acts = activities.loc[activities['day_complete'] == 0]
     if test == "YES":
-        sorted_acts = sorted_acts.loc[sorted_acts['user_id'] == 1882385] ## Turn this off for test with Eliza's ID
+        sorted_acts = sorted_acts.loc[sorted_acts['user_id'] == 1882385] # Turn this off for test with Eliza's ID
     else:
-        sorted_acts = sorted_acts.loc[sorted_acts['user_id'] >= 1882385] ## Turn this on for test with Eliza's ID
+        sorted_acts = sorted_acts.loc[sorted_acts['user_id'] >= 1882385] # Turn this on for test with Eliza's ID
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
-    ## Search user list using (user_id, day), get wechat_id
+    # Search user list using (user_id, day), get wechat_id
     users = get_users()
     send_list = pd.merge(sorted_acts, users, on=['user_id','day'])
     send_list['url'] = "https://dailyeventinfo.com/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
-    print(send_list)
+    print("" if send_list.empty else send_list)
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
@@ -162,34 +214,37 @@ def tenPM():
 ##############################################################################################
 
 ##############################################################################################
-## 6PM NEXT DAY URL + REMINDER IF NOT COMPLETED
+# 6PM NEXT DAY URL + REMINDER IF NOT COMPLETED
 def sixPM():
     print("\n\n========== Now it's 6PM! Sending 6PM next day urls + reminders if not completed: ===========")
 
-    ## Prep
+    # Prep
     activities = get_activities()
-    # activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f")
+    activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f")
     activities['curr_time'] = pd.to_datetime(activities['curr_time'], format="%Y-%m-%d %H:%M:%S.%f")
     activities['time_since_last_activity'] = (now - activities['curr_time']) / np.timedelta64(1, 'h')
     users = get_users()
 
-    ## New day URL prep
+    # New day URL prep
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
 
     # only send to Eliza if test
     if test == "YES":
-        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] ## Turn this on for test with Eliza's ID
+        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] # Turn this on for test with Eliza's ID
     else:
-        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] >= 1882385] ## Turn this off for test with Eliza's ID
+        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] >= 1882385] # Turn this off for test with Eliza's ID
 
-    # TODO 7, 8, completion messages; if Day > 6: do nothing
+    # if Day > 6: wait till time
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
+    sorted_acts_day7_n = sorted_acts_n.loc[sorted_acts_n['day'] == 7]
+    sorted_acts_day8_n = sorted_acts_n.loc[sorted_acts_n['day'] == 8]
     sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] <= 6]
+
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
     send_list_n['url'] = "https://dailyeventinfo.com/" + send_list_n['user_id_hashid'].str.strip() + "/" + send_list_n['day_hashid'].str.strip() + "/info"
     print("" if send_list_n.empty else send_list_n)
 
-    ## Send new day URL, update activity
+    # Send new day URL, update activity
     for i in range(send_list_n.shape[0]):
         wechat_id = send_list_n.iloc[i]['user_id']
         try:
@@ -204,21 +259,28 @@ def sixPM():
             print('cannot find user',wechat_id,'...')
             time.sleep(2)
 
-    ## Next day reminder prep
+    # in two weeks send out day 7, update activity
+    sendDaySeven()
+
+    # in four weeks send out day 8, update activity
+    sendDayEight()
+
+    # Next day reminder prep
     sorted_acts_r = activities.loc[activities['day_complete'] == 0]
     sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['time_since_last_activity'] < 48].iloc[:,0:2]
 
     # only send to Eliza if test
     if test == "YES":
-        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] ## Turn this off for test with Zixin
+        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] # Turn this off for test with Zixin
     else:
-        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] ## Turn this on For test with Zixin
+        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
+    print("" if send_list_r.empty else "\n------------------------------ Sending 6PM next-day reminders ------------------------------")
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
     print("" if send_list_r.empty else send_list_r)
 
-    ## Send new day URL, update activity
+    # Send new day URL, update activity
     for i in range(send_list_r.shape[0]):
         wechat_id = send_list_r.iloc[i]['user_id']
         try:
@@ -247,5 +309,5 @@ while True:
 
 ##############################################################################################
 
-## Keep logged in
+# Keep logged in
 embed()
