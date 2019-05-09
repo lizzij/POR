@@ -28,6 +28,8 @@ cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 # If to send out day 7 and day 8
 todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
 todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
+cohort1_day7 = datetime(2019, 5, 11)
+cohort1_day8 = datetime(2019, 5, 18)
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -193,6 +195,9 @@ if todo == "10PM":
         sorted_acts = sorted_acts.loc[sorted_acts['user_id'] >= 1882385] # Turn this on for test with Eliza's ID
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now > cohort1_day7:
+        sorted_acts = sorted_acts.loc[sorted_acts['day'] >= 7]
     # Search user list using (user_id, day), get wechat_id
     users = get_users()
     send_list = pd.merge(sorted_acts, users, on=['user_id','day'])

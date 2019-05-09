@@ -32,6 +32,8 @@ simulate_date = input("\nWhat date do you want to simulate ?\n(dd/mm/yyyy. Cohor
 # todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
 todo_day7 = (simulate_date == "05/11/2019")
 todo_day8 = (simulate_date == "05/18/2019")
+cohort1_day7 = datetime(2019, 5, 11)
+cohort1_day8 = datetime(2019, 5, 18)
 
 # Message content
 if cohort == "1":
@@ -151,6 +153,9 @@ if todo == "10PM":
         sorted_acts = sorted_acts.loc[sorted_acts['user_id'] >= 1882385] # Turn this on for test with Eliza's ID
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now >= cohort1_day7:
+        sorted_acts = sorted_acts.loc[sorted_acts['day'] >= 7]
     # Search user list using (user_id, day), get wechat_id
     users = get_users()
     send_list = pd.merge(sorted_acts, users, on=['user_id','day'])
@@ -223,6 +228,11 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] # Turn this off for test with Zixin
     else:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
+
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now >= cohort1_day7:
+        send_list_r = sorted_acts.loc[send_list_r['day'] >= 7]
+
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
     print("" if send_list_r.empty else "\n-------------------------------- Sending next day reminders --------------------------------")
