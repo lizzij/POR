@@ -4,7 +4,6 @@ import csv
 from wxpy import *
 from datetime import datetime, timedelta
 import time
-import schedule
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -12,20 +11,22 @@ from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import randint, choices
+from random import randint, uniform
 
-##############################################################################################
 ## Get date (do we need this?)
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 ## Test? (YES / NO)
 test = input("Test (YES / NO) ? ")
 
-## Which cohort?
-cohort = input("Which cohort (1 ... ∞) ? ")
+## What to do? (6PM / 10 PM)
+todo = input("\nWhat to do (6PM / 10 PM) ? ")
 
-treat_no = [1, 2, 3, 4, 5]
-treat_prob = [0.2, 0.2, 0.2, 0.2, 0.2]
+## Which cohort?
+cohort = input("\nWhich cohort (1 ... ∞) ? ")
+
+treat_prob = [0.2, 0.4, 0.6, 0.8, 1]
+## Note: Probability of being in each of the treatment groups (e.g., 0.2-0 = prob(T=1); 0.4-0.2 = prob(T=2))
 
 ## Message content
 
@@ -34,6 +35,7 @@ if cohort == "1":
 elif cohort == "2":
     date_range = u'2019年6月3-9日'
 
+default = u'我们会尽快回复您的消息。此账号不具备实时交流的功能，预计回复您的时间会有延迟。 这是一条自动消息。'
 intro = u'  此次调研总共维持8天时间。\
 我们将在接下来的6天（包括今天）每天提供一些将在 '+ date_range +' 举办的户外活动信息，\
 并询问一些简短的问题（约5分钟）。第7天和第8天的调研将在 2周和4周 后进行。\n\n\
@@ -86,7 +88,7 @@ def get_users():
 ## initialize chatbot
 bot = Bot()
 bot.enable_puid('wxpy_puid.pkl')
-##############################################################################################
+
 
 ##############################################################################################
 # auto accept friend request
@@ -103,8 +105,8 @@ def auto_accept_friends(msg):
     ## Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
     print("adding new user", nextUserID, "...")
-    treatment = "T"+str(choices(treat_no, treat_prob)[0])
-    print("assigned treatment", treatment)
+    rn = uniform(0,1)
+    treat = "T"+str(sum(i > rn for i in treat_prob))
     for day in range(9):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
@@ -126,13 +128,11 @@ def auto_accept_friends(msg):
 
     ## Set remark_name to use for reminder messages
     new_friend.set_remark_name(str(nextUserID))
-#############################################################################################
+##############################################################################################
 
 ##############################################################################################
 ## 10PM SAME-DAY REMINDER
-def tenPM():
-    print("\n\n====================== Now it's 10PM! Sending 10PM same-day reminders ======================\n")
-
+if todo == "10PM":
     ## Get list of (user_id, day) to send reminders
     activities = get_activities()
     # activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f") ## Currently not using in the selection logic
@@ -153,19 +153,20 @@ def tenPM():
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 10PM reminder message to',wechat_id,'...')
-        my_friend.send(reminder)
-        my_friend.send(send_list['url'].iloc[i])
-        print('cannot find user',wechat_id,'...')
-        time.sleep(2)
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 10PM reminder message to',wechat_id,'...')
+            my_friend.send(reminder)
+            my_friend.send(send_list['url'].iloc[i])
+            time.sleep(2)
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
+
 ##############################################################################################
 
 ##############################################################################################
 ## 6PM NEXT DAY URL + REMINDER IF NOT COMPLETED
-def sixPM():
-    print("\n\n========== Now it's 6PM! Sending 6PM next day urls + reminders if not completed: ===========")
-
+if todo == "6PM":
     ## Prep
     activities = get_activities()
     # activities['day_started'] = pd.to_datetime(activities['day_started'], format="%Y-%m-%d %H:%M:%S.%f")
@@ -176,7 +177,6 @@ def sixPM():
     ## New day URL prep
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
 
-    # only send to Eliza if test
     if test == "YES":
         sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] ## Turn this on for test with Eliza's ID
     else:
@@ -185,6 +185,7 @@ def sixPM():
     # TODO 7, 8, completion messages; if Day > 6: do nothing
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
     sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] <= 6]
+
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
     send_list_n['url'] = "https://dailyeventinfo.com/" + send_list_n['user_id_hashid'].str.strip() + "/" + send_list_n['day_hashid'].str.strip() + "/info"
     print("" if send_list_n.empty else send_list_n)
@@ -202,18 +203,14 @@ def sixPM():
             requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
         except IndexError:
             print('cannot find user',wechat_id,'...')
-            time.sleep(2)
 
     ## Next day reminder prep
     sorted_acts_r = activities.loc[activities['day_complete'] == 0]
     sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['time_since_last_activity'] < 48].iloc[:,0:2]
-
-    # only send to Eliza if test
     if test == "YES":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] ## Turn this off for test with Zixin
     else:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] ## Turn this on For test with Zixin
-
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
     print("" if send_list_r.empty else send_list_r)
@@ -226,25 +223,9 @@ def sixPM():
             print('sending 6PM reminder message to',wechat_id,'...')
             my_friend.send(next_day_reminder)
             my_friend.send(send_list_r['url'].iloc[i])
+            time.sleep(2)
         except IndexError:
             print('cannot find user',wechat_id,'...')
-        time.sleep(2)
-##############################################################################################
-
-##############################################################################################
-# SCHEDULE
-
-# computer time EST   06:00 AM   10:00 AM
-# user time GMT+8     18:00 PM   22:00 PM
-# host time GMT       10:00 PM   14:00 PM
-
-schedule.every().day.at("06:00").do(sixPM)
-schedule.every().day.at("10:00").do(tenPM)
-
-while True:
-    schedule.run_pending()
-    time.sleep(60) # wait one minute
-
 ##############################################################################################
 
 ## Keep logged in
