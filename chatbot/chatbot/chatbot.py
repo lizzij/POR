@@ -275,6 +275,11 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] == 1882385] # Turn this off for test with Zixin
     else:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
+
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now >= cohort1_day7:
+        send_list_r = sorted_acts.loc[send_list_r['day'] >= 7]
+
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
     print("" if send_list_r.empty else "\n------------------------------ Sending 6PM next-day reminders ------------------------------")

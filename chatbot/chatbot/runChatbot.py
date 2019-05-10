@@ -21,15 +21,14 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 # Test? (YES / NO)
 test = input("\nAre you testing (YES / NO) ?\n")
 
-# What to do? (6PM / 10PM)
-todo = input("\nWhat to do (6PM / 10PM) ?\n")
-
 # Which cohort?
 cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
 todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
 todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
+cohort1_day7 = datetime(2019, 5, 11)
+cohort1_day8 = datetime(2019, 5, 18)
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -197,6 +196,9 @@ def tenPM():
         sorted_acts = sorted_acts.loc[sorted_acts['user_id'] >= 1882385] # Turn this on for test with Eliza's ID
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now > cohort1_day7:
+        sorted_acts = sorted_acts.loc[sorted_acts['day'] >= 7]
     # Search user list using (user_id, day), get wechat_id
     users = get_users()
     send_list = pd.merge(sorted_acts, users, on=['user_id','day'])
@@ -205,12 +207,14 @@ def tenPM():
     # Send reminders
     for i in range(send_list.shape[0]):
         wechat_id = send_list.iloc[i]['user_id']
-        my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-        print('sending 10PM reminder message to',wechat_id,'...')
-        my_friend.send(reminder)
-        my_friend.send(send_list['url'].iloc[i])
-        print('cannot find user',wechat_id,'...')
-        time.sleep(2)
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending 10PM reminder message to',wechat_id,'...')
+            my_friend.send(reminder)
+            my_friend.send(send_list['url'].iloc[i])
+            time.sleep(2)
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
 ##############################################################################################
 
 ##############################################################################################
@@ -275,6 +279,10 @@ def sixPM():
     else:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
+    # drop all users who have not completed day 6 after day 7 is sent
+    if now >= cohort1_day7:
+        send_list_r = sorted_acts.loc[send_list_r['day'] >= 7]
+        
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     print("" if send_list_r.empty else "\n------------------------------ Sending 6PM next-day reminders ------------------------------")
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
