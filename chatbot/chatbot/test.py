@@ -24,7 +24,8 @@ test = "NO"
 todo = input("\nWhat to do (6PM / 10PM) ?\n")
 
 # Which cohort?
-cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
+# cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
+cohort = "2"
 
 # If to send out day 7 and day 8
 simulate_date = input("\nWhat date do you want to simulate ?\n(dd/mm/yyyy. Cohort1 day7 05/11/2019, day8 05/18/2019)\n")
@@ -95,12 +96,13 @@ def sendDaySeven():
     # send out day 7, update activity
     if todo_day7:
         print("\n------------------------------------ Sending day 7 urls ------------------------------------")
-        send_list_day7_n = pd.merge(sorted_acts_day7_n, users, on=['user_id','day'])
+        cohort1_users = users.loc[users['cohort'] == 1]
+        send_list_day7_n = pd.merge(sorted_acts_day7_n, cohort1_users, on=['user_id','day'])
         send_list_day7_n['url'] = "https://dailyeventinfo.com/" + send_list_day7_n['user_id_hashid'].str.strip() + "/" + send_list_day7_n['day_hashid'].str.strip() + "/survey"
         print("" if send_list_day7_n.empty else send_list_day7_n)
         print(URLmessage[7])
         for i in range(send_list_day7_n.shape[0]):
-            print("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(7)+"/0/0/0/0")
+            print("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_day7_n['user_id'].iloc[i]))+"/"+str(7)+"/0/0/0/0")
         # for i in range(send_list_day7_n.shape[0]):
         #     wechat_id = send_list_day7_n.iloc[i]['user_id']
         #     try:
@@ -118,12 +120,13 @@ def sendDayEight():
     # send out day 8, update activity
     if todo_day8:
         print("\n------------------------------------ Sending day 8 urls ------------------------------------")
-        send_list_day8_n = pd.merge(sorted_acts_day8_n, users, on=['user_id','day'])
+        cohort1_users = users.loc[users['cohort'] == 1]
+        send_list_day8_n = pd.merge(sorted_acts_day8_n, cohort1_users, on=['user_id','day'])
         send_list_day8_n['url'] = "https://dailyeventinfo.com/" + send_list_day8_n['user_id_hashid'].str.strip() + "/" + send_list_day8_n['day_hashid'].str.strip() + "/survey"
         print("" if send_list_day8_n.empty else send_list_day8_n)
         print(URLmessage[8])
         for i in range(send_list_day8_n.shape[0]):
-            print("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(8)+"/0/0/0/0")
+            print("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_day8_n['user_id'].iloc[i]))+"/"+str(8)+"/0/0/0/0")
         # for i in range(send_list_day8_n.shape[0]):
         #     wechat_id = send_list_day8_n.iloc[i]['user_id']
         #     try:
@@ -230,8 +233,8 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
     # drop all users who have not completed day 6 after day 7 is sent
-    if now >= cohort1_day7:
-        send_list_r = sorted_acts.loc[send_list_r['day'] >= 7]
+    if now > cohort1_day7:
+        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['day'] >= 7]
 
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"

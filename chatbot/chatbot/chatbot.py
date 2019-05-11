@@ -26,6 +26,7 @@ todo = input("\nWhat to do (6PM / 10PM) ?\n")
 cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
+cohort_to_send = 1
 todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
 todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
 cohort1_day7 = datetime(2019, 5, 11)
@@ -142,7 +143,8 @@ def sendDaySeven():
     # send out day 7, update activity
     if todo_day7:
         print("\n------------------------------------ Sending day 7 urls ------------------------------------")
-        send_list_day7_n = pd.merge(sorted_acts_day7_n, users, on=['user_id','day'])
+        cohort_users = users.loc[users['cohort'] == cohort_to_send]
+        send_list_day7_n = pd.merge(sorted_acts_day7_n, cohort_users, on=['user_id','day'])
         send_list_day7_n['url'] = "https://dailyeventinfo.com/" + send_list_day7_n['user_id_hashid'].str.strip() + "/" + send_list_day7_n['day_hashid'].str.strip() + "/survey"
         print("" if send_list_day7_n.empty else send_list_day7_n)
         for i in range(send_list_day7_n.shape[0]):
@@ -162,7 +164,8 @@ def sendDayEight():
     # send out day 8, update activity
     if todo_day8:
         print("\n------------------------------------ Sending day 8 urls ------------------------------------")
-        send_list_day8_n = pd.merge(sorted_acts_day8_n, users, on=['user_id','day'])
+        cohort_users = users.loc[users['cohort'] == cohort_to_send]
+        send_list_day8_n = pd.merge(sorted_acts_day8_n, cohort_users, on=['user_id','day'])
         send_list_day8_n['url'] = "https://dailyeventinfo.com/" + send_list_day8_n['user_id_hashid'].str.strip() + "/" + send_list_day8_n['day_hashid'].str.strip() + "/survey"
         print("" if send_list_day8_n.empty else send_list_day8_n)
         for i in range(send_list_day8_n.shape[0]):
@@ -196,7 +199,7 @@ if todo == "10PM":
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
     # drop all users who have not completed day 6 after day 7 is sent
-    if now > cohort1_day7:
+    if now >= cohort1_day7:
         sorted_acts = sorted_acts.loc[sorted_acts['day'] >= 7]
     # Search user list using (user_id, day), get wechat_id
     users = get_users()
@@ -277,8 +280,8 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
     # drop all users who have not completed day 6 after day 7 is sent
-    if now >= cohort1_day7:
-        send_list_r = sorted_acts.loc[send_list_r['day'] >= 7]
+    if now > cohort1_day7:
+        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['day'] >= 7]
 
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
     send_list_r['url'] = "https://dailyeventinfo.com/" + send_list_r['user_id_hashid'].str.strip() + "/" + send_list_r['day_hashid'].str.strip() + "/info"
