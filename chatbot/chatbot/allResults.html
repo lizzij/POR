@@ -1647,8 +1647,16 @@ $(document).ready(function () {
 </div>
 
 
-<div id="goal" class="section level3">
-<h3>Goal</h3>
+<div id="conclusion" class="section level3">
+<h3>Conclusion</h3>
+<p>Cause of duplicates:</p>
+<ul>
+<li>going back to previous day/pages (already disabled)</li>
+<li>submit, then refresh → form submitted again upon refreshing</li>
+</ul>
+</div>
+<div id="purpose" class="section level3">
+<h3>Purpose</h3>
 <p>To investigate the cases where there is:</p>
 <ul>
 <li>duplicated survey answers or</li>
@@ -1748,17 +1756,41 @@ duplicates</code></pre>
   </script>
 </div>
 <pre class="r"><code># Category 1: same day, same question, different answer
-
-# Category 2: same day, same question, same answer</code></pre>
+duplicates_diff_ans &lt;- duplicates %&gt;% slice(72:73)
+duplicates_diff_ans</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["user_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day"],"name":[2],"type":["int"],"align":["right"]},{"label":["question"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["count"],"name":[4],"type":["int"],"align":["right"]},{"label":["answer"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["timestamp"],"name":[6],"type":["fctr"],"align":["left"]}],"data":[{"1":"8194629","2":"3","3":"donationWilling","4":"2","5":"48","6":"3/5/19 12:02"},{"1":"8194629","2":"3","3":"donationWilling","4":"2","5":"15","6":"2/5/19 14:11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code># Category 2: same day, same question, same answer
+duplicates_same_ans &lt;- duplicates %&gt;% slice(42:43)
+duplicates_same_ans</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["user_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day"],"name":[2],"type":["int"],"align":["right"]},{"label":["question"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["count"],"name":[4],"type":["int"],"align":["right"]},{"label":["answer"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["timestamp"],"name":[6],"type":["fctr"],"align":["left"]}],"data":[{"1":"25097422","2":"1","3":"trust1","4":"2","5":"81.56","6":"06/05/2019 14:05:38."},{"1":"25097422","2":"1","3":"trust1","4":"2","5":"81.56","6":"06/05/2019 14:04:59."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="hypothesis" class="section level3">
 <h3>5. Hypothesis</h3>
-<p>There are 2 categories of duplicates - Category 1: same day, same question, different answer - before “no access to previous surveys” was enfored (solved) - Category 2: same day, same question, same answer - clicking submit button multiple times - Same timestamp to minutes, should be difference in seconds (see the test below with current result data)</p>
+<p>There are 2 categories of duplicates</p>
+<ul>
+<li>Category 1: same day, same question, different answer
+<ul>
+<li>before “no access to previous surveys” was enfored (solved)</li>
+</ul></li>
+<li>Category 2: same day, same question, same answer
+<ul>
+<li>refreshing page after submitting -&gt; multiple submissions</li>
+<li>same timestamp to minutes, should be difference in seconds (see the test below with current result data)</li>
+</ul></li>
+</ul>
 </div>
 <div id="test" class="section level3">
 <h3>6. Test</h3>
 <p>Test hypothesis with more detailed timestamps</p>
-<pre class="r"><code># allResultsTime.csv contains more detailed timestamps
+<pre class="r"><code># allResultsTime.csv contains more detailed timestamps (after changing templates)
 all_results_time &lt;- read.csv(&quot;allResultsTime.csv&quot;, header = F, sep = &quot;,&quot;)
 names(all_results_time) &lt;- c(&quot;user_id&quot;, &quot;day&quot;, &quot;question&quot;, &quot;answer&quot;, &quot;timestamp&quot;)
 
@@ -1794,12 +1826,33 @@ duplicates_time</code></pre>
 {"columns":[{"label":["user_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["day"],"name":[2],"type":["int"],"align":["right"]},{"label":["question"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["count"],"name":[4],"type":["int"],"align":["right"]},{"label":["answer"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["timestamp"],"name":[6],"type":["fctr"],"align":["left"]}],"data":[{"1":"22535066","2":"0","3":"consent","4":"2","5":"proceed","6":"2019-05-06 08:18:59.081614"},{"1":"22535066","2":"0","3":"consent","4":"2","5":"proceed","6":"2019-05-06 08:20:35.466124"},{"1":"21853588","2":"1","3":"starCountGroup1Input","4":"2","5":"6","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup1Input","4":"2","5":"6","6":"2019-05-06 06:35:56.416585"},{"1":"21853588","2":"1","3":"starCountGroup2Input","4":"2","5":"5","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup2Input","4":"2","5":"5","6":"2019-05-06 06:35:56.416585"},{"1":"21853588","2":"1","3":"starCountGroup3Input","4":"2","5":"1","6":"2019-05-06 06:35:56.416585"},{"1":"21853588","2":"1","3":"starCountGroup3Input","4":"2","5":"1","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup4Input","4":"2","5":"0","6":"2019-05-06 06:35:56.416585"},{"1":"21853588","2":"1","3":"starCountGroup4Input","4":"2","5":"0","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup5Input","4":"2","5":"0","6":"2019-05-06 06:35:56.416585"},{"1":"21853588","2":"1","3":"starCountGroup5Input","4":"2","5":"0","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup6Input","4":"2","5":"0","6":"2019-05-06 06:35:56.618482"},{"1":"21853588","2":"1","3":"starCountGroup6Input","4":"2","5":"0","6":"2019-05-06 06:35:56.416585"},{"1":"23300203","2":"1","3":"eventName","4":"3","5":"option1","6":"2019-05-06 10:50:51.375986"},{"1":"23300203","2":"1","3":"eventName","4":"3","5":"option1","6":"2019-05-06 10:51:04.499442"},{"1":"23300203","2":"1","3":"eventName","4":"3","5":"option1","6":"2019-05-06 07:32:47.484392"},{"1":"23300203","2":"1","3":"signUpFee","4":"3","5":"110","6":"2019-05-06 10:50:51.375986"},{"1":"23300203","2":"1","3":"signUpFee","4":"3","5":"100","6":"2019-05-06 07:32:47.484392"},{"1":"23300203","2":"1","3":"signUpFee","4":"3","5":"100","6":"2019-05-06 10:51:04.499442"},{"1":"25097422","2":"1","3":"trust1","4":"2","5":"81.56","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust1","4":"2","5":"81.56","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust2","4":"2","5":"57.36","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust2","4":"2","5":"57.36","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust3","4":"2","5":"37.67","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust3","4":"2","5":"37.67","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust4","4":"2","5":"39.36","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust4","4":"2","5":"39.36","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust5","4":"2","5":"62.99","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust5","4":"2","5":"62.99","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust6","4":"2","5":"58.94","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust6","4":"2","5":"58.94","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust7","4":"2","5":"62.32","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust7","4":"2","5":"62.32","6":"2019-05-06 14:05:38.457186"},{"1":"25097422","2":"1","3":"trust8","4":"2","5":"59.73","6":"2019-05-06 14:04:59.804966"},{"1":"25097422","2":"1","3":"trust8","4":"2","5":"59.73","6":"2019-05-06 14:05:38.457186"},{"1":"16067600","2":"2","3":"eventLocation","4":"2","5":"option1","6":"2019-05-06 12:49:36.366332"},{"1":"16067600","2":"2","3":"eventLocation","4":"2","5":"option1","6":"2019-05-06 12:47:38.084803"},{"1":"16067600","2":"2","3":"signUpFeeAmount","4":"2","5":"100","6":"2019-05-06 12:47:38.084803"},{"1":"16067600","2":"2","3":"signUpFeeAmount","4":"2","5":"0","6":"2019-05-06 12:49:36.366332"},{"1":"3780005","2":"4","3":"signUpFee","4":"2","5":"55","6":"2019-05-04 11:07:52.989644"},{"1":"3780005","2":"4","3":"signUpFee","4":"2","5":"55","6":"2019-05-04 11:07:55.708272"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:16.087913"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:16.102415"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:16.084882"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:16.381267"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:16.097099"},{"1":"8194629","2":"6","3":"signUpFeeEvent2","4":"6","5":"20","6":"2019-05-06 11:23:29.845984"},{"1":"15312225","2":"6","3":"notReportingProbability","4":"2","5":"level4","6":"2019-05-10 10:02:09.377665"},{"1":"15312225","2":"6","3":"notReportingProbability","4":"2","5":"level4","6":"2019-05-10 10:02:12.641150"},{"1":"15312225","2":"6","3":"signUpFeeEvent1","4":"2","5":"120","6":"2019-05-10 10:01:17.118049"},{"1":"15312225","2":"6","3":"signUpFeeEvent1","4":"2","5":"120","6":"2019-05-10 10:01:16.685055"},{"1":"17737049","2":"6","3":"signUpFeeEvent2","4":"2","5":"0","6":"2019-05-10 10:29:59.896034"},{"1":"17737049","2":"6","3":"signUpFeeEvent2","4":"2","5":"0","6":"2019-05-10 10:29:58.346568"},{"1":"19949432","2":"6","3":"otherSource","4":"3","5":"noOtherSource","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"otherSource","4":"3","5":"noOtherSource","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"otherSource","4":"3","5":"noOtherSource","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"otherSourceNumberOfTimes","4":"3","5":"","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"otherSourceNumberOfTimes","4":"3","5":"","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"otherSourceNumberOfTimes","4":"3","5":"","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"otherWeatherSource","4":"3","5":"yesOtherWeatherSource","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"otherWeatherSource","4":"3","5":"yesOtherWeatherSource","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"otherWeatherSource","4":"3","5":"yesOtherWeatherSource","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"recallAirQuality","4":"3","5":"lightlyPolluted","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"recallAirQuality","4":"3","5":"lightlyPolluted","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"recallAirQuality","4":"3","5":"lightlyPolluted","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"recallAirQualitySource","4":"3","5":"no","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"recallAirQualitySource","4":"3","5":"no","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"recallAirQualitySource","4":"3","5":"no","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"recallNumberOfAirQualitySource","4":"3","5":"2","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"recallNumberOfAirQualitySource","4":"3","5":"2","6":"2019-05-10 14:07:59.055065"},{"1":"19949432","2":"6","3":"recallNumberOfAirQualitySource","4":"3","5":"2","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"weatherNumberOfTimes","4":"3","5":"3","6":"2019-05-10 14:07:54.537164"},{"1":"19949432","2":"6","3":"weatherNumberOfTimes","4":"3","5":"3","6":"2019-05-10 14:07:56.053912"},{"1":"19949432","2":"6","3":"weatherNumberOfTimes","4":"3","5":"3","6":"2019-05-10 14:07:59.055065"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:31.892794"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:34.705624"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:41.399818"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:46.179906"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:36.663415"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:32.805366"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:44.483323"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:36.656164"},{"1":"8194629","2":"7","3":"math1Answer","4":"9","5":"17","6":"2019-05-11 15:13:28.082976"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:41.399818"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:36.663415"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:32.805366"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:36.656164"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:28.082976"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:31.892794"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:44.483323"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:46.179906"},{"1":"8194629","2":"7","3":"math2Answer","4":"9","5":"1000","6":"2019-05-11 15:13:34.705624"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:41.399818"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:46.179906"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:34.705624"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:36.656164"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:32.805366"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:31.892794"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:44.483323"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:36.663415"},{"1":"8194629","2":"7","3":"math3Answer","4":"9","5":"5","6":"2019-05-11 15:13:28.082976"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:31.892794"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:36.656164"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:46.179906"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:41.399818"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:34.705624"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:32.805366"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:36.663415"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:28.082976"},{"1":"8194629","2":"7","3":"math4Answer","4":"9","5":"100","6":"2019-05-11 15:13:44.483323"},{"1":"8194629","2":"7","3":"math5Answer","4":"2","5":"12","6":"2019-05-11 15:13:28.082976"},{"1":"8194629","2":"7","3":"math5Answer","4":"2","5":"12","6":"2019-05-11 15:13:34.705624"},{"1":"8194629","2":"7","3":"starCountGroup1Input","4":"2","5":"4","6":"2019-05-11 15:10:19.523320"},{"1":"8194629","2":"7","3":"starCountGroup1Input","4":"2","5":"4","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup2Input","4":"2","5":"3","6":"2019-05-11 15:10:19.523320"},{"1":"8194629","2":"7","3":"starCountGroup2Input","4":"2","5":"3","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup3Input","4":"2","5":"2","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup3Input","4":"2","5":"2","6":"2019-05-11 15:10:19.523320"},{"1":"8194629","2":"7","3":"starCountGroup4Input","4":"2","5":"1","6":"2019-05-11 15:10:19.523320"},{"1":"8194629","2":"7","3":"starCountGroup4Input","4":"2","5":"1","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup5Input","4":"2","5":"1","6":"2019-05-11 15:10:19.523320"},{"1":"8194629","2":"7","3":"starCountGroup5Input","4":"2","5":"1","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup6Input","4":"2","5":"1","6":"2019-05-11 15:10:11.395297"},{"1":"8194629","2":"7","3":"starCountGroup6Input","4":"2","5":"1","6":"2019-05-11 15:10:19.523320"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code># Category 1: same day, same question, different answer
-
-# Category 2: same day, same question, same answer</code></pre>
+<pre class="r"><code># Category 1: same day, same question, different answer, different time-stamp (to seconds)
+print(&quot;Does not exist: no access to previous survey.&quot;)</code></pre>
+<pre><code>## [1] &quot;Does not exist: no access to previous survey.&quot;</code></pre>
+<pre class="r"><code># Category 2: same day, same question, same answer, different time-stamp (to seconds)
+duplicates_time_same_ans &lt;- duplicates %&gt;% slice(43:48)
+duplicates_time_same_ans</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["user_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day"],"name":[2],"type":["int"],"align":["right"]},{"label":["question"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["count"],"name":[4],"type":["int"],"align":["right"]},{"label":["answer"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["timestamp"],"name":[6],"type":["fctr"],"align":["left"]}],"data":[{"1":"25097422","2":"1","3":"trust1","4":"2","5":"81.56","6":"06/05/2019 14:04:59."},{"1":"25097422","2":"1","3":"trust2","4":"2","5":"57.36","6":"06/05/2019 14:04:59."},{"1":"25097422","2":"1","3":"trust2","4":"2","5":"57.36","6":"06/05/2019 14:05:38."},{"1":"25097422","2":"1","3":"trust3","4":"2","5":"37.67","6":"06/05/2019 14:04:59."},{"1":"25097422","2":"1","3":"trust3","4":"2","5":"37.67","6":"06/05/2019 14:05:38."},{"1":"25097422","2":"1","3":"trust4","4":"2","5":"39.36","6":"06/05/2019 14:04:59."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="demo" class="section level3">
 <h3>6. Demo</h3>
+<p>Steps:<br />
+1. Run flask locally, post user 1 activity to day 1<br />
+2. Refresh after submitting user 1 day 1 page 1</p>
+<p>Results (<span style="color:green">submit time</span>, <span style="color:red">refresh time</span>):</p>
+<ul>
+<li><p>allResults:<br />
+1,1,eventName,option2,2019-05-15 <span style="color:green">04:41:20.550263</span><br />
+1,1,signUpFee,50,2019-05-15 <span style="color:green">04:41:20.550263</span><br />
+1,1,eventName,option2,2019-05-15 <span style="color:red">04:41:38.888190</span><br />
+1,1,signUpFee,50,2019-05-15 <span style="color:red">04:41:38.888190</span></p></li>
+<li><p>allActivities:<br />
+1,1,0,2,2019-05-15 04:40:47.719237,2019-05-15 <span style="color:red">04:41:38.888190</span></p></li>
+</ul>
 <p>[End]</p>
 </div>
 

@@ -7,6 +7,12 @@ output:
     df_print: paged
 ---
 
+### Conclusion
+Cause of duplicates:
+
+- going back to previous day/pages (already disabled)
+- submit, then refresh → form submitted again upon refreshing
+
 ### Purpose
 To investigate the cases where there is:  
 
@@ -89,25 +95,28 @@ duplicates <- duplicates %>%
   
 duplicates
 
-# Category 1: same day, same question, different answer, different time-stamp
+# Category 1: same day, same question, different answer
+duplicates_diff_ans <- duplicates %>% slice(72:73)
+duplicates_diff_ans
 
-
-# Category 2: same day, same question, same answer, same/different time-stamp (to minutes)
-
+# Category 2: same day, same question, same answer
+duplicates_same_ans <- duplicates %>% slice(42:43)
+duplicates_same_ans
 ```
 
 ### 5. Hypothesis
 There are 2 categories of duplicates
+
 - Category 1: same day, same question, different answer
   - before "no access to previous surveys" was enfored (solved)
 - Category 2: same day, same question, same answer
-  - clicking submit button multiple times
-  - Same timestamp to minutes, should be difference in seconds (see the test below with current result data)
+  - refreshing page after submitting → multiple submissions
+  - same timestamp to minutes, should be difference in seconds (see the test below with current result data)
 
 ### 6. Test
 Test hypothesis with more detailed timestamps
 ```{r time}
-# allResultsTime.csv contains more detailed timestamps
+# allResultsTime.csv contains more detailed timestamps (after changing templates)
 all_results_time <- read.csv("allResultsTime.csv", header = F, sep = ",")
 names(all_results_time) <- c("user_id", "day", "question", "answer", "timestamp")
 
@@ -139,16 +148,29 @@ duplicates_time <- duplicates_time %>%
 
 duplicates_time
 
-# Category 1: same day, same question, different answer, different time-stamp
-
+# Category 1: same day, same question, different answer, different time-stamp (to seconds)
+print("Does not exist: no access to previous survey.")
 
 # Category 2: same day, same question, same answer, different time-stamp (to seconds)
-
+duplicates_time_same_ans <- duplicates %>% slice(43:48)
+duplicates_time_same_ans
 ```
 
 ### 6. Demo
+Steps:  
+1. Run flask locally, post user 1 activity to day 1  
+2. Refresh after submitting user 1 day 1 page 1  
 
+Results (<span style="color:green">submit time</span>, <span style="color:red">refresh time</span>):  
 
+- allResults:  
+  1,1,eventName,option2,2019-05-15 <span style="color:green">04:41:20.550263</span>  
+  1,1,signUpFee,50,2019-05-15 <span style="color:green">04:41:20.550263</span>  
+  1,1,eventName,option2,2019-05-15 <span style="color:red">04:41:38.888190</span>  
+  1,1,signUpFee,50,2019-05-15 <span style="color:red">04:41:38.888190</span>  
+  
+- allActivities:  
+  1,1,0,2,2019-05-15 04:40:47.719237,2019-05-15 <span style="color:red">04:41:38.888190</span>  
 
 
 
