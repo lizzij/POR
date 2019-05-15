@@ -1,0 +1,76 @@
+---
+title: "Survey Data Investigation"
+author: "(Eliza) Zijin Huang"
+date: "5/14/2019"
+output: html_document
+---
+
+Investigate the cases where there is:
+
+- duplicated survey answers or 
+- missing survey answers
+
+```{r setup, include=TRUE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr) 
+library(tidyverse)
+```
+
+Import data
+```{r import}
+all_results <- read.csv("allResults.csv", header = F, sep = ",")
+names(all_results) <- c("user_id", "day", "question", "answer", "timestamp")
+head(all_results)
+```
+
+Tidy up user_id:
+
+- User ID mapping from old to new convention
+- Remove irrelevant users
+```{r rename}
+print("----------old user_ids----------")
+all_users <- all_results$user_id %>% unique()
+all_users
+
+# rename to new user_id
+all_results$user_id[all_results$user_id == 112] <- 2884055
+all_results$user_id[all_results$user_id == 111] <- 3780005
+all_results$user_id[all_results$user_id == 110] <- 4125240
+all_results$user_id[all_results$user_id == 109] <- 5338852
+all_results$user_id[all_results$user_id == 108] <- 6467910
+all_results$user_id[all_results$user_id == 107] <- 8194629
+all_results$user_id[all_results$user_id == 106] <- 9331127
+all_results$user_id[all_results$user_id == 105] <- 10960925
+all_results$user_id[all_results$user_id == 104] <- 11459752
+
+print("----------new user_ids----------")
+all_users_updated <- all_results$user_id %>% unique()
+all_users_updated
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[End]
