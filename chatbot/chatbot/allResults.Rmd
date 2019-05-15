@@ -27,10 +27,13 @@ Tidy up user_id:
 
 - User ID mapping from old to new convention
 - Remove irrelevant users
-```{r rename}
-print("----------old user_ids----------")
+```{r clean}
+# ----------old user_ids----------
 all_users <- all_results$user_id %>% unique()
 all_users
+
+# remove user 1 to 5
+all_results <- all_results %>% filter(all_results$user_id > 5)
 
 # rename to new user_id
 all_results$user_id[all_results$user_id == 112] <- 2884055
@@ -41,15 +44,42 @@ all_results$user_id[all_results$user_id == 108] <- 6467910
 all_results$user_id[all_results$user_id == 107] <- 8194629
 all_results$user_id[all_results$user_id == 106] <- 9331127
 all_results$user_id[all_results$user_id == 105] <- 10960925
-all_results$user_id[all_results$user_id == 104] <- 11459752
+all_results$user_id[all_results$user_id == 104] <- 11459752 
 
-print("----------new user_ids----------")
+# ----------new user_ids----------
 all_users_updated <- all_results$user_id %>% unique()
 all_users_updated
 ```
 
+Count number of entries by day, extract duplicates
+```{r count}
+# more than one entry 
+duplicates <- all_results %>% 
+  select(user_id, day, question) %>%
+  group_by_all() %>% 
+  summarise(count = n()) %>% 
+  filter(count > 1)
 
+duplicates <- merge(duplicates, all_results)
+duplicates
+```
 
+Analyze duplicates
+```{r duplicates}
+# remove expected duplicates
+count(duplicates)
+
+# day 6 recallWhichAirQualitySource 
+duplicates <- duplicates %>% filter(!(day==6 & question=="recallWhichAirQualitySource"))
+
+# day 7 whoToldMe 
+duplicates <- duplicates %>% filter(!(day==7 & question=="whoToldMe"))
+
+# user 1882385 (Eliza testing)
+duplicates <- duplicates %>% filter(!(user_id==1882385))
+
+count(duplicates)
+```
 
 
 

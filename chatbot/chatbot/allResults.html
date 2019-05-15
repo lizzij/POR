@@ -395,8 +395,13 @@ head(all_results)</code></pre>
 ## 4     104   1 weatherStarCountGroup1Input       5 30/04/2019 15:41:21
 ## 5     104   1 weatherStarCountGroup2Input       3 30/04/2019 15:41:21
 ## 6     104   1 weatherStarCountGroup3Input       3 30/04/2019 15:41:21</code></pre>
-<p>User ID mapping from old to new convention</p>
-<pre class="r"><code>all_users &lt;- all_results$user_id %&gt;% unique()
+<p>Tidy up user_id:</p>
+<ul>
+<li>User ID mapping from old to new convention</li>
+<li>Remove irrelevant users</li>
+</ul>
+<pre class="r"><code># ----------old user_ids----------
+all_users &lt;- all_results$user_id %&gt;% unique()
 all_users</code></pre>
 <pre><code>##  [1]      104      105      107      108      106      109      110
 ##  [8]      111      112        1        4  1882385        5  7771792
@@ -404,6 +409,848 @@ all_users</code></pre>
 ## [22] 10960925 11459752 13330179 14276185 15312225 16067600 17737049
 ## [29] 18845429 19949432 20975559 21853588 23300203 22535066 25097422
 ## [36] 26019115 24580797</code></pre>
+<pre class="r"><code># remove user 1 to 5
+all_results &lt;- all_results %&gt;% filter(all_results$user_id &gt; 5)
+
+# rename to new user_id
+all_results$user_id[all_results$user_id == 112] &lt;- 2884055
+all_results$user_id[all_results$user_id == 111] &lt;- 3780005
+all_results$user_id[all_results$user_id == 110] &lt;- 4125240
+all_results$user_id[all_results$user_id == 109] &lt;- 5338852
+all_results$user_id[all_results$user_id == 108] &lt;- 6467910
+all_results$user_id[all_results$user_id == 107] &lt;- 8194629
+all_results$user_id[all_results$user_id == 106] &lt;- 9331127
+all_results$user_id[all_results$user_id == 105] &lt;- 10960925
+all_results$user_id[all_results$user_id == 104] &lt;- 11459752 
+
+# ----------new user_ids----------
+all_users_updated &lt;- all_results$user_id %&gt;% unique()
+all_users_updated</code></pre>
+<pre><code>##  [1] 11459752 10960925  8194629  6467910  9331127  5338852  4125240
+##  [8]  3780005  2884055  1882385  7771792 12833963 13330179 14276185
+## [15] 15312225 16067600 17737049 18845429 19949432 20975559 21853588
+## [22] 23300203 22535066 25097422 26019115 24580797</code></pre>
+<p>Count number of entries by day, extract duplicates</p>
+<pre class="r"><code># more than one entry 
+duplicates &lt;- all_results %&gt;% 
+  select(user_id, day, question) %&gt;%
+  group_by_all() %&gt;% 
+  summarise(count = n()) %&gt;% 
+  filter(count &gt; 1)
+
+duplicates &lt;- merge(duplicates, all_results)
+duplicates</code></pre>
+<pre><code>##      user_id day                       question count
+## 1   14276185   6    recallWhichAirQualitySource     3
+## 2   14276185   6    recallWhichAirQualitySource     3
+## 3   14276185   6    recallWhichAirQualitySource     3
+## 4   14276185   7                      whoToldMe     2
+## 5   14276185   7                      whoToldMe     2
+## 6   15312225   6        notReportingProbability     2
+## 7   15312225   6        notReportingProbability     2
+## 8   15312225   6                signUpFeeEvent1     2
+## 9   15312225   6                signUpFeeEvent1     2
+## 10  15312225   7                      whoToldMe     2
+## 11  15312225   7                      whoToldMe     2
+## 12  16067600   2                  eventLocation     2
+## 13  16067600   2                  eventLocation     2
+## 14  16067600   2                signUpFeeAmount     2
+## 15  16067600   2                signUpFeeAmount     2
+## 16  16067600   6    recallWhichAirQualitySource     3
+## 17  16067600   6    recallWhichAirQualitySource     3
+## 18  16067600   6    recallWhichAirQualitySource     3
+## 19  16067600   7                      whoToldMe     2
+## 20  16067600   7                      whoToldMe     2
+## 21  17737049   6                signUpFeeEvent2     2
+## 22  17737049   6                signUpFeeEvent2     2
+## 23   1882385   0                        consent     5
+## 24   1882385   0                        consent     5
+## 25   1882385   0                        consent     5
+## 26   1882385   0                        consent     5
+## 27   1882385   0                        consent     5
+## 28   1882385   1            donationWillingness     4
+## 29   1882385   1            donationWillingness     4
+## 30   1882385   1            donationWillingness     4
+## 31   1882385   1            donationWillingness     4
+## 32   1882385   1                      eventName     3
+## 33   1882385   1                      eventName     3
+## 34   1882385   1                      eventName     3
+## 35   1882385   1            goodDeedWillingness     4
+## 36   1882385   1            goodDeedWillingness     4
+## 37   1882385   1            goodDeedWillingness     4
+## 38   1882385   1            goodDeedWillingness     4
+## 39   1882385   1                      signUpFee     3
+## 40   1882385   1                      signUpFee     3
+## 41   1882385   1                      signUpFee     3
+## 42   1882385   1           starCountGroup1Input     3
+## 43   1882385   1           starCountGroup1Input     3
+## 44   1882385   1           starCountGroup1Input     3
+## 45   1882385   1           starCountGroup2Input     3
+## 46   1882385   1           starCountGroup2Input     3
+## 47   1882385   1           starCountGroup2Input     3
+## 48   1882385   1           starCountGroup3Input     3
+## 49   1882385   1           starCountGroup3Input     3
+## 50   1882385   1           starCountGroup3Input     3
+## 51   1882385   1           starCountGroup4Input     3
+## 52   1882385   1           starCountGroup4Input     3
+## 53   1882385   1           starCountGroup4Input     3
+## 54   1882385   1           starCountGroup5Input     3
+## 55   1882385   1           starCountGroup5Input     3
+## 56   1882385   1           starCountGroup5Input     3
+## 57   1882385   1           starCountGroup6Input     3
+## 58   1882385   1           starCountGroup6Input     3
+## 59   1882385   1           starCountGroup6Input     3
+## 60   1882385   1                         trust1     3
+## 61   1882385   1                         trust1     3
+## 62   1882385   1                         trust1     3
+## 63   1882385   1                         trust2     3
+## 64   1882385   1                         trust2     3
+## 65   1882385   1                         trust2     3
+## 66   1882385   1                         trust3     3
+## 67   1882385   1                         trust3     3
+## 68   1882385   1                         trust3     3
+## 69   1882385   1                         trust4     3
+## 70   1882385   1                         trust4     3
+## 71   1882385   1                         trust4     3
+## 72   1882385   1                         trust5     3
+## 73   1882385   1                         trust5     3
+## 74   1882385   1                         trust5     3
+## 75   1882385   1                         trust6     3
+## 76   1882385   1                         trust6     3
+## 77   1882385   1                         trust6     3
+## 78   1882385   1                         trust7     3
+## 79   1882385   1                         trust7     3
+## 80   1882385   1                         trust7     3
+## 81   1882385   1                         trust8     3
+## 82   1882385   1                         trust8     3
+## 83   1882385   1                         trust8     3
+## 84   1882385   1    weatherStarCountGroup1Input     3
+## 85   1882385   1    weatherStarCountGroup1Input     3
+## 86   1882385   1    weatherStarCountGroup1Input     3
+## 87   1882385   1    weatherStarCountGroup2Input     3
+## 88   1882385   1    weatherStarCountGroup2Input     3
+## 89   1882385   1    weatherStarCountGroup2Input     3
+## 90   1882385   1    weatherStarCountGroup3Input     3
+## 91   1882385   1    weatherStarCountGroup3Input     3
+## 92   1882385   1    weatherStarCountGroup3Input     3
+## 93   1882385   1    weatherStarCountGroup4Input     3
+## 94   1882385   1    weatherStarCountGroup4Input     3
+## 95   1882385   1    weatherStarCountGroup4Input     3
+## 96   1882385   2                        address     2
+## 97   1882385   2                        address     2
+## 98   1882385   2                           city     2
+## 99   1882385   2                           city     2
+## 100  1882385   2                       dormName     2
+## 101  1882385   2                       dormName     2
+## 102  1882385   2                  eventLocation     3
+## 103  1882385   2                  eventLocation     3
+## 104  1882385   2                  eventLocation     3
+## 105  1882385   2                         gender     2
+## 106  1882385   2                         gender     2
+## 107  1882385   2                          grade     2
+## 108  1882385   2                          grade     2
+## 109  1882385   2                   liveOnCampus     2
+## 110  1882385   2                   liveOnCampus     2
+## 111  1882385   2                          major     2
+## 112  1882385   2                          major     2
+## 113  1882385   2      newsSourceChatWithFriends     2
+## 114  1882385   2      newsSourceChatWithFriends     2
+## 115  1882385   2        newsSourceDomesticMedia     2
+## 116  1882385   2        newsSourceDomesticMedia     2
+## 117  1882385   2      newsSourceDomesticWebsite     2
+## 118  1882385   2      newsSourceDomesticWebsite     2
+## 119  1882385   2         newsSourceForeignMedia     2
+## 120  1882385   2         newsSourceForeignMedia     2
+## 121  1882385   2       newsSourceForeignWebsite     2
+## 122  1882385   2       newsSourceForeignWebsite     2
+## 123  1882385   2                 otherUniAnswer     2
+## 124  1882385   2                 otherUniAnswer     2
+## 125  1882385   2               outingAirQuality     2
+## 126  1882385   2               outingAirQuality     2
+## 127  1882385   2                  outingFriends     2
+## 128  1882385   2                  outingFriends     2
+## 129  1882385   2                 outingLocation     2
+## 130  1882385   2                 outingLocation     2
+## 131  1882385   2              outingTemperature     2
+## 132  1882385   2              outingTemperature     2
+## 133  1882385   2           outingTransportation     2
+## 134  1882385   2           outingTransportation     2
+## 135  1882385   2                       province     2
+## 136  1882385   2                       province     2
+## 137  1882385   2                        roomNum     2
+## 138  1882385   2                        roomNum     2
+## 139  1882385   2                signUpFeeAmount     3
+## 140  1882385   2                signUpFeeAmount     3
+## 141  1882385   2                signUpFeeAmount     3
+## 142  1882385   2                      trustCNTA     2
+## 143  1882385   2                      trustCNTA     2
+## 144  1882385   2                        trustFM     2
+## 145  1882385   2                        trustFM     2
+## 146  1882385   2               trustMorningPost     2
+## 147  1882385   2               trustMorningPost     2
+## 148  1882385   2                       trustNYT     2
+## 149  1882385   2                       trustNYT     2
+## 150  1882385   2              trustPeoplesDaily     2
+## 151  1882385   2              trustPeoplesDaily     2
+## 152  1882385   2                      trustSEMC     2
+## 153  1882385   2                      trustSEMC     2
+## 154  1882385   2                     university     2
+## 155  1882385   2                     university     2
+## 156  1882385   3                      activity1     2
+## 157  1882385   3                      activity1     2
+## 158  1882385   3                      activity2     2
+## 159  1882385   3                      activity2     2
+## 160  1882385   3                      activity3     2
+## 161  1882385   3                      activity3     2
+## 162  1882385   3                beenToCountries     2
+## 163  1882385   3                beenToCountries     2
+## 164  1882385   3                   beenToHKTWMO     2
+## 165  1882385   3                   beenToHKTWMO     2
+## 166  1882385   3                donationWilling     2
+## 167  1882385   3                donationWilling     2
+## 168  1882385   3              event1HasHappened     2
+## 169  1882385   3              event1HasHappened     2
+## 170  1882385   3              event2HasHappened     2
+## 171  1882385   3              event2HasHappened     2
+## 172  1882385   3              event3HasHappened     2
+## 173  1882385   3              event3HasHappened     2
+## 174  1882385   3              event4HasHappened     2
+## 175  1882385   3              event4HasHappened     2
+## 176  1882385   3              event5HasHappened     2
+## 177  1882385   3              event5HasHappened     2
+## 178  1882385   3                   exerciseTime     2
+## 179  1882385   3                   exerciseTime     2
+## 180  1882385   3                    outdoorTime     2
+## 181  1882385   3                    outdoorTime     2
+## 182  1882385   4                      signUpFee     4
+## 183  1882385   4                      signUpFee     4
+## 184  1882385   4                      signUpFee     4
+## 185  1882385   4                      signUpFee     4
+## 186 18845429   7                      whoToldMe     2
+## 187 18845429   7                      whoToldMe     2
+## 188 19949432   6                    otherSource     3
+## 189 19949432   6                    otherSource     3
+## 190 19949432   6                    otherSource     3
+## 191 19949432   6       otherSourceNumberOfTimes     3
+## 192 19949432   6       otherSourceNumberOfTimes     3
+## 193 19949432   6       otherSourceNumberOfTimes     3
+## 194 19949432   6             otherWeatherSource     3
+## 195 19949432   6             otherWeatherSource     3
+## 196 19949432   6             otherWeatherSource     3
+## 197 19949432   6               recallAirQuality     3
+## 198 19949432   6               recallAirQuality     3
+## 199 19949432   6               recallAirQuality     3
+## 200 19949432   6         recallAirQualitySource     3
+## 201 19949432   6         recallAirQualitySource     3
+## 202 19949432   6         recallAirQualitySource     3
+## 203 19949432   6 recallNumberOfAirQualitySource     3
+## 204 19949432   6 recallNumberOfAirQualitySource     3
+## 205 19949432   6 recallNumberOfAirQualitySource     3
+## 206 19949432   6    recallWhichAirQualitySource     3
+## 207 19949432   6    recallWhichAirQualitySource     3
+## 208 19949432   6    recallWhichAirQualitySource     3
+## 209 19949432   6           weatherNumberOfTimes     3
+## 210 19949432   6           weatherNumberOfTimes     3
+## 211 19949432   6           weatherNumberOfTimes     3
+## 212 21853588   1           starCountGroup1Input     2
+## 213 21853588   1           starCountGroup1Input     2
+## 214 21853588   1           starCountGroup2Input     2
+## 215 21853588   1           starCountGroup2Input     2
+## 216 21853588   1           starCountGroup3Input     2
+## 217 21853588   1           starCountGroup3Input     2
+## 218 21853588   1           starCountGroup4Input     2
+## 219 21853588   1           starCountGroup4Input     2
+## 220 21853588   1           starCountGroup5Input     2
+## 221 21853588   1           starCountGroup5Input     2
+## 222 21853588   1           starCountGroup6Input     2
+## 223 21853588   1           starCountGroup6Input     2
+## 224 21853588   7                      whoToldMe     2
+## 225 21853588   7                      whoToldMe     2
+## 226 22535066   0                        consent     2
+## 227 22535066   0                        consent     2
+## 228 22535066   6    recallWhichAirQualitySource     2
+## 229 22535066   6    recallWhichAirQualitySource     2
+## 230 22535066   7                      whoToldMe     2
+## 231 22535066   7                      whoToldMe     2
+## 232 23300203   1                      eventName     3
+## 233 23300203   1                      eventName     3
+## 234 23300203   1                      eventName     3
+## 235 23300203   1                      signUpFee     3
+## 236 23300203   1                      signUpFee     3
+## 237 23300203   1                      signUpFee     3
+## 238 25097422   1                         trust1     2
+## 239 25097422   1                         trust1     2
+## 240 25097422   1                         trust2     2
+## 241 25097422   1                         trust2     2
+## 242 25097422   1                         trust3     2
+## 243 25097422   1                         trust3     2
+## 244 25097422   1                         trust4     2
+## 245 25097422   1                         trust4     2
+## 246 25097422   1                         trust5     2
+## 247 25097422   1                         trust5     2
+## 248 25097422   1                         trust6     2
+## 249 25097422   1                         trust6     2
+## 250 25097422   1                         trust7     2
+## 251 25097422   1                         trust7     2
+## 252 25097422   1                         trust8     2
+## 253 25097422   1                         trust8     2
+## 254 26019115   6    recallWhichAirQualitySource     3
+## 255 26019115   6    recallWhichAirQualitySource     3
+## 256 26019115   6    recallWhichAirQualitySource     3
+## 257  3780005   4                      signUpFee     2
+## 258  3780005   4                      signUpFee     2
+## 259  3780005   7                      whoToldMe     2
+## 260  3780005   7                      whoToldMe     2
+## 261  4125240   6    recallWhichAirQualitySource     3
+## 262  4125240   6    recallWhichAirQualitySource     3
+## 263  4125240   6    recallWhichAirQualitySource     3
+## 264  4125240   7                      whoToldMe     2
+## 265  4125240   7                      whoToldMe     2
+## 266  5338852   0                        consent     3
+## 267  5338852   0                        consent     3
+## 268  5338852   0                        consent     3
+## 269  6467910   0                        consent     2
+## 270  6467910   0                        consent     2
+## 271  6467910   1                         trust1     2
+## 272  6467910   1                         trust1     2
+## 273  6467910   1                         trust2     2
+## 274  6467910   1                         trust2     2
+## 275  6467910   1                         trust3     2
+## 276  6467910   1                         trust3     2
+## 277  6467910   1                         trust4     2
+## 278  6467910   1                         trust4     2
+## 279  6467910   1                         trust5     2
+## 280  6467910   1                         trust5     2
+## 281  6467910   1                         trust6     2
+## 282  6467910   1                         trust6     2
+## 283  6467910   1                         trust7     2
+## 284  6467910   1                         trust7     2
+## 285  6467910   1                         trust8     2
+## 286  6467910   1                         trust8     2
+## 287  6467910   6    recallWhichAirQualitySource     2
+## 288  6467910   6    recallWhichAirQualitySource     2
+## 289  6467910   7                      whoToldMe     2
+## 290  6467910   7                      whoToldMe     2
+## 291  7771792   7                      whoToldMe     2
+## 292  7771792   7                      whoToldMe     2
+## 293  8194629   3                      activity1     2
+## 294  8194629   3                      activity1     2
+## 295  8194629   3                      activity2     2
+## 296  8194629   3                      activity2     2
+## 297  8194629   3                      activity3     2
+## 298  8194629   3                      activity3     2
+## 299  8194629   3                beenToCountries     2
+## 300  8194629   3                beenToCountries     2
+## 301  8194629   3                   beenToHKTWMO     2
+## 302  8194629   3                   beenToHKTWMO     2
+## 303  8194629   3                donationWilling     2
+## 304  8194629   3                donationWilling     2
+## 305  8194629   3              event1HasHappened     2
+## 306  8194629   3              event1HasHappened     2
+## 307  8194629   3              event2HasHappened     2
+## 308  8194629   3              event2HasHappened     2
+## 309  8194629   3              event3HasHappened     2
+## 310  8194629   3              event3HasHappened     2
+## 311  8194629   3              event4HasHappened     2
+## 312  8194629   3              event4HasHappened     2
+## 313  8194629   3              event5HasHappened     2
+## 314  8194629   3              event5HasHappened     2
+## 315  8194629   3                   exerciseTime     2
+## 316  8194629   3                   exerciseTime     2
+## 317  8194629   3                    outdoorTime     2
+## 318  8194629   3                    outdoorTime     2
+## 319  8194629   6                signUpFeeEvent2     6
+## 320  8194629   6                signUpFeeEvent2     6
+## 321  8194629   6                signUpFeeEvent2     6
+## 322  8194629   6                signUpFeeEvent2     6
+## 323  8194629   6                signUpFeeEvent2     6
+## 324  8194629   6                signUpFeeEvent2     6
+## 325  8194629   7                    math1Answer     9
+## 326  8194629   7                    math1Answer     9
+## 327  8194629   7                    math1Answer     9
+## 328  8194629   7                    math1Answer     9
+## 329  8194629   7                    math1Answer     9
+## 330  8194629   7                    math1Answer     9
+## 331  8194629   7                    math1Answer     9
+## 332  8194629   7                    math1Answer     9
+## 333  8194629   7                    math1Answer     9
+## 334  8194629   7                    math2Answer     9
+## 335  8194629   7                    math2Answer     9
+## 336  8194629   7                    math2Answer     9
+## 337  8194629   7                    math2Answer     9
+## 338  8194629   7                    math2Answer     9
+## 339  8194629   7                    math2Answer     9
+## 340  8194629   7                    math2Answer     9
+## 341  8194629   7                    math2Answer     9
+## 342  8194629   7                    math2Answer     9
+## 343  8194629   7                    math3Answer     9
+## 344  8194629   7                    math3Answer     9
+## 345  8194629   7                    math3Answer     9
+## 346  8194629   7                    math3Answer     9
+## 347  8194629   7                    math3Answer     9
+## 348  8194629   7                    math3Answer     9
+## 349  8194629   7                    math3Answer     9
+## 350  8194629   7                    math3Answer     9
+## 351  8194629   7                    math3Answer     9
+## 352  8194629   7                    math4Answer     9
+## 353  8194629   7                    math4Answer     9
+## 354  8194629   7                    math4Answer     9
+## 355  8194629   7                    math4Answer     9
+## 356  8194629   7                    math4Answer     9
+## 357  8194629   7                    math4Answer     9
+## 358  8194629   7                    math4Answer     9
+## 359  8194629   7                    math4Answer     9
+## 360  8194629   7                    math4Answer     9
+## 361  8194629   7                    math5Answer     2
+## 362  8194629   7                    math5Answer     2
+## 363  8194629   7           starCountGroup1Input     2
+## 364  8194629   7           starCountGroup1Input     2
+## 365  8194629   7           starCountGroup2Input     2
+## 366  8194629   7           starCountGroup2Input     2
+## 367  8194629   7           starCountGroup3Input     2
+## 368  8194629   7           starCountGroup3Input     2
+## 369  8194629   7           starCountGroup4Input     2
+## 370  8194629   7           starCountGroup4Input     2
+## 371  8194629   7           starCountGroup5Input     2
+## 372  8194629   7           starCountGroup5Input     2
+## 373  8194629   7           starCountGroup6Input     2
+## 374  8194629   7           starCountGroup6Input     2
+## 375  8194629   7                      whoToldMe     2
+## 376  8194629   7                      whoToldMe     2
+## 377  9331127   3                      activity1     2
+## 378  9331127   3                      activity1     2
+## 379  9331127   3                      activity2     2
+## 380  9331127   3                      activity2     2
+## 381  9331127   3                      activity3     2
+## 382  9331127   3                      activity3     2
+## 383  9331127   3                beenToCountries     2
+## 384  9331127   3                beenToCountries     2
+## 385  9331127   3                   beenToHKTWMO     2
+## 386  9331127   3                   beenToHKTWMO     2
+## 387  9331127   3                donationWilling     2
+## 388  9331127   3                donationWilling     2
+## 389  9331127   3                   exerciseTime     2
+## 390  9331127   3                   exerciseTime     2
+## 391  9331127   3                    outdoorTime     2
+## 392  9331127   3                    outdoorTime     2
+## 393  9331127   7                      whoToldMe     2
+## 394  9331127   7                      whoToldMe     2
+##                                   answer            timestamp
+## 1                                source3 10/05/2019 10:04:31.
+## 2                                source1 10/05/2019 10:04:31.
+## 3                                source4 10/05/2019 10:04:31.
+## 4                                      C 11/05/2019 10:11:56.
+## 5                                      A 11/05/2019 10:11:56.
+## 6                                 level4 10/05/2019 10:02:09.
+## 7                                 level4 10/05/2019 10:02:12.
+## 8                                    120 10/05/2019 10:01:17.
+## 9                                    120 10/05/2019 10:01:16.
+## 10                                     C 11/05/2019 10:12:01.
+## 11                                     A 11/05/2019 10:12:01.
+## 12                               option1 06/05/2019 12:47:38.
+## 13                               option1 06/05/2019 12:49:36.
+## 14                                   100 06/05/2019 12:47:38.
+## 15                                     0 06/05/2019 12:49:36.
+## 16                               source3 10/05/2019 10:06:59.
+## 17                               source5 10/05/2019 10:06:59.
+## 18                               source4 10/05/2019 10:06:59.
+## 19                                     A 11/05/2019 10:13:02.
+## 20                                     C 11/05/2019 10:13:02.
+## 21                                     0 10/05/2019 10:29:59.
+## 22                                     0 10/05/2019 10:29:58.
+## 23                               proceed          2/5/19 2:15
+## 24                               proceed          2/5/19 1:49
+## 25                               proceed          2/5/19 1:50
+## 26                               proceed         1/5/19 18:20
+## 27                            notProceed         1/5/19 18:20
+## 28                                     0          2/5/19 2:16
+## 29                                  3974         1/5/19 18:21
+## 30                                  4640         1/5/19 18:32
+## 31                                  3666          2/5/19 1:50
+## 32                               option1          2/5/19 1:49
+## 33                               option4          2/5/19 2:15
+## 34                               option1         1/5/19 18:21
+## 35                                     0          2/5/19 2:16
+## 36                                  74.2         1/5/19 18:32
+## 37                                 42.06          2/5/19 1:50
+## 38                                 86.45         1/5/19 18:21
+## 39                                   223         1/5/19 18:21
+## 40                                   110          2/5/19 1:49
+## 41                                   169          2/5/19 2:15
+## 42                                    12          2/5/19 1:49
+## 43                                    12          2/5/19 2:16
+## 44                                     0         1/5/19 18:21
+## 45                                     4         1/5/19 18:21
+## 46                                     0          2/5/19 2:16
+## 47                                     0          2/5/19 1:49
+## 48                                     0          2/5/19 2:16
+## 49                                     8         1/5/19 18:21
+## 50                                     0          2/5/19 1:49
+## 51                                     0          2/5/19 2:16
+## 52                                     0         1/5/19 18:21
+## 53                                     0          2/5/19 1:49
+## 54                                     0         1/5/19 18:21
+## 55                                     0          2/5/19 2:16
+## 56                                     0          2/5/19 1:49
+## 57                                     0         1/5/19 18:21
+## 58                                     0          2/5/19 1:49
+## 59                                     0          2/5/19 2:16
+## 60                                 64.45         1/5/19 18:21
+## 61                                 57.94          2/5/19 1:49
+## 62                                     0          2/5/19 2:16
+## 63                                     0          2/5/19 2:16
+## 64                                 38.96         1/5/19 18:21
+## 65                                 34.97          2/5/19 1:49
+## 66                                 63.68          2/5/19 1:49
+## 67                                     0          2/5/19 2:16
+## 68                                 45.91         1/5/19 18:21
+## 69                                     0          2/5/19 2:16
+## 70                                 29.56          2/5/19 1:49
+## 71                                 73.91         1/5/19 18:21
+## 72                                 61.32          2/5/19 1:49
+## 73                                 36.16         1/5/19 18:21
+## 74                                     0          2/5/19 2:16
+## 75                                     0          2/5/19 2:16
+## 76                                 61.66          2/5/19 1:49
+## 77                                 69.56         1/5/19 18:21
+## 78                                     0          2/5/19 2:16
+## 79                                 38.58         1/5/19 18:21
+## 80                                 53.21          2/5/19 1:49
+## 81                                 59.23         1/5/19 18:21
+## 82                                 49.49          2/5/19 1:49
+## 83                                     0          2/5/19 2:16
+## 84                                     5          2/5/19 1:49
+## 85                                    12         1/5/19 18:21
+## 86                                     0          2/5/19 2:16
+## 87                                     3          2/5/19 1:49
+## 88                                     0          2/5/19 2:16
+## 89                                     0         1/5/19 18:21
+## 90                                     1          2/5/19 1:49
+## 91                                     0         1/5/19 18:21
+## 92                                     0          2/5/19 2:16
+## 93                                    12          2/5/19 2:16
+## 94                                     0         1/5/19 18:21
+## 95                                     3          2/5/19 1:49
+## 96                                    加          2/5/19 1:52
+## 97                                    家         2/5/19 11:23
+## 98                                  杭州          2/5/19 1:52
+## 99                                杭州市         2/5/19 11:23
+## 100                                              2/5/19 11:23
+## 101                                               2/5/19 1:52
+## 102                              option4         1/5/19 18:35
+## 103                              option4         2/5/19 11:22
+## 104                              option1          2/5/19 1:51
+## 105                               female          2/5/19 1:52
+## 106                               female         2/5/19 11:23
+## 107                                 大二         2/5/19 11:23
+## 108                                 大二          2/5/19 1:52
+## 109                        livesOnCampus         2/5/19 11:23
+## 110                        livesOnCampus          2/5/19 1:52
+## 111                               计算机         2/5/19 11:23
+## 112                               啊啊啊          2/5/19 1:52
+## 113                                  114          2/5/19 1:51
+## 114                                  123         2/5/19 11:23
+## 115                                  110         2/5/19 11:23
+## 116                                   85          2/5/19 1:51
+## 117                                  126         2/5/19 11:23
+## 118                                  104          2/5/19 1:51
+## 119                                  135         2/5/19 11:23
+## 120                                  118          2/5/19 1:51
+## 121                                  100         2/5/19 11:23
+## 122                                   72          2/5/19 1:51
+## 123                                               2/5/19 1:52
+## 124                                              2/5/19 11:23
+## 125                                72.13         2/5/19 11:22
+## 126                                30.24          2/5/19 1:51
+## 127                                66.05         2/5/19 11:22
+## 128                                66.05          2/5/19 1:51
+## 129                                 60.3         2/5/19 11:22
+## 130                                52.87          2/5/19 1:51
+## 131                                70.78         2/5/19 11:22
+## 132                                50.84          2/5/19 1:51
+## 133                                41.05         2/5/19 11:22
+## 134                                44.43          2/5/19 1:51
+## 135                                 浙江          2/5/19 1:52
+## 136                               浙江省         2/5/19 11:23
+## 137                                               2/5/19 1:52
+## 138                                              2/5/19 11:23
+## 139                                  166          2/5/19 1:51
+## 140                                  205         1/5/19 18:35
+## 141                                  118         2/5/19 11:22
+## 142                                61.66          2/5/19 1:51
+## 143                                    0         2/5/19 11:23
+## 144                                    0         2/5/19 11:23
+## 145                                48.82          2/5/19 1:51
+## 146                                    0         2/5/19 11:23
+## 147                                46.79          2/5/19 1:51
+## 148                                    0         2/5/19 11:23
+## 149                                91.05          2/5/19 1:51
+## 150                                    0         2/5/19 11:23
+## 151                                30.91          2/5/19 1:51
+## 152                                    0         2/5/19 11:23
+## 153                                41.39          2/5/19 1:51
+## 154                         上海财经大学          2/5/19 1:52
+## 155                             复旦大学         2/5/19 11:23
+## 156                                 睡觉         3/5/19 10:57
+## 157                                 吃饭          2/5/19 1:53
+## 158                                              3/5/19 10:57
+## 159                                               2/5/19 1:53
+## 160                                              3/5/19 10:57
+## 161                                               2/5/19 1:53
+## 162                      beenToCountries         3/5/19 10:57
+## 163                   notBeenToCountries          2/5/19 1:53
+## 164                      notBeenToHKTWMO          2/5/19 1:53
+## 165                         beenToHKTWMO         3/5/19 10:57
+## 166                                  593          2/5/19 1:53
+## 167                                  498         3/5/19 10:57
+## 168                          notHappened          2/5/19 1:53
+## 169                          notHappened         3/5/19 10:57
+## 170                          notHappened          2/5/19 1:53
+## 171                          notHappened         3/5/19 10:57
+## 172                          notHappened          2/5/19 1:53
+## 173                          notHappened         3/5/19 10:57
+## 174                          notHappened          2/5/19 1:53
+## 175                          notHappened         3/5/19 10:57
+## 176                          notHappened         3/5/19 10:57
+## 177                          notHappened          2/5/19 1:53
+## 178                                  391         3/5/19 10:57
+## 179                                  522          2/5/19 1:53
+## 180                                  429         3/5/19 10:57
+## 181                                  509          2/5/19 1:53
+## 182                                  160 09/05/2019 10:10:27.
+## 183                                    0          2/5/19 1:58
+## 184                                    0         3/5/19 11:02
+## 185                                  160 09/05/2019 10:10:28.
+## 186                                    A 11/05/2019 10:11:51.
+## 187                                    C 11/05/2019 10:11:51.
+## 188                        noOtherSource 10/05/2019 14:07:59.
+## 189                        noOtherSource 10/05/2019 14:07:56.
+## 190                        noOtherSource 10/05/2019 14:07:54.
+## 191                                      10/05/2019 14:07:56.
+## 192                                      10/05/2019 14:07:59.
+## 193                                      10/05/2019 14:07:54.
+## 194                yesOtherWeatherSource 10/05/2019 14:07:54.
+## 195                yesOtherWeatherSource 10/05/2019 14:07:56.
+## 196                yesOtherWeatherSource 10/05/2019 14:07:59.
+## 197                      lightlyPolluted 10/05/2019 14:07:54.
+## 198                      lightlyPolluted 10/05/2019 14:07:59.
+## 199                      lightlyPolluted 10/05/2019 14:07:56.
+## 200                                   no 10/05/2019 14:07:54.
+## 201                                   no 10/05/2019 14:07:59.
+## 202                                   no 10/05/2019 14:07:56.
+## 203                                    2 10/05/2019 14:07:56.
+## 204                                    2 10/05/2019 14:07:54.
+## 205                                    2 10/05/2019 14:07:59.
+## 206                              source3 10/05/2019 14:07:56.
+## 207                              source3 10/05/2019 14:07:54.
+## 208                              source3 10/05/2019 14:07:59.
+## 209                                    3 10/05/2019 14:07:56.
+## 210                                    3 10/05/2019 14:07:54.
+## 211                                    3 10/05/2019 14:07:59.
+## 212                                    6 06/05/2019 06:35:56.
+## 213                                    6 06/05/2019 06:35:56.
+## 214                                    5 06/05/2019 06:35:56.
+## 215                                    5 06/05/2019 06:35:56.
+## 216                                    1 06/05/2019 06:35:56.
+## 217                                    1 06/05/2019 06:35:56.
+## 218                                    0 06/05/2019 06:35:56.
+## 219                                    0 06/05/2019 06:35:56.
+## 220                                    0 06/05/2019 06:35:56.
+## 221                                    0 06/05/2019 06:35:56.
+## 222                                    0 06/05/2019 06:35:56.
+## 223                                    0 06/05/2019 06:35:56.
+## 224                                    C 11/05/2019 10:13:37.
+## 225                                    A 11/05/2019 10:13:37.
+## 226                              proceed 06/05/2019 08:20:35.
+## 227                              proceed 06/05/2019 08:18:59.
+## 228                              source4 10/05/2019 10:16:38.
+## 229                              source5 10/05/2019 10:16:38.
+## 230                                    A 11/05/2019 10:11:39.
+## 231                                    C 11/05/2019 10:11:39.
+## 232                              option1 06/05/2019 10:50:51.
+## 233                              option1 06/05/2019 07:32:47.
+## 234                              option1 06/05/2019 10:51:04.
+## 235                                  110 06/05/2019 10:50:51.
+## 236                                  100 06/05/2019 07:32:47.
+## 237                                  100 06/05/2019 10:51:04.
+## 238                                81.56 06/05/2019 14:05:38.
+## 239                                81.56 06/05/2019 14:04:59.
+## 240                                57.36 06/05/2019 14:04:59.
+## 241                                57.36 06/05/2019 14:05:38.
+## 242                                37.67 06/05/2019 14:04:59.
+## 243                                37.67 06/05/2019 14:05:38.
+## 244                                39.36 06/05/2019 14:04:59.
+## 245                                39.36 06/05/2019 14:05:38.
+## 246                                62.99 06/05/2019 14:04:59.
+## 247                                62.99 06/05/2019 14:05:38.
+## 248                                58.94 06/05/2019 14:05:38.
+## 249                                58.94 06/05/2019 14:04:59.
+## 250                                62.32 06/05/2019 14:04:59.
+## 251                                62.32 06/05/2019 14:05:38.
+## 252                                59.73 06/05/2019 14:04:59.
+## 253                                59.73 06/05/2019 14:05:38.
+## 254                              source4 11/05/2019 10:37:42.
+## 255                              source1 11/05/2019 10:37:42.
+## 256                              source3 11/05/2019 10:37:42.
+## 257                                   55 04/05/2019 11:07:55.
+## 258                                   55 04/05/2019 11:07:52.
+## 259                                    C 11/05/2019 10:49:49.
+## 260                                    A 11/05/2019 10:49:49.
+## 261                              source1 06/05/2019 10:12:07.
+## 262                              source5 06/05/2019 10:12:07.
+## 263                              source2 06/05/2019 10:12:07.
+## 264                                    A 11/05/2019 10:18:46.
+## 265                                    C 11/05/2019 10:18:46.
+## 266                              proceed         1/5/19 12:27
+## 267                              proceed         1/5/19 12:27
+## 268                              proceed         1/5/19 12:26
+## 269                              proceed         1/5/19 12:19
+## 270                              proceed         1/5/19 12:22
+## 271                                  100         1/5/19 12:22
+## 272                                85.92         1/5/19 12:22
+## 273                                 9.63         1/5/19 12:22
+## 274                                56.99         1/5/19 12:22
+## 275                                54.05         1/5/19 12:22
+## 276                                    0         1/5/19 12:22
+## 277                                41.44         1/5/19 12:22
+## 278                                 39.7         1/5/19 12:22
+## 279                                54.61         1/5/19 12:22
+## 280                                43.07         1/5/19 12:22
+## 281                                55.96         1/5/19 12:22
+## 282                                 39.7         1/5/19 12:22
+## 283                                    0         1/5/19 12:22
+## 284                                53.47         1/5/19 12:22
+## 285                                    0         1/5/19 12:22
+## 286                                56.64         1/5/19 12:22
+## 287                              source4 06/05/2019 10:25:39.
+## 288                              source5 06/05/2019 10:25:39.
+## 289                                    C 11/05/2019 10:32:37.
+## 290                                    A 11/05/2019 10:32:37.
+## 291                                    C 11/05/2019 10:09:59.
+## 292                                    A 11/05/2019 10:09:59.
+## 293                 支教留守儿童公益活动         2/5/19 14:11
+## 294 参与学校组织支教留守儿童学校公益活动         3/5/19 12:02
+## 295                                              2/5/19 14:11
+## 296                                              3/5/19 12:02
+## 297                                              2/5/19 14:11
+## 298                                              3/5/19 12:02
+## 299                   notBeenToCountries         3/5/19 12:02
+## 300                   notBeenToCountries         2/5/19 14:11
+## 301                      notBeenToHKTWMO         3/5/19 12:02
+## 302                      notBeenToHKTWMO         2/5/19 14:11
+## 303                                   48         3/5/19 12:02
+## 304                                   15         2/5/19 14:11
+## 305                          hasHappened         2/5/19 14:11
+## 306                          hasHappened         3/5/19 12:02
+## 307                          hasHappened         3/5/19 12:02
+## 308                          hasHappened         2/5/19 14:11
+## 309                          hasHappened         2/5/19 14:11
+## 310                          hasHappened         3/5/19 12:02
+## 311                          hasHappened         2/5/19 14:11
+## 312                          hasHappened         3/5/19 12:02
+## 313                          hasHappened         2/5/19 14:11
+## 314                          hasHappened         3/5/19 12:02
+## 315                                  274         2/5/19 14:11
+## 316                                  177         3/5/19 12:02
+## 317                                  241         2/5/19 14:11
+## 318                                   89         3/5/19 12:02
+## 319                                   20 06/05/2019 11:23:16.
+## 320                                   20 06/05/2019 11:23:29.
+## 321                                   20 06/05/2019 11:23:16.
+## 322                                   20 06/05/2019 11:23:16.
+## 323                                   20 06/05/2019 11:23:16.
+## 324                                   20 06/05/2019 11:23:16.
+## 325                                   17 11/05/2019 15:13:28.
+## 326                                   17 11/05/2019 15:13:36.
+## 327                                   17 11/05/2019 15:13:36.
+## 328                                   17 11/05/2019 15:13:44.
+## 329                                   17 11/05/2019 15:13:34.
+## 330                                   17 11/05/2019 15:13:46.
+## 331                                   17 11/05/2019 15:13:31.
+## 332                                   17 11/05/2019 15:13:41.
+## 333                                   17 11/05/2019 15:13:32.
+## 334                                 1000 11/05/2019 15:13:36.
+## 335                                 1000 11/05/2019 15:13:32.
+## 336                                 1000 11/05/2019 15:13:28.
+## 337                                 1000 11/05/2019 15:13:44.
+## 338                                 1000 11/05/2019 15:13:36.
+## 339                                 1000 11/05/2019 15:13:46.
+## 340                                 1000 11/05/2019 15:13:31.
+## 341                                 1000 11/05/2019 15:13:41.
+## 342                                 1000 11/05/2019 15:13:34.
+## 343                                    5 11/05/2019 15:13:28.
+## 344                                    5 11/05/2019 15:13:31.
+## 345                                    5 11/05/2019 15:13:34.
+## 346                                    5 11/05/2019 15:13:41.
+## 347                                    5 11/05/2019 15:13:32.
+## 348                                    5 11/05/2019 15:13:36.
+## 349                                    5 11/05/2019 15:13:44.
+## 350                                    5 11/05/2019 15:13:46.
+## 351                                    5 11/05/2019 15:13:36.
+## 352                                  100 11/05/2019 15:13:36.
+## 353                                  100 11/05/2019 15:13:41.
+## 354                                  100 11/05/2019 15:13:31.
+## 355                                  100 11/05/2019 15:13:34.
+## 356                                  100 11/05/2019 15:13:28.
+## 357                                  100 11/05/2019 15:13:44.
+## 358                                  100 11/05/2019 15:13:46.
+## 359                                  100 11/05/2019 15:13:36.
+## 360                                  100 11/05/2019 15:13:32.
+## 361                                   12 11/05/2019 15:13:28.
+## 362                                   12 11/05/2019 15:13:34.
+## 363                                    4 11/05/2019 15:10:11.
+## 364                                    4 11/05/2019 15:10:19.
+## 365                                    3 11/05/2019 15:10:19.
+## 366                                    3 11/05/2019 15:10:11.
+## 367                                    2 11/05/2019 15:10:11.
+## 368                                    2 11/05/2019 15:10:19.
+## 369                                    1 11/05/2019 15:10:11.
+## 370                                    1 11/05/2019 15:10:19.
+## 371                                    1 11/05/2019 15:10:11.
+## 372                                    1 11/05/2019 15:10:19.
+## 373                                    1 11/05/2019 15:10:19.
+## 374                                    1 11/05/2019 15:10:11.
+## 375                                    A 11/05/2019 15:11:50.
+## 376                                    C 11/05/2019 15:11:50.
+## 377                         社会工作协会         3/5/19 12:00
+## 378                         社会工作协会         3/5/19 12:00
+## 379                                              3/5/19 12:00
+## 380                                              3/5/19 12:00
+## 381                                              3/5/19 12:00
+## 382                                              3/5/19 12:00
+## 383                   notBeenToCountries         3/5/19 12:00
+## 384                   notBeenToCountries         3/5/19 12:00
+## 385                      notBeenToHKTWMO         3/5/19 12:00
+## 386                      notBeenToHKTWMO         3/5/19 12:00
+## 387                                    0         3/5/19 12:00
+## 388                                    0         3/5/19 12:00
+## 389                                  500         3/5/19 12:00
+## 390                                  500         3/5/19 12:00
+## 391                                  374         3/5/19 12:00
+## 392                                  374         3/5/19 12:00
+## 393                                    A 11/05/2019 14:53:10.
+## 394                                    C 11/05/2019 14:53:10.</code></pre>
+<p>Analyze duplicates</p>
+<pre class="r"><code># remove expected duplicates
+count(duplicates)</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1   394</code></pre>
+<pre class="r"><code># day 6 recallWhichAirQualitySource 
+duplicates &lt;- duplicates %&gt;% filter(!(day==6 &amp; question==&quot;recallWhichAirQualitySource&quot;))
+
+# day 7 whoToldMe 
+duplicates &lt;- duplicates %&gt;% filter(!(day==7 &amp; question==&quot;whoToldMe&quot;))
+
+# user 1882385 (Eliza testing)
+duplicates &lt;- duplicates %&gt;% filter(!(user_id==1882385))
+
+count(duplicates)</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1   188</code></pre>
 <p>[End]</p>
 
 
