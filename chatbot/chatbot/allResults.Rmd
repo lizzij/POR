@@ -1,11 +1,14 @@
 ---
 title: "Survey Data Investigation"
-author: "(Eliza) Zijin Huang"
+author: "Eliza"
 date: "5/14/2019"
-output: html_document
+output:
+  html_document:
+    df_print: paged
 ---
 
-Investigate the cases where there is:
+### Purpose
+To investigate the cases where there is:  
 
 - duplicated survey answers or 
 - missing survey answers
@@ -16,19 +19,21 @@ library(dplyr)
 library(tidyverse)
 ```
 
-Import data
+### 1. Import data
 ```{r import}
 all_results <- read.csv("allResults.csv", header = F, sep = ",")
 names(all_results) <- c("user_id", "day", "question", "answer", "timestamp")
+
 head(all_results)
 ```
 
+### 2. Clean up
 Tidy up user_id:
 
 - User ID mapping from old to new convention
 - Remove irrelevant users
 ```{r clean}
-# ----------old user_ids----------
+print("previous user_ids")
 all_users <- all_results$user_id %>% unique()
 all_users
 
@@ -46,11 +51,12 @@ all_results$user_id[all_results$user_id == 106] <- 9331127
 all_results$user_id[all_results$user_id == 105] <- 10960925
 all_results$user_id[all_results$user_id == 104] <- 11459752 
 
-# ----------new user_ids----------
+print("updated user_ids")
 all_users_updated <- all_results$user_id %>% unique()
 all_users_updated
 ```
 
+### 3. Get duplicates
 Count number of entries by day, extract duplicates
 ```{r count}
 # more than one entry 
@@ -61,13 +67,13 @@ duplicates <- all_results %>%
   filter(count > 1)
 
 duplicates <- merge(duplicates, all_results)
-duplicates
+number_of_dup <- nrow(duplicates)
+cat("Total number of duplicates:", number_of_dup)
 ```
 
-Analyze duplicates
+### 4. Analyze duplicates
 ```{r duplicates}
 # remove expected duplicates
-count(duplicates)
 
 # day 6 recallWhichAirQualitySource 
 duplicates <- duplicates %>% filter(!(day==6 & question=="recallWhichAirQualitySource"))
@@ -78,15 +84,69 @@ duplicates <- duplicates %>% filter(!(day==7 & question=="whoToldMe"))
 # user 1882385 (Eliza testing)
 duplicates <- duplicates %>% filter(!(user_id==1882385))
 
-count(duplicates)
+duplicates <- duplicates %>% 
+  arrange(day, user_id)
+  
+duplicates
+
+# Category 1: same day, same question, different answer, different time-stamp
+
+
+# Category 2: same day, same question, same answer, same/different time-stamp (to minutes)
+
 ```
 
+### 5. Hypothesis
+There are 2 categories of duplicates
+- Category 1: same day, same question, different answer
+  - before "no access to previous surveys" was enfored (solved)
+- Category 2: same day, same question, same answer
+  - clicking submit button multiple times
+  - Same timestamp to minutes, should be difference in seconds (see the test below with current result data)
+
+### 6. Test
+Test hypothesis with more detailed timestamps
+```{r time}
+# allResultsTime.csv contains more detailed timestamps
+all_results_time <- read.csv("allResultsTime.csv", header = F, sep = ",")
+names(all_results_time) <- c("user_id", "day", "question", "answer", "timestamp")
+
+# remove user 1 to 5
+all_results_time <- all_results_time %>% filter(all_results_time$user_id > 5)
+
+# more than one entry 
+duplicates_time <- all_results_time %>% 
+  select(user_id, day, question) %>%
+  group_by_all() %>% 
+  summarise(count = n()) %>% 
+  filter(count > 1)
+
+duplicates_time <- merge(duplicates_time, all_results_time)
+
+# remove expected duplicates
+
+# day 6 recallWhichAirQualitySource 
+duplicates_time <- duplicates_time %>% filter(!(day==6 & question=="recallWhichAirQualitySource"))
+
+# day 7 whoToldMe 
+duplicates_time <- duplicates_time %>% filter(!(day==7 & question=="whoToldMe"))
+
+# user 1882385 (Eliza testing)
+duplicates_time <- duplicates_time %>% filter(!(user_id==1882385))
+
+duplicates_time <- duplicates_time %>% 
+  arrange(day, user_id)
+
+duplicates_time
+
+# Category 1: same day, same question, different answer, different time-stamp
 
 
+# Category 2: same day, same question, same answer, different time-stamp (to seconds)
 
+```
 
-
-
+### 6. Demo
 
 
 
