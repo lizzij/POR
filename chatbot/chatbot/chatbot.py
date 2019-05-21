@@ -28,9 +28,9 @@ cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 # If to send out day 7 and day 8
 cohort_to_send = 1
 todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
-todo_day8 = (now.strftime("%m/%d/%Y") == "05/18/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "05/19/2019")
 cohort1_day7 = datetime(2019, 5, 11)
-cohort1_day8 = datetime(2019, 5, 18)
+cohort1_day8 = datetime(2019, 5, 19)
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]

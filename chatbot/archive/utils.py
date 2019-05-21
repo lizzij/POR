@@ -48,14 +48,14 @@ if __name__== "__main__":
         for my_day in range(0, 9):
             my_hashed_day = create_day_hashid(int(my_user_id), int(my_day))
             my_hashed_user_id = create_user_id_hashid(int(my_user_id), int(my_day))
-            print("(%d, %d, 'b83120371', 'T1', '%s', '%s')," % (my_user_id, my_day, my_hashed_user_id, my_hashed_day))
+            print("(%s, %s, 'b83120371', 'T1', '%s', '%s')," % (my_user_id, my_day, my_hashed_user_id, my_hashed_day))
 
-        print("\n\nuser_id: %s \n" %  (my_user_id))
+        print("\n\n- user_id: %s " %  (my_user_id))
         for my_day in range(0, 7):
             my_hashed_day = create_day_hashid(int(my_user_id), int(my_day))
             my_hashed_user_id = create_user_id_hashid(int(my_user_id), int(my_day))
-            print("https://dailyeventinfo.com/%s/%s/info\n" % (my_hashed_user_id, my_hashed_day))
+            print("  %s. https://dailyeventinfo.com/%s/%s/info" % (my_day, my_hashed_user_id, my_hashed_day))
         for my_day in range(7, 9):
             my_hashed_day = create_day_hashid(int(my_user_id), int(my_day))
             my_hashed_user_id = create_user_id_hashid(int(my_user_id), int(my_day))
-            print("https://dailyeventinfo.com/%s/%s/survey\n" % (my_hashed_user_id, my_hashed_day))
+            print("  %s. https://dailyeventinfo.com/%s/%s/survey" % (my_day, my_hashed_user_id, my_hashed_day))
