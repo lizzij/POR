@@ -27,10 +27,10 @@ cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
 cohort_to_send = 1
-todo_day7 = (now.strftime("%m/%d/%Y") == "05/11/2019")
-todo_day8 = (now.strftime("%m/%d/%Y") == "05/19/2019")
-cohort1_day7 = datetime(2019, 5, 11)
-cohort1_day8 = datetime(2019, 5, 19)
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/25/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")
+cohort_day7 = datetime(2019, 5, 25)
+cohort_day8 = datetime(2019, 6, 8)
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -199,7 +199,7 @@ if todo == "10PM":
         # Note: 104=Zixin, 105=Jie
     sorted_acts = sorted_acts.loc[sorted_acts['time_since_last_activity'] < 48].iloc[:,0:2]
     # drop all users who have not completed day 6 after day 7 is sent
-    if now >= cohort1_day7:
+    if now >= cohort_day7:
         sorted_acts = sorted_acts.loc[sorted_acts['day'] >= 7]
     # Search user list using (user_id, day), get wechat_id
     users = get_users()
@@ -280,7 +280,7 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
     # drop all users who have not completed day 6 after day 7 is sent
-    if now > cohort1_day7:
+    if now > cohort_day7:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['day'] >= 7]
 
     send_list_r = pd.merge(sorted_acts_r, users, on=['user_id','day'])
