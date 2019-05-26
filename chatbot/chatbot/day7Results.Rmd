@@ -1,0 +1,94 @@
+---
+title: "Cohort 2 Day 7 Survey Data Investigation"
+author: "Eliza"
+date: "5/26/2019"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    df_print: paged
+---
+
+## Conclusion
+No duplication, no missing.
+
+```{r setup, include=TRUE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr) 
+library(tidyverse)
+```
+
+## Data
+### 1. Import data
+```{r import_results}
+all_results <- read.csv("allResults.csv", header = F, sep = ",")
+names(all_results) <- c("user_id", "day", "question", "answer", "timestamp")
+
+head(all_results)
+```
+
+```{r import_users}
+all_users <- read.csv("allUsers.csv", header = F, sep = ",")
+names(all_users) <- c("user_id", "day", "wechat_id", "cohort", "treatment", "user_id_hashid", "day_hashid")
+
+head(all_users)
+```
+
+### 2. Clean up
+Only keep cohort 2, day 7
+```{r clean}
+# remove irrelevant users (cohort 1, test user_ids)
+cohort2_users <- all_users %>% filter(cohort == 2 & user_id > 10)
+cohort2_users_ids <- cohort2_users$user_id %>% unique()
+cohort2_users_ids
+
+cohort2_results <- filter(all_results, user_id %in% cohort2_users_ids)
+cohort2_results
+
+# remove day 1-6 results
+cohort2_day7_results <- filter(cohort2_results, day == 7)
+cohort2_day7_results
+```
+
+## Duplicates
+### 3. Get duplicates
+Count number of entries by day, extract duplicates
+```{r count}
+# more than one entry 
+duplicates <- cohort2_day7_results %>% 
+  select(user_id, day, question) %>%
+  group_by_all() %>% 
+  summarise(count = n()) %>% 
+  filter(count > 1)
+
+# remove expected duplicates: day 7 whoToldMe 
+duplicates <- duplicates %>% filter(!(day==7 & question=="whoToldMe"))
+
+duplicates <- merge(duplicates, cohort2_day7_results)
+number_of_dup <- nrow(duplicates)
+cat("Total number of duplicates:", number_of_dup)
+```
+
+## Missing Answers
+### 4. Get missing answers
+```{r}
+# remove none compulsory questions
+day7_optional <- c("walkathonSteps", "whoToldMe", "math1Answer", "math2Answer", "math3Answer", "math4Answer", "math5Answer")
+cohort2_day7_results_compulsory <- cohort2_day7_results %>% filter(!question %in% day7_optional)
+cohort2_day7_results_compulsory
+
+# count number of questions on day 7 for each user
+count_qn_no <- cohort2_day7_results_compulsory %>%
+  arrange(user_id, day) %>%
+  group_by(user_id, day) %>%
+  count() %>%
+  spread(key = day, value = n)
+names(count_qn_no) <- c("user_id", "d7")
+count_qn_no
+
+# check if any is missing (less than 8 answers)
+count_qn_no_missing <- filter(count_qn_no, d7 < 8)
+number_of_missing <- nrow(count_qn_no_missing)
+cat("Total number of missing answers:", number_of_missing)
+```
