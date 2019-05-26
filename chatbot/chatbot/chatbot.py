@@ -26,10 +26,10 @@ todo = input("\nWhat to do (6PM / 10PM) ?\n")
 cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
-cohort_to_send = 1
-todo_day7 = (now.strftime("%m/%d/%Y") == "05/25/2019")
+cohort_to_send = 2
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")
 todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")
-cohort_day7 = datetime(2019, 5, 25)
+cohort_day7 = datetime(2019, 5, 26)
 cohort_day8 = datetime(2019, 6, 8)
 
 # Assign probability for each treament group, sum to 1
@@ -280,6 +280,8 @@ if todo == "6PM":
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['user_id'] >= 1882385] # Turn this on For test with Zixin
 
     # drop all users who have not completed day 6 after day 7 is sent
+    if now = cohort_day7:
+        sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['day'] > 7]
     if now > cohort_day7:
         sorted_acts_r = sorted_acts_r.loc[sorted_acts_r['day'] >= 7]
 
