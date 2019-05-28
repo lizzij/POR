@@ -27,14 +27,16 @@ cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
 cohort_to_send = 2
-# todo_day7 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 7,
-todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")
-# todo_day8 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 8
-todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")
+
+# todo_day7 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 7
 # cohort_day7 = datetime(2019, 5, 27)                    # uncomment this line & change to today's date to test day 7
-cohort_day7 = datetime(2019, 5, 26)
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")   # comment out this line to test day 7
+cohort_day7 = datetime(2019, 5, 26)                      # comment out this line to test day 7
+
+# todo_day8 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 8
 # cohort_day8 = datetime(2019, 5, 27)                    # uncomment this line & change to today's date to test day 8
-cohort_day8 = datetime(2019, 6, 8)
+todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")   # comment out this line to test day 8
+cohort_day8 = datetime(2019, 6, 8)                       # comment out this line to test day 8
 
 
 
