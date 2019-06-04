@@ -101,13 +101,23 @@ bot.enable_puid('wxpy_puid.pkl')
 # auto accept friend request
 @bot.register(msg_types=FRIENDS)
 def auto_accept_friends(msg):
-    # Accept request
+
+    ## Accept request
     new_friend = msg.card.accept()
+    nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
+    print(nextUserID)
 
-    # Get wxid (assuming that this is the unique ID we can use)
-    userName = new_friend.user_name[1:]
+    ## Deal with too many users in a cohort
+    users = get_users()
+    cohortCount = int(len(users.loc[users.cohort == cohort])/9)
+    if cohortCount > 120:
+        new_friend.send("Current round of recruitment is finished. We will message you as soon as the next round begins!") ## Please write this in Chinese?
+        new_friend.set_remark_name("WL_"+str(nextUserID))
+    else:
+        ## Get wxid (assuming that this is the unique ID we can use)
+        userName = new_friend.user_name[1:]
 
-    # Check whether existing user (TO-DO)
+    # Check whether existing user TODO
 
     # Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
