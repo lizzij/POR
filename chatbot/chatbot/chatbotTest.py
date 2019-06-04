@@ -17,13 +17,16 @@ from random import randint, uniform
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 # Test? (YES / NO)
-test = input("\nAre you testing (YES / NO) ?\n")
+# test = input("\nAre you testing (YES / NO) ?\n")
+test = 'NO'
 
 # What to do? (6PM / 10PM)
-todo = input("\nWhat to do (6PM / 10PM) ?\n")
+# todo = input("\nWhat to do (6PM / 10PM) ?\n")
+todo = '6PM'
 
 # Which cohort?
-cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
+# cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
+cohort = '2'
 
 # If to send out day 7 and day 8
 cohort_to_send = 2
@@ -38,8 +41,8 @@ cohort_day7 = datetime(2019, 5, 26)                      # comment out this line
 todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")   # comment out this line to test day 8
 cohort_day8 = datetime(2019, 6, 8)                       # comment out this line to test day 8
 
-
-
+# before walkathon on day 8
+send_before_walkathon = True
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -74,6 +77,10 @@ URLmessage.append(u'  今天是调研第五天。 请点击下面的链接开始
 URLmessage.append(u'  今天是调研第六天，今天的调研问卷会比平时稍长一些。 但我们将涵盖更多精彩的活动，其中包括我们自己举办的活动！ 我们非常重视今天的调研，所以请您花些时间仔细回答每个问题。')
 URLmessage.append(u'  好久不见！今天是调研的第7天。我们就快要完成所有调研了！')
 URLmessage.append(u'  今天是调研的最后一天。 如果您完成今天的简短问卷，您将有赢得800元人民币的机会。我们还将向您提供哈佛大学研究员出具的参与证明。')
+installWeRun = u'在您的手机上开启微信运动：请您点击开启。\
+- 您可以打开“进入我的主页”选项查看自己的当前步数\n\
+- 每晚十点，微信运动将发送您当天的步数排行和您微信好友的步数。您可以看到所有开启微信运动好友的每日步数\
+- 我们将以您微信运动上的步数作为活动当天您的步行结果。'
 
 # Get current list of activities, as pandas dataframe
 def get_activities():
@@ -94,6 +101,19 @@ def get_users():
     soup = BeautifulSoup(page, "html.parser")
     divList = soup.findAll('div', attrs={"class" : "list"})
     data=','.join(['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'])
+    for div in divList:
+        data = data + '\n' + ' '.join(div.text.split())
+    csv_data = StringIO(data)
+    df = pd.read_csv(csv_data)
+    df = df[pd.notnull(df['user_id'])]
+    df['user_id']=df['user_id'].astype(int)
+    return df
+
+def get_results():
+    page = requests.get("https://dailyeventinfo.com/allResults").text
+    soup = BeautifulSoup(page, "html.parser")
+    divList = soup.findAll('div', attrs={"class" : "about"})
+    data=','.join(['user_id', 'day', 'question_id', 'result', 'created'])
     for div in divList:
         data = data + '\n' + ' '.join(div.text.split())
     csv_data = StringIO(data)
@@ -189,6 +209,51 @@ def sendDayEight():
         #         requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_day8_n['user_id'].iloc[i]))+"/"+str(8)+"/0/0/0/0")
         #     except IndexError:
         #         print('cannot find user',wechat_id,'...')
+##############################################################################################
+
+##############################################################################################
+# for walkathon
+def get_walkathon_list():
+    # get users with walkathonSteps > 0 from day 6
+    results = get_results()
+    results_day6 = results.loc[results['day'] == 6]
+    walkathon_steps = results_day6.loc[results_day6['question_id'] == 'walkathonSteps']
+    walkathon_list = walkathon_steps.loc[walkathon_steps['result'].astype(int) > 0]
+    return walkathon_list
+
+def send_before_walkathon():
+    if send_before_walkathon:
+        walkathon_list = get_walkathon_list()
+        print(walkathon_list)
+
+#         for i in range(walkathon_list.shape[0]):
+#             wechat_id = walkathon_list.iloc[i]['user_id']
+#             step = walkathon_list.iloc[i]['result']
+#             donation = float(step) * 0.002
+#             wechat_id = walkathon_list.iloc[i]['user_id']
+#
+#             try:
+#                 my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+#                 print('sending pre-walkathon message to',wechat_id,'...')
+#                 step = walkathon_list.iloc[i]['result']
+#                 donation = step * 0.002
+#                 beforeWalkathon = u'明天将是“儿童慈善徒步活动”的一天！ 您曾经承诺走 {0} 步。\
+# 如果您步行超过 {0} 步，我们将捐赠 {1} 元人民币给上海联合基金会，这笔钱将用于支持贫困儿童成长。\
+# 以下是关于如何参加活动的指引链接。 如果您还没有开启微信运动，您需要在手机上进行开启——别担心，这很容易！'.format(step, donation)
+#                 my_friend.send(beforeWalkathon)
+#
+#                 # send WeRun-WeChat name card
+#                 my_friend.send_raw_msg(
+#                 raw_type=42,
+#                 # bot must be friend with WeRun-WeChat
+#                 raw_content='<msg username="WeRun-WeChat" nickname="微信运动"/>'
+#                 )
+#                 time.sleep(2)
+#                 my_friend.send(installWeRun)
+#             except IndexError:
+#                 print('cannot find user',wechat_id,'...')
+#
+# afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
 ##############################################################################################
 
 ##############################################################################################
