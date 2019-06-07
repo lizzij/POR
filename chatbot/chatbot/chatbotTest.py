@@ -17,32 +17,25 @@ from random import randint, uniform
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 # Test? (YES / NO)
-# test = input("\nAre you testing (YES / NO) ?\n")
-test = 'NO'
+test = input("\nAre you testing (YES / NO) ?\n")
 
 # What to do? (6PM / 10PM)
-# todo = input("\nWhat to do (6PM / 10PM) ?\n")
-todo = '6PM'
+todo = input("\nWhat to do (6PM / 10PM / pre-walkathon) ?\n")
+if todo == "pre-walkathon":
+    walkathon_cohort = input("\nSend pre-walkathon instrcutions to which cohort (1 ... ∞) ?\n")
 
 # Which cohort?
-# cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
-cohort = '2'
+cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 
 # If to send out day 7 and day 8
 cohort_to_send = 2
+todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")
+cohort_day7 = datetime(2019, 5, 26)
+cohort_day8 = datetime(2019, 6, 8)
 
-# todo_day7 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 7
-# cohort_day7 = datetime(2019, 5, 27)                    # uncomment this line & change to today's date to test day 7
-todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")   # comment out this line to test day 7
-cohort_day7 = datetime(2019, 5, 26)                      # comment out this line to test day 7
-
-# todo_day8 = (now.strftime("%m/%d/%Y") == "05/27/2019") # uncomment this line & change to today's date to test day 8
-# cohort_day8 = datetime(2019, 5, 27)                    # uncomment this line & change to today's date to test day 8
-todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")   # comment out this line to test day 8
-cohort_day8 = datetime(2019, 6, 8)                       # comment out this line to test day 8
-
-# before walkathon on day 8
-send_before_walkathon = True
+# If to send out before walkathon on day 8 8am - 9am TODO change time
+# send_before_walkathon =  (now.strftime("%m/%d/%Y %H") == "06/08/2019 08")
 
 # Assign probability for each treament group, sum to 1
 treat_no = [1, 2, 3, 4, 5]
@@ -69,6 +62,11 @@ same_day_reminder = u'  看上去您还没有完成今天的调研。 请您点�
 next_day_reminder = u'  您没有完成昨天的调查。我们理解您可能有别的事在忙。我们将再给您一整天的时间来完成昨天的调研。\
 如您所知，只有在完成所有8天 的调研后，您才有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员的参与证明。这里是链接！'
 reminder = u'  看上去您还没有完成今天的调研。 请您点击链接，参与不到五分钟的调研。'
+installWeRun = u'在您的手机上开启微信运动：请您点击开启。\n\
+- 您可以打开“进入我的主页”选项查看自己的当前步数\n\
+- 每晚十点，微信运动将发送您当天的步数排行和您微信好友的步数。您可以看到所有开启微信运动好友的每日步数\n\
+- 我们将以您微信运动上的步数作为活动当天您的步行结果。'
+# afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
 URLmessage = [u'',u'']
 URLmessage.append(u'  今天是调研第二天。 请点击下面的链接开始，同时了解另一个精彩的本地活动。 这是一条自动消息。')
 URLmessage.append(u'  今天是调研第三天。 请点击下面的链接开始，同时了解另一个精彩的本地活动。 这是一条自动消息。')
@@ -77,10 +75,6 @@ URLmessage.append(u'  今天是调研第五天。 请点击下面的链接开始
 URLmessage.append(u'  今天是调研第六天，今天的调研问卷会比平时稍长一些。 但我们将涵盖更多精彩的活动，其中包括我们自己举办的活动！ 我们非常重视今天的调研，所以请您花些时间仔细回答每个问题。')
 URLmessage.append(u'  好久不见！今天是调研的第7天。我们就快要完成所有调研了！')
 URLmessage.append(u'  今天是调研的最后一天。 如果您完成今天的简短问卷，您将有赢得800元人民币的机会。我们还将向您提供哈佛大学研究员出具的参与证明。')
-installWeRun = u'在您的手机上开启微信运动：请您点击开启。\
-- 您可以打开“进入我的主页”选项查看自己的当前步数\n\
-- 每晚十点，微信运动将发送您当天的步数排行和您微信好友的步数。您可以看到所有开启微信运动好友的每日步数\
-- 我们将以您微信运动上的步数作为活动当天您的步行结果。'
 
 # Get current list of activities, as pandas dataframe
 def get_activities():
@@ -127,17 +121,27 @@ def get_results():
 # bot.enable_puid('wxpy_puid.pkl')
 
 
-##############################################################################################
-# auto accept friend request
+# ##############################################################################################
+# # auto accept friend request
 # @bot.register(msg_types=FRIENDS)
 # def auto_accept_friends(msg):
-#     # Accept request
+#
+#     ## Accept request
 #     new_friend = msg.card.accept()
+#     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
+#     print(nextUserID)
 #
-#     # Get wxid (assuming that this is the unique ID we can use)
-#     userName = new_friend.user_name[1:]
+#     ## Deal with too many users in a cohort
+#     users = get_users()
+#     cohortCount = int(len(users.loc[users.cohort == cohort])/9)
+#     if cohortCount > 120:
+#         new_friend.send("Current round of recruitment is finished. We will message you as soon as the next round begins!") ## Please write this in Chinese?
+#         new_friend.set_remark_name("WL_"+str(nextUserID))
+#     else:
+#         ## Get wxid (assuming that this is the unique ID we can use)
+#         userName = new_friend.user_name[1:]
 #
-#     # Check whether existing user (TO-DO)
+#     # Check whether existing user TODO
 #
 #     # Create hashes for the new user, save in user db, create new activity
 #     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
@@ -214,46 +218,47 @@ def sendDayEight():
 ##############################################################################################
 # for walkathon
 def get_walkathon_list():
-    # get users with walkathonSteps > 0 from day 6
+    # get users with walkathonSteps > 0 from day 7
     results = get_results()
-    results_day6 = results.loc[results['day'] == 6]
-    walkathon_steps = results_day6.loc[results_day6['question_id'] == 'walkathonSteps']
+    results_day7 = results.loc[results['day'] == 7]
+    walkathon_steps = results_day7.loc[results_day7['question_id'] == 'walkathonSteps']
     walkathon_list = walkathon_steps.loc[walkathon_steps['result'].astype(int) > 0]
-    return walkathon_list
+    users = get_users()
+    cohort_users = users.loc[users['cohort'] == int(walkathon_cohort)]
+    cohort_walkathon_list = pd.merge(walkathon_list, cohort_users, on=['user_id','day'])
+    return cohort_walkathon_list
 
-def send_before_walkathon():
-    if send_before_walkathon:
-        walkathon_list = get_walkathon_list()
-        print(walkathon_list)
+if todo == "pre-walkathon":
+    print("\n\n====================== Now it's day 8! Sending walkathon instructions ======================\n")
+    walkathon_list = get_walkathon_list()
+    print(walkathon_list)
 
-#         for i in range(walkathon_list.shape[0]):
-#             wechat_id = walkathon_list.iloc[i]['user_id']
-#             step = walkathon_list.iloc[i]['result']
-#             donation = float(step) * 0.002
-#             wechat_id = walkathon_list.iloc[i]['user_id']
-#
-#             try:
-#                 my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-#                 print('sending pre-walkathon message to',wechat_id,'...')
-#                 step = walkathon_list.iloc[i]['result']
-#                 donation = step * 0.002
-#                 beforeWalkathon = u'明天将是“儿童慈善徒步活动”的一天！ 您曾经承诺走 {0} 步。\
+    for i in range(walkathon_list.shape[0]):
+        wechat_id = walkathon_list.iloc[i]['user_id']
+        step = walkathon_list.iloc[i]['result']
+        donation = float(step) * 0.002
+        wechat_id = walkathon_list.iloc[i]['user_id']
+
+        try:
+            # my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            # step = walkathon_list.iloc[i]['result']
+            # donation = step * 0.002
+            print('sending pre-walkathon message to',wechat_id,':', step, 'steps, ￥', donation)
+#             beforeWalkathon = u'明天将是“儿童慈善徒步活动”的一天！ 您曾经承诺走 {0} 步。\
 # 如果您步行超过 {0} 步，我们将捐赠 {1} 元人民币给上海联合基金会，这笔钱将用于支持贫困儿童成长。\
 # 以下是关于如何参加活动的指引链接。 如果您还没有开启微信运动，您需要在手机上进行开启——别担心，这很容易！'.format(step, donation)
-#                 my_friend.send(beforeWalkathon)
+#             my_friend.send(beforeWalkathon)
 #
-#                 # send WeRun-WeChat name card
-#                 my_friend.send_raw_msg(
-#                 raw_type=42,
-#                 # bot must be friend with WeRun-WeChat
-#                 raw_content='<msg username="WeRun-WeChat" nickname="微信运动"/>'
-#                 )
-#                 time.sleep(2)
-#                 my_friend.send(installWeRun)
-#             except IndexError:
-#                 print('cannot find user',wechat_id,'...')
-#
-# afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
+#             # send WeRun-WeChat name card
+#             my_friend.send_raw_msg(
+#             raw_type=42,
+#             # bot must be friend with WeRun-WeChat
+#             raw_content='<msg username="WeRun-WeChat" nickname="微信运动"/>'
+#             )
+#             time.sleep(2)
+#             my_friend.send(installWeRun)
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
 ##############################################################################################
 
 ##############################################################################################
