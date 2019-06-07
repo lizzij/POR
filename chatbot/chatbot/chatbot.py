@@ -119,7 +119,7 @@ def exclude_dropout(all_users):
     # for day 6 and 7, drop if > 14 + 3 = 17 days
     # dropout_2wks = last_results.loc[np.logical_and(last_results.day.isin([6,7]), last_results.duration > timedelta(days=17))] # TODO enable later
     # valid_users = valid_users[~valid_users.user_id.isin(dropout_2wks['user_id'].tolist())]
-    # return valid_users
+    return valid_users
 
 def exclude_completed(all_users):
     activities = get_activities()

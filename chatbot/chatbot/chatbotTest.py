@@ -30,9 +30,9 @@ cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
 # If to send out day 7 and day 8
 cohort_to_send = 2
 todo_day7 = (now.strftime("%m/%d/%Y") == "05/26/2019")
-todo_day8 = (now.strftime("%m/%d/%Y") == "06/08/2019")
+todo_day8 = (now.strftime("%m/%d/%Y") == "06/07/2019")
 cohort_day7 = datetime(2019, 5, 26)
-cohort_day8 = datetime(2019, 6, 8)
+cohort_day8 = datetime(2019, 6, 7)
 
 # If to send out before walkathon on day 8 8am - 9am TODO change time
 # send_before_walkathon =  (now.strftime("%m/%d/%Y %H") == "06/08/2019 08")
@@ -119,7 +119,7 @@ def exclude_dropout(all_users):
     # for day 6 and 7, drop if > 14 + 3 = 17 days
     # dropout_2wks = last_results.loc[np.logical_and(last_results.day.isin([6,7]), last_results.duration > timedelta(days=17))] # TODO enable later
     # valid_users = valid_users[~valid_users.user_id.isin(dropout_2wks['user_id'].tolist())]
-    # return valid_users
+    return valid_users
 
 def exclude_completed(all_users):
     activities = get_activities()
