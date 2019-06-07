@@ -20,9 +20,9 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 test = input("\nAre you testing (YES / NO) ?\n")
 
 # What to do? (6PM / 10PM)
-todo = input("\nWhat to do (6PM / 10PM / pre-walkathon) ?\n")
-if todo == "pre-walkathon":
-    walkathon_cohort = input("\nSend pre-walkathon instrcutions to which cohort (1 ... ∞) ?\n")
+todo = input("\nWhat to do (6PM / 10PM / pre-walkathon / post-walkathon) ?\n")
+if todo == "pre-walkathon" or todo == "post-walkathon" :
+    walkathon_cohort = input("\nSend walkathon messsages to which cohort (1 ... ∞) ?\n")
 
 # Which cohort?
 cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
@@ -66,7 +66,6 @@ installWeRun = u'在您的手机上开启微信运动：请您点击开启。\n\
 - 您可以打开“进入我的主页”选项查看自己的当前步数\n\
 - 每晚十点，微信运动将发送您当天的步数排行和您微信好友的步数。您可以看到所有开启微信运动好友的每日步数\n\
 - 我们将以您微信运动上的步数作为活动当天您的步行结果。'
-# afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
 URLmessage = [u'',u'']
 URLmessage.append(u'  今天是调研第二天。 请点击下面的链接开始，同时了解另一个精彩的本地活动。 这是一条自动消息。')
 URLmessage.append(u'  今天是调研第三天。 请点击下面的链接开始，同时了解另一个精彩的本地活动。 这是一条自动消息。')
@@ -229,7 +228,7 @@ def get_walkathon_list():
     return cohort_walkathon_list
 
 if todo == "pre-walkathon":
-    print("\n\n====================== Now it's day 8! Sending walkathon instructions ======================\n")
+    print("\n\n==================== Now it's day 8! Sending pre-walkathon instructions ====================\n")
     walkathon_list = get_walkathon_list()
     print(walkathon_list)
 
@@ -259,6 +258,28 @@ if todo == "pre-walkathon":
 #             my_friend.send(installWeRun)
         except IndexError:
             print('cannot find user',wechat_id,'...')
+
+if todo == "post-walkathon":
+    print("\n\n========================= Now it's day 8! Sending post-walkathon message ===================\n")
+    walkathon_list = get_walkathon_list()
+    print(walkathon_list)
+
+    for i in range(walkathon_list.shape[0]):
+        wechat_id = walkathon_list.iloc[i]['user_id']
+        step = walkathon_list.iloc[i]['result']
+        donation = float(step) * 0.002
+        wechat_id = walkathon_list.iloc[i]['user_id']
+        actual_step = input("{0} number of steps?  ".format(wechat_id))
+        if int(actual_step) >= int(step):
+            try:
+                # my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+                # step = walkathon_list.iloc[i]['result']
+                # donation = step * 0.002
+                print('--> reached', step, 'sending msg to',wechat_id,':', step, 'steps, ￥', donation)
+                # afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
+                # my_friend.send(afterWalkathon)
+            except IndexError:
+                print('cannot find user',wechat_id,'...')
 ##############################################################################################
 
 ##############################################################################################
