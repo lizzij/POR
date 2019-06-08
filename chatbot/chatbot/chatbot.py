@@ -19,10 +19,10 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 # Test? (YES / NO)
 test = input("\nAre you testing (YES / NO) ?\n")
 
-# What to do? (6PM / 10PM)
-todo = input("\nWhat to do (6PM / 10PM / pre-walkathon) ?\n")
-if todo == "pre-walkathon":
-    walkathon_cohort = input("\nSend pre-walkathon instrcutions to which cohort (1 ... ∞) ?\n")
+# What to do? (6PM / 10PM / pre-walkathon / post-walkathon)
+todo = input("\nWhat to do (6PM / 10PM / pre-walkathon / post-walkathon) ?\n")
+if todo == "pre-walkathon" or todo == "post-walkathon" :
+    walkathon_cohort = input("\nSend walkathon messsages to which cohort (1 ... ∞) ?\n")
 
 # Which cohort?
 cohort = input("\nAdd new users to which cohort (1 ... ∞) ?\n")
@@ -258,20 +258,17 @@ def get_walkathon_list():
     return cohort_walkathon_list
 
 if todo == "pre-walkathon":
-    print("\n\n====================== Now it's day 8! Sending walkathon instructions ======================\n")
+    print("\n\n==================== Now it's day 8! Sending pre-walkathon instructions ====================\n")
     walkathon_list = get_walkathon_list()
     print(walkathon_list)
 
     for i in range(walkathon_list.shape[0]):
         wechat_id = walkathon_list.iloc[i]['user_id']
-        step = walkathon_list.iloc[i]['result']
-        donation = float(step) * 0.002
-        wechat_id = walkathon_list.iloc[i]['user_id']
 
         try:
             my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
             step = walkathon_list.iloc[i]['result']
-            donation = step * 0.002
+            donation = float(step) * 0.002
             print('sending pre-walkathon message to',wechat_id,':', step, 'steps, ￥', donation)
             beforeWalkathon = u'明天将是“儿童慈善徒步活动”的一天！ 您曾经承诺走 {0} 步。\
 如果您步行超过 {0} 步，我们将捐赠 {1} 元人民币给上海联合基金会，这笔钱将用于支持贫困儿童成长。\
@@ -288,6 +285,29 @@ if todo == "pre-walkathon":
             my_friend.send(installWeRun)
         except IndexError:
             print('cannot find user',wechat_id,'...')
+
+if todo == "post-walkathon":
+    print("\n\n========================= Now it's day 8! Sending post-walkathon message ===================\n")
+    walkathon_list = get_walkathon_list()
+    print(walkathon_list)
+
+    for i in range(walkathon_list.shape[0]):
+        wechat_id = walkathon_list.iloc[i]['user_id']
+        step = walkathon_list.iloc[i]['result']
+        donation = float(step) * 0.002
+        actual_step = input("{0} number of steps?  ".format(wechat_id))
+
+        if int(actual_step) >= int(step):
+            try:
+                my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+                step = walkathon_list.iloc[i]['result']
+                donation = step * 0.002
+                print('--> reached', step, 'sending msg to',wechat_id,':', step, 'steps, ￥', donation)
+                afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
+                my_friend.send(afterWalkathon)
+                time.sleep(2)
+            except IndexError:
+                print('cannot find user',wechat_id,'...')
 ##############################################################################################
 
 ##############################################################################################

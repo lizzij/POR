@@ -19,7 +19,7 @@ now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 # Test? (YES / NO)
 test = input("\nAre you testing (YES / NO) ?\n")
 
-# What to do? (6PM / 10PM)
+# What to do? (6PM / 10PM / pre-walkathon / post-walkathon)
 todo = input("\nWhat to do (6PM / 10PM / pre-walkathon / post-walkathon) ?\n")
 if todo == "pre-walkathon" or todo == "post-walkathon" :
     walkathon_cohort = input("\nSend walkathon messsages to which cohort (1 ... ∞) ?\n")
@@ -266,7 +266,6 @@ if todo == "pre-walkathon":
         wechat_id = walkathon_list.iloc[i]['user_id']
         step = walkathon_list.iloc[i]['result']
         donation = float(step) * 0.002
-        wechat_id = walkathon_list.iloc[i]['user_id']
 
         try:
             # my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
@@ -303,8 +302,8 @@ if todo == "post-walkathon":
         if int(actual_step) >= int(step):
             try:
                 # my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
-                # step = walkathon_list.iloc[i]['result']
-                # donation = step * 0.002
+                step = walkathon_list.iloc[i]['result']
+                donation = step * 0.002
                 print('--> reached', step, 'sending msg to',wechat_id,':', step, 'steps, ￥', donation)
                 # afterWalkathhon = u'感谢您的参与——您走了 {0} 步，超过您的承诺步数。 感谢您，我们将捐赠 {1} 人民币给上海联合基金会。'.format(step, donation)
                 # my_friend.send(afterWalkathon)
