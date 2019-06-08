@@ -50,7 +50,8 @@ def duration_till_now(then):
 
 def exclude_dropout(all_users):
     # dropout after 6 reminders (including 6PM and 10PM)
-    # i.e., now - last survey result timestamp > 3 days
+    # i.e., now - last survey result timestamp > 3 days or,
+    #       now - activity timestamp > 10 hours
     results = get_results()
     last_results = results.drop_duplicates(subset='user_id', keep='last')
     last_results = last_results.assign(duration=last_results['created'].apply(duration_till_now))
@@ -58,9 +59,15 @@ def exclude_dropout(all_users):
     dropout_day = last_results.loc[np.logical_and(last_results.day.isin([1,2,3,4,5,8]), last_results.duration > timedelta(days=3))]
     valid_users = all_users[~all_users.user_id.isin(dropout_day['user_id'].tolist())]
     # for day 6 and 7, drop if > 14 + 3 = 17 days
-    dropout_2wks = last_results.loc[np.logical_and(last_results.day.isin([6,7]), last_results.duration > timedelta(days=17))]
-    non_dropouts = valid_users[~valid_users.user_id.isin(dropout_2wks['user_id'].tolist())]
-    return non_dropouts
+    # dropout_2wks = last_results.loc[np.logical_and(last_results.day.isin([6,7]), last_results.duration > timedelta(days=17))] # TODO enable later
+    # valid_users = valid_users[~valid_users.user_id.isin(dropout_2wks['user_id'].tolist())]
+    # still drop user if attemp after 6pm (day after 6th reminder is sent)
+    activities = get_activities()
+    last_acitivites = activities.assign(duration=activities['curr_time'].apply(duration_till_now))
+    # for day 1-5 & 8, drop if > 10 hours
+    dropout_overdue = last_acitivites.loc[np.logical_and(last_acitivites.day.isin([1,2,3,4,5,8]), last_acitivites.duration > timedelta(hours=10))]
+    valid_users = valid_users[~valid_users.user_id.isin(dropout_overdue['user_id'].tolist())]
+    return valid_users
 
 def exclude_completed(all_users):
     activities = get_activities()
