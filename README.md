@@ -3,7 +3,8 @@ A project to investigate the power of repetition in Chinese media.
 
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
-## Research Questions:
+## Research Questions
+**Read [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
 - In a real-world context of nondemocratic regimes, is repetition by multiple sources effective in persuading people?
 - Which design aspects of repetitive message are effective in persuading people?
   - Mere repetition? T1 vs. T2.S
@@ -16,12 +17,12 @@ A project to investigate the power of repetition in Chinese media.
   	With crowd-out info, harder to get exposed to the source of info (more persuasion)
 - Are there ways to counter such persuasion?
 
-**Read [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
-
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/TreatmentGroup.png" alt="treatment group" width="500"/>
+<p align="center">
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/TreatmentGroup.png" alt="treatment group" width="500"/>
+</p>
 
 ## Process
-###### Task management using [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) and [Trello]() (private).
+###### Collaboration & task management using [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) and [trello](https://trello.com/b/2kwmft8O/chinamedia) (private).
 ### Chatbot
 ###### Use Chatbot to distribute webpage links and reminders to 2000 participants
 - [x] Setup Wechat account API base on Wechat Protocol and package capture.
@@ -35,15 +36,18 @@ A project to investigate the power of repetition in Chinese media.
     - [x] test passed! :tada: 300 messages in 10 minute (2 sec gaps in between)
     - [x] test passed! :tada: 500 messages in 60 minute (7.2 sec gaps in between)
 - [x] Notification system
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Notifications.png" alt="Notification system logic" width="700"/>
-
+<p align="center">
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Notifications.png" alt="Notification system logic" width="700"/>
+</p>
 
 ### Database
 ###### mySQL
 - [x] Setup mySQL database
 - [x] Connect with website for Id, input
 - [x] Database design
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="800"/>
+<p align="center">
+  <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/Database.png" alt="Database design" width="800"/>
+</p>
 
 ### Website
 ###### Unique hashed links to information page, leading to survey page
@@ -106,5 +110,5 @@ A project to investigate the power of repetition in Chinese media.
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP5.png" alt="surveyP5" width="280"/>
   </p>
 
-## Demo (ongoing...)
-Navigate to [media dir](https://github.com/lizzij/PowerOfRepetition/tree/master/media) for detailed Readme and demo links.
+## Demo
+Navigate to [media dir](https://github.com/lizzij/PowerOfRepetition/tree/master/media) for instructions and demo links.
