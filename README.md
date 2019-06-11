@@ -3,7 +3,7 @@ A project to investigate the power of repetition in Chinese media.
 
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
-## Research questions & analysis plan:
+## Research Questions:
 - In a real-world context of nondemocratic regimes, is repetition by multiple sources effective in persuading people?
 - Which design aspects of repetitive message are effective in persuading people?
   - Mere repetition? T1 vs. T2.S
@@ -16,12 +16,12 @@ A project to investigate the power of repetition in Chinese media.
   	With crowd-out info, harder to get exposed to the source of info (more persuasion)
 - Are there ways to counter such persuasion?
 
-Read [46 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.
+**Read [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
 
-<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/TreatmentGroup.png" alt="treatment group"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/TreatmentGroup.png" alt="treatment group" width="500"/>
 
 ## Process
-###### Task management using [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) and Trello (private).
+###### Task management using [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) and [Trello]() (private).
 ### Chatbot
 ###### Use Chatbot to distribute webpage links and reminders to 2000 participants
 - [x] Setup Wechat account API base on Wechat Protocol and package capture.
@@ -106,5 +106,5 @@ Read [46 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJ
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP5.png" alt="surveyP5" width="280"/>
   </p>
 
-## Demo
-Navigate to media dir
+## Demo (ongoing...)
+Navigate to [media dir](https://github.com/lizzij/PowerOfRepetition/tree/master/media) for detailed Readme and demo links.
