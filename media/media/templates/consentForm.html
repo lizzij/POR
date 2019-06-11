@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="consentForm" content="同意书">
+  <meta property="og:image" content="../img/ShanghaiIcon.png">
+
+  <title>同意书</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/consentForm.css') }}">
+  <!-- favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+</head>
+
+<!-- Title -->
+
+<body>
+  <div id="alert">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class=flashes>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <div>{{ message }}</div>
+              </div>
+            </div>
+            <script>
+              // Get the modal
+              var modal = document.getElementById('myModal');
+
+              // Get the <span> element that closes the modal
+              var span = document.getElementsByClassName("close")[0];
+
+              modal.style.display = "block";
+
+              // When the user clicks on <span> (x), close the modal
+              span.onclick = function() {
+                modal.style.display = "none";
+              }
+
+              // When the user clicks anywhere outside of the modal, close it
+              window.onclick = function(event) {
+                if (event.target == modal) {
+                  modal.style.display = "none";
+                }
+              }
+            </script>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+  <div class="survey">
+    <header>
+      <div class="title">
+        <div id="eventName">知情同意书</div>
+      </div>
+    </header>
+    <div class="question">
+      <div class="note">
+        <pre>
+<b>研究项目：</b>上海市大学生调研
+
+<b>项目负责人：</b>哈佛大学白洁教授，东北大学赵东熙教授，西北大学钱楠筠教授。
+
+<b>项目支持机构：</b>西北大学
+
+<b>项目重要信息：</b>
+以下是关于本研究的简短介绍，来帮助您了解项目、并决定是否参与其中。本研究的目的是了解信息如何影响人们的日常行为决策。您将参与八次调研，持续时长约一个月。参与调研的风险是数据能否被严格保密，我们将在后续仔细阐明。在完成所有调研的参与者（约2000人）中，我们将随机选出20人，每人奖励800元。
+
+<b>为什么我被邀请参与这项调研？</b>
+我们邀请您参与调研因为您是已成年的上海市大学生。
+
+<b>多少人将参与这项调研？</b>
+约2000人将成为调研对象。
+
+<b>有哪些关于调研的注意事项？</b>
+- 是否参与调研完全取决于您自己的意愿
+- 您可以选择不参与调研
+- 您也可以在同意后，改变主意放弃参与
+- 您的决定不会损害您的任何利益
+- 在您决定前，您可以联系我们提问
+
+<b>如果我同意参与调研，将会有哪些内容？</b>
+我们将在连续的六天内向您提供有关上海当地户外活动的信息。在提供信息后的每一天，我们会向您了解一些问题。六天调研结束后，我们会在两周内、四周内再向您进行其他两次关于后续问题的调研。调研问卷或内容将以微信通知的形式发送给您。每次调研完成时间大约需要3-10分钟。调研将采取线上的形式，您无需与其他人线下互动。
+
+<b>参与本调研的风险是什么？</b>
+我们尽最大努力为您的调研记录保密。我们使用Vultr服务器的MySQL数据库来存储您的问卷和个人信息。我们使用严格方式保密您的个人记录，包括: （1）阻止远程登录的访问权限（2）防火墙（3）利用登录失败之间的延时来阻止黑客的恶意攻击（4）定期安全更新。所有数据传输都将通过超文本传输安全协定进行加密，您的个人信息与您的调研问卷将保持完全独立。调研结束后，您的个人身份信息将会被完全销毁。
+
+<b>拒绝参与调研的权利</b>
+参与调研完全取决您自己。我们将会向您发送微信消息进行询问，每天不超过两条。
+
+<b>退出参与调研的权利</b>
+您可以随时在调研中途退出，您的一切利益不会受到任何影响。但如果您决定退出，您将失去赢取800元人民币的机会。在您决定退出之后，请联系调研员，以便严密保存您的相关信息直至销毁。
+
+<b>调研收集的数据用途为？</b>
+我们尽最大努力来使您个人信息被使用程度最小化，包括研究以及需要审核数据的机构。因此我们并不能保证您的数据100%保密。可能使用您数据的机构包括：西北大学伦理审查委员会，和来自西北大学、哈佛大学、东北大学的研究员代表。
+在您的信息被用作研究或共享给未来研究项目之前，您的身份编码信息将被移除。
+
+<b>数据共享</b>
+在移除掉您的身份编码信息后，调研数据或被用与其他研究团队共享，以用于科学研究。我们将确保在共享之前，代表您个人身份的编码信息被完全销毁——没有人能通过共享的信息识别到您本人身份。尽管有这些措施，我们不能保证您的数据100%匿名。
+
+<b>未经同意，我的调研问卷记录会被删除吗？</b>
+研究负责人有权在未经您同意的情况下删除您的调研记录。可能的原因包括：您的调研完成度较低、您在调研上花费的精力/时间未能达到预期、以及一些旨在鼓励您完成调研的问题记录。
+
+<b>如果我有问题或困难，该与谁联系？</b>
+如果您有任何与调研相关的问题、忧虑或投诉，可以通过邮件与项目组联系：白洁教授 (jie_bai@hks.harvard.edu), 赵东熙教授(d.jo@northeastern.edu), 钱楠筠教授 (nancy.qian@kellogg.northwestern.edu) 。
+本研究已经通过伦理审查委员会的审核和批准。如果您遇到以下情况，请通过电话 +13125039338或邮件 irb@northwestern.edu 联系伦理审查委员会:
+- 研究团队没有回复您的问题、忧虑或投诉
+- 您无法联系到研究团队
+- 您想与非研究团队的人联系
+- 您对作为调研参与者的权利有疑问
+- 您希望提供与本项目有关的意见和建议
+
+如果您想保留此同意书，您可以将其打印。
+如果您想参与本调研，请点击 “我同意参与” 按钮，您将会进入调研页面。
+如果您不想参与本调研，请点击 “我不同意” 按钮，或点击关闭此浏览界面。
+      </pre>
+    </div>
+    <form lang="zh" action="" method="post">
+      <div class="form-group" style="margin-top: 10px; margin-bottom:0px">
+        <div class="questionAnswer">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="consent" id="proceed" value="proceed" >
+            <label class="form-check-label" for="proceed">
+              我同意参与
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="consent" id="notProceed" value="notProceed" required >
+            <label class="form-check-label" for="notProceed">
+              我不同意
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- next button -->
+    <!-- <div class="nextButton">
+      <input class="button" type="submit" value="下一页" style="color: white; font-size: 14px;">
+      </input>
+    </div> -->
+    <div class="nextButton">
+      <div id="consentNextButton">
+        <button class="button" type="submit" value="下一页">
+          <div id="next">下一页</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- powered by -->
+    <!-- <div id="lizzij"><img src="{{ url_for('static', filename='img/powered by lizzij.png') }}" width="80px"></div> -->
+  </form>
+</div>
+  <!-- <script type=text/javascript src="{{ url_for('static', filename='scripts/consentForm.js') }}"></script> -->
+</body>
+
+</html>

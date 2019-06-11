@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+    <title>完成情况</title>
+  </head>
+  <body>
+    <!-- content -->
+    {% block content %}
+      {% for user in users %}
+        <article class="user">
+          <header>
+            <div>
+              <div class="list">
+                {{ user['user_id'] }},{{ user['day'] }},{{ user['wechat_id'] }},{{ user['cohort'] }},{{ user['treatment'] }},{{ user['user_id_hashid'] }},{{ user['day_hashid'] }}</div>
+            </div>
+          </header>
+      {% endfor %}
+    {% endblock %}
+  </body>
+</html>

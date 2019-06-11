@@ -2,28 +2,14 @@
 <html lang="zh" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>谢谢参与</title>
   </head>
   <body>
-    <!-- header -->
-    {% block header %}
-      <h1>{% block title %}Home{% endblock %}</h1>
-    {% endblock %}
-
-    <!-- content -->
-    {% block content %}
-      {% for user in users %}
-        <article class="user">
-          <header>
-            <div>
-              <div>{{ user['id'] }}</div>
-              <div class="about">by user {{ user['user_id'] }}, with {{ user['wechat_id'] }},
-                 {{ user['treatment'] }}, on day {{ user['day'] }}, result {{ user['result']}}
-                at {{ user['created'].strftime('%Y-%m-%d') }}</div>
-            </div>
-          </header>
-          <p class="body">{{ user['body'] }}</p>
-      {% endfor %}
-    {% endblock %}
+    <div style="display: flex;justify-content: center; align-items: center; ">
+      <img src="{{ url_for('static', filename='img/pinkSpinningHead.gif') }}" width="250px"></div>
+    </div>
+    <div style="display: flex;justify-content: center; align-items: center; margin-right:16px;">
+      <img src="{{ url_for('static', filename='img/powered by lizzij.png') }}" width="80px">
+    </div>
   </body>
 </html>

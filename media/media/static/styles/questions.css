@@ -1,12 +1,11 @@
-body{
+margin-top: -37px;body{
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
-#survey{
+.survey{
   font-family: PingFangHK-Regular, sans-serif;
   padding-top: 40px;
-  position: fixed;
   right: 20px;
   left: 20px;
   margin-right: auto;
@@ -15,14 +14,24 @@ body{
   width: 320px;
 }
 
+.progress{
+  order: -1;
+}
+
+#page1{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .mainQuestion{
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 17px;
-  padding-top: 25px;
+  padding-top: 20px;
 }
 
 .question{
-  padding-top: 25px;
+  padding-top: 20px;
   display: center;
 }
 
@@ -36,6 +45,10 @@ body{
 
 .questionAnswer{
   padding-left: 10px;
+  color: #979797;
+}
+
+.starAnswer{
   color: #979797;
 }
 
@@ -53,14 +66,18 @@ body{
 }
 
 .trustOptionPrompt{
-  padding-top: 10px;
+  padding-top: 5px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 50px;s
 }
 
 .trustOptionText{
-  font-size: 14px;
+  font-size: 15px;
   color: #4F4F4F;
+  font-weight: bold;
 }
 
 .trustOptionEg{
@@ -76,7 +93,7 @@ body{
   flex-direction: row;
   font-size: 12px;
   color: #979797;
-  padding-top:5px;
+  margin-top: -21px;
   text-align: center
 }
 
@@ -84,91 +101,46 @@ div.trustScaleLabel > div{
   width: 62px;
 }
 
-#stateTrustScaleLabel1{
+#Scale1Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#stateTrustScaleLabel2{
+#Scale2Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#stateTrustScaleLabel3{
+#Scale3Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#stateTrustScaleLabel4{
+#Scale4Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#stateTrustScaleLabel5{
+#Scale5Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#privateTrustScaleLabel1{
+#Scale6Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#privateTrustScaleLabel2{
+#Scale7Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#privateTrustScaleLabel3{
+#Scale8Divider > div{
   width: 62px;
+  margin-top: -36px;
 }
-
-#privateTrustScaleLabel4{
+#GoodDeedDivider > div{
   width: 62px;
-}
-
-#privateTrustScaleLabel5{
-  width: 62px;
-}
-
-#foreignTrustScaleLabel1{
-  width: 62px;
-}
-
-#foreignTrustScaleLabel2{
-  width: 62px;
-}
-
-#foreignTrustScaleLabel3{
-  width: 62px;
-}
-
-#foreignTrustScaleLabel4{
-  width: 62px;
-}
-
-#foreignTrustScaleLabel5{
-  width: 62px;
-}
-
-#scaleDivider1{
-  width: 62px;
-}
-
-#scaleDivider2{
-  width: 62px;
-}
-
-#scaleDivider3{
-  width: 62px;
-}
-
-#scaleDivider4{
-  width: 62px;
-}
-
-#scaleDivider5{
-  width: 62px;
+  margin-top: -36px;
 }
 
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 4px;
-  border-radius: 5px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
@@ -180,30 +152,114 @@ div.trustScaleLabel > div{
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
   background: #4F4F4F;
   cursor: pointer;
+
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: 0px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+
+  /* -webkit-appearance: none;
+  appearance: none;
+  width: 29px;
+  height: 34px;
+  margin-top: 51px;
+  border-radius: 0px;
+  outline: none;
+  border-color: transparent;
+  background-color: transparent;
+  background: transparent url('../img/finger.png');
+  cursor: pointer; */
 }
 
 .slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  /* width: 15px;
+  height: 15px;
+  border-radius: 100%;
   background: #4F4F4F;
+  cursor: pointer; */
+
+  -webkit-appearance: none;
+  appearance: none;
+  width: 29px;
+  height: 34px;
+  margin-top: 51px;
+  border-radius: 0px;
+  outline: none;
+  border-color: transparent;
+  background: transparent url('../img/finger.png');
+  background-color: transparent;
   cursor: pointer;
 }
 
 .sliderAmount{
-  padding-left: 3px;
+  position: absolute;
   font-size: 14px;
+  font-weight: bold;
+  color: #4F4F4F;
+  z-index: 10;
+  margin-top: -44px;
+}
+
+#outing1Amount, #outing2Amount, #outing3Amount, #outing4Amount, #outing5Amount{
+  margin-top: -60px;
+}
+
+#domesticWebsiteAmount, #foreignWebsiteAmount,
+#domesticMediaAmount, #foreignMediaAmount, #chatWithFriendsAmount{
+  margin-top: -25px;
+}
+
+#donationWillingAmount, #donationWillingAmount2, #signUpFeeAmount, #signUpFeeAmount2,
+#outdoorTimeAmount, #exerciseTimeAmount, #walkathonAmount{
+  margin-top: -30px;
 }
 
 .slidecontainer{
   width: 312px;
-  padding-top: 20px;
   z-index: -1;
+  padding-bottom: 15px;
+}
+
+#eventTime{
+  padding-top: 0px;
+}
+
+#donationWilling{
+  padding-top: 20px;
+}
+
+#signUpFee{
+  padding-top: 0px;
+}
+
+#domesticWebsite{
+  padding-top: 0px;
+}
+
+#foreignWebsite{
+  padding-top: 0px;
+}
+
+#domesticMedia{
+  padding-top: 0px;
+}
+
+#foreignMedia{
+  padding-top: 0px;
+}
+
+#chatWithFriends{
+  padding-top: 0px;
 }
 
 #stateScaleDivider{
@@ -215,7 +271,7 @@ div.trustScaleLabel > div{
   color: #979797;
   top: 204px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #privateScaleDivider{
@@ -227,7 +283,7 @@ div.trustScaleLabel > div{
   color: #979797;
   top: 288px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #foreignScaleDivider{
@@ -263,28 +319,26 @@ div.trustScaleLabel > div{
 #timeLeft{
   display: flex;
   padding-bottom: 15px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #timer{
   padding-left: 5px;
   padding-right: 5px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #note{
-  font-size: 12px;
+  font-size: 14px;
   color: #4F4F4F;
   line-height: 1.8;
-  padding-right: 10px;
 }
 
 #subNote{
-  font-size: 12px;
+  font-size: 14px;
   color: #979797;
   line-height: 1.8;
-  padding-right: 10px;
 }
 
 #walkathon1{
@@ -314,16 +368,16 @@ div.trustScaleLabel > div{
 
 .starPrompt{
   display: flex;
-  font-size: 10px;
+  font-size: 14px;
   color: #4F4F4F;
-  width: 66px;
+  width: 92px;
   letter-spacing: -0.5px;
 }
 
 #starLeftPrompt{
-  font-size: 14px;
+  font-size: 16px;
   color: #4F4F4F;
-  width: 66px;
+  width: 92px;
 }
 
 #starLeftCount{
@@ -365,6 +419,7 @@ div.trustScaleLabel > div{
 .starContainer{
   overflow: hidden;
   color: #979797;
+  padding-top: 3px;
 }
 
 .starContainer div {
@@ -384,48 +439,54 @@ div.trustScaleLabel > div{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 .starGroup2Cover{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 .starGroup3Cover{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 .starGroup4Cover{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 .starGroup5Cover{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 .starGroup6Cover{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
+  padding-top: 3px;
 }
 
 #starLeftContainer{
@@ -435,8 +496,9 @@ div.trustScaleLabel > div{
 #starAlert{
   position: absolute;
   width:205px;
-  top: 333px;
-  left: 78px;
+  top: 496px;
+  left: calc(50% - 66px);
+  /* left: 116px; */
   color: #FF3333;
   font-size: 14px;
   font-weight: bold;
@@ -446,7 +508,7 @@ div.trustScaleLabel > div{
 }
 
 #groupDescription{
-  font-size: 10px;
+  font-size: 14px;
   color: #979797;
   line-height: 1.6;
   padding-right: 10px;
@@ -456,11 +518,14 @@ div.trustScaleLabel > div{
 
 #clearAllButton{
   position:absolute;
-  top: 333px;
-  left: 286px;
+  top: 496px;
+  left: calc(50% + 140px);
+  /* left: 312px; */
   width: 19px;
   height: 19px;
   border-radius: 15px;
+  right: 20px;
+  margin-right: auto;
 
   /* ShanghaiGrey */
   background: #DCDCDC;
@@ -470,9 +535,9 @@ div.trustScaleLabel > div{
 
 #clear{
   position:absolute;
-  top: -8px;
-  left: 0px;
-  width: 19px;
+  top: -7px;
+  left: 4px;
+  width: 10px;
   height: 19px;
   font-size: 20px;
   color: #000000;
@@ -480,28 +545,41 @@ div.trustScaleLabel > div{
 }
 
 .nextButton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  bottom: 58px;
-  left: calc(50% - 124px);
+  align-self: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 #next{
   font-family: PingFangHK-Regular, sans-serif;
   font-size: 14px;
   text-align: center;
+  padding-top: 10px;
 
   color: #FFFFFF;
 }
 
-#button{
+.button{
   width: 248px;
   height: 42px;
 
   /* ShanghaiGrey */
   background: #979797;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#checkBeanNumberSourceButton{
+  width: 90px;
+  height: 30px;
+  font-size: 14px;
+  color: #4F4F4F;
+
+  border-style: solid;
+  border-width: 0px;
+  border-color: #4F4F4F;
+
+  /* ShanghaiGrey */
+  /* background-color: #979797; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -545,7 +623,7 @@ div.trustScaleLabel > div{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
 }
 
@@ -553,7 +631,7 @@ div.trustScaleLabel > div{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
 }
 
@@ -561,7 +639,7 @@ div.trustScaleLabel > div{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
 }
 
@@ -569,19 +647,21 @@ div.trustScaleLabel > div{
   position: absolute;
   content: '\2605';
   color: #FFD700;
-  padding-left: 66px;
+  padding-left: 92px;
   white-space: nowrap;
 }
 
 #weatherStarLeftContainer{
   color: #FFD700;
+  padding-top: 4px;
 }
 
 #weatherStarAlert{
   position: absolute;
   width:205px;
-  top: 333px;
-  left: 78px;
+  top: 496px;
+  left: calc(50% - 66px);
+  /* left: 116px; */
   color: #FF3333;
   font-size: 14px;
   font-weight: bold;
@@ -592,8 +672,9 @@ div.trustScaleLabel > div{
 
 #weatherClearAllButton{
   position:absolute;
-  top: 333px;
-  left: 286px;
+  top: 496px;
+  left: calc(50% + 140px);
+  /* left: 312px; */
   width: 19px;
   height: 19px;
   border-radius: 15px;
@@ -606,8 +687,8 @@ div.trustScaleLabel > div{
 
 #weatherClear{
   position:absolute;
-  top: -8px;
-  left: -1px;
+  top: -7px;
+  left: 4px;
   width: 19px;
   height: 19px;
   font-size: 20px;
@@ -623,7 +704,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale2Divider{
@@ -634,7 +715,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale3Divider{
@@ -645,7 +726,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale4Divider{
@@ -656,7 +737,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale5Divider{
@@ -667,7 +748,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale6Divider{
@@ -678,7 +759,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale7Divider{
@@ -689,7 +770,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #Scale8Divider{
@@ -700,11 +781,12 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 .peopleTrustOption{
-  padding-bottom: 10px;
+  padding-bottom: 35px;
+  padding-top: 0px;
   color: #4F4F4F;
 }
 
@@ -716,7 +798,7 @@ div.trustScaleLabel > div{
   font-size: 50px;
   color: #979797;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 .willingnessScaleLabel{
@@ -725,9 +807,10 @@ div.trustScaleLabel > div{
   display: flex;
   flex-direction: row;
   font-size: 12px;
-  color: #979797;
-  padding-top:5px;
-  text-align: center
+  color: #4F4F4F;
+  padding-top: 32px;
+  text-align: center;
+  margin-top: -55px;
 }
 
 div.willingnessScaleLabel > div{
@@ -739,9 +822,9 @@ div.willingnessScaleLabel > div{
   width: 310px;
   display: flex;
   flex-direction: row;
-  font-size: 10px;
+  font-size: 12px;
   color: #979797;
-  padding-top: 0px;
+  margin-top: -38px;
   text-align: center
 }
 
@@ -749,79 +832,92 @@ div.outingScaleLabel > div{
   width: 77.5px;
 }
 
-.outingOption{
-  height: 80px;
-}
-
 .outingOptionPrompt{
-  padding-top: 10px;
+  padding-top: 5px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .outingOptionText{
-  font-size: 12px;
+  font-size: 14px;
   color: #4F4F4F;
+  font-weight: bold;
+}
+
+.outingOption{
+  height: 140px;
+}
+
+.visitPrompt{
+  padding-top: 33px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: #4F4F4F;
+  font-weight: bold;
 }
 
 #outingScale1Divider{
+  margin-top: -39px;
   position: absolute;
   width: 308px;
   display: flex;
   flex-direction: row;
-  font-size: 50px;
+  font-size: 55px;
   color: #979797;
-  top: 311px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #outingScale2Divider{
+  margin-top: -39px;
   position: absolute;
   width: 308px;
   display: flex;
   flex-direction: row;
-  font-size: 50px;
+  font-size: 55px;
   color: #979797;
-  top: 391px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #outingScale3Divider{
+  margin-top: -39px;
   position: absolute;
   width: 308px;
   display: flex;
   flex-direction: row;
-  font-size: 50px;
+  font-size: 55px;
   color: #979797;
-  top: 471px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #outingScale4Divider{
+  margin-top: -39px;
   position: absolute;
   width: 308px;
   display: flex;
   flex-direction: row;
-  font-size: 50px;
+  font-size: 55px;
   color: #979797;
-  top: 551px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #outingScale5Divider{
+  margin-top: -39px;
   position: absolute;
   width: 308px;
   display: flex;
   flex-direction: row;
-  font-size: 50px;
+  font-size: 55px;
   color: #979797;
-  top: 631px;
   text-align: right;
-  left: 23px;
+  left: calc(50% - 136px);
 }
 
 #scaleOf4Divider1, #scaleOf4Divider2, #scaleOf4Divider3, #scaleOf4Divider4{
@@ -830,9 +926,56 @@ div.outingScaleLabel > div{
 
 .trueFalsePromp{
   font-family: PingFangHK-Regular, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   weight: 500;
-  padding-top: 15px;
+  padding-top: 23px;
   padding-bottom: 7px;
   color: #4F4F4F;
 }
+
+.form-group .form-control{
+  color: #4F4F4F;
+  height: calc(2rem + 2px);
+  font-size: 12px;
+  border: 1px solid #CDCDCD;
+  width: 97%;
+}
+
+.form-check .form-check-label{
+  /* color: #979797; */
+  color: #4F4F4F;
+}
+
+#walkathonDistance{
+  /* padding-top: 10px; */
+  padding-bottom: 28px;
+  display: inline;
+}
+
+input.btn.btn-primary {
+  background-color: #CDCDCD;
+  border-color: #CDCDCD;
+  color: #4F4F4F;
+}
+
+input.btn {
+  border-radius: 0rem;
+  padding: .1rem .2rem;
+  font-size: 14px;
+}
+
+#checkBeanNumberSource{
+  padding-top:5px;
+}
+
+
+pre{
+  display: block;
+  font-family: PingFangHK-Regular, sans-serif;
+  white-space: pre-line;
+  margin: 0.5em 0px;
+  color: #4F4F4F;
+  font-size: 14px;
+}
+
+.fillAllAlert{color: #FF3333;font-size: 14px;font-weight: bold;text-align: center;z-index: 3;}

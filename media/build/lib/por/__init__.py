@@ -24,32 +24,3 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    # home page
-    @app.route('/')
-    @app.route('/home')
-    def home():
-        return render_template('home.html')
-
-    # # information page
-    # @app.route('/<int:user_id>/<int:day>/info')
-    # def info(user_id, day):
-    #     # return render_template('info.html', user_id=decrypt_val(user_id), day=decrypt_val(day))
-    #     return render_template('info.html', user_id=user_id, day=day)
-
-    # information page
-
-    hashids = Hashids()
-    @app.route('/<int:user_id>/<int:day>/info', methods=['GET', 'POST'])
-    def info(user_id, day):
-        if request.method == 'POST':
-            if request.form['to_survey'] == 'Next':
-                return redirect(url_for('survey'))
-        return render_template('info.html', user_id=user_id, day=user_id)
-
-    # survey page
-    @app.route('/<int:user_id>/<int:day>/survey', methods=['GET', 'POST'])
-    def survey(user_id, day):
-            return render_template('survey.html', user_id=user_id, day=day)
-
-    return app

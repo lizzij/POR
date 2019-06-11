@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+    <title>完成情况</title>
+  </head>
+  <body>
+    <!-- content -->
+    {% block content %}
+      {% for event in events %}
+        <article class="event">
+          <header>
+            <div>
+              <div class="list">
+                "{{ event['event_id'] }}","{{ event['title'] }}","{{ event['subtitle'] }}","{{ event['info_date'] }}","{{ event['info_time'] }}","{{ event['location'] }}","{{ event['image_file'] }}","{{ event['air_quality_source'] }}","{{ event['air_quality_source_logo'] }}","{{ event['short_description'] }}","{{ event['low_temp'] }}","{{ event['high_temp'] }}","{{ event['suitable_for_family'] }}","{{ event['suitable_for_friends'] }}","{{ event['suitable_for_lover'] }}","{{ event['suitable_for_baby'] }}","{{ event['suitable_for_elderly'] }}","{{ event['suitable_for_pet'] }}","{{ event['event_details'] }}","{{ event['phrase_for_week'] }}","{{ event['phrase_for_day'] }}","{{ event['phrase_for_header'] }}","{{ event['cohort'] }}"</div>
+            </div>
+          </header>
+      {% endfor %}
+    {% endblock %}
+  </body>
+</html>

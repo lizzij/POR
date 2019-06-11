@@ -1,15 +1,32 @@
 #  Power Of Repetition
 A project to investigate the power of repetition in Chinese media.  
-Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.
 
 <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
-## Progress
+## Research questions & analysis plan:
+- In a real-world context of nondemocratic regimes, is repetition by multiple sources effective in persuading people?
+- Which design aspects of repetitive message are effective in persuading people?
+  - Mere repetition? T1 vs. T2.S
+  - Repetition by seemingly difference news sources? T2.S vs. T2.M
+  - Repetition over longer (shorter) period of time? T2.M.S vs. T2.M.M
+  	If longer period, harder to remember the air quality info (less persuasion)
+  	If longer period, harder to remember the source of info (more persuasion)
+  - Repetition with(out) attention crowd-out? T2.M.M.N vs. T2.M.M.C
+  	With crowd-out info, harder to get exposed to the air quality info (less persuasion)
+  	With crowd-out info, harder to get exposed to the source of info (more persuasion)
+- Are there ways to counter such persuasion?
+
+Read [46 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.
+
+<img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/TreatmentGroup.png" alt="treatment group"/>
+
+## Process
+###### Task management using [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) and Trello (private).
 ### Chatbot
 ###### Use Chatbot to distribute webpage links and reminders to 2000 participants
 - [x] Setup Wechat account API base on Wechat Protocol and package capture.
   - [x] Test able to send sensitive information and text. :thumbsup:
-  - [ ] Add friends, start 1-to-1 chat using ids from .cvs.
+  - [x] Add friends, start 1-to-1 chat using ids from .cvs.
 - [x] Obtain WeChat Id, maintain and test.
   - [x] Google Voice account cannot train bots
   - [x] Recently registered account cannot train bots
@@ -32,7 +49,7 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
 ###### Unique hashed links to information page, leading to survey page
 - [x] Test Qualtrics: too slow :disappointed:
 - [x] Test wjx.cn: censorship :see_no_evil:
-- [ ] Build our own website, server + database! :woman_shrugging:
+- [x] Build our own website, server + database! :woman_shrugging:
   - [x] Bare minimum website on local host
   - [x] Set up Vultr server and domain name
   - [x] Get certificate, setup domain name,
@@ -89,17 +106,5 @@ Read [study treatment and design](https://docs.google.com/document/d/1tng4vsgPXj
     <img src="https://github.com/lizzij/PowerOfRepetition/raw/master/img/surveyP5.png" alt="surveyP5" width="280"/>
   </p>
 
-## Developing...
-- Refer to [project board](https://github.com/lizzij/PowerOfRepetition/projects/1) for scrum progress.
-- How to run: navigate to media dir
-```
-python3 -m venv venv
-. venv/bin/activate
-export FLASK_APP=media
-export FLASK_ENV=development
-flask run
-```
-- Initialize database
-```
-flask init-db
-```
+## Demo
+Navigate to media dir

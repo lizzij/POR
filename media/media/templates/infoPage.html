@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="eventTitle" content="漫步老上海边走边拍">
-    <meta property="og:image" content="../img/ShanghaiIcon.png">
 
-    <title>Info Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/infoPage.css') }}">
-    <!-- favicon -->
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://202.182.126.239/../favicon.ico" />
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="eventTitle" content="活动名称">
+  <meta property="og:image" content="../img/ShanghaiIcon.png">
 
-  <!-- Title -->
-  <body>
+  <title>活动信息</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/infoPage.css') }}">
+  <!-- favicon -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+</head>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+<!-- Title -->
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>这里有一些「2019年3月的第2周」的本地活动信息。
-        <br>请仔细思考您是否愿意参加此活动。
-        <br>我们从各种来源收集信息，而信息来源负责准确性。</p>
-      </div>
+<body style="margin:0px; height:1200px;">
 
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>以下是一项关于西安本地或周边的户外活动及场所的信息。
+        依照参与者的意向，我们或将于{{ (info['phrase_for_week']) }}组团结伴前往。
+        请您仔细思考是否有意向参与该活动。
+        (我们从多种来源获得该活动的信息，这些来源对信息的准确性负责。)</p>
     </div>
 
-    <header>
-      <div class="title">
-        <div id="eventName">{{ '%s' % (title) }}<br/>{{ '%s' % (subtitle) }}</div>
-        <div id="eventDate">2018.10.28 - 2019.01.20</div>
-        <div id="eventTime">每周日 14:00 pm - 17:00 pm</div>
-        <div id="eventLocation">地点 徐汇区 上海图书馆</div>
-      </div>
-    </header>
+  </div>
 
-    <script>
+  <header>
+    <div class="title">
+      <div id="eventName">{{ (info['title']) }}<br />{{ (info['subtitle']) }}</div>
+      <div id="eventDate">{{ (info['info_date']) }}</div>
+      <div id="eventTime">{{ (info['info_time']) }}</div>
+      <div id="eventLocation">{{ (info['location']) }}</div>
+    </div>
+  </header>
+
+  <script>
     // Get the modal
     var modal = document.getElementById('myModal');
 
@@ -58,26 +60,42 @@
         modal.style.display = "none";
       }
     }
+  </script>
+
+  <!-- Image -->
+  <section class="image">
+    <div id="eventImage">
+      <div>
+        <img src="{{ url_for('static', filename=info['image_file']) }}" width="376" height="276">
+      </div>
+    </div>
+  </section>
+
+  <!-- description short -->
+  <section class="descriptionShort">
+    <div class="paragraphShort">
+      <!-- <div id="firstCharacter">{{ (info['headword']) }}</div> -->
+      <div id="descriptionShortPara">
+        {{ (info['short_description']) }}
+      </div>
+    </div>
+  </section>
+
+  <div id="moreInfoButton">
+    <div>
+      <img src="{{ url_for('static', filename='img/Button.png') }}">
+    </div>
+    <div id="moreInfoButtonNext">下一页</div>
+    <script type="text/javascript">
+      document.getElementById("moreInfoButton").onclick = function() {
+        document.getElementById("moreInfoButton").style.display = 'none';
+        document.getElementById("moreInfo").style.display = 'block';
+        window.scrollTo(0, 516);
+      }
     </script>
+  </div>
 
-    <!-- Image -->
-    <section class="image">
-      <div id="eventImage">
-        <img src="{{ url_for('static', filename='img/Event.jpg') }}" width="376" height="276">
-      </div>
-    </section>
-
-    <!-- description short -->
-    <section class="descriptionShort">
-      <div class="paragraphShort">
-        <div id="firstCharacter">在</div>
-        <div id="descriptionShortPara">
-          &nbsp;&nbsp;&nbsp;&nbsp;64 条街道中漫游，拍摄老上海。</br>
-          什么是老上海？宽适优雅的洋房是老上海，拥挤局促的弄堂是老上海，千篇</br>
-          一律的公房也是老上海。若想真正感受，唯有设身处地，细细体会。
-        </div>
-      </div>
-    </section>
+  <div id="moreInfo" style="display:none;">
 
     <!-- weather -->
     <section class="weather">
@@ -89,177 +107,45 @@
         <div id="qingNian">
           <img src="../img/QingNian.jpg" width="50" height="16.36">
         </div> -->
-        <div id="temperatureSubtitle">一月份第二周<br/>平均历史气温</div>
+        <div id="temperatureSubtitle">{{ info['phrase_for_header'] }} <br />去年平均气温</div>
 
         <!-- temperture low -->
         <div class="temperatureLow">
-          <div id="lowValue">{{ '%d' % (low_temp) }}</div>
+          <div id="lowValue">{{ (info['low_temp']) }}</div>
           <div id="lowUnit">°C</div>
-          <div id="low">平均最低<br/>气温</div>
+          <div id="low">平均最低<br />气温</div>
         </div>
 
         <!-- temperture high -->
         <div class="temperatureHigh">
-          <div id="highValue">{{ '%d' % (high_temp) }}</div>
+          <div id="highValue">{{ (info['high_temp']) }}</div>
           <div id="highUnit">°C</div>
-          <div id="high">平均最高<br/>气温</div>
+          <div id="high">平均最高<br />气温</div>
         </div>
       </section>
 
-      <!-- air quality -->
-      <section class="airQuality">
-        <div id="airQualityHeader">空气质量：中度污染</div>
-        <div id="airQualitySource">* 来自东方日报</div>
-        <div id="dongFang">
-          <img src="{{ url_for('static', filename='img/DongFang.png') }}" width="40" height="11.43">
-        </div>
-
-        <!-- air quality scale -->
-        <div class="airQualityScale">
-
-          <!-- levels -->
-          <div class="levels">
-            <div id="level1">1级</div>
-            <div id="level2">2级</div>
-            <div id="level3">3级</div>
-            <div id="level4">4级</div>
-            <div id="level5">5级</div>
-            <div id="level6">6级</div>
-          </div>
-
-          <!-- level descriptions -->
-          <div class="levelDescription">
-            <div id="level1Description">优</div>
-            <div id="level2Description">良</div>
-            <div id="level3Description">轻度污染</div>
-            <div id="level4Description">中度污染</div>
-            <div id="level5Description">重度污染</div>
-            <div id="level6Description">严重污染</div>
-          </div>
-
-          <!-- color bar -->
-          <div>
-            <svg id="colorBar1" >
-              <rect />
-            </svg>
-            <svg id="colorBar2" >
-              <rect />
-            </svg>
-            <svg id="colorBar3" >
-              <rect />
-            </svg>
-            <svg id="colorBar4" >
-              <rect />
-            </svg>
-            <svg id="colorBar5" >
-              <rect />
-            </svg>
-            <svg id="colorBar6" >
-              <rect />
-            </svg>
-          </div>
-
-          <!-- air quality detail -->
-          <div id="airQualityDetail">
-            中度污染：进一步加剧易感人群症状，可能对健康人群心脏、呼吸系统有影响。
-            儿童、老年人及心脏病、呼吸系统疾病患者避免长时间、高强度的户外锻
-            炼，一般人群适量减少户外运动。
-          </div>
-        </div>
-      </section>
-
-    </section>
-
-    <!-- description -->
-    <section class="description">
-      <section class="paragraph">
-        <div id="eventDetail">活动简介</div>
-        <!-- <div id="dropDownChevron"></div> -->
-        <div id="detailedPointForm">
-          这里，是小说刻划的段落；</br>
-          这里，是电影移过的场景；</br>
-          这里，有岁月留下的痕迹。</br></br>
-
-          在这快速变迁的物质年代里，</br>
-          在这房价暴涨的白金城市里，</br>
-          还能拥有这样承诺永不拓宽的64条街道，实在是弥足珍贵。</br></br>
-
-          请放慢自己的脚步，跟随自己的心，</br>
-          用眼睛去重新发现这个有很多故事的上海。</br></br>
-
-          喜欢漫步找寻曾经的华美，</br>
-          喜欢细细品味当下的静谧，</br>
-          一边游走，一边记录。</br>
-        </div>
-      </section>
-
-    </section>
-
-    <!-- suitable for -->
-    <section class="suitableFor">
-      <div id="suitableForTitle">适合人群</div>
-
-      <!-- suitable icons -->
-      <section class="suitableIcons">
-        <div id="iconFamily">
-          <img src="{{ url_for('static', filename='img/Icon Family.png') }}" width="50" height="50">
-        </div>
-        <div id="iconFriends">
-          <img src="{{ url_for('static', filename='img/Icon Friends.png') }}" width="50" height="50">
-        </div>
-        <div id="iconLover">
-          <img src="{{ url_for('static', filename='img/Icon Lover.png') }}" width="50" height="50">
-        </div>
-        <div id="iconBaby">
-          <img src="{{ url_for('static', filename='img/Icon Baby.png') }}" width="50" height="50">
-        </div>
-        <div id="iconElderly">
-          <img src="{{ url_for('static', filename='img/Icon Elderly.png') }}" width="50" height="50">
-        </div>
-        <div id="iconPet">
-          <img src="{{ url_for('static', filename='img/Icon Pet.png') }}" width="50" height="50">
-        </div>
-      </section>
-
-      <!-- suitable icon labels -->
-      <section class="suitableIconLabels">
-        <div id="family">家庭</div>
-        <div id="friends">朋友</div>
-        <div id="lovers">恋人</div>
-        <div id="baby">儿童</div>
-        <div id="elderly">老人</div>
-        <div id="pets">宠物</div>
-      </section>
     </section>
 
     <!-- next button -->
-    <section class="nextButton">
+    <section class="nextButtonSmall">
+
       <div id="nextButton">
-        <div id="button">
+        <div id="infoButton">
           <img src="{{ url_for('static', filename='img/Button.png') }}">
         </div>
-        <div id="next">下一页</div>
+        <div id="infoNext">下一页</div>
         <script type="text/javascript">
-            document.getElementById("nextButton").onclick = function () {
-                location.href="{{ url_for('info.get_survey', user_id=info['user_id'], day=info['day']) }}";
-            }
+          document.getElementById("nextButton").onclick = function() {
+            location.href = "{{ url_for('info.get_survey', user_id_hashid=user['user_id_hashid'], day_hashid=user['day_hashid']) }}";
+          }
         </script>
       </div>
+      <div class="nextButtonNotice">
+        点击下一步后，您将无法返回此页面
+      </div>
     </section>
+  </div>
+  <script type=text/javascript src="{{ url_for('static', filename='scripts/jquery-3.3.1.slim.min.js') }}"></script>
+</body>
 
-    <!-- powered by -->
-    <section class="poweredBy">
-      <div id="lizzijIcon">
-        <img src="{{ url_for('static', filename='img/lizzij icon.png') }}" width="11.25" height="9">
-      </div>
-      <div id="lizzij">
-        <img src="{{ url_for('static', filename='img/lizzij.png') }}" width="15" height="9">
-      </div>
-      <section class="poweredByText">
-        <div id="dashLeft">-</div>
-        <div id="poweredBy">Powered by</div>
-        <div id="dashRight">-</div>
-      </section>
-    </section>
-  </body>
 </html>

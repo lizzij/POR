@@ -5,8 +5,7 @@ setup(
     packages=['media'],
     include_package_data=True,
     install_requires=[
-        'Flask',
+        'flask',
         'hashids',
-        'wxpy',
     ]
 )
