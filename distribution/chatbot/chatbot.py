@@ -11,7 +11,7 @@ from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import randint, uniform
+from random import randint, choices
 
 # Get date
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
