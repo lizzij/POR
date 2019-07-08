@@ -1,7 +1,7 @@
 #  Power Of Repetition
 A project to investigate the power of repetition in Chinese media.  
 
-<img src="https://github.com/lizzij/PowerOfRepetition/blob/master/img/shanghai.gif" alt="Shanghai time lapse" width="880"/>
+<img src="https://github.com/lizzij/PowerOfRepetition/blob/master/img/Shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
 ## Research Questions
 **Read [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
