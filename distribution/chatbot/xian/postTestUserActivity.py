@@ -32,7 +32,11 @@ for nextUserID in range(int(input_id_lower), int(input_id_upper)):
         hashed_day = day_hashids.encrypt(day)
 
         cohort = 3
-        treatment = str(choices(treat_no, treat_prob)[0])
+        if index % 2 == 0:
+            treatment = str(choices(treat_no, treat_prob)[0])
+
+        else:
+            treatment = df.at[index-1, 'treatment']
         df.at[index, 'treatment'] = treatment
         userName = 'userName'
         df.at[index, 'link'] = "localhost:5000/xian/"+hashed_user_id+"/"+hashed_day+"/info"
