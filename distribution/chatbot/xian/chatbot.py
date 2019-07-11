@@ -6,12 +6,13 @@ from datetime import datetime, timedelta
 import time
 import pandas as pd
 import requests
+import random
 from bs4 import BeautifulSoup
 from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import randint, uniform
+from random import choice
 
 # Get date
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
@@ -22,10 +23,6 @@ test = input("\nAre you testing (YES / NO) ?\n")
 # Which cohort?
 cohort = "3"
 
-# Assign probability for each treament group, sum to 1
-treat_no = [1, 2, 3, 4]
-treat_prob = [0.25, 0.25, 0.25, 0.25, 0.25]
-
 # Message content
 date_range=u'2019年7月22-28日'
 
@@ -35,6 +32,17 @@ day1_wechat_prompt = u'我们将为您提供一些西安本地及周边的户外
 此次调研总共持续2天时间。如果您想参加这项学术调研，请点击以下链接开始'
 day2_wechat_prompt = u'下面是一项我们计划为慈善事业举办的活动，请您仔细思考是否有意向参加该活动。\
 此项活动将于' + date_range + '举行（我们从其他来源获得有关的天气信息，这些来源对信息的准确性负责）。'
+reminder = u'您没有完成昨天的调查。我们理解您可能有别的事在忙。 我们将再给您一整天的时间来完成昨天的调研。这里是链接！'
+
+# Assign treament group, 10 people each
+treatment_dict = {'TNO':10, 'TNN':10, 'TRO':10, 'TRN':10}
+def random_treatment():
+    treatment, num_left = random.choice(list(treatment_dict.items()))
+    num_left = num_left - 1
+    treatment_dict.update( {treatment : num_left})
+    if num_left == 0:
+        del treatment_dict[treatment]
+    return treatment
 
 # Get current list of activities, as pandas dataframe
 def get_activities():
@@ -106,7 +114,7 @@ def auto_accept_friends(msg):
 
     # Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
-    treatment = "T"+str(choices(treat_no, treat_prob)[0])
+    treatment = random_treatment()
     print("adding new user", nextUserID, "assigning treatment", treatment, "...")
     for day in range(1):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
@@ -118,13 +126,13 @@ def auto_accept_friends(msg):
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
     # Set remark_name to use for reminder messages
-    new_friend.set_remark_name(str(nextUserID))
+    new_friend.set_remark_name("3"+str(nextUserID))
 ##############################################################################################
 
 ##############################################################################################
 # send urls
 def send_urls:
-    print("\n\n========== Sending day1 prompts and urls ===========")
+    print("\n\n========== Sending day prompts and urls ===========")
 
     # Prep
     activities = get_activities()
@@ -153,6 +161,37 @@ def send_urls:
         except IndexError:
             print('cannot find user',wechat_id,'...')
 ##############################################################################################
+
+##############################################################################################
+def send_reminders:
+    print("\n\n========== Sending reminders and urls ===========")
+
+    # Prep
+    activities = get_activities()
+    users = get_users()
+
+    # New day URL prep
+    sorted_acts_n = activities.loc[activities['day_complete'] == 0]
+
+    # only send to Eliza if test
+    if test == "YES":
+        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] == 1882385] # Turn this on for test with Eliza's ID
+    else:
+        sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['user_id'] >= 1882385] # Turn this off for test with Eliza's ID
+
+    # Send new day URL, update activity
+    for i in range(send_list_n.shape[0]):
+        wechat_id = send_list_n.iloc[i]['user_id']
+        try:
+            my_friend = bot.friends().search(remark_name=str(wechat_id))[0]
+            print('sending day1 prompt and url to',wechat_id,'...')
+            my_friend.send(reminder)
+            my_friend.send(send_list_n.iloc[i]['url'])
+            time.sleep(2)
+            #Update activity for new day URL
+            requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+        except IndexError:
+            print('cannot find user',wechat_id,'...')
 
 # Keep logged in
 embed()
