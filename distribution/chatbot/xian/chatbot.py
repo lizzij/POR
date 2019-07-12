@@ -4,6 +4,7 @@ import csv
 from wxpy import *
 from datetime import datetime, timedelta
 import time
+import schedule
 import pandas as pd
 import requests
 import random
@@ -24,7 +25,7 @@ test = input("\nAre you testing (YES / NO) ?\n")
 cohort = "3"
 
 # Message content
-date_range=u'2019年7月22-28日'
+date_range=u'2019年8月5-11日'
 
 # Canned WeChat scripts
 day1_wechat_prompt = u'我们将为您提供一些西安本地及周边的户外活动及场所的信息。我们也将会询问您一些关于各类话题的问题。 \
@@ -33,6 +34,9 @@ day1_wechat_prompt = u'我们将为您提供一些西安本地及周边的户外
 day2_wechat_prompt = u'下面是一项我们计划为慈善事业举办的活动，请您仔细思考是否有意向参加该活动。\
 此项活动将于' + date_range + '举行（我们从其他来源获得有关的天气信息，这些来源对信息的准确性负责）。'
 reminder = u'您没有完成昨天的调查。我们理解您可能有别的事在忙。 我们将再给您一整天的时间来完成昨天的调研。这里是链接！'
+URLmessage = [u'',u'']
+URLmessage.append(day1_wechat_prompt)
+URLmessage.append(day2_wechat_prompt)
 
 # Assign treament group, 10 people each
 treatment_dict = {'TNO':10, 'TNN':10, 'TRO':10, 'TRN':10}
@@ -98,6 +102,7 @@ def auto_accept_friends(msg):
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
 
     # Check whether existing user
+    # TODO need to test this function out and incorporate into line 117 funtion next UserID
     users = get_users()
     while (users[user['user_id'].contains(nextUserID + '')]):
         nextUserID = nextUserID + randint(1,999999)
@@ -115,6 +120,9 @@ def auto_accept_friends(msg):
     # Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
     treatment = random_treatment()
+
+    # Add cohort name to remark name to use for reminder messages
+    nextUserID = int(cohort + str(nextUserID))
     print("adding new user", nextUserID, "assigning treatment", treatment, "...")
     for day in range(1):
         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
@@ -126,7 +134,7 @@ def auto_accept_friends(msg):
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
     # Set remark_name to use for reminder messages
-    new_friend.set_remark_name("3"+str(nextUserID))
+    new_friend.set_remark_name(nextUserID)
 ##############################################################################################
 
 ##############################################################################################
@@ -193,5 +201,23 @@ def send_reminders:
         except IndexError:
             print('cannot find user',wechat_id,'...')
 
+##############################################################################################
+
+##############################################################################################
+# SCHEDULE
+
+# computer time EST   06:00 AM   10:00 AM
+# user time GMT+8     18:00 PM   22:00 PM
+# host time GMT       10:00 PM   14:00 PM
+
+schedule.every().day.at("06:00").do(send_urls)
+schedule.every().day.at("06:30").do(send_reminders)
+schedule.every().day.at("10:00").do(send_reminders)
+
+while True:
+    schedule.run_pending()
+    time.sleep(60) # wait one minute
+
+##############################################################################################
 # Keep logged in
 embed()
