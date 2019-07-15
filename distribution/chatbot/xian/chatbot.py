@@ -19,8 +19,8 @@ from random import choice
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 # Test? (YES / NO)
-test = input("\nAre you testing (YES / NO) ?\n")
-
+# test = input("\nAre you testing (YES / NO) ?\n")
+test = "NO"
 # Which cohort?
 cohort = "3"
 
@@ -105,7 +105,7 @@ def auto_accept_friends(msg):
     # TODO need to test this function out and incorporate into line 117 funtion next UserID
     users = get_users()
     while (users[user['user_id'].contains(nextUserID + '')]):
-        nextUserID = nextUserID + randint(1,999999)
+        nextUserID = nextUserID + randint(1,99999)
     print(nextUserID)
 
     ## Deal with too many users in a cohort
@@ -133,13 +133,15 @@ def auto_accept_friends(msg):
             str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
     requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/0/0/0/0/0")
 
+    new_friend.send("day 1 link")
+
     # Set remark_name to use for reminder messages
     new_friend.set_remark_name(nextUserID)
 ##############################################################################################
 
 ##############################################################################################
 # send urls
-def send_urls:
+def send_urls():
     print("\n\n========== Sending day prompts and urls ===========")
 
     # Prep
@@ -171,7 +173,7 @@ def send_urls:
 ##############################################################################################
 
 ##############################################################################################
-def send_reminders:
+def send_reminders():
     print("\n\n========== Sending reminders and urls ===========")
 
     # Prep
@@ -210,9 +212,8 @@ def send_reminders:
 # user time GMT+8     18:00 PM   22:00 PM
 # host time GMT       10:00 PM   14:00 PM
 
-schedule.every().day.at("06:00").do(send_urls)
-schedule.every().day.at("06:30").do(send_reminders)
-schedule.every().day.at("10:00").do(send_reminders)
+schedule.every().day.at("15:36").do(send_urls)
+schedule.every().day.at("15:45").do(send_reminders)
 
 while True:
     schedule.run_pending()
