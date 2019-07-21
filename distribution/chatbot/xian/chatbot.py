@@ -110,7 +110,7 @@ def auto_accept_friends(msg):
 
     ## Deal with too many users in a cohort
     cohortCount = int(len(users.loc[users.cohort == cohort])/9)
-    if cohortCount > 40:
+    if cohortCount > 50:
         new_friend.send(u"次轮招募已完成，我们将在下轮开始时尽快联系您！")
         new_friend.set_remark_name("WL_"+str(nextUserID))
     else:
@@ -119,7 +119,12 @@ def auto_accept_friends(msg):
 
     # Create hashes for the new user, save in user db, create new activity
     nextUserID = int((floor(get_activities()['user_id'].dropna().max()/1e6)+1)*1e6+randint(1,999999)) # Next user's ID
-    treatment = random_treatment()
+    if chohortCount > 40:
+        treat_id = ['TNO', 'TNN', 'TRO', 'TRN']
+        treat_prob = [0.25, 0.25, 0.25, 0.25]
+        treatment = choices(treat_id, treat_prob)[0]
+    else:
+        treatment = random_treatment()
 
     # Add cohort name to remark name to use for reminder messages
     nextUserID = int(cohort + str(nextUserID))
