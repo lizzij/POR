@@ -19,8 +19,8 @@ from random import choice, randint
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
 
 # Test? (YES / NO)
-test = input("\nAre you testing (YES / NO) ?\n")
-# test = "NO"
+# test = input("\nAre you testing (YES / NO) ?\n")
+test = "NO"
 # Which cohort?
 cohort = "3"
 
