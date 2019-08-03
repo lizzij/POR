@@ -102,7 +102,7 @@ def random_treatment():
 ##############################################################################################
 # auto accept friend request
 # @bot.register(msg_types=FRIENDS)
-def auto_accept_friends(msg):
+def auto_accept_friends():
 
     ## Accept request
     # new_friend = msg.card.accept()
@@ -121,7 +121,7 @@ def auto_accept_friends(msg):
         print("WL_"+str(nextUserID))
     else:
         ## Get wxid (assuming that this is the unique ID we can use)
-        userName = 'new_friend.user_name'
+        userName = 'user_name'
 
     # Create hashes for the new user, save in user db, create new activity
     treatment = random_treatment()
@@ -134,9 +134,9 @@ def auto_accept_friends(msg):
         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
         hashed_user_id = user_id_hashids.encrypt(nextUserID)
         hashed_day = day_hashids.encrypt(day)
-        print("https://dailyeventinfo.com/userInsert/"+str(nextUserID)+"/"+
+        requests.post("https://dailyeventinfo.com/userInsert/"+str(nextUserID)+"/"+
             str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
-    print("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/1/0/0/0/0")
+    requests.post("https://dailyeventinfo.com/activityUpdate/"+str(nextUserID)+"/1/0/0/0/0")
 
     day = 1
     user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
@@ -148,7 +148,7 @@ def auto_accept_friends(msg):
     print(day1_url)
 
     # Set remark_name to use for reminder messages
-    print('new_friend.set_remark_name' + str(nextUserID))
+    print(str(nextUserID))
 ##############################################################################################
 
 ##############################################################################################
@@ -183,7 +183,7 @@ def six_pm():
 
     # New day URL prep =========================================================
     sorted_acts_n = activities.loc[activities['day_complete'] == 1]
-    sorted_acts_n = activities.loc[activities['day'] == 1]
+    sorted_acts_n = sorted_acts_n.loc[sorted_acts_n['day'] == 1]
     sorted_acts_n['day'] = sorted_acts_n['day'] + 1
 
     send_list_n = pd.merge(sorted_acts_n, users, on=['user_id','day'])
@@ -200,7 +200,7 @@ def six_pm():
             print(send_list_n.iloc[i]['url'])
             # time.sleep(2)
             #Update activity for new day URL
-            print("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
+            requests.post("https://dailyeventinfo.com/activityUpdate/"+str(int(send_list_n['user_id'].iloc[i]))+"/"+str(int(send_list_n['day'].iloc[i]))+"/0/0/0/0")
         except IndexError:
             print('cannot find user',wechat_id,'...')
 ##############################################################################################
@@ -244,7 +244,7 @@ def ten_pm():
 # host time GMT       10:00 PM   14:00 PM
 
 schedule.every().day.at("06:00").do(six_pm)
-schedule.every().day.at("22:33").do(ten_pm)
+schedule.every().day.at("10:00").do(ten_pm)
 
 while True:
     schedule.run_pending()

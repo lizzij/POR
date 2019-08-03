@@ -246,7 +246,7 @@ def ten_pm():
 # user time GMT+8     18:00 PM   22:00 PM
 # host time GMT       10:00 PM   14:00 PM
 
-schedule.every().day.at("06:00").do(six_pm)
+schedule.every().day.at("07:00").do(six_pm)
 schedule.every().day.at("10:00").do(ten_pm)
 
 while True:
