@@ -12,7 +12,7 @@ from io import StringIO
 from hashids import Hashids
 import numpy as np
 from math import floor
-from random import choice, randint
+from random import choices, randint
 
 # Get date
 now = datetime.now() + timedelta(hours = 4) # Convert to GMT
@@ -79,7 +79,8 @@ def random_treatment():
     users = get_users()
     curr_treatment_count = users['treatment'].value_counts()/2
     curr_cohort_user_count = int(len(users.loc[users.cohort == int(cohort)])/2)
-    if curr_cohort_user_count > 41:
+    print(curr_cohort_user_count)
+    if curr_cohort_user_count >= 41:
         treat_id = ['TNO', 'TNN', 'TRO', 'TRN']
         treat_prob = [0.25, 0.25, 0.25, 0.25]
         treatment = choices(treat_id, treat_prob)[0]
@@ -242,14 +243,14 @@ def ten_pm():
 # computer time EST   06:00 AM   10:00 AM
 # user time GMT+8     18:00 PM   22:00 PM
 # host time GMT       10:00 PM   14:00 PM
-
-schedule.every().day.at("06:00").do(six_pm)
-schedule.every().day.at("10:00").do(ten_pm)
-
-while True:
-    schedule.run_pending()
-    time.sleep(60) # wait one minute
+#
+# schedule.every().day.at("06:00").do(six_pm)
+# schedule.every().day.at("10:00").do(ten_pm)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(60) # wait one minute
 
 ##############################################################################################
 # Keep logged in
-embed()
+# embed()
