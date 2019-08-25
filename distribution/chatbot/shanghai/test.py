@@ -58,4 +58,4 @@ print('opening links in browser...')
 for link in df['link']:
     webbrowser.open(link)
 
-print('\n(* Remember to run "init-db" in between tests for different days!)\n')
+print('\n* Remember to run "init-db" in between tests for different days! Or test incrementally (day 0, 2, 3 ... 8)\n')
