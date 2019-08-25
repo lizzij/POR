@@ -1,9 +1,9 @@
 from hashids import Hashids
 import requests
-from random import choices
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
+import webbrowser
 
 day = int(input('\nWhich day (0-8) do you want to test? '))
 lower = 1000
@@ -34,7 +34,7 @@ for user_id in range(lower, upper):
     # dummy username
     userName = 'test' + str(user_id)
     # create link
-    df.at[index, 'link'] = "localhost:5000/shanghai/"+hashed_user_id+"/"+hashed_day+"/info"
+    df.at[index, 'link'] = "http://127.0.0.1:5000/shanghai/"+hashed_user_id+"/"+hashed_day+"/info"
     # update user table
     requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
         str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
@@ -42,7 +42,15 @@ for user_id in range(lower, upper):
     index += 1
     # update to new day
     requests.post("http://127.0.0.1:5000/activityUpdate/"+str(user_id)+ "/"+str(day)+"/0/0/0/0")
+    if day == 0:
+        requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
+            str(1)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
 
 print('\n')
 print(tabulate(df, headers='keys', tablefmt='psql'))
+
+print('opening links in browser...')
+for link in df['link']:
+    webbrowser.open(link)
+    
 print('\n(* Remember to run "init-db" in between tests for different days!)\n')
