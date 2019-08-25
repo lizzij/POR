@@ -43,8 +43,13 @@ for user_id in range(lower, upper):
     # update to new day
     requests.post("http://127.0.0.1:5000/activityUpdate/"+str(user_id)+ "/"+str(day)+"/0/0/0/0")
     if day == 0:
+        next_day = 1
+        user_id_hashids = Hashids(salt=str(10 * user_id + next_day) + "user_id", min_length=16)
+        day_hashids = Hashids(salt=str(10 * user_id + next_day) + "day", min_length=10)
+        hashed_user_id = user_id_hashids.encrypt(user_id)
+        hashed_day = day_hashids.encrypt(next_day)
         requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
-            str(1)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
+            str(next_day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
 
 print('\n')
 print(tabulate(df, headers='keys', tablefmt='psql'))
@@ -52,5 +57,5 @@ print(tabulate(df, headers='keys', tablefmt='psql'))
 print('opening links in browser...')
 for link in df['link']:
     webbrowser.open(link)
-    
+
 print('\n(* Remember to run "init-db" in between tests for different days!)\n')
