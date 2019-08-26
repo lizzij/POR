@@ -7,6 +7,7 @@
 ## XXX: Check before deployment
 ## YYY: Need Eliza's input
 ## To-Do List (XXX)
+#### YYY: What to do for those who go above 72 (would day = 99 work?)
 #### Screen out people who failed attention test (Day 2)
 #### Day 7 and Day 8
 #### Divide file into num_surveyors: this depends on the surveyor's preference (6PM vs 10Pm? Half and half each time?)
@@ -28,6 +29,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 import schedule
 import time
+import sys
 
 ## Toggle test vs. deployment (XXX for deployment activate first line, de-activate the second line)
 #URL = URL + ""
@@ -39,8 +41,8 @@ msg_next_day_reminder = u'您没有完成昨天的调查。我们理解您可能
 msg_new_survey = u'请点击下面的链接开始，同时了解另一个精彩的本地活动。'
 msg = {'d'+'0'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'],
     'd'+'0'+'10PM':[msg_same_day_reminder,'IMPOSSIBLE SITUATION'],
-    'd'+'1'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'], # YYY This is impossible right? (meaning day = 0 and complete = 1 is never true)
-    'd'+'1'+'10PM':[msg_same_day_reminder,'IMPOSSIBLE SITUATION'], # YYY This is impossible right?
+    'd'+'1'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'],
+    'd'+'1'+'10PM':[msg_same_day_reminder,'IMPOSSIBLE SITUATION'],
     'd'+'2'+'6PM':[msg_next_day_reminder,u'今天是调研第二天。 '+ msg_new_survey],
     'd'+'2'+'10PM':[msg_same_day_reminder,'No MESSAGE'],
     'd'+'3'+'6PM':[msg_next_day_reminder,u'今天是调研第三天。 '+ msg_new_survey],
@@ -54,7 +56,7 @@ msg = {'d'+'0'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'],
 }
 
 ## Parameters (XXX check these before deployment)
-cohort = "11"
+cohort = "4"
 page_columns_class = {'allActivities':[['user_id','day','day_complete','survey_page','day_started','curr_time'],'list'], 
     'allResults': [['user_id', 'day', 'question_id', 'result', 'created'],'about'],
     'allUsers': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list']}
@@ -89,7 +91,7 @@ def create_reminders(t,complete):
     # Prep relevant list #
     now = datetime.now() + timedelta(hours = 4) # Convert to GMT (host time)
     activities = get_page_as_df('allActivities', page_columns_class['allActivities'])
-    activities = activities.loc[~((activities['day_complete'] == 1) & (activities['day'] == 6))] # Exlcude those who finished all 6 days
+    activities = activities.loc[~(((activities['day_complete'] == 1) & (activities['day'] == 6)) | (activities['day'] > 6))] # Exlcude those who finished all 6 days
     activities['curr_time'] = pd.to_datetime(activities['curr_time'], format="%Y-%m-%d %H:%M:%S.%f")
     activities['time_since_last_activity'] = (now - activities['curr_time']) / np.timedelta64(1, 'h')
     users = get_page_as_df('allUsers', page_columns_class['allUsers'])
@@ -106,18 +108,19 @@ def create_reminders(t,complete):
         if complete == 1: requests.post(URL + "activityUpdate/"+str(int(send_list['user_id'].iloc[i]))+"/"+str(int(send_list['day'].iloc[i]))+"/0/0/0/0")
     return send_list[['user_id','msg']]
 
-def send_dataframe(send_to, subject, body, df, filename):
+def send_dataframe(send_to, subject, body, filename):
     multipart = MIMEMultipart()
     multipart['From'] = sender_address
     multipart['To'] = send_to
     multipart['Subject'] = subject
     multipart.attach(MIMEText(body, 'plain'))
-    attach_file = open(backup_dir+filename, 'rb') # Open the file as binary mode
-    payload = MIMEBase('application', 'csv', Name=filename)
-    payload.set_payload((attach_file).read())
-    encoders.encode_base64(payload) #encode the attachment
-    payload.add_header('Content-Decomposition', 'attachment', filename=filename)
-    multipart.attach(payload)
+    if filename != "": # In case there is an attachment
+        attach_file = open(backup_dir+filename, 'rb') # Open the file as binary mode
+        payload = MIMEBase('application', 'csv', Name=filename)
+        payload.set_payload((attach_file).read())
+        encoders.encode_base64(payload) #encode the attachment
+        payload.add_header('Content-Decomposition', 'attachment', filename=filename)
+        multipart.attach(payload)
     session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
     session.starttls() #enable security
     session.login(sender_address, sender_pass) #login with mail_id and password
@@ -128,34 +131,38 @@ def send_dataframe(send_to, subject, body, df, filename):
 
 def worker(t):
     df1 = create_reminders(t,0)
-    df2 = create_reminders(t,1)
-    df = add_empty_row(pd.concat([df1,df2], ignore_index=True))
+    if t == '10PM': df = add_empty_row(df1)
+    else:
+        df2 = create_reminders(t,1)
+        df = add_empty_row(pd.concat([df1,df2], ignore_index=True))
     filename = datetime.today().strftime('%Y%m%d')+"_"+t+".csv"
     df.to_csv(backup_dir+filename, encoding='utf-8-sig', index=False) # XXX Change to correct backup folder
-    send_dataframe('powerofrepetition2019@gmail.com', 'Today\'s List: '+t, 'Thank you!', df, filename) # XXX Type in surveyors's email address
+    if len(df) == 0: send_dataframe('powerofrepetition2019@gmail.com', 'Nothing to send for: '+filename, 'Thank you!', "")
+    else: send_dataframe('powerofrepetition2019@gmail.com', 'Today\'s List: '+filename, 'Thank you!', filename) # XXX Type in surveyors's email address
 
-day = 1
-complete = 1
-for comb in [[1,0],[1,1],...]
-requests.post(URL + "activityUpdate/4001158/"+day+"/"+complete+"/0/0/0")
-worker('6PM')
-worker('10PM')
+try:
+    schedule.every().day.at("06:00").do(worker, t='6PM')
+    schedule.every().day.at("10:00").do(worker, t='10PM')
+    keeper = True
+    while keeper:
+        schedule.run_pending()
+        time.sleep(10)
+        print(datetime.today().strftime('%Y%m%d %H:%M:%S'))
+        if int(datetime.today().strftime('%Y%m%d')) == 20190923: # XXX This should be five days before 2-week survey day
+            keeper = False
+except:
+    send_dataframe('powerofrepetition2019@gmail.com', 'PROGRAM HALTED', '', "") # XXX Send email to Eliza and Donghee when this is not running (emergency contact).
+    sys.exit(1)
 
-# schedule.every().day.at("06:00").do(worker, t='6PM')
-# schedule.every().day.at("10:00").do(worker, t='6PM')
-# keeper = True
-# while keeper:
-#     schedule.run_pending()
-#     time.sleep(30)
-#     if int(datetime.datetime.today().strftime('%Y%m%d')) == 20190923: # XXX This should be five days before 2-week survey day
-#         keeper = False
-
-
-
-
-#### Screen out by last activity (when is the first time we sent the "new message")
-#### Day 6 vs. Day 7 vs. Day 8
-#### Create CSV
-#### Send CSV via email
-#### Timer to run code
-## Test with multiple scenarios
+# # Test Code for different scenarios
+# for comb in [[0,0],[1,1],[6,1]]:
+#     day, complete = comb
+#     for t in ['6PM','10PM']:
+#         print("===========================\n")
+#         print("day="+str(day)+", complete="+str(complete)+", "+t+"\n")
+#         print("---------------------------\n")
+#         requests.post(URL + "activityUpdate/4002156/"+str(day)+"/"+str(complete)+"/0/0/0")
+#         worker(t)
+#         print("activities:\n")
+#         activities = get_page_as_df('allActivities', page_columns_class['allActivities'])
+#         print(activities.loc[activities['user_id'] == 4002156].iloc[0])
