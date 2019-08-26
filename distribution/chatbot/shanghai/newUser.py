@@ -72,7 +72,7 @@ def new_user_process(input_ID):
             hashed_day = day_hashids.encrypt(day)
             requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
                 str(day)+"/"+str(input_ID)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
-            if day == 0: msg_URL = URL+"s/"+hashed_user_id+"/"+hashed_day + "/info" ## XXX Change URL accordingly
+            if day == 0: msg_URL = URL+"shanghai/"+hashed_user_id+"/"+hashed_day + "/info" ## XXX Change URL accordingly
         # Set up initial allActivities #
         requests.post(URL+"activityUpdate/"+str(nextUserID)+"/0/0/0/0/0") ## XXX I put day 0 here for new user. Is this going to be a problem? (I need this so that we send correct reminder for people who didn't even finish consent form)
         # Return output for surveyors #

@@ -101,7 +101,7 @@ def create_reminders(t,complete):
     if not(activities.empty): activities['day'] = activities['day'] + complete
     send_list = pd.merge(activities, users, on=['user_id','day'])
     # Create message #
-    if not(send_list.empty): send_list['msg'] = URL + "s/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
+    if not(send_list.empty): send_list['msg'] = URL + "shanghai/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
     else: send_list['msg'] = ''
     for i in range(send_list.shape[0]):
         send_list['msg'].iloc[i] = msg['d'+str(send_list['day'].iloc[i])+str(t)][complete] + "\n" + send_list['msg'].iloc[i]
