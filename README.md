@@ -111,5 +111,5 @@ A project to investigate the power of repetition in Chinese media.
   </p>
 
 ## Demo
-- Navigate to [media](https://github.com/lizzij/PowerOfRepetition/tree/master/media) for web app's instructions and demo links.
+- Navigate to [media](https://github.com/lizzij/media/tree/master/media) for web app's instructions and demo links.
 - Navigate to [chatbot](https://github.com/lizzij/PowerOfRepetition/tree/master/distribution/chatbot) for chatbot's result and demo steps.
