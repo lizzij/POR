@@ -48,8 +48,12 @@ def new_user_process(input_ID):
     users = get_users()
     cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
     curr_cohort_user_count = int(len(set(cohort_users['user_id'])))
-    if input_ID in list(set(users['wechat_id'])): # Already existing user
+    if input_ID in list(set(users.loc[users.cohort != int(cohort)]['wechat_id'])): # Already existing user from prev. cohorts
         return ["EXISTING USER",msg_ineligible]
+    elif input_ID in list(set(cohort_users['wechat_id'])): # Already existing user in current cohort: just show the existing message
+        theUser = cohort_users.loc[(cohort_users.wechat_id == input_ID) & (cohort_users.day == 0)]
+        msg_URL = URL+"s/"+theUser.user_id_hashid.iloc[0]+"/"+theUser.day_hashid.iloc[0]+"/info"
+        return ["(DUPLICATE INPUT) SAVE USER AS: "+str(theUser.user_id.iloc[0]),msg_initial+msg_URL]
     elif curr_cohort_user_count >= maxnum_cohort: # Max cohort size reached
         requests.post(URL+"userInsert/WAITLIST/TBD"+"/"+str(input_ID)+"/"+ str(int(cohort)+1)+"/TBD/TBD/TBD")
         return ["MAX SIZE REACHED: SAVED IN WAITLIST",msg_maxnum_cohort]
@@ -75,6 +79,7 @@ def new_user_process(input_ID):
         return ["SAVE USER AS: "+str(nextUserID),msg_initial+msg_URL]
 
 ## Test
-input_ID = "idididid" # Get input from surveyor (XXX in reality this comes from HTML form input)
-for k in range(1):
-    print(new_user_process("h"+str(k)))
+# input_ID = "some_wechat_ID" # Get input from surveyor (XXX in reality this comes from HTML form input)
+# new_user_process(input_ID)
+
+print(new_user_process("test1000"))
