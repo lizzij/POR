@@ -38,6 +38,8 @@ for user_id in range(lower, upper):
     # update user table
     requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
         str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
+    # update day in table
+    df.at[index, 'day'] = day
     # add a new row in the table
     index += 1
     # update to new day
