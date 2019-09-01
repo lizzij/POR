@@ -4,7 +4,7 @@ A project to investigate the power of repetition in Chinese media.
 <img src="https://github.com/lizzij/PowerOfRepetition/blob/master/img/Shanghai.gif" alt="Shanghai time lapse" width="880"/>
 
 ## Research Questions
-**Read [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
+**Read initial [50 pages documentation](https://docs.google.com/document/d/1tng4vsgPXjuKzJaPWZg7eiDzAz9nOl0U7VqSZvYjSCk/edit?usp=sharing) here.**
 - In a real-world context of nondemocratic regimes, is repetition by multiple sources effective in persuading people?
 - Which design aspects of repetitive message are effective in persuading people?
   - Mere repetition? T1 vs. T2.S
