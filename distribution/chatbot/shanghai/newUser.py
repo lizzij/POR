@@ -25,9 +25,10 @@ msg_initial = "此次调研总共维持6天时间。我们将在接下来的8天
 
 ## Parameters (XXX check these before deployment)
 cohort = "4"
-maxnum_cohort = 200 ## Maximum number of cohorts in this trial
+maxnum_cohort = 70 ## Maximum number of cohorts in this trial per surveyor
 maxday = 8
 seq = [3, 0, 2, 3, 0, 0, 3, 0, 0, 2, 0, 2, 1, 0, 2, 3, 3, 3, 2, 3, 3, 2, 0, 2, 2, 1, 1, 1, 1, 3, 1, 0, 0, 1, 0, 2, 0, 3, 2, 1, 3, 0, 3, 3, 2, 1, 0, 3, 0, 0, 0, 2, 2, 3, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 0, 1, 3, 2, 2, 0, 2, 3, 0, 1, 3, 3, 3, 1, 0, 1, 2, 0, 2, 1, 1, 0, 2, 3, 1, 3, 1, 3, 2, 0, 1, 1, 0, 3, 2, 1, 1, 2, 0, 2, 3, 1, 3, 3, 2, 3, 1, 0, 2, 2, 3, 0, 2, 0, 3, 0, 2, 0, 0, 3, 1, 0, 3, 3, 2, 0, 1, 2, 3, 0, 2, 1, 1, 1, 2, 3, 1, 0, 3, 2, 2, 3, 3, 1, 1, 1, 1, 1, 0, 2, 1, 0, 3, 2, 2, 3, 1, 1, 3, 0, 0, 2, 1, 0, 1, 0, 1, 3, 3, 0, 0, 2, 1, 3, 2, 3, 3, 0, 3, 0, 1, 2, 2, 2, 2, 0, 2, 3, 0, 3, 2, 0, 1, 1, 0, 1]
+surveyorNumber = 2 # for real version, we need this to be an input from the surveyor.
 # Note: the sequence is created randomly from "treatSequence.py"
 
 ## Get list of users (XXX allUsers page should be updated with actual WeChat IDs of former users in Shanghai)
@@ -47,13 +48,17 @@ def get_users():
 def new_user_process(input_ID):
     users = get_users()
     cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
-    curr_cohort_user_count = int(len(set(cohort_users['user_id'])))
+    if len(cohort_users) != 0: cohort_users['surveyor'] = int((max(pd.to_numeric(cohort_users['user_id'])) / 1e6) % 10)
+    curr_cohort_user_count = int(len(set(cohort_users.loc[cohort_users.surveyor==surveyorNumber]['user_id'])))
     if input_ID in list(set(users.loc[users.cohort != int(cohort)]['wechat_id'])): # Already existing user from prev. cohorts
         return ["EXISTING USER",msg_ineligible]
-    elif input_ID in list(set(cohort_users['wechat_id'])): # Already existing user in current cohort: just show the existing message
-        theUser = cohort_users.loc[(cohort_users.wechat_id == input_ID) & (cohort_users.day == 0)]
-        msg_URL = URL+"s/"+theUser.user_id_hashid.iloc[0]+"/"+theUser.day_hashid.iloc[0]+"/info"
-        return ["(DUPLICATE INPUT) SAVE USER AS: "+str(theUser.user_id.iloc[0]),msg_initial+msg_URL]
+    elif input_ID in list(set(cohort_users['wechat_id'])): # Already existing user in current cohort
+        if cohort_users.loc[cohort_users.wechat_id == input_ID].iloc[0]['surveyor'] != surveyorNumber:
+            return ["(DUPLICATE INPUT: OTHER SURVEYOR'S SUBJECT)","[DON'T SEND ANY MESSAGE; NOTIFY ZIXIN ABOUT THIS DUPLICATE]"]
+        else:
+            theUser = cohort_users.loc[(cohort_users.wechat_id == input_ID) & (cohort_users.day == 0)]
+            msg_URL = URL+"s/"+theUser.user_id_hashid.iloc[0]+"/"+theUser.day_hashid.iloc[0]+"/info"
+            return ["(DUPLICATE INPUT) SAVE USER AS: "+str(theUser.user_id.iloc[0]),msg_initial+msg_URL]
     elif curr_cohort_user_count >= maxnum_cohort: # Max cohort size reached
         requests.post(URL+"userInsert/WAITLIST/TBD"+"/"+str(input_ID)+"/"+ str(int(cohort)+1)+"/TBD/TBD/TBD")
         return ["MAX SIZE REACHED: SAVED IN WAITLIST",msg_maxnum_cohort]
@@ -61,7 +66,7 @@ def new_user_process(input_ID):
         # Create nickname #
         if len(cohort_users) == 0: previousMax = 0
         else: previousMax = int((max(pd.to_numeric(cohort_users['user_id'])) % 1e6) / 1e3)
-        nextUserID = int(int(cohort)*1e6 + (previousMax+1)*1e3 + randint(1,999))
+        nextUserID = int(int(cohort)*1e7 + int(surveyorNumber)*1e6 + (previousMax+1)*1e3 + randint(1,999))
         # Assign treatment group #
         treatment = "T"+str(seq[previousMax]+1)
         # Save user profile in allUsers #
@@ -82,4 +87,4 @@ def new_user_process(input_ID):
 # input_ID = "some_wechat_ID" # Get input from surveyor (XXX in reality this comes from HTML form input)
 # new_user_process(input_ID)
 
-print(new_user_process("test1000"))
+print(new_user_process("test1002"))
