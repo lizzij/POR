@@ -5,15 +5,15 @@ import pandas as pd
 
 random.seed(2625224) # 08/22/2019 Dow Jones Index Close Price X 100
 
-i, satisfied, mini, mini_best = (1, False, [50,50,50,50,50], [50,50,50,50,50])
+i, satisfied, mini, mini_best = (1, False, [50,50,50], [50,50,50])
 tolerance = 2 # 1 is not reached even after 10 minutes, which makes randomization inference too taxing. 2 takes 20 seconds
 
 while not(satisfied):
-	seq = random.choices([0,1,2,3],k=200)
-	for j in range(5):
-		k = [40,80,120,160,200][j]
+	seq = random.choices([0,1,2,3],k=210)
+	for j in range(3):
+		k = [70,140,210][j]
 		vk = pd.DataFrame(seq[0:k])[0].value_counts()
-		mini[j] = int(max(abs(max(vk)-k/4),abs(min(vk)-k/4)))
+		mini[j] = int(abs(max(vk)-min(vk)))
 	if max(mini) < max(mini_best): mini_best = list(mini)
 	if i%1000 == 0:
 		print(str(i)+" iterations complete, best so far: "+str(mini_best))
@@ -23,12 +23,14 @@ while not(satisfied):
 	i = i + 1
 
 ## Verification
-for j in range(5):
-	k = [40,80,120,160,200][j]
+for j in range(3):
+	k = [70,140,210][j]
 	print(pd.DataFrame(seq[0:k])[0].value_counts())
 
 ## Print sequence
-print(seq)
+seq_fin = [3,2] # First two = test IDs
+seq_fin.extend(seq)
+print(seq_fin)
 
 ############
 ## ARCHIVE##
