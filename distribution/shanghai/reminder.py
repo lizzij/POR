@@ -7,8 +7,6 @@
 ## XXX: Check before deployment
 ## YYY: Need Eliza's input
 ## To-Do List (XXX)
-#### YYY: What to do for those who go above 72 (would day = 99 work?)
-#### Screen out people who failed attention test (Day 2)
 #### Day 7 and Day 8
 #### Divide file into num_surveyors: this depends on the surveyor's preference (6PM vs 10Pm? Half and half each time?)
 
@@ -32,12 +30,12 @@ import time
 import sys
 
 ## Toggle test vs. deployment (XXX for deployment activate first line, de-activate the second line)
-#URL = URL + ""
-URL = "http://127.0.0.1:5000/"
+URL = "https://dailyeventinfo.com/"
+# URL = "http://127.0.0.1:5000/"
 
-## Scripts (XXX check these before deployment)
+## Scripts
 msg_same_day_reminder = u'看上去您还没有完成今天的调研。 请您点击链接，参与不到五分钟的调研。'
-msg_next_day_reminder = u'您没有完成昨天的调查。我们理解您可能有别的事在忙。我们将再给您一整天的时间来完成昨天的调研。 \n 如您所知，只有在完成所有8天 的调研后，您才有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员的参与证明。这里是链接！'
+msg_next_day_reminder = u'您没有完成昨天的调查。我们理解您可能有别的事在忙。我们将再给您一整天的时间来完成昨天的调研。 \n 如您所知，只有在完成所有8天 的调研后，您才有机会参与赢得800元人民币的抽奖，并收到来自哈佛大学研究员的参与证明。这里是调研链接！'
 msg_new_survey = u'请点击下面的链接开始，同时了解另一个精彩的本地活动。'
 msg = {'d'+'0'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'],
     'd'+'0'+'10PM':[msg_same_day_reminder,'IMPOSSIBLE SITUATION'],
@@ -55,14 +53,14 @@ msg = {'d'+'0'+'6PM':[msg_next_day_reminder,'IMPOSSIBLE SITUATION'],
     'd'+'6'+'10PM':[msg_same_day_reminder,'No MESSAGE'],
 }
 
-## Parameters (XXX check these before deployment)
+## Parameters
 cohort = "4"
 page_columns_class = {'allActivities':[['user_id','day','day_complete','survey_page','day_started','curr_time'],'list'], 
     'allResults': [['user_id', 'day', 'question_id', 'result', 'created'],'about'],
     'allUsers': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list']}
-sender_address = 'powerofrepetition2019@gmail.com'
-sender_pass = 'jienancydonghee'
-backup_dir = 'C:/Users/dongh/Downloads/Test/'
+sender_address = 'porshanghai@gmail.com'
+sender_pass = 'PORporsh'
+backup_dir = 'C:/Projects/SurveyorHelpBot/msg_backup/'
 
 # Get current list of activities, users, or survey results as Pandas dataframe
 def get_page_as_df(pageName, columns_class):
@@ -96,12 +94,14 @@ def create_reminders(t,complete):
     activities['time_since_last_activity'] = (now - activities['curr_time']) / np.timedelta64(1, 'h')
     users = get_page_as_df('allUsers', page_columns_class['allUsers'])
     users = users.loc[users['cohort'] == int(cohort)]
-    activities = activities.loc[activities['day_complete'] == complete]
-    activities = activities.loc[activities['time_since_last_activity'] < 73].iloc[:,0:2] # If no activity within 3 days, drop.
+    dropouts = activities.loc[activities['time_since_last_activity'] >= 73]
+    for i in range(len(dropouts)): # If no activity within 3 days, drop.
+        requests.post(URL + "activityUpdate/"+str(int(dropouts['user_id'].iloc[i]))+"/99/0/0/0/0")
+    activities = activities.loc[(activities['day_complete'] == complete) & (activities['time_since_last_activity'] < 73)].iloc[:,0:2]
     if not(activities.empty): activities['day'] = activities['day'] + complete
     send_list = pd.merge(activities, users, on=['user_id','day'])
     # Create message #
-    if not(send_list.empty): send_list['msg'] = URL + "shanghai/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
+    if not(send_list.empty): send_list['msg'] = URL + "s/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
     else: send_list['msg'] = ''
     for i in range(send_list.shape[0]):
         send_list['msg'].iloc[i] = msg['d'+str(send_list['day'].iloc[i])+str(t)][complete] + "\n" + send_list['msg'].iloc[i]
@@ -109,9 +109,10 @@ def create_reminders(t,complete):
     return send_list[['user_id','msg']]
 
 def send_dataframe(send_to, subject, body, filename):
+    secondEmail = 'zixin.wei97@gmail.com'
     multipart = MIMEMultipart()
     multipart['From'] = sender_address
-    multipart['To'] = send_to
+    multipart['To'] = send_to + ',' + secondEmail
     multipart['Subject'] = subject
     multipart.attach(MIMEText(body, 'plain'))
     if filename != "": # In case there is an attachment
@@ -125,44 +126,68 @@ def send_dataframe(send_to, subject, body, filename):
     session.starttls() #enable security
     session.login(sender_address, sender_pass) #login with mail_id and password
     text = multipart.as_string()
-    session.sendmail(sender_address, send_to, text)
+    session.sendmail(sender_address, [send_to,secondEmail], text)
     print('Mail Sent')
     session.quit()
 
 def worker(t):
-    df1 = create_reminders(t,0)
-    if t == '10PM': df = add_empty_row(df1)
-    else:
-        df2 = create_reminders(t,1)
-        df = add_empty_row(pd.concat([df1,df2], ignore_index=True))
-    filename = datetime.today().strftime('%Y%m%d')+"_"+t+".csv"
-    df.to_csv(backup_dir+filename, encoding='utf-8-sig', index=False) # XXX Change to correct backup folder
-    if len(df) == 0: send_dataframe('powerofrepetition2019@gmail.com', 'Nothing to send for: '+filename, 'Thank you!', "")
-    else: send_dataframe('powerofrepetition2019@gmail.com', 'Today\'s List: '+filename, 'Thank you!', filename) # XXX Type in surveyors's email address
+    # surveyors = [{'Name':'Niu','Email':'powerofrepetition2019@gmail.com'},
+    #     {'Name':'Wang','Email':'powerofrepetition2019@gmail.com'},
+    #     {'Name':'Zhao','Email':'powerofrepetition2019@gmail.com'}] ## XXX toggl
+    surveyors = [{'Name':'Niu','Email':'1015857581@qq.com'},
+        {'Name':'Wang','Email':'wanglanoisif@163.com'},
+        {'Name':'Zhao','Email':'862869467@qq.com'}]
+    df = create_reminders(t,0)
+    if t == '6PM':
+        df = pd.concat([df,create_reminders(t,1)], ignore_index=True)
+    df['surveyor'] = ((pd.to_numeric(df['user_id'])/1e6)%10).astype(int)
+    for k in range(3):
+        df_each = df.loc[df.surveyor==(k+1)].iloc[:,0:2]
+        filename = datetime.today().strftime('%Y%m%d')+"_"+t+"_"+surveyors[k]['Name']+".csv"
+        if len(df_each) == 0: send_dataframe(surveyors[k]['Email'], 'Nothing to send for: '+filename, 'Thank you!', "")
+        else:
+            df_each = add_empty_row(df_each)
+            df_each.to_csv(backup_dir+filename, encoding='utf-8-sig', index=False)
+            send_dataframe(surveyors[k]['Email'], 'Today\'s List: '+filename, 'Thank you!', filename)
 
-try:
-    schedule.every().day.at("06:00").do(worker, t='6PM')
-    schedule.every().day.at("10:00").do(worker, t='10PM')
-    keeper = True
-    while keeper:
-        schedule.run_pending()
+def tester(): # sends email if the program is still working
+    send_dataframe('porshanghai@gmail.com', 'Program is still running', 'Fingers crossed', "")
+
+attempts = 0
+while attempts < 600: # Retry for about 1.5 hours and stop
+    try:
+        schedule.every().day.at("06:00").do(worker, t='6PM')
+        schedule.every().day.at("10:00").do(worker, t='10PM')
+        schedule.every().day.at("05:30").do(tester) # Added because email failure will lead to no notification at all (so we should use lack of notification as a signal)
+        schedule.every().day.at("09:30").do(tester)
+        schedule.every().day.at("21:00").do(tester)
+        keeper = True
+        while keeper:
+            schedule.run_pending()
+            time.sleep(10)
+            print(datetime.today().strftime('%Y%m%d %H:%M:%S'))
+            if int(datetime.today().strftime('%Y%m%d')) == 20190924: # This should be 4-5 days before 2-week survey day
+                keeper = False
+    except:
+        attempts = attempts + 1
+        print("Attempt " + str(attempts) + " failed... waiting 10 minutes to restart")
+        try:
+            send_dataframe('porshanghai@gmail.com', 'PROGRAM RESTARTING', '', "") # Send email to Eliza and Donghee when this is not running correctly (emergency contact).
+        except:
+            print("Email sending also failed... just restarting")
         time.sleep(10)
-        print(datetime.today().strftime('%Y%m%d %H:%M:%S'))
-        if int(datetime.today().strftime('%Y%m%d')) == 20190923: # XXX This should be five days before 2-week survey day
-            keeper = False
-except:
-    send_dataframe('powerofrepetition2019@gmail.com', 'PROGRAM HALTED', '', "") # XXX Send email to Eliza and Donghee when this is not running (emergency contact).
-    sys.exit(1)
 
-# # Test Code for different scenarios
+
+# Test Code for different scenarios
 # for comb in [[0,0],[1,1],[6,1]]:
 #     day, complete = comb
-#     for t in ['6PM','10PM']:
+#     # for t in ['6PM','10PM']:
+#     for t in ['10PM','6PM']:
 #         print("===========================\n")
 #         print("day="+str(day)+", complete="+str(complete)+", "+t+"\n")
 #         print("---------------------------\n")
-#         requests.post(URL + "activityUpdate/4002156/"+str(day)+"/"+str(complete)+"/0/0/0")
+#         requests.post(URL + "activityUpdate/41001415/"+str(day)+"/"+str(complete)+"/0/0/0")
 #         worker(t)
 #         print("activities:\n")
 #         activities = get_page_as_df('allActivities', page_columns_class['allActivities'])
-#         print(activities.loc[activities['user_id'] == 4002156].iloc[0])
+#         print(activities.loc[activities['user_id'] == 41001415].iloc[0])
