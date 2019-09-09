@@ -88,24 +88,24 @@ def new_user_process(input_ID):
 ## Test
 # input_ID = "some_wechat_ID" # Get input from surveyor (XXX in reality this comes from HTML form input)
 
-new_user_process('random1')
+# new_user_process('random1')
 
-# ## Test, so that we just copy and paste URL
-# for k in range(1,5):
-#     print("Treatment "+str(k))
-#     for day in range(1,7):
-#         print("Day "+str(day))
-#         users = get_users()
-#         cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
-#         if len(cohort_users) == 0: previousMax = 0
-#         else: previousMax = int((max(pd.to_numeric(cohort_users['user_id'])) % 1e6) / 1e3)    
+## Test, so that we can just copy and paste URL
+for k in range(1,5):
+    print("Treatment "+str(k))
+    for day in range(1,7):
+        print("Day "+str(day))
+        users = get_users()
+        cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
+        if len(cohort_users) == 0: previousMax = 0
+        else: previousMax = int((max(pd.to_numeric(cohort_users['user_id'])) % 1e6) / 1e3)    
         
-#         nextUserID = int(int(cohort)*1e7 + int(surveyorNumber)*1e6 + (previousMax+1)*1e3 + randint(1,999))
-#         user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
-#         day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
-#         hashed_user_id = user_id_hashids.encrypt(nextUserID)
-#         hashed_day = day_hashids.encrypt(day)
-#         requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
-#             str(day)+"/"+str("k"+str(k)+str(day))+"/"+ str(4) + "/" + str("T"+str(k)) +"/"+hashed_user_id+"/"+hashed_day)
-#         requests.post(URL+"activityUpdate/"+str(nextUserID)+"/"+str(day)+"/0/0/0/0")
-#         print(URL+"shanghai/"+hashed_user_id+"/"+hashed_day+"/info")
+        nextUserID = int(int(cohort)*1e7 + int(surveyorNumber)*1e6 + (previousMax+1)*1e3 + randint(1,999))
+        user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
+        day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
+        hashed_user_id = user_id_hashids.encrypt(nextUserID)
+        hashed_day = day_hashids.encrypt(day)
+        requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
+            str(day)+"/"+str("k"+str(k)+str(day))+"/"+ str(4) + "/" + str("T"+str(k)) +"/"+hashed_user_id+"/"+hashed_day)
+        requests.post(URL+"activityUpdate/"+str(nextUserID)+"/"+str(day)+"/0/0/0/0")
+        print(URL+"shanghai/"+hashed_user_id+"/"+hashed_day+"/info")
