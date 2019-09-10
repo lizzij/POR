@@ -34,23 +34,23 @@ for user_id in range(lower, upper):
     # dummy username
     userName = 'test' + str(user_id)
     # create link
-    df.at[index, 'link'] = "http://127.0.0.1:5000/shanghai/"+hashed_user_id+"/"+hashed_day+"/info"
+    df.at[index, 'link'] = "https://dailyeventinfo.com/shanghai/"+hashed_user_id+"/"+hashed_day+"/info"
     # update user table
-    requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
+    requests.post("https://dailyeventinfo.com/userInsert/"+str(user_id)+"/"+
         str(day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
     # update day in table
     df.at[index, 'day'] = day
     # add a new row in the table
     index += 1
     # update to new day
-    requests.post("http://127.0.0.1:5000/activityUpdate/"+str(user_id)+ "/"+str(day)+"/0/0/0/0")
+    requests.post("https://dailyeventinfo.com/activityUpdate/"+str(user_id)+ "/"+str(day)+"/0/0/0/0")
     if day == 0:
         next_day = 1
         user_id_hashids = Hashids(salt=str(10 * user_id + next_day) + "user_id", min_length=16)
         day_hashids = Hashids(salt=str(10 * user_id + next_day) + "day", min_length=10)
         hashed_user_id = user_id_hashids.encrypt(user_id)
         hashed_day = day_hashids.encrypt(next_day)
-        requests.post("http://127.0.0.1:5000/userInsert/"+str(user_id)+"/"+
+        requests.post("https://dailyeventinfo.com/userInsert/"+str(user_id)+"/"+
             str(next_day)+"/"+str(userName)+"/"+ str(cohort) + "/" + str(treatment) +"/"+hashed_user_id+"/"+hashed_day)
 
 print('\n')
