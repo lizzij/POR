@@ -46,7 +46,7 @@ if (part == 1):
             hashed_user_id = user_id_hashids.encrypt(nextUserID)
             hashed_day = day_hashids.encrypt(day)
             requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
-                str(day)+"/"+str("ll"+str(k)+str(day))+"/"+ cohort + "/" + str("T"+str(k)) +"/"+hashed_user_id+"/"+hashed_day)
+                str(day)+"/"+str("lll"+str(k)+str(day))+"/"+ cohort + "/" + str("T"+str(k)) +"/"+hashed_user_id+"/"+hashed_day)
             requests.post(URL+"activityUpdate/"+str(nextUserID)+"/"+str(day)+"/0/0/0/0")
             print(URL+"shanghai/"+hashed_user_id+"/"+hashed_day+"/info")
 
