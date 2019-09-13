@@ -8,9 +8,16 @@ import random
 from math import floor
 from random import randint
 from hashids import Hashids
+from datetime import datetime, timedelta
 
 URL = "https://dailyeventinfo.com/"
 cohort = "4"
+backup_dir = 'C:/Users/dongh/Dropbox/Research-active/ChinaMedia/Shanghai160Backup/'
+timestr = datetime.today().strftime('%Y%m%d_%H%M')
+filename = backup_dir+timestr+"_progress.txt"
+
+with open(filename, 'w') as f:
+    print(filename)
 
 def get_activities():
     page = requests.get(URL+"allActivities").text
@@ -24,20 +31,23 @@ def get_activities():
     df = df[pd.notnull(df['user_id'])]
     return df
 
-def progress_summary(df):
-    print("=================")
-    print("Total # of users = " + str(len(df)))
-    for d in range(1,3):
-        print("Finished day " + str(d) + " = " + str( len(df.loc[(df.day_complete == 1) & (df.day >= d)]) ))
-    print("=================\n")
+def progress_summary(df, name):
+    with open(filename, 'a+') as f:
+        f.write(name+"\n")
+        f.write("================="+"\n")
+        f.write("Total # of users = " + str(len(df))+"\n")
+        f.write(" (including " + str( len(df.loc[df.day==99]) ) + " dropouts)\n")
+        for d in range(1,5):
+            f.write("Finished day " + str(d) + " = " + str( len(df.loc[((df.day_complete == 1) & (df.day == d)) | ((df.day > d)&(df.day <= 6 )) ]) )+"\n")
+        f.write("================="+"\n")
 
 ## Get data
 df = get_activities()
 
 ## Full summary
-progress_summary(df)
+progress_summary(df, "Full")
 
 ## Summary by surveyor
+names = ['Niu','Wang','Zhao']
 for s in range(1,4):
-    print("\nS"+str(s))
-    progress_summary(df.loc[((df.user_id/1e6)%10).astype('int') == s])
+    progress_summary(df.loc[((df.user_id/1e6)%10).astype('int') == s], str(names[s-1])+":")
