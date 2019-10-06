@@ -37,8 +37,8 @@ def progress_summary(df, name):
         f.write("================="+"\n")
         f.write("Total # of users = " + str(len(df))+"\n")
         f.write(" (including " + str( len(df.loc[df.day==99]) ) + " dropouts)\n")
-        for d in range(1,5):
-            f.write("Finished day " + str(d) + " = " + str( len(df.loc[((df.day_complete == 1) & (df.day == d)) | ((df.day > d)&(df.day <= 6 )) ]) )+"\n")
+        for d in range(1,8):
+            f.write("Finished day " + str(d) + " = " + str( len(df.loc[((df.day_complete == 1) & (df.day == d)) | ((df.day > d)&(df.day <= 7 )) ]) )+"\n")
         f.write("================="+"\n")
 
 ## Get data
