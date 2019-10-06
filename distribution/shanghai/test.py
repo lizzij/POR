@@ -7,8 +7,8 @@ import webbrowser
 
 day = int(input('\nWhich day (0-8) do you want to test? '))
 lower = 1000
-upper = 1004
-treatments = ['T1', 'T2', 'T3', 'T4']
+upper = 1005
+treatments = ['T0', 'T1', 'T2-1', 'T2-2', 'T3', 'T4']
 dict = {
     'user_id': np.repeat(np.arange(lower, upper, 1), 1), # change to 9 if repeat for day 0-8
     'day': np.tile(np.arange(1), (upper-lower)), # change to 9 if repeat for day 0 (consent) - day 8 (inclusive)
@@ -29,7 +29,7 @@ for user_id in range(lower, upper):
     # shanghai cohort
     cohort = 5
     # iterate through each treatment
-    treatment = treatments[user_id % 4]
+    treatment = treatments[user_id % 5]
     df.at[index, 'treatment'] = treatment
     # dummy username
     userName = 'test' + str(user_id)
