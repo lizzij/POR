@@ -13,7 +13,7 @@ dict = {
     'user_id': np.repeat(np.arange(lower, upper, 1), 1), # change to 9 if repeat for day 0-8
     'day': np.tile(np.arange(1), (upper-lower)), # change to 9 if repeat for day 0 (consent) - day 8 (inclusive)
     'userName': 'userName',
-    'cohort': 4,
+    'cohort': 5,
     'treatment': 'T',
     'link': 'link',
 }
@@ -27,7 +27,7 @@ for user_id in range(lower, upper):
     hashed_user_id = user_id_hashids.encrypt(user_id)
     hashed_day = day_hashids.encrypt(day)
     # shanghai cohort
-    cohort = 4
+    cohort = 5
     # iterate through each treatment
     treatment = treatments[user_id % 4]
     df.at[index, 'treatment'] = treatment
