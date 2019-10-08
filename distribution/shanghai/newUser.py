@@ -93,7 +93,7 @@ def new_user_process(input_ID):
 ## Test, so that we can just copy and paste URL
 for k in range(1,5):
     print("Treatment "+str(k))
-    for day in range(1,7):
+    for day in range(7,8):
         print("Day "+str(day))
         users = get_users()
         cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])

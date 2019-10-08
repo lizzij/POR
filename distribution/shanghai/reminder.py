@@ -8,7 +8,6 @@
 ## YYY: Need Eliza's input
 ## To-Do List (XXX)
 #### Day 7 and Day 8
-#### Divide file into num_surveyors: this depends on the surveyor's preference (6PM vs 10Pm? Half and half each time?)
 
 from bs4 import BeautifulSoup
 import requests
@@ -29,9 +28,16 @@ import schedule
 import time
 import sys
 
-## Toggle test vs. deployment (XXX for deployment activate first line, de-activate the second line)
-URL = "https://dailyeventinfo.com/"
-# URL = "http://127.0.0.1:5000/"
+## Toggle test vs. deployment
+test = False
+
+## Base URL
+if test:
+    URL = "http://127.0.0.1:5000/"
+    cc = 'dongheejo68@gmail.com'
+else:
+    URL = "https://dailyeventinfo.com/"
+    cc = 'zixin.wei97@gmail.com'
 
 ## Scripts
 msg_same_day_reminder = u'看上去您还没有完成今天的调研。 请您点击链接，参与不到五分钟的调研。'
@@ -60,7 +66,8 @@ page_columns_class = {'allActivities':[['user_id','day','day_complete','survey_p
     'allUsers': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list']}
 sender_address = 'porshanghai@gmail.com'
 sender_pass = 'PORporsh'
-backup_dir = 'C:/Projects/SurveyorHelpBot/msg_backup/'
+# backup_dir = 'C:/Projects/SurveyorHelpBot/msg_backup/'
+backup_dir = 'C:/Users/donghee.jo/Dropbox/Research-active/ChinaMedia/Shared/PowerOfRepetition/Shanghai Pilot 160/list_backup/'
 
 # Get current list of activities, users, or survey results as Pandas dataframe
 def get_page_as_df(pageName, columns_class):
@@ -101,15 +108,14 @@ def create_reminders(t,complete):
     if not(activities.empty): activities['day'] = activities['day'] + complete
     send_list = pd.merge(activities, users, on=['user_id','day'])
     # Create message #
-    if not(send_list.empty): send_list['msg'] = URL + "s/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
+    if not(send_list.empty): send_list['msg'] = URL + "shanghai/" + send_list['user_id_hashid'].str.strip() + "/" + send_list['day_hashid'].str.strip() + "/info"
     else: send_list['msg'] = ''
     for i in range(send_list.shape[0]):
         send_list['msg'].iloc[i] = msg['d'+str(send_list['day'].iloc[i])+str(t)][complete] + "\n" + send_list['msg'].iloc[i]
         if complete == 1: requests.post(URL + "activityUpdate/"+str(int(send_list['user_id'].iloc[i]))+"/"+str(int(send_list['day'].iloc[i]))+"/0/0/0/0")
-    return send_list[['user_id','msg']]
+    return send_list[['user_id','wechat_id','msg']]
 
-def send_dataframe(send_to, subject, body, filename):
-    secondEmail = 'zixin.wei97@gmail.com'
+def send_dataframe(send_to, subject, body, filename, secondEmail):
     multipart = MIMEMultipart()
     multipart['From'] = sender_address
     multipart['To'] = send_to + ',' + secondEmail
@@ -131,27 +137,29 @@ def send_dataframe(send_to, subject, body, filename):
     session.quit()
 
 def worker(t):
-    # surveyors = [{'Name':'Niu','Email':'powerofrepetition2019@gmail.com'},
-    #     {'Name':'Wang','Email':'powerofrepetition2019@gmail.com'},
-    #     {'Name':'Zhao','Email':'powerofrepetition2019@gmail.com'}] ## XXX toggl
-    surveyors = [{'Name':'Niu','Email':'1015857581@qq.com'},
-        {'Name':'Wang','Email':'wanglanoisif@163.com'},
-        {'Name':'Zhao','Email':'862869467@qq.com'}]
+    if test:
+        surveyors = [{'Name':'Niu','Email':'powerofrepetition2019@gmail.com'},
+            {'Name':'Wang','Email':'powerofrepetition2019@gmail.com'},
+            {'Name':'Zhao','Email':'powerofrepetition2019@gmail.com'}]
+    else:
+        surveyors = [{'Name':'Niu','Email':'1015857581@qq.com'},
+            {'Name':'Wang','Email':'wanglanoisif@163.com'},
+            {'Name':'Zhao','Email':'862869467@qq.com'}]
     df = create_reminders(t,0)
     if t == '6PM':
         df = pd.concat([df,create_reminders(t,1)], ignore_index=True)
     df['surveyor'] = ((pd.to_numeric(df['user_id'])/1e6)%10).astype(int)
     for k in range(3):
-        df_each = df.loc[df.surveyor==(k+1)].iloc[:,0:2]
+        df_each = df.loc[df.surveyor==(k+1)].iloc[:,0:3]
         filename = datetime.today().strftime('%Y%m%d')+"_"+t+"_"+surveyors[k]['Name']+".csv"
-        if len(df_each) == 0: send_dataframe(surveyors[k]['Email'], 'Nothing to send for: '+filename, 'Thank you!', "")
+        if len(df_each) == 0: send_dataframe(surveyors[k]['Email'], 'Nothing to send for: '+filename, 'Thank you!', "", cc)
         else:
             df_each = add_empty_row(df_each)
             df_each.to_csv(backup_dir+filename, encoding='utf-8-sig', index=False)
-            send_dataframe(surveyors[k]['Email'], 'Today\'s List: '+filename, 'Thank you!', filename)
+            send_dataframe(surveyors[k]['Email'], 'Today\'s List: '+filename, 'Thank you!', filename, cc)
 
 def tester(): # sends email if the program is still working
-    send_dataframe('porshanghai@gmail.com', 'Program is still running', 'Fingers crossed', "")
+    send_dataframe('porshanghai@gmail.com', 'Program is still running', 'Fingers crossed', "", 'dongheejo68@gmail.com')
 
 attempts = 0
 while attempts < 600: # Retry for about 1.5 hours and stop
@@ -172,7 +180,7 @@ while attempts < 600: # Retry for about 1.5 hours and stop
         attempts = attempts + 1
         print("Attempt " + str(attempts) + " failed... waiting 10 minutes to restart")
         try:
-            send_dataframe('porshanghai@gmail.com', 'PROGRAM RESTARTING', '', "") # Send email to Eliza and Donghee when this is not running correctly (emergency contact).
+            send_dataframe('porshanghai@gmail.com', 'PROGRAM RESTARTING', '', "", 'dongheejo68@gmail.com') # Send email to Eliza and Donghee when this is not running correctly (emergency contact).
         except:
             print("Email sending also failed... just restarting")
         time.sleep(10)
