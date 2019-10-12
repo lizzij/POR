@@ -6,12 +6,11 @@ from tabulate import tabulate
 import webbrowser
 
 day = int(input('\nWhich day (0-8) do you want to test? '))
-lower = 1000
-upper = 1005
+user_ids = [41500000, 41500001, 41500002, 42500003, 43500004]
 treatments = ['T0', 'T1', 'T2-1', 'T2-2', 'T3', 'T4']
 dict = {
-    'user_id': np.repeat(np.arange(lower, upper, 1), 1), # change to 9 if repeat for day 0-8
-    'day': np.tile(np.arange(1), (upper-lower)), # change to 9 if repeat for day 0 (consent) - day 8 (inclusive)
+    'user_id': np.repeat(user_ids, 1), # change to 9 if repeat for day 0-8
+    'day': np.tile(np.arange(1), 5), # change to 9 if repeat for day 0 (consent) - day 8 (inclusive)
     'userName': 'userName',
     'cohort': 5,
     'treatment': 'T',
@@ -20,7 +19,7 @@ dict = {
 df = pd.DataFrame(dict)
 
 index = 0 # keep track of the row index
-for user_id in range(lower, upper):
+for user_id in user_ids:
     # hashing
     user_id_hashids = Hashids(salt=str(10 * user_id + day) + "user_id", min_length=16)
     day_hashids = Hashids(salt=str(10 * user_id + day) + "day", min_length=10)
