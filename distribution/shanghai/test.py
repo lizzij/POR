@@ -7,7 +7,8 @@ import webbrowser
 
 day = int(input('\nWhich day (0-8) do you want to test? '))
 user_ids = [41500000, 41500001, 41500002, 42500003, 43500004]
-treatments = ['T0', 'T1', 'T2-1', 'T2-2', 'T3', 'T4']
+# treatments = ['T0', 'T1', 'T2-1', 'T2-2', 'T3', 'T4'] TODO TODO TODO 
+treatments = ['T1', 'T2', 'T3', 'T3', 'T4']
 dict = {
     'user_id': np.repeat(user_ids, 1), # change to 9 if repeat for day 0-8
     'day': np.tile(np.arange(1), 5), # change to 9 if repeat for day 0 (consent) - day 8 (inclusive)
@@ -26,7 +27,8 @@ for user_id in user_ids:
     hashed_user_id = user_id_hashids.encrypt(user_id)
     hashed_day = day_hashids.encrypt(day)
     # shanghai cohort
-    cohort = 5
+    # cohort = 5 TODO TODO TODO
+    cohort = 4
     # iterate through each treatment
     treatment = treatments[user_id % 5]
     df.at[index, 'treatment'] = treatment
