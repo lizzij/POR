@@ -29,7 +29,7 @@ for j in range(3):
 	print(pd.DataFrame(seq[0:k])[0].value_counts())
 
 ## Print sequence
-seq_fin = [2,1,0,3] # First four = test IDs (DJ,JB,EH,NQ)
+seq_fin = [2,1,0,3] # First four = test IDs (DJ,JB,EH,NQ) (T2-1, T1, T0, T2-2) (surveyor 3, 1, 1, 2)
 seq_fin.extend(seq)
 print(seq_fin)
 
