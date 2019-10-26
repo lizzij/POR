@@ -25,7 +25,8 @@ URL = "https://dailyeventinfo.com/"
 ## Parameters
 page_columns_class = {'allActivities':[['user_id','day','day_complete','survey_page','day_started','curr_time'],'list'], 
     'allResults': [['user_id', 'day', 'question_id', 'result', 'created'],'about'],
-    'allUsers': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list']}
+    'allUsers': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list'],
+    'werun': [['user_id','day','wechat_id','cohort','treatment','user_id_hashid','day_hashid'],'list']}
 backup_dir = 'C:/Users/dongh/Dropbox/Research-active/ChinaMedia/Shanghai160Backup/'
 
 # Get current list of activities, users, or survey results as Pandas dataframe
@@ -44,6 +45,20 @@ def get_page_as_df(pageName, columns_class):
     df['day'] = df['day'].astype(int)
     return df
 
+def get_werun_page(pageName, columns_class):
+    page = requests.get(URL + pageName).text
+    soup = BeautifulSoup(page, "html.parser")
+    table = soup.find("table")
+    output_rows = []
+    for table_row in table.findAll('tr'):
+        columns = table_row.findAll('td')
+        output_row = []
+        for column in columns:
+            output_row.append(column.text)
+        output_rows.append(output_row)
+    df = pd.DataFrame(output_rows[1:], columns=['user_id','wechat_id','werun_installed','pledged_steps','steps_taken'])
+    return df
+
 timestr = datetime.today().strftime('%Y%m%d_%H%M')
 
 for p in page_columns_class:
@@ -52,3 +67,5 @@ for p in page_columns_class:
     filename = timestr+"_"+p+".csv"
     df.to_csv(backup_dir+filename, encoding='utf-8-sig', index=False)
 
+df = get_werun_page('werun', page_columns_class['werun'])
+df.to_csv(backup_dir+timestr+"_werun.csv", encoding='utf-8-sig', index=False)

@@ -26,7 +26,7 @@ msg_initial = "此次调研总共维持6天时间。我们将在接下来的8天
 我们也将会询问您一些关于各类话题的问题。 如果您想参加这项学术调研，请点击以下链接开始。 您的回答仅被用于学术研究，我们将对您的个人信息及回答进行严格保密。 调研结束后我们将进行抽奖，所有参与并完成调研的同学将有机会赢得800元人民币作为奖励。 <br><br>"
 
 ## Parameters (XXX check these before deployment)
-cohort = "4"
+cohort = "5"
 maxnum_cohort = 70 ## Maximum number of cohorts in this trial per surveyor
 maxday = 8
 seq = [3, 0, 2, 3, 0, 0, 3, 0, 0, 2, 0, 2, 1, 0, 2, 3, 3, 3, 2, 3, 3, 2, 0, 2, 2, 1, 1, 1, 1, 3, 1, 0, 0, 1, 0, 2, 0, 3, 2, 1, 3, 0, 3, 3, 2, 1, 0, 3, 0, 0, 0, 2, 2, 3, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 0, 1, 3, 2, 2, 0, 2, 3, 0, 1, 3, 3, 3, 1, 0, 1, 2, 0, 2, 1, 1, 0, 2, 3, 1, 3, 1, 3, 2, 0, 1, 1, 0, 3, 2, 1, 1, 2, 0, 2, 3, 1, 3, 3, 2, 3, 1, 0, 2, 2, 3, 0, 2, 0, 3, 0, 2, 0, 0, 3, 1, 0, 3, 3, 2, 0, 1, 2, 3, 0, 2, 1, 1, 1, 2, 3, 1, 0, 3, 2, 2, 3, 3, 1, 1, 1, 1, 1, 0, 2, 1, 0, 3, 2, 2, 3, 1, 1, 3, 0, 0, 2, 1, 0, 1, 0, 1, 3, 3, 0, 0, 2, 1, 3, 2, 3, 3, 0, 3, 0, 1, 2, 2, 2, 2, 0, 2, 3, 0, 3, 2, 0, 1, 1, 0, 1]
@@ -91,21 +91,23 @@ def new_user_process(input_ID):
 # new_user_process('random1')
 
 ## Test, so that we can just copy and paste URL
-for k in range(1,5):
-    print("Treatment "+str(k))
-    for day in range(7,8):
-        print("Day "+str(day))
+for t in ["T0","T1","T2-1","T2-2","T3"]:
+    print(t)
+    for day in range(0,6):
         users = get_users()
         cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
         if len(cohort_users) == 0: previousMax = 0
         else: previousMax = int((max(pd.to_numeric(cohort_users['user_id'])) % 1e6) / 1e3)    
         
         nextUserID = int(int(cohort)*1e7 + int(surveyorNumber)*1e6 + (previousMax+1)*1e3 + randint(1,999))
-        user_id_hashids = Hashids(salt=str(10 * nextUserID + day) + "user_id", min_length=16)
-        day_hashids = Hashids(salt=str(10 * nextUserID + day) + "day", min_length=10)
-        hashed_user_id = user_id_hashids.encrypt(nextUserID)
-        hashed_day = day_hashids.encrypt(day)
-        requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
-            str(day)+"/"+str("k"+str(k)+str(day))+"/"+ str(4) + "/" + str("T"+str(k)) +"/"+hashed_user_id+"/"+hashed_day)
-        requests.post(URL+"activityUpdate/"+str(nextUserID)+"/"+str(day)+"/0/0/0/0")
-        print(URL+"shanghai/"+hashed_user_id+"/"+hashed_day+"/info")
+        print("Day "+str(day))
+        for dd in range(9):
+            user_id_hashids = Hashids(salt=str(10 * nextUserID + dd) + "user_id", min_length=16)
+            day_hashids = Hashids(salt=str(10 * nextUserID + dd) + "day", min_length=10)
+            hashed_user_id = user_id_hashids.encrypt(nextUserID)
+            hashed_day = day_hashids.encrypt(dd)
+            requests.post(URL+"userInsert/"+str(nextUserID)+"/"+
+                str(dd)+"/"+str(t+t+t)+"/"+ str(5) + "/" + str(t) +"/"+hashed_user_id+"/"+hashed_day)
+            if day==dd:
+                print(URL+"shanghai/"+hashed_user_id+"/"+hashed_day+"/info")
+                requests.post(URL+"activityUpdate/"+str(nextUserID)+"/"+str(dd)+"/0/0/0/0")
