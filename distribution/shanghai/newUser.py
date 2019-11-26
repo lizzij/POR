@@ -92,8 +92,9 @@ def new_user_process(input_ID):
 
 ## Test, so that we can just copy and paste URL
 for t in ["T0","T1","T2-1","T2-2","T3"]:
+# for t in ["T0"]:
     print(t)
-    for day in range(0,6):
+    for day in range(1,2):
         users = get_users()
         cohort_users = users.loc[users.cohort == int(cohort)].drop_duplicates(subset=['user_id'])
         if len(cohort_users) == 0: previousMax = 0
